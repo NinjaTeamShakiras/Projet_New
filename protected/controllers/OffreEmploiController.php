@@ -170,4 +170,152 @@ class OffreEmploiController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+
+	/* Fonction qui change la date au formatr Américain pour la BDD */
+	protected function changeDateBDD($date)
+	{
+		$result = NULL;
+		$day = 0;
+		$month = 0;
+		$year = 0;
+
+		//On récupère chaque valeur grâce a substr
+		$year = substr($date, 6, 4);
+		$month = substr($date, 3, 2);
+		$day = substr($date, 0, 2);
+
+		$result = $year."-".$month."-".$day;
+
+		return $result;
+	}
+
+
+
+
+	/*	Fonction qui change la date au format français*/
+	protected function changeDateNaissance($date)
+	{
+		$result = NULL;
+		$day = 0;
+		$month = 0;
+		$year = 0;
+
+		//On récupère chaque valeur grâce a substr
+		$year = substr($date, 0, 4);
+		$month = substr($date, 5, 2);
+		$day = substr($date, 8, 2);
+
+		$result = $day."/".$month."/".$year;
+
+		return $result;
+
+	}
+
+
+
+
+	/**
+	 * Permet de postuler à une offre d'emploie
+	 * @param id_offre : c'est l'id de l'offre d'emploie en question
+	 */
+	public function actionPostule( $id_offre )
+	{
+		// On récupere l'id_employe
+		$employe = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
+
+		// Boolléen qui vérifiera si l'employer à déjà postuler
+		$employeAPostuler = false;
+
+		// On récupère la table Postuler
+		$tablePostuler = Postuler::model()->FindAll();
+
+		// On vérifie si un champs comprend l'id de l'employé et l'id de l'offre. Si c'est le cas, l'employé à déjà postuler
+		foreach($tablePostuler as $postuler){
+			if($postuler->id_employe == $employe && $postuler->id_offre_emploi == $id_offre){
+				$employeAPostuler = true;
+			}
+		}
+
+		if($employeAPostuler)
+		{ // Si l'employé à déjà postuler à cette offre d'emploi on refuse
+			echo "Vous avez déjà postuler à cette offre";
+		}
+		else
+		{
+			$postuler = new Postuler; // On créer une nouvelle table Postuler que l'on remplie
+			$postuler->id_employe = $employe;
+			$postuler->id_offre_emploi = $id_offre;
+			echo "Vous venez de postuler à cette offre";
+		}
+		
+		//var_dump( $postuler );
+		if($postuler->save())
+			$this->redirect(array('view','id'=>$id_offre));
+	
+	}
+
+
+
+
+	/**
+	 * Lists all models postuler.
+	 */
+	public function actionMesOffres()
+	{
+		$dataProvider=new CActiveDataProvider('OffreEmploi');
+		$this->render('mesOffres',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+
+
+	/**
+	 * Permet de Dépostuler d'une offre d'emploie
+	 * @param id_offre : c'est l'id de l'offre d'emploie en question
+	 */
+	public function actionDepostule( $id_offre )
+	{
+		// On récupere l'id_employe
+		$employe = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
+
+		// On récupère la table Postuler
+		$tablePostuler = Postuler::model()->FindAll();
+
+		// On vérifie si un champs comprend l'id de l'employé et l'id de l'offre. Si c'est le cas, l'employé à déjà postuler
+		foreach($tablePostuler as $postuler){
+			if($postuler->id_employe == $employe && $postuler->id_offre_emploi == $id_offre){
+				$postuler->delete(); // On supprime la ligne concerné
+			}
+		}
+		
+		$this->redirect(array('view','id'=>$id_offre));
+	
+	}
+
+	/*	Fonction qui recherche une ou plusieurs entreprises dans la base en fonction 
+		des infos entrées par l'utilisateur 
+	*/		
+	public function actionSearch()
+	{
+		//On récupère la liste des offres d'emplois par rapport au type entré
+		$type_offre = $_POST['Entreprise']['nom_entreprise'];
+		$entreprises = Entreprise::model()->FindAll("nom_entreprise LIKE '%$nom_entreprise%'");
+
+		$this->render('index_search', array('data'=>$entreprises));
+	}
+
+	/*		Fonction utilisée lors de l'auto-complétion de la page d'accueil pour envoyer les entreprises 		*/
+	public function actionGetAllEntreprisesJSON()
+	{
+		/*		Tableau pour sauvegarder les résultats*/
+		$results_arr = array();
+
+		foreach ( Entreprise::model()->findAll() as $key_int => $value_obj ) {
+			array_push( $results_arr, $value_obj->nom_entreprise );
+		}
+
+		echo json_encode($results_arr);
+	}
 }

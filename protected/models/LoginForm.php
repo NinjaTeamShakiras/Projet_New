@@ -26,7 +26,7 @@ class LoginForm extends CFormModel
 			// rememberMe needs to be a boolean
 			array('rememberMe', 'boolean'),
 			// password needs to be authenticated
-			array('password', 'authenticate'),
+			array('password', 'authenticate')
 		);
 	}
 
@@ -36,7 +36,9 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'rememberMe'=>'Remember me next time',
+			'rememberMe'=>'Se souvenir de moi',
+			'username'=>'Adresse mail',
+			'password'=>'Mot de passe'
 		);
 	}
 
@@ -50,6 +52,7 @@ class LoginForm extends CFormModel
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
 			if(!$this->_identity->authenticate())
+				$this->addError('username', '');
 				$this->addError('password','Incorrect username or password.');
 		}
 	}

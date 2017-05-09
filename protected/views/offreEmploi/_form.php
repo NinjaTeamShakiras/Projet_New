@@ -26,6 +26,13 @@
 	</div>
 
 	<div class="row">
+		<select name="position_affaire">
+			<option value="texte_position_affaire1">CDD</option>
+			<option value="texte_position_affaire2">CDI</option>
+			<option value="texte_position_affaire3">STAGE</option>
+			<option value="texte_position_affaire2">ALTERNANCE</option>
+			<option value="texte_position_affaire3">EXTRA</option>
+		</select>
 		<?php echo $form->labelEx($model,'poste_offre_emploi'); ?>
 		<?php echo $form->textField($model,'poste_offre_emploi',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'poste_offre_emploi'); ?>
@@ -38,6 +45,7 @@
 	</div>
 
 	<div class="row">
+		<input type="date" name="date_debut_offre_emploi" value="date_debut">
 		<?php echo $form->labelEx($model,'date_debut_offre_emploi'); ?>
 		<?php echo $form->textField($model,'date_debut_offre_emploi'); ?>
 		<?php echo $form->error($model,'date_debut_offre_emploi'); ?>

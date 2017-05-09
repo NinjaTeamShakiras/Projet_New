@@ -33,6 +33,7 @@ class ExperiencePro extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('id_employe','required'),
 			array('id_employe', 'numerical', 'integerOnly'=>true),
 			array('intitule_experience, entreprise_experience', 'length', 'max'=>45),
 			array('description_experience', 'length', 'max'=>255),

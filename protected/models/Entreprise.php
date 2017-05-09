@@ -8,7 +8,6 @@
  * @property string $nom_entreprise
  * @property integer $nombre_employes
  * @property integer $recherche_employes
- * @property string $telephone_entreprise
  * @property string $secteur_active_entreprise
  * @property integer $anne_creation_entreprise
  * @property integer $age_moyen_entreprise
@@ -40,10 +39,9 @@ class Entreprise extends CActiveRecord
 			array('nom_entreprise', 'required'),
 			array('nombre_employes, recherche_employes, anne_creation_entreprise, age_moyen_entreprise', 'numerical', 'integerOnly'=>true),
 			array('nom_entreprise, secteur_active_entreprise', 'length', 'max'=>45),
-			array('telephone_entreprise', 'length', 'max'=>12),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_entreprise, nom_entreprise, nombre_employes, recherche_employes, telephone_entreprise, secteur_active_entreprise, anne_creation_entreprise, age_moyen_entreprise', 'safe', 'on'=>'search'),
+			array('id_entreprise, nom_entreprise, nombre_employes, recherche_employes, secteur_active_entreprise, anne_creation_entreprise, age_moyen_entreprise', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,7 +70,6 @@ class Entreprise extends CActiveRecord
 			'nom_entreprise' => 'Nom Entreprise',
 			'nombre_employes' => 'Nombre Employes',
 			'recherche_employes' => 'Recherche Employes',
-			'telephone_entreprise' => 'Telephone Entreprise',
 			'secteur_active_entreprise' => 'Secteur Active Entreprise',
 			'anne_creation_entreprise' => 'Anne Creation Entreprise',
 			'age_moyen_entreprise' => 'Age Moyen Entreprise',
@@ -101,7 +98,6 @@ class Entreprise extends CActiveRecord
 		$criteria->compare('nom_entreprise',$this->nom_entreprise,true);
 		$criteria->compare('nombre_employes',$this->nombre_employes);
 		$criteria->compare('recherche_employes',$this->recherche_employes);
-		$criteria->compare('telephone_entreprise',$this->telephone_entreprise,true);
 		$criteria->compare('secteur_active_entreprise',$this->secteur_active_entreprise,true);
 		$criteria->compare('anne_creation_entreprise',$this->anne_creation_entreprise);
 		$criteria->compare('age_moyen_entreprise',$this->age_moyen_entreprise);
