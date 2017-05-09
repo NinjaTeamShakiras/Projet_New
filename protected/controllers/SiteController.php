@@ -142,53 +142,28 @@ class SiteController extends Controller
 		$this->render('inscriptionEmploye', array('model'=>$user));
 	}
 
-	public function actionInscription()
+	public function actionInscriptionEntreprise()
 	{                        
-		$model = new Employe;
-		$entreprise = new Entreprise;
+		//On créé un utilisateur et une entreprise vide
+		$model = new Entreprise;
 		$user = new Utilisateur;
 
-		if(isset($_POST['Utilisateur']))
+		//Si les textfields ne sont pas vides
+		if(isset($_POST['Utilisateur']) && isset($_POST['Entreprise']))
 		{
-			if(isset($_POST['Employe']))
+ 			if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
 			{
-				if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
-				{
-					$model->attributes = $_POST['Employe'];
-					$model->date_naissance_employe = NULL;
-		   			$model->telephone_employe = NULL;
-					$model->id_adresse = NULL;
-					
-					$model->save();
+				//On attribues les valeurs entrés par l'utilisateur dans le model entreprise
+				$model->attributes = $_POST['Entreprise'];
+				$model->recherche_employes = NULL;
+				$model->telephone_entreprise = NULL;
+				$model->id_adresse = NULL;
 
-					//Définition du fuseau horaire GMT+1
-					date_default_timezone_set('Europe/Paris');
-					$date = (new \DateTime())->format('Y-m-d H:i:s');
-					$user->date_creation_utilisateur = $date;
-					$user->date_derniere_connexion = $date;
-					$user->attributes = $_POST['Utilisateur'];
-					$user->role = "employe";
+				//On save le model
+				$model->save();
 
-					$employe = Employe::model()->findByAttributes(array("id_employe"=>$model->id_employe));;
-					$user->id_employe = $employe->id_employe;
-
-					
-					$user->save();
-					$this->redirect(array('site/login'));
-				}
-			}
- 	
-			else if(isset($_POST['Entreprise']))
-			{
-			
-				$entreprise->attributes = $_POST['Entreprise'];
-				$entreprise->recherche_employes = NULL;
-				$entreprise->telephone_entreprise = NULL;
-				$entreprise->id_adresse = NULL;
-
-				$entreprise->save();
-
-				//Définition du fuseau horaire GMT+1
+				//On fait pareil avec l'utilisateur
+				//-->Définition du fuseau horaire GMT+1
 				date_default_timezone_set('Europe/Paris');
 				$date = (new \DateTime())->format('Y-m-d H:i:s');
 				$user->date_creation_utilisateur = $date;
@@ -197,16 +172,19 @@ class SiteController extends Controller
 				$user->role = "entreprise";
 
 
-				$entreprise = Entreprise::model()->findByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
-				$user->id_entreprise = $entreprise->id_entreprise;
+				//On récupère l'id de l'entreprise et on la donne à l'utilisateur
+				$model = Entreprise::model()->findByAttributes(array("id_entreprise"=>$model->id_entreprise));
+				$user->id_entreprise = $model->id_entreprise;
 
+				//On save l'utilisateur
 				$user ->save();
-				$this->redirect(array('site/login'));
 
+				$this->redirect(array('site/login'));
 			}
+
 		}
 
-		$this->render('inscription', array('model'=>$user));
+		$this->render('inscriptionEntreprise', array('model'=>$user));
 					
 	}
 
@@ -219,7 +197,7 @@ class SiteController extends Controller
 
 		if (isset($_POST['btnemploye']))
 		{
-			$this->redirect(array('site/login'));
+			$this->redirect(array('site/inscriptionEntreprise'));
 		}
 	}
 
