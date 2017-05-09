@@ -43,7 +43,7 @@ class Utilisateur extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('mail, mot_de_passe, role, date_creation_utilisateur, date_derniere_connexion, id_adresse', 'required'),
+			array('mail, mot_de_passe, role, date_creation_utilisateur, date_derniere_connexion' ,'required'),
 			array('id_employe, id_entreprise, id_adresse', 'numerical', 'integerOnly'=>true),
 			array('mail, role', 'length', 'max'=>45),
 			array('mot_de_passe', 'length', 'max'=>100),

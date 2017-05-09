@@ -107,40 +107,61 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
+	/* Fonction qui change la date au format Américain pour la BDD */
+	public function changeDateBDD($date)
+	{
+			$result = NULL;
+			$day = 0;
+			$month = 0;
+			$year = 0;
+
+			//On récupère chaque valeur grâce a substr
+			$year = substr($date, 6, 4);
+			$month = substr($date, 3, 2);
+			$day = substr($date, 0, 2);
+
+			$result = $year."-".$month."-".$day;
+
+			return $result;
+	}
+
+
 	public function actionInscriptionEmploye()
 	{
 		$model = new Employe;
 		$user = new Utilisateur;
 
-		if(isset($_POST['Utilisateur']) && isset($_POST['Employe']))
-		{
-			if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
+
+			if(isset($_POST['Utilisateur']) && isset($_POST['Employe']))
 			{
-				$model->attributes = $_POST['Employe'];
-				$model->date_naissance_employe = NULL;
-	   			$model->telephone_employe = NULL;
-				$model->id_adresse = NULL;
+				if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
+				{
+					$model->attributes = $_POST['Employe'];
+					$model->date_naissance_employe = $this->changeDateBDD($_POST['Employe']['date_naissance_employe']);
 				
-				$model->save();
+					$model->save();
 
-				//Définition du fuseau horaire GMT+1
-				date_default_timezone_set('Europe/Paris');
-				$date = (new \DateTime())->format('Y-m-d H:i:s');
-				$user->date_creation_utilisateur = $date;
-				$user->date_derniere_connexion = $date;
-				$user->attributes = $_POST['Utilisateur'];
-				$user->role = "employe";
+					//Définition du fuseau horaire GMT+1
+					date_default_timezone_set('Europe/Paris');
+					$date = (new \DateTime())->format('Y-m-d H:i:s');
+					$user->date_creation_utilisateur = $date;
+					$user->date_derniere_connexion = $date;
 
-				$employe = Employe::model()->findByAttributes(array("id_employe"=>$model->id_employe));;
-				$user->id_employe = $employe->id_employe;
+					$user->attributes = $_POST['Utilisateur'];
+					$user->role = "employe";
+
+					$employe = Employe::model()->findByAttributes(array("id_employe"=>$model->id_employe));;
+					$user->id_employe = $employe->id_employe;
 					
-				$user->save();
-				$this->redirect(array('site/login'));
+					
+					$user->save();
+					$this->redirect(array('site/login'));
+				}
 			}
-		}
 	
-		$this->render('inscriptionEmploye', array('model'=>$user));
+			$this->render('inscriptionEmploye', array('model'=>$user));
 	}
+
 
 	public function actionInscription()
 	{                        
@@ -227,4 +248,22 @@ class SiteController extends Controller
 	{
 		$this->redirect(array('site/inscription'));
 	}
+
+	public function verif_mdp($mdp)
+	{
+		$res = 1;
+
+		/*if(isset($_POST['confirm_mdp']))
+		{
+			if($mdp != $_POST['confirm_mdp'])
+			{
+				echo "Les mots de passes ne correspondent pas !";
+				$this->render('inscription', array('model'=>$user));
+				$res = 1;
+			}
+		}*/
+
+		return $res;
+	}
+	
 }
