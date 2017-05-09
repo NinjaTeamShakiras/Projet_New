@@ -178,7 +178,6 @@ class SiteController extends Controller
 				//On attribues les valeurs entrés par l'utilisateur dans le model entreprise
 				$model->attributes = $_POST['Entreprise'];
 				$model->recherche_employes = NULL;
-				$model->telephone_entreprise = NULL;
 
 				//On save le model
 				$model->save();
@@ -244,4 +243,4 @@ class SiteController extends Controller
 		}
 	}
 
-}
+}	
