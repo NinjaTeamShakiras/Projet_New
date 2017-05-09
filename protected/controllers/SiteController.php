@@ -106,4 +106,22 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	public function actionaccueil()
+	{
+		if (isset($_POST['btnemploi']))
+		{
+			$this->redirect(array('site/login'));	
+		} 
+
+		if (isset($_POST['btnemploye']))
+		{
+			$this->redirect(array('site/login'));
+		}
+	}
+
+	public function actionredirectionInscription()
+	{
+		$this->redirect(array('site/inscription'));
+	}
 }

@@ -36,3 +36,14 @@ Stack trace:
 REQUEST_URI=/projet_new/index.php?r=gii/model/index
 HTTP_REFERER=http://localhost/projet_new/index.php?r=gii/default/index
 ---
+2017/05/09 12:08:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "inscription".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('inscription')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('inscription')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/inscriptio...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=site/inscription
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
