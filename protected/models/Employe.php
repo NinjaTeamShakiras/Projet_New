@@ -37,10 +37,9 @@ class Employe extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nom_employe, prenom_employe', 'required'),
+			array('nom_employe, prenom_employe, date_naissance_employe', 'required'),
 			array('employe_travaille', 'numerical', 'integerOnly'=>true),
 			array('nom_employe, prenom_employe', 'length', 'max'=>45),
-			array('date_naissance_employe', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_employe, nom_employe, prenom_employe, date_naissance_employe, employe_travaille', 'safe', 'on'=>'search'),
@@ -72,9 +71,9 @@ class Employe extends CActiveRecord
 	{
 		return array(
 			'id_employe' => 'Id Employe',
-			'nom_employe' => 'Nom Employe',
-			'prenom_employe' => 'Prenom Employe',
-			'date_naissance_employe' => 'Date Naissance Employe',
+			'nom_employe' => 'Nom ',
+			'prenom_employe' => 'Prenom ',
+			'date_naissance_employe' => 'Date Naissance',
 			'employe_travaille' => 'Employe Travaille',
 		);
 	}
