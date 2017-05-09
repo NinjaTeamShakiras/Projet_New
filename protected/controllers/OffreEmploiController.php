@@ -222,7 +222,7 @@ class OffreEmploiController extends Controller
 	public function actionPostule( $id_offre )
 	{
 		// On récupere l'id_employe
-		$employe = Utilisateur::model()->FindByAttributes(array('login' => Yii::app()->user->getId()))->id_employe;
+		$employe = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
 
 		// Boolléen qui vérifiera si l'employer à déjà postuler
 		$employeAPostuler = false;
@@ -278,7 +278,7 @@ class OffreEmploiController extends Controller
 	public function actionDepostule( $id_offre )
 	{
 		// On récupere l'id_employe
-		$employe = Utilisateur::model()->FindByAttributes(array('login' => Yii::app()->user->getId()))->id_employe;
+		$employe = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
 
 		// On récupère la table Postuler
 		$tablePostuler = Postuler::model()->FindAll();

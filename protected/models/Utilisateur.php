@@ -140,4 +140,32 @@ class Utilisateur extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+		/*	Fonction pour savoir si l'utilisateur qui est connecté est un employé	
+		Paramètres : Rôle de l'utilisateur connecté
+		Return : Booléen 		*/
+	public static function est_employe($role_str)
+	{
+		return $role_str == "employe" ? true : false ;
+	}
+
+	/*	Fonction pour retourner l'identifiant à partir du mail
+		de l'utilisateur
+		Paramètres : Le mail (String), [ Ex : GIT ]	
+		Return : L'identifiant de l'utilisateur 	*/
+	public static function get_id_utilisateur_connexion($mail_str)
+	{
+		return Utilisateur::model()->findByAttributes(array( "mail" => $mail_str ))->id_utilisateur;
+	}
+
+	/*	Fonction pour récupérer l'utilisateur connecté à partir d'un mail
+		Paramètres : L'identifiant de l'entreprise 
+		Return : Un objet Utilisateur (Objet) 		*/
+	public static function get_utilisateur_connexion($mail_str)
+	{
+		return Utilisateur::model()->findByAttributes(array( "mail" => $mail_str ));
+	}
+
+
+
 }

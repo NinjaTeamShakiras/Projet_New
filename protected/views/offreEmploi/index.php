@@ -12,7 +12,7 @@
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise
 		$this->menu=array(
-			array('label'=>'Créer une offre', 'url'=>array('create')), // On peut créer une offre d'emploi
+			array('label'=>'Déposer une annonce gratuitement', 'url'=>array('create')), // On peut créer une offre d'emploi
 		);
 
 		$titre = "Mes offres d'emplois";
@@ -46,16 +46,16 @@
 
 <?php
 	$login = Yii::app()->user->getId();
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("login"=>$login)); // Récupération de l'utilisateur
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
 	$model = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 	$tablePostuler = Postuler::model()->FindAll();
 
 
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche les offres d'emploi de l'entreprise
-		$nombreCandidature = 0;
-		$tabIdEmploye=array();
-		$nombreOffre = 0;
+		$nombreCandidature = 0; // Nombre de candidature a l'offre en question
+		$tabIdEmploye=array(); // Tableau des employe qui ont postuler à l'offre
+		$nombreOffre = 0; // nombre total d'offre d'emploi
 		
 		foreach ($model as $key => $offre ) // Pour chaque offre ...
 		{
@@ -89,17 +89,14 @@
 				if($nombreCandidature > 0) // Si il y a des candidats
 				{ // On affiche le nombre de candidat, puis un lien vers les candidats
 					print("<p> Vous avez ".$nombreCandidature." candidature pour cette offre</p>");
-
-					/*for($i=0; $i<$nombreCandidature; $i++)
-					{ // On affiche un lien pour chacun des candidat
-						echo CHtml::link("<p> Voir la candidature $i </p>",array('employe/view', 'id'=>$tabIdEmploye[$i]));
-					}*/
 				}
 				else
 				{
-					print("<p> Vous n'avez aucune candidature à cette offre </p>");
+					print("<p> Aucune candidature à cette offre </p>");
 				}
 
+				$nombreCandidature = 0;
+				$tabIdEmploye=array();
 				echo "<hr/>";
 			}
 		}
@@ -107,7 +104,7 @@
 		// Si l'entreprise n'as pas d'offres, il faut bien afficher quelque chose
 		if($nombreOffre ==0)
 		{// Si il n'y a pas d'offre correspondante
-			print("<p> Vous n'avez aucune offre d'emploie </p>");
+			print("<p> Aucune offre d'emploie </p>");
 		}
 
 
