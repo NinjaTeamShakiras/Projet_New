@@ -107,11 +107,114 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
-	public function actionaccueil()
+	public function actionInscriptionEmploye()
+	{
+		$model = new Employe;
+		$user = new Utilisateur;
+
+		if(isset($_POST['Utilisateur']) && isset($_POST['Employe']))
+		{
+			if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
+			{
+				$model->attributes = $_POST['Employe'];
+				$model->date_naissance_employe = NULL;
+	   			$model->telephone_employe = NULL;
+				$model->id_adresse = NULL;
+				
+				$model->save();
+
+				//Définition du fuseau horaire GMT+1
+				date_default_timezone_set('Europe/Paris');
+				$date = (new \DateTime())->format('Y-m-d H:i:s');
+				$user->date_creation_utilisateur = $date;
+				$user->date_derniere_connexion = $date;
+				$user->attributes = $_POST['Utilisateur'];
+				$user->role = "employe";
+
+				$employe = Employe::model()->findByAttributes(array("id_employe"=>$model->id_employe));;
+				$user->id_employe = $employe->id_employe;
+					
+				$user->save();
+				$this->redirect(array('site/login'));
+			}
+		}
+	
+		$this->render('inscriptionEmploye', array('model'=>$user));
+	}
+
+	public function actionInscription()
+	{                        
+		$model = new Employe;
+		$entreprise = new Entreprise;
+		$user = new Utilisateur;
+
+		if(isset($_POST['Utilisateur']))
+		{
+			if(isset($_POST['Employe']))
+			{
+				if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
+				{
+					$model->attributes = $_POST['Employe'];
+					$model->date_naissance_employe = NULL;
+		   			$model->telephone_employe = NULL;
+					$model->id_adresse = NULL;
+					
+					$model->save();
+
+					//Définition du fuseau horaire GMT+1
+					date_default_timezone_set('Europe/Paris');
+					$date = (new \DateTime())->format('Y-m-d H:i:s');
+					$user->date_creation_utilisateur = $date;
+					$user->date_derniere_connexion = $date;
+					$user->attributes = $_POST['Utilisateur'];
+					$user->role = "employe";
+
+					$employe = Employe::model()->findByAttributes(array("id_employe"=>$model->id_employe));;
+					$user->id_employe = $employe->id_employe;
+
+					
+					$user->save();
+					$this->redirect(array('site/login'));
+				}
+			}
+ 	
+			else if(isset($_POST['Entreprise']))
+			{
+			
+				$entreprise->attributes = $_POST['Entreprise'];
+				$entreprise->recherche_employes = NULL;
+				$entreprise->telephone_entreprise = NULL;
+				$entreprise->id_adresse = NULL;
+
+				$entreprise->save();
+
+				//Définition du fuseau horaire GMT+1
+				date_default_timezone_set('Europe/Paris');
+				$date = (new \DateTime())->format('Y-m-d H:i:s');
+				$user->date_creation_utilisateur = $date;
+				$user->date_derniere_connexion = $date;
+				$user->attributes = $_POST['Utilisateur'];
+				$user->role = "entreprise";
+
+
+				$entreprise = Entreprise::model()->findByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+				$user->id_entreprise = $entreprise->id_entreprise;
+
+				$user ->save();
+				$this->redirect(array('site/login'));
+
+			}
+		}
+
+		$this->render('inscription', array('model'=>$user));
+					
+	}
+
+	public function actionAccueil()
 	{
 		if (isset($_POST['btnemploi']))
 		{
-			$this->redirect(array('site/login'));	
+			$this->redirect(array('site/inscriptionEmploye'));	
 		} 
 
 		if (isset($_POST['btnemploye']))
