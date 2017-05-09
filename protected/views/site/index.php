@@ -13,6 +13,5 @@ $form=$this->beginWidget('CActiveForm', array(
 )); 
 echo CHtml::submitButton('Un emploi', array('name' => 'btnemploi')); 
 echo CHtml::submitButton('Un employe', array('name' => 'btnemploye')); 
-echo CHtml::submitButton('Ajouter formation', array('name' => 'btnAjoutFormation' ));
 $this->endWidget(); 	
 ?>

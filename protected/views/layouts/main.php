@@ -18,8 +18,6 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body>
-
 <div class="container" id="page">
 
 	<div id="header">
@@ -29,9 +27,10 @@
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
-
+	
+<body>
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by NinjaTeam.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
