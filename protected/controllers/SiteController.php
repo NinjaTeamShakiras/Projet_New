@@ -157,7 +157,6 @@ class SiteController extends Controller
 				$model->attributes = $_POST['Entreprise'];
 				$model->recherche_employes = NULL;
 				$model->telephone_entreprise = NULL;
-				$model->id_adresse = NULL;
 
 				//On save le model
 				$model->save();
@@ -188,6 +187,28 @@ class SiteController extends Controller
 					
 	}
 
+	public function verif_mdp($mdp)
+	{
+		$res;
+
+		if(isset($_POST['confirm_mdp']))
+		{
+			if($mdp != $_POST['confirm_mdp'])
+			{
+				echo "Les mots de passe ne correspondent pas !";
+				$this->render('inscription', array('model'=>$user));
+				$res = 0;
+			}
+			else
+			{
+				$res = 1;
+			}
+		}
+
+		return $res;
+	}
+
+
 	public function actionAccueil()
 	{
 		if (isset($_POST['btnemploi']))
@@ -199,10 +220,5 @@ class SiteController extends Controller
 		{
 			$this->redirect(array('site/inscriptionEntreprise'));
 		}
-	}
-
-	public function actionredirectionInscription()
-	{
-		$this->redirect(array('site/inscription'));
 	}
 }

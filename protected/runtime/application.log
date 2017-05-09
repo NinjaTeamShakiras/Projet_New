@@ -241,3 +241,89 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=site/inscriptionEntreprise
 HTTP_REFERER=http://localhost/prozzl/
 ---
+2017/05/09 14:07:09 [error] [exception.CException] exception 'CException' with message 'Property "Entreprise.id_adresse" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(161): CComponent->__set('id_adresse', NULL)
+#1 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(160): CActiveRecord->__set('id_adresse', NULL)
+#2 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionInscriptionEntreprise()
+#3 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\wamp64\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('inscriptionEntr...')
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/inscriptio...')
+#8 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/prozzl/index.php?r=site/inscriptionEntreprise
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/inscriptionEntreprise
+---
+2017/05/09 14:31:05 [error] [php] Undefined variable: user (C:\wamp64\www\prozzl\protected\views\site\login.php:19)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(98): SiteController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/login
+in C:\wamp64\www\prozzl\protected\views\site\login.php (19)
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (98)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/09 16:31:15 [error] [php] urlencode() expects parameter 1 to be string, object given (C:\wamp64\www\yii\framework\web\CUrlManager.php:440)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CUrlManager.php(346): CUrlManager->createPathInfo()
+#1 C:\wamp64\www\yii\framework\web\CUrlManager.php(310): CUrlManager->createUrlDefault()
+#2 C:\wamp64\www\yii\framework\base\CApplication.php(561): CUrlManager->createUrl()
+#3 C:\wamp64\www\yii\framework\web\CController.php(967): CWebApplication->createUrl()
+#4 C:\wamp64\www\yii\framework\web\CController.php(1028): SiteController->createUrl()
+#5 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(181): SiteController->redirect()
+#6 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionInscriptionEntreprise()
+#7 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#8 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#9 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#10 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#11 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#13 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/inscriptionEntreprise
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (181)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/09 14:36:57 [error] [php] Undefined variable: user (C:\wamp64\www\prozzl\protected\views\site\login.php:19)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): SiteController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(98): SiteController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/login
+in C:\wamp64\www\prozzl\protected\views\site\login.php (19)
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (98)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/09 15:17:20 [error] [php] Missing argument 2 for CModel::addError(), called in C:\wamp64\www\prozzl\protected\models\LoginForm.php on line 55 and defined (C:\wamp64\www\yii\framework\base\CModel.php:381)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute()
+#1 C:\wamp64\www\yii\framework\base\CModel.php(159): CInlineValidator->validate()
+#2 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(94): LoginForm->validate()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/login
+in C:\wamp64\www\prozzl\protected\models\LoginForm.php (55)
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (94)
+in C:\wamp64\www\prozzl\index.php (13)
