@@ -2,17 +2,17 @@
 /* @var $this OffreEmploiController */
 /* @var $model OffreEmploi */
 
-$this->breadcrumbs=array(
+/*$this->breadcrumbs=array(
 	'Offre Emplois'=>array('index'),
 	'Create',
 );
+*/
 
 $this->menu=array(
-	array('label'=>'List OffreEmploi', 'url'=>array('index')),
-	array('label'=>'Manage OffreEmploi', 'url'=>array('admin')),
+	array('label'=>'Liste de mes offres d\'emploi', 'url'=>array('index')),
 );
 ?>
 
-<h1>Create OffreEmploi</h1>
+<h1>Créer une offre d'emploi</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
