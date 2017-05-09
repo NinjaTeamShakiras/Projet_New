@@ -34,6 +34,7 @@ class Formation extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('id_employe','required'),
 			array('id_employe', 'numerical', 'integerOnly'=>true),
 			array('intitule_formation, etablissement_formation, diplome_formation', 'length', 'max'=>45),
 			array('description_formation', 'length', 'max'=>255),
