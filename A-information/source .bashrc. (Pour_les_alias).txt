@@ -1,0 +1,5 @@
+cd /c/wamp/www/projet
+
+alias : sprozzl
+
+source .bashrc.

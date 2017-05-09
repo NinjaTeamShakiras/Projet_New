@@ -1,0 +1,178 @@
+Franck 04/04/2017 11h
+
+
+
+ADRESSE :
+	- id_adresse			INT 		not null 	auto_imcrément
+	- rue				VARCHAR(100) 	not null
+	- ville				VARCHAR(45) 	not null
+	- code_postal			VARCHAR(5) 	not null
+
+
+EMPLOYE :
+  	- id_employe 			INT 		NOT NULL 	AUTO_INCREMENT,
+  	- nom_employe 			VARCHAR(45) 	NOT NULL,
+  	- prenom_employe 		VARCHAR(45) 	NOT NULL,
+  	- date_naissance_employe 	DATETIME 	NULL,
+  	- employe_travaille 		TINYINT(1) 	NULL,
+  	- telephone_employe 		VARCHAR(12) 	NULL,
+  	- id_adresse 			INT 		NULL,
+
+
+ENTREPRISE :
+  	- id_entreprise			INT 		NOT NULL 	AUTO_INCREMENT,
+  	- nom_entreprise		VARCHAR(45) 	NOT NULL,
+  	- nombre_employes		INT 		NULL,
+  	- recherche_employes		TINYINT(1) 	NULL,
+  	- telephone_entreprise		VARCHAR(12) 	NULL,
+  	- id_adresse			INT 		NULL,
+
+
+UTILISATEUR :
+  	- id_utilisateur		INT 		NOT NULL 	AUTO_INCREMENT,
+  	- login				VARCHAR(50) 	NOT NULL,
+  	- mot_de_passe			VARCHAR(100) 	NOT NULL,
+  	- role				VARCHAR(45) 	NOT NULL,
+  	- date_creation_utilisateur	DATETIME 	NOT NULL,
+  	- date_derniere_connexion	DATETIME 	NOT NULL,
+  	- mail				VARCHAR(45) 	NULL,
+  	- id_employe			INT 		NULL,
+  	- id_entreprise			INT 		NULL,
+
+TRAVAILLE :
+  	- id_travaille			INT 		NOT NULL 	AUTO_INCREMENT,
+  	- date_debut_contrat		DATE 		NOT NULL,
+  	- date_fin_contrat		DATE 		NULL,
+  	- duree_contrat			INT 		NULL,
+  	- id_employe			INT 		NOT NULL,
+  	- id_entreprise			INT 		NOT NULL,
+
+
+COMPETENCE_CV :
+  	- id_competence			INT 		NOT NULL 	AUTO_INCREMENT,
+  	- nom_competence		VARCHAR(45) 	NOT NULL,
+
+
+CV :
+  	- id_CV				INT		NOT NULL 	AUTO_INCREMENT,
+
+
+CV_EMPLOYE :
+  	- id_cv_employe 		INT 		NOT NULL 	AUTO_INCREMENT,
+  	- niveau_competence 		INT 		NOT NULL,
+  	- id_employe 			INT 		NOT NULL,
+  	- id_competence 		INT 		NOT NULL,
+  	- id_cv 			INT 		NOT NULL,
+
+
+CRITERES_NOTATION_EMPLOYE :
+  	- id_critere_employe 		INT 		NOT NULL 	AUTO_INCREMENT,
+  	- nom_critere_employe 		VARCHAR(30) 	NOT NULL,
+  	- critere_note_employe 		TINYINT(1) 	NOT NULL,
+  	- description_critere_employe 	VARCHAR(200) 	NOT NULL,
+
+
+CRITERES_NOTATION_ENTREPRISE :
+  	- id_critere_entreprise 		INT 		NOT NULL AUTO_INCREMENT,
+  	- nom_critere_entreprise 		VARCHAR(30) 	NOT NULL,
+  	- critere_note_entreprise 		TINYINT(1) 	NOT NULL,
+  	- description_critere_entreprise 	VARCHAR(200) 	NOT NULL,
+
+
+AVIS_EMPLOYE :
+  	- id_avis_employe 			INT 		NOT NULL AUTO_INCREMENT,
+  	- note_generale_avis_employe 		INT 		NOT NULL,
+  	- date_creation_avis_employe 		DATETIME 	NOT NULL,
+  	- nb_signalements_avis_employe 		VARCHAR(300) 	NOT NULL,
+  	- id_employe 				INT 		NOT NULL,
+  	- id_utilisateur 			INT 		NOT NULL,
+
+
+AVIS_ENTREPRISE :
+  	- id_avis_entreprise 			INT 		NOT NULL AUTO_INCREMENT,
+  	- note_generale_avis_entreprise 	INT 		NOT NULL,
+  	- date_creation_avis_entreprise 	DATETIME 	NOT NULL,
+  	- nb_signalements_avis_entreprise 	INT 		NOT NULL,
+  	- id_entreprise 			INT 		NOT NULL,
+  	- id_utilisateur			INT 		NOT NULL,
+
+
+EMPLOYE_AVIS_CRITERE :
+  	- id_employe_avis 			INT 		NOT NULL AUTO_INCREMENT,
+  	- note_employe_avis 			INT 		NULL,
+  	- commentaire_evaluation_critere	VARCHAR(300) 	NULL,
+  	- id_critere_notation_employe 		INT 		NOT NULL,
+  	- id_avis_employe 			INT 		NOT NULL,
+
+
+ENTREPRISE_AVIS_CRITERE :
+  	- id_entreprise_avis 			INT 		NOT NULL AUTO_INCREMENT,
+  	- note_entreprise_avis 			INT 		NULL,
+  	- commentaire_evaluation_critere 	VARCHAR(300) 	NULL,
+  	- id_critere_notation_entreprise 	INT 		NOT NULL,
+  	- id_avis_entreprise			INT 		NOT NULL,
+
+
+INFOS_COMPLEMENTAIRES_PROFIL :
+  	- id_info 				INT 		NOT NULL AUTO_INCREMENT,
+  	- nom_info 				VARCHAR(150) 	NOT NULL,
+  	- personne_concernee 			VARCHAR(12) 	NOT NULL,
+
+
+INFOS_COMPLEMENTAIRES_EMPLOYE :
+  	- id_info_employe			INT 		NOT NULL AUTO_INCREMENT,
+  	- description_info 			VARCHAR(150) 	NOT NULL,
+  	- id_info_profil 			INT 		NOT NULL,
+  	- id_employe				INT 		NOT NULL,
+
+
+INFOS_COMPLEMENTAIRES_ENTREPRISE :
+  	- id_info_entreprise 			INT 		NOT NULL AUTO_INCREMENT,
+  	- description_info 			VARCHAR(150) 	NOT NULL,
+  	- id_info_profil			INT 		NOT NULL,
+  	- id_entreprise				INT 		NOT NULL,
+
+
+NOTIFICATION :
+  	- id_notifcation 			INT 		NOT NULL AUTO_INCREMENT,
+  	- type 					VARCHAR(45) 	NOT NULL,
+  	- texte_descriptif 			VARCHAR(300) 	NULL,
+  	- id_utilisateur 			INT 		NOT NULL,
+
+
+OFFRE_EMPLOI :
+  	- id_offre_emploi 			INT 		NOT NULL AUTO_INCREMENT,
+  	- date_creation_offre_emploi 		DATETIME 	NOT NULL,
+  	- type_offre_emploi 			VARCHAR(30) 	NULL,
+  	- salaire_offre_emploi 			INT 		NULL,
+  	- experience_offre_emploi 		VARCHAR(500) 	NULL,
+  	- description_offre_emploi 		VARCHAR(500) 	NULL,
+  	- id_entreprise 			INT 		NOT NULL,
+
+
+POSTULER :
+  	- id_postuler 				INT 		NOT NULL AUTO_INCREMENT,
+  	- id_employe 				INT 		NOT NULL,
+  	- id_offre_emploi 			INT 		NOT NULL,
+	- date_postule				DATE		NOT NULL,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

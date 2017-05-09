@@ -1,0 +1,11 @@
+
+
+
+
+05/04/2017 FRANCK : Correction des fichier php en fonction de la nouvelle base de donnée
+			- views/utilisateur 	: Fait
+			- views/travaille	: Fait
+			- views/site		: A voir
+			- views/entreprise	: Fait
+			- views/employe		: Fait
+			- views/xxxx		: Fait
