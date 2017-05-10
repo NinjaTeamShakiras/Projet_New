@@ -92,7 +92,18 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+			{
+				//Si l'utilisateur est une entreprise, on le redirige vers sa page
+				if(Yii::app()->user->getState('role') == "entreprise")
+				{
+					$this->redirect(array('entreprise/index'));
+				}
+				//Si l'utilisateur est un employe, on le reidirige vers sa page
+				else if(Yii::app()->user->getState('role') == "employe")
+				{
+					$this->redirect(array('employe/index'));
+				}
+			}
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
@@ -154,8 +165,13 @@ class SiteController extends Controller
 					$user->id_employe = $employe->id_employe;
 					
 					
-					$user->save();
-					$this->redirect(array('employe/index'));
+					if($user->save())
+					{
+						$identity = new UserIdentity($user->mail, $user->mot_de_passe);
+						$identity->authenticate();
+						Yii::app()->user->login($identity, 0);
+						$this->redirect(array('employe/index'));
+					}
 				}
 			}
 	
@@ -197,9 +213,17 @@ class SiteController extends Controller
 				$user->id_entreprise = $model->id_entreprise;
 
 				//On save l'utilisateur
-				$user ->save();
+				if($user ->save()
+				{
+					//On log l'utilisateur qui vient de créer son compte
+					$identity = new UserIdentity($user->mail, $user->mot_de_passe);
+					$identity->authenticate();
+					Yii::app()->user->login($identity, 0);
+					//On redirige vers la page 
 
-				$this->redirect(array('entreprise/index'));
+					//A TESTER !!!
+					$this->redirect(array('entreprise/index'));	
+				}
 			}
 
 		}
