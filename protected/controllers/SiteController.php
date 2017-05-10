@@ -220,7 +220,7 @@ class SiteController extends Controller
 				$user->id_entreprise = $model->id_entreprise;
 
 				//On save l'utilisateur
-				if($user ->save()
+				if($user ->save())
 				{
 					//On log l'utilisateur qui vient de créer son compte
 					$identity = new UserIdentity($user->mail, $user->mot_de_passe);
