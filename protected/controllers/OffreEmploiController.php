@@ -19,6 +19,7 @@ class OffreEmploiController extends Controller
 		);
 	}
 
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -26,24 +27,43 @@ class OffreEmploiController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+		$user = Yii::app()->user;
+
+		if($user->getState('type') == 'employe')
+		{
+			return array(
+				array('allow',
+					  'actions'=>['index','view', 'employePostule'],
+					),
+				array('deny',
+					  'actions'=>['admin'],
+					),
+			);
+		}
+
+		if($user->getState('type') == 'entreprise')
+		{
+
+			return array(
+					array('allow',
+						  'actions'=>['view', 'index', 'delete', 'update'],
+						),
+					array('deny',
+						  'actions'=>['admin'],
+						),
+			);
+		}	
+
+		if($user->getState('type') == NULL)
+		{
+			return array(
+					array('deny',
+						  'actions'=>['*'],
+						  ),
+					);
+		}	
 	}
+
 
 	/**
 	 * Displays a particular model.
@@ -222,7 +242,7 @@ class OffreEmploiController extends Controller
 	public function actionPostule( $id_offre )
 	{
 		// On récupere l'id_employe
-		$employe = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
+		$idemploye = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
 
 		// Boolléen qui vérifiera si l'employer à déjà postuler
 		$employeAPostuler = false;
@@ -232,26 +252,32 @@ class OffreEmploiController extends Controller
 
 		// On vérifie si un champs comprend l'id de l'employé et l'id de l'offre. Si c'est le cas, l'employé à déjà postuler
 		foreach($tablePostuler as $postuler){
-			if($postuler->id_employe == $employe && $postuler->id_offre_emploi == $id_offre){
+			if($postuler->id_employe == $idemploye && $postuler->id_offre_emploi == $id_offre){
 				$employeAPostuler = true;
 			}
 		}
 
-		if($employeAPostuler)
-		{ // Si l'employé à déjà postuler à cette offre d'emploi on refuse
-			echo "Vous avez déjà postuler à cette offre";
+		if(!$employeAPostuler)
+		{ // Si l'employé n'avais pas postuler
+			$date = (new \DateTime())->format('Y-m-d H:i:s'); // On récupère la date actuelle
+			$postuler = new Postuler; // On créer une nouvelle table Postuler que l'on remplie
+
+			// On remplie le nouveau champs
+			$postuler->id_employe = $idemploye; 
+			$postuler->id_offre_emploi = $id_offre;
+			$postuler->date_postule = $date;
+			$postuler->save();
+		}
+
+		if($postuler->save())
+		{ // Si la sauvegarde fonctionne
+			$this->redirect(array('view','id'=>$id_offre));
 		}
 		else
-		{
-			$postuler = new Postuler; // On créer une nouvelle table Postuler que l'on remplie
-			$postuler->id_employe = $employe;
-			$postuler->id_offre_emploi = $id_offre;
-			echo "Vous venez de postuler à cette offre";
+		{ // Si erreur de sauvegarde
+
 		}
 		
-		//var_dump( $postuler );
-		if($postuler->save())
-			$this->redirect(array('view','id'=>$id_offre));
 	
 	}
 
@@ -300,22 +326,33 @@ class OffreEmploiController extends Controller
 	public function actionSearch()
 	{
 		//On récupère la liste des offres d'emplois par rapport au type entré
-		$type_offre = $_POST['Entreprise']['nom_entreprise'];
-		$entreprises = Entreprise::model()->FindAll("nom_entreprise LIKE '%$nom_entreprise%'");
+		$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
+		$tabOffre = OffreEmploi::model()->FindAll("poste_offre_emploi LIKE '%$poste_offre_emploi%'");
 
-		$this->render('index_search', array('data'=>$entreprises));
+		$this->render('index_search', array('data'=>$tabOffre));
 	}
 
-	/*		Fonction utilisée lors de l'auto-complétion de la page d'accueil pour envoyer les entreprises 		*/
-	public function actionGetAllEntreprisesJSON()
+	/*		Fonction utilisée lors de l'auto-complétion de la recherche par poste 		*/
+	public function actionGetAllPosteJSON()
 	{
 		/*		Tableau pour sauvegarder les résultats*/
 		$results_arr = array();
 
-		foreach ( Entreprise::model()->findAll() as $key_int => $value_obj ) {
-			array_push( $results_arr, $value_obj->nom_entreprise );
+		foreach ( OffreEmploi::model()->findAll() as $key_int => $value_obj )
+		{
+			array_push( $results_arr, $value_obj->poste_offre_emploi );
 		}
 
 		echo json_encode($results_arr);
 	}
+
+
+	/**
+	 * Lists all models postuler.
+	 */
+	public function actionRecherche()
+	{
+		$this->render('recherche');
+	}
+
 }

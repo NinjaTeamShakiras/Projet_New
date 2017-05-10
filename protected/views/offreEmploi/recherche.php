@@ -1,66 +1,81 @@
+<?php
+/* @var $this OffreEmploiController */
+/* @var $dataProvider CActiveDataProvider */
 
-<div class="wide form">
+//$this->breadcrumbs=array(
+//	'Offre Emplois',
+//);
+
+
+	$this->menu=array(
+		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+	);
+
+?>
+
+
+
+<h1>Rechercher une offre : </h1> <!-- Titre page -->
+
 
 
 <?php
+	$login = Yii::app()->user->getId();
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
+	$model = OffreEmploi::model();
+	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 
-$form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl('OffreEmploi/Search'),
-)); ?>
+	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
-<div class="row" align='center'>
-	<!-- Recherche d'une entreprise (textfield + bouton submit) -->	
+	print("<p> Trouver les offres qui vous correspondes parmis ".$nombreOffre." offres.</p>");
+?>
+
+
+
+<div class="wide form">
+	<!-- On demande les information pour la recherche -->
+
+	<?php
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('offreEmploi/Search'),
+			)
+		);
+	?>
+
+	<div class="row" align='center'>
+		<!-- Recherche d'un poste (textfield + bouton submit) -->	
 		<?php
 			echo $form->textField(
-				$model,'nom_entreprise', array(
-					'class' => 'autocomplete-find-entreprise',
-					'url_data_auto' => Yii::app()->createUrl('Entreprise/GetAllEntreprisesJSON'),
+				$model,'poste_offre_emploi', array(	
+					'class' => 'autocomplete-find-offreEmploi',
+					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
 					'size' => 45,
-					'maxlength' => 45,
-					'placeholder' => 'Rechercher une entreprise'
+					'maxlength' => 30,
+					'placeholder' => 'Rechercher un poste'
 				)
 			);
 		?>
-
-
-
-
-
-
-
-
-<?php 
-
-$adresse = Adresse::model()->findAll();
-
-//Lorsqu'on clique sur le bouton sumbit, le formulaire renvoie vers actionSearch de EntrepriseController
-$form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl('Entreprise/Search'),
-)); ?>
-
-	<div class="row" align='center'>
-	<!-- Recherche d'une entreprise (textfield + bouton submit) -->	
-		<?php echo $form->textField($model,'nom_entreprise', array(		'class' => 'autocomplete-find-entreprise',
-																		'url_data_auto' => Yii::app()->createUrl('Entreprise/GetAllEntreprisesJSON'),
-																		'size' => 45,
-																		'maxlength' => 45,
-																		'placeholder' => 'Rechercher une entreprise'		) ); ?>
 		<?php echo CHtml::submitButton('Rechercher'); ?>
 	</div>
 
 	<div class="row buttons">
-		
 	</div>
 
-<?php $this->endWidget(); ?>
+	<?php $this->endWidget(); ?>
 
-</div><!-- search-form -->
+</div>
+
+
+
+	<!-- Autocomplétion : -->
+
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-	var autocomplete_class = ".autocomplete-find-entreprise"; 
+	var autocomplete_class = ".autocomplete-find-offreEmploi"; 
 	var url_data = $(autocomplete_class).attr('url_data_auto');
 
 	$.ajax({
@@ -87,3 +102,20 @@ $form=$this->beginWidget('CActiveForm', array(
 	}
 
 </script>
+
+
+
+
+
+	<!-- On Affiche les resultats de la recherche : -->
+
+
+
+
+
+
+
+
+
+
+
