@@ -172,17 +172,22 @@ class CompetenceController extends Controller
 	}
 
 	public function actionFormulaire_competence()
-	{
+	{			
 		$competence = new Competence;
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-
 		if(isset($_POST['Competence']))
 		{
 			$competence->attributes = $_POST['Competence'];
 			$competence->id_employe = $user->id_employe;
-
 			$competence->save();
 		}
 		$this->render('formulairecompetence');
+
+		if(isset($_POST['btnajoutcompetence']))
+		{
+		
+		}
 	}
+
+		
 }

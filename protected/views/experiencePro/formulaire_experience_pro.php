@@ -3,7 +3,7 @@
 <div class="from">
 <?php
 
-	$experiencePro= ExperiencePro::model();
+	$experiencePro= experiencePro::model();
 
 	$form=$this->beginWidget('CActiveForm',array(
 	'id'=>'experience-form',

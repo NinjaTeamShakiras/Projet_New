@@ -22,13 +22,15 @@
 
 
 	<div class="row">
-		<?php echo $form->labelEx($competence,'niveau_competence'); ?>
-		<?php echo $form->textfield($competence,'niveau_competence'); ?>
+		<?php echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5'),array('separator' => ' ')); ?>
 		<?php echo $form->error($competence,'niveau_competence'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitbutton("Entrer les competences"); ?>
+	<?php echo CHtml::submitbutton("Ajouter une competence",array('name' => 'btnajoutcompetence')); ?>
+	</div>
+	<div class="row buttons">
+		<?php echo CHtml::submitbutton("Entrer les competences",array('name' => 'btninserercompetence')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

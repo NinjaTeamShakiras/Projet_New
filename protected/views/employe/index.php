@@ -1,4 +1,4 @@
-<?php
+<?php
 /* @var $this EmployeController */
 /* @var $dataProvider CActiveDataProvider */
 
