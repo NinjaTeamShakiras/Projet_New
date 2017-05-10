@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'intitule_competance'); ?>
-		<?php echo $form->textField($model,'intitule_competance',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'intitule_competence'); ?>
+		<?php echo $form->textField($model,'intitule_competence',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">

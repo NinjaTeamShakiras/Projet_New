@@ -25,6 +25,10 @@
 	$model = OffreEmploi::model();
 	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 
+	$entreprise = entreprise::model();
+	$adresse = adresse::model();
+
+
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 	print("<p> Trouver les offres qui vous correspondes parmis ".$nombreOffre." offres.</p>");
@@ -43,21 +47,69 @@
 		);
 	?>
 
-	<div class="row" align='center'>
+	<div class="row">
 		<!-- Recherche d'un poste (textfield + bouton submit) -->	
 		<?php
-			//On demande le poste
+
+			// Recherche par POSTE
 			echo $form->textField(
 				$model,'poste_offre_emploi', array(	
 					'class' => 'autocomplete-find-offreEmploi',
 					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
 					'size' => 45,
 					'maxlength' => 30,
-					'placeholder' => 'Rechercher un poste'
+					'placeholder' => 'Rechercher par poste',
 				)
 			);
+
+			?><br/><?php
+
+			// Recherche par TYPE (liste déroulante )
+			echo $form->dropDownList(
+				$model, 'type_offre_emploi', array(
+					''=>'',
+					'CDD'=>'CDD',
+					'CDI'=>'CDI', 
+					'STAGE'=>'STAGE',
+					'ALTERNANCE'=>'ALTERNANCE',
+					'EXTRA'=>'EXTRA',
+				)
+			);
+
+			?><br/><?php
+
+			// Recherche par Lieu
+			
+
+			echo $form->textField(
+				$adresse,'ville', array(	
+					'class' => 'autocomplete-find-offreEmploi',
+					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllLieuJSON'),
+					'size' => 45,
+					'maxlength' => 30,
+					'placeholder' => 'Rechercher par lieu',
+				)
+			);
+
+			?><br/><?php
+
+			// Recherche par Secteur
+
+			echo $form->textField(
+				$entreprise,'secteur_activite_entreprise', array(	
+					'class' => 'autocomplete-find-offreEmploi',
+					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllSecteurJSON'),
+					'size' => 45,
+					'maxlength' => 30,
+					'placeholder' => 'Rechercher par secteur d\'activité',
+				)
+			);
+
+			?><br/><?php
+			// Button d'envoi
+			echo CHtml::submitButton('Rechercher');
 		?>
-		<?php echo CHtml::submitButton('Rechercher'); ?>
+
 	</div>
 
 	<div class="row buttons">
