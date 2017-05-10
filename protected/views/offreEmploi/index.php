@@ -22,7 +22,7 @@
 	{  // Si employé
 		$this->menu=array(
 			array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
-			array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/_search')), // Rechercher des offres d'emplois
+			array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
 		);
 		$titre = "Liste des offres d'emplois";
 
@@ -66,7 +66,7 @@
 				$nombreOffre++;
 				//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 				//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
-				print("<p> Poste proposé : ".$offre->poste_offre_emploi."</p>");
+				print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
 				print("<p> Type de l'offre : ".$offre->type_offre_emploi."</p>");
 				print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
 				print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
@@ -119,7 +119,7 @@
 			//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 			//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
 			print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
-			print("<p> Poste proposé : ".$offre->poste_offre_emploi."</p>");
+			print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
 			print("<p> Type de l'offre : ".$offre->type_offre_emploi."</p>");
 			print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
 			print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");

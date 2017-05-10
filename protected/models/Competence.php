@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'competence':
  * @property integer $id_competence
- * @property string $intitule_competance
+ * @property string $intitule_competence
  * @property string $niveau_competence
  * @property integer $id_employe
  *
@@ -32,10 +32,10 @@ class Competence extends CActiveRecord
 		return array(
 			array('id_employe','required'),
 			array('id_employe', 'numerical', 'integerOnly'=>true),
-			array('intitule_competance, niveau_competence', 'length', 'max'=>45),
+			array('intitule_competence, niveau_competence', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_competence, intitule_competance, niveau_competence, id_employe', 'safe', 'on'=>'search'),
+			array('id_competence, intitule_competence, niveau_competence, id_employe', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +58,7 @@ class Competence extends CActiveRecord
 	{
 		return array(
 			'id_competence' => 'Id Competence',
-			'intitule_competance' => 'Intitule Competance',
+			'intitule_competence' => 'Intitule Competence',
 			'niveau_competence' => 'Niveau Competence',
 			'id_employe' => 'Id Employe',
 		);
@@ -83,7 +83,7 @@ class Competence extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_competence',$this->id_competence);
-		$criteria->compare('intitule_competance',$this->intitule_competance,true);
+		$criteria->compare('intitule_competence',$this->intitule_competence,true);
 		$criteria->compare('niveau_competence',$this->niveau_competence,true);
 		$criteria->compare('id_employe',$this->id_employe);
 
