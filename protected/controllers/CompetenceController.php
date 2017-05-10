@@ -32,7 +32,7 @@ class CompetenceController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','Formulaire_competence'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -169,5 +169,20 @@ class CompetenceController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function actionFormulaire_competence()
+	{
+		$competence = new Competence;
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		if(isset($_POST['Competence']))
+		{
+			$competence->attributes = $_POST['Competence'];
+			$competence->id_employe = $user->id_employe;
+
+			$competence->save();
+		}
+		$this->render('formulairecompetence');
 	}
 }

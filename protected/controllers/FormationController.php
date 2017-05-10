@@ -32,7 +32,7 @@ class FormationController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','formulaireformation'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -170,4 +170,44 @@ class FormationController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	/* Fonction qui change la date au format Américain pour la BDD */
+	public function changeDateBDD($date)
+	{
+			$result = NULL;
+			$day = 0;
+			$month = 0;
+			$year = 0;
+
+			//On récupère chaque valeur grâce a substr
+			$year = substr($date, 6, 4);
+			$month = substr($date, 3, 2);
+			$day = substr($date, 0, 2);
+
+			$result = $year."-".$month."-".$day;
+
+			return $result;
+	}
+
+
+	public function actionFormulaireformation()
+	{
+		$formation = new Formation;
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		if(isset($_POST['Formation']))
+		{
+			//On attributs les valeurs entrés par l'utilisateur dans le model Formation
+			$formation->attributes = $_POST['Formation'];
+			$formation->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
+			$formation->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
+			$formation->id_employe = $user->id_employe;
+			
+			//On save le model formation
+			$formation->save();
+		}
+		$this->render('formulaireformation');
+	}
+
+
 }

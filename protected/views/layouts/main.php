@@ -7,7 +7,7 @@
 
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print">
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print">	
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection">
 	<![endif]-->
@@ -37,7 +37,10 @@
 			'items'=>array(
 				array('label'=>'Accueil', 'url'=>array('/site/index')),
 				array('label'=>'Connexion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Ajouter Formation', 'url'=>array('/formation/formulaireformation')),
+				array('label'=>'Ajouter Experience(s) Profesionelle(s)', 'url'=>array('/experiencePro/formulaire_experience')),
+				array('label'=>'Ajouter compétences','url'=>array('/competence/formulaire_competence')),
 			),
 		)); ?>
 	</div><!-- mainmenu -->

@@ -125,45 +125,53 @@ class SiteController extends Controller
 			return $result;
 	}
 
-
+	/*Fonction qui permet d'inscrire un employé dans la base de données*/
 	public function actionInscriptionEmploye()
 	{
+		//On créé un utilisateur et un employé
 		$model = new Employe;
 		$user = new Utilisateur;
 
-
+			//Si les textfields ne sont pas vides
 			if(isset($_POST['Utilisateur']) && isset($_POST['Employe']))
 			{
 				if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
 				{
+
+					//On attributs les valeurs entrés par l'utilisateur dans le model employé 
 					$model->attributes = $_POST['Employe'];
 					$model->date_naissance_employe = $this->changeDateBDD($_POST['Employe']['date_naissance_employe']);
 				
+					//On save le model employé
 					$model->save();
 
 					//Définition du fuseau horaire GMT+1
 					date_default_timezone_set('Europe/Paris');
 					$date = (new \DateTime())->format('Y-m-d H:i:s');
+
+					//On attribut les valeurs entrés par l'utilisateur dans le model utilisateur
 					$user->date_creation_utilisateur = $date;
 					$user->date_derniere_connexion = $date;
-
 					$user->attributes = $_POST['Utilisateur'];
 					$user->role = "employe";
 
+					//On recupère l'id de l'employé et on le donne à l'utilisateur
 					$employe = Employe::model()->findByAttributes(array("id_employe"=>$model->id_employe));;
 					$user->id_employe = $employe->id_employe;
 					
-					
+					//On save le model utilisateur
 					$user->save();
+					//Et on redirige vers l'action index qui redirige vers la page index
 					$this->redirect(array('employe/index'));
 				}
 			}
-	
+			
+			//Sinon on renvoie la page inscription car les champs ne sont pas valides
 			$this->render('inscriptionEmploye', array('model'=>$user));
 	}
 
 
-
+	/*Fonction qui permet d'inscrire une entreprise dans la base de données*/
 	public function actionInscriptionEntreprise()
 	{                        
 		//On créé un utilisateur et une entreprise vide
@@ -208,20 +216,25 @@ class SiteController extends Controller
 					
 	}
 
+	/*Fonction qui permet de vérifier si les 2 mot de passe entrés sont identiques */
 	public function verif_mdp($mdp)
 	{
 		$res;
-
+		//Si le champ n'est pas vide 
 		if(isset($_POST['confirm_mdp']))
 		{
+			//Si il ne corresponde pas ...
 			if($mdp != $_POST['confirm_mdp'])
 			{
+				//Cela ne marche pas et on redirige vers la page d'inscription
 				echo "Les mots de passe ne correspondent pas !";
 				$this->render('inscription', array('model'=>$user));
+				//On renvoie 0 quand ils ne correspondent pas
 				$res = 0;
 			}
 			else
 			{
+				//On renvoie 1 quand ils correspondent 
 				$res = 1;
 			}
 		}
