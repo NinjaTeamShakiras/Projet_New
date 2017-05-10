@@ -49,7 +49,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'nom_entreprise',
 		'nombre_employes',
 		'recherche_employes',
-		'telephone_entreprise',
 		'secteur_active_entreprise',
 		/*
 		'anne_creation_entreprise',

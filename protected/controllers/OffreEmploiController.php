@@ -325,11 +325,15 @@ class OffreEmploiController extends Controller
 	*/		
 	public function actionSearch()
 	{
-		//On récupère la liste des offres d'emplois par rapport au type entré
-		$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
-		$tabOffre = OffreEmploi::model()->FindAll("poste_offre_emploi LIKE '%$poste_offre_emploi%'");
-
-		$this->render('index_search', array('data'=>$tabOffre));
+		if(isset($_POST['OffreEmploi']))
+		{
+			//On récupère la liste des offres d'emplois par rapport au type entré
+			$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
+			$tabOffre = OffreEmploi::model()->FindAll("poste_offre_emploi LIKE '%$poste_offre_emploi%'");
+			$this->render('index_search', array('data'=>$tabOffre));
+		}
+		
+		$this->render('index_search');
 	}
 
 	/*		Fonction utilisée lors de l'auto-complétion de la recherche par poste 		*/

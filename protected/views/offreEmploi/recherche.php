@@ -33,9 +33,9 @@
 
 
 <div class="wide form">
-	<!-- On demande les information pour la recherche -->
 
 	<?php
+		//Début du form
 		$form=$this->beginWidget('CActiveForm',
 			array(
 				'action'=>Yii::app()->createUrl('offreEmploi/Search'),
@@ -46,6 +46,7 @@
 	<div class="row" align='center'>
 		<!-- Recherche d'un poste (textfield + bouton submit) -->	
 		<?php
+			//On demande le poste
 			echo $form->textField(
 				$model,'poste_offre_emploi', array(	
 					'class' => 'autocomplete-find-offreEmploi',

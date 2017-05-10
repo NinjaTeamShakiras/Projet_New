@@ -38,12 +38,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'telephone_entreprise'); ?>
-		<?php echo $form->textField($model,'telephone_entreprise',array('size'=>12,'maxlength'=>12)); ?>
-		<?php echo $form->error($model,'telephone_entreprise'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'secteur_active_entreprise'); ?>
 		<?php echo $form->textField($model,'secteur_active_entreprise',array('size'=>45,'maxlength'=>45)); ?>
 		<?php
