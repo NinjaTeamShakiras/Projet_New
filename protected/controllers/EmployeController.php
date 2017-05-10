@@ -170,5 +170,5 @@ class EmployeController extends Controller
 			Yii::app()->end();
 		}
 	}
-
+	
 }

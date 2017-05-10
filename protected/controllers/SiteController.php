@@ -155,7 +155,7 @@ class SiteController extends Controller
 					
 					
 					$user->save();
-					$this->redirect(array('site/login'));
+					$this->redirect(array('employe/index'));
 				}
 			}
 	
@@ -199,7 +199,7 @@ class SiteController extends Controller
 				//On save l'utilisateur
 				$user ->save();
 
-				$this->redirect(array('site/login'));
+				$this->redirect(array('entreprise/index'));
 			}
 
 		}
