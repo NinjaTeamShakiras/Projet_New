@@ -66,10 +66,10 @@ class Formation extends CActiveRecord
 			'id_formation' => 'Id Formation',
 			'date_debut_formation' => 'Date Debut Formation',
 			'date_fin_formation' => 'Date Fin Formation',
-			'intitule_formation' => 'Intitule Formation',
-			'etablissement_formation' => 'Etablissement Formation',
-			'diplome_formation' => 'Diplome Formation',
-			'description_formation' => 'Description Formation',
+			'intitule_formation' => 'Nom de la formation',
+			'etablissement_formation' => 'Lieu/Etablissement de la formation',
+			'diplome_formation' => 'Diplome Obtenu',
+			'description_formation' => 'Description de la Formation',
 			'id_employe' => 'Id Employe',
 		);
 	}

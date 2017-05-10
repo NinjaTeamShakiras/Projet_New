@@ -9,8 +9,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->id_competence), array('view', 'id'=>$data->id_competence)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('intitule_competance')); ?>:</b>
-	<?php echo CHtml::encode($data->intitule_competance); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('intitule_competence')); ?>:</b>
+	<?php echo CHtml::encode($data->intitule_competence); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('niveau_competence')); ?>:</b>
