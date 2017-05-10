@@ -173,6 +173,19 @@ class EmployeController extends Controller
 		));
 	}
 
+	/*Fonction qui affiche la page choixAjoutCV*/
+	public function actionChoixAjoutCV()
+	{
+		if (Yii::app()->user->getState('type') == null)
+		{
+			$this->redirect(array('site/login'));
+		}
+		else
+		{
+			$this->render('choixAjoutCV');
+		}
+	}
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

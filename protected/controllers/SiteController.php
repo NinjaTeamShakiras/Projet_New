@@ -93,8 +93,10 @@ class SiteController extends Controller
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 			{
+				var_dump($url);
+
 				//Si l'utilisateur est une entreprise, on le redirige vers sa page
-				if(Yii::app()->user->getState('role') == "entreprise")
+				/*if(Yii::app()->user->getState('role') == "entreprise")
 				{
 					$this->redirect(array('entreprise/index'));
 				}
@@ -102,10 +104,11 @@ class SiteController extends Controller
 				else if(Yii::app()->user->getState('role') == "employe")
 				{
 					$this->redirect(array('employe/index'));
-				}
+				}*/
 			}
 		}
 		// display the login form
+		$previous_url = Yii::app()->request->geturlReferrer();
 		$this->render('login',array('model'=>$model));
 	}
 

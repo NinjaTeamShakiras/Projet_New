@@ -21,10 +21,6 @@
 	<?php echo CHtml::encode($data->recherche_employes); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('telephone_entreprise')); ?>:</b>
-	<?php echo CHtml::encode($data->telephone_entreprise); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('secteur_active_entreprise')); ?>:</b>
 	<?php echo CHtml::encode($data->secteur_active_entreprise); ?>
 	<br />

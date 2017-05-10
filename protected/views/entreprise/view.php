@@ -25,7 +25,6 @@ $this->menu=array(
 		'nom_entreprise',
 		'nombre_employes',
 		'recherche_employes',
-		'telephone_entreprise',
 		'secteur_active_entreprise',
 		'anne_creation_entreprise',
 		'age_moyen_entreprise',

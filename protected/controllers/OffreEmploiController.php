@@ -302,6 +302,7 @@ class OffreEmploiController extends Controller
 	public function actionSearch()
 	{
 		$model = OffreEmploi::model()->FindAll();
+
 		$posteIsSet = false; // Le POSTE à été donné ou non dans le formulaire de recherche
 		$typeIsSet = false; // Le TYPE à été donné ou non dans le formulaire de recherche
 		$lieuIsSet = false; // Le LIEU à été donné ou non dans le formulaire de recherche
@@ -310,37 +311,37 @@ class OffreEmploiController extends Controller
 
 
 		// On récupère les données du formulaire
-		$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
-		$type_offre_emploi = $_POST['OffreEmploi']['type_offre_emploi'];
-		$lieu_offre_emploi = $_POST['Adresse']['ville'];
-		$secteur_offre_emploi = $_POST['Entreprise']['secteur_activite_entreprise'];
-
-
-
-		/* 		ECRITURE DE LA REQUETE 		*/
-
-		// Requete pour POSTE
-		if($poste_offre_emploi != "")
-		{ // Si le poste est donnée, on ajoute la requète et on déclare qu'il est donnée.
-			$requete.="poste_offre_emploi LIKE '%$poste_offre_emploi%'";
-			$posteIsSet = true;
-		}
-
-
-		// Requete pour TYPE
-		if($type_offre_emploi != "")
+		if(isset($_POST['OffreEmploi']))
 		{
-			if($posteIsSet)
-			{
-				$requete.=" AND type_offre_emploi = '$type_offre_emploi'";
-			}
-			else
-			{
-				$requete.="type_offre_emploi = '$type_offre_emploi'";
-			}
-			$typeIsSet = true;
-		}
+			$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
+			$type_offre_emploi = $_POST['OffreEmploi']['type_offre_emploi'];
+			$lieu_offre_emploi = $_POST['Adresse']['ville'];
+			$secteur_offre_emploi = $_POST['Entreprise']['secteur_activite_entreprise'];
 
+
+			/* 		ECRITURE DE LA REQUETE 		*/
+
+			// Requete pour POSTE
+			if($poste_offre_emploi != "")
+			{ // Si le poste est donnée, on ajoute la requète et on déclare qu'il est donnée.
+				$requete.="poste_offre_emploi LIKE '%$poste_offre_emploi%'";
+				$posteIsSet = true;
+			}
+
+
+			// Requete pour TYPE
+			if($type_offre_emploi != "")
+			{
+				if($posteIsSet)
+				{
+					$requete.=" AND type_offre_emploi = '$type_offre_emploi'";
+				}
+				else
+				{
+					$requete.="type_offre_emploi = '$type_offre_emploi'";
+				}
+				$typeIsSet = true;
+			}
 
 
 
@@ -387,9 +388,13 @@ class OffreEmploiController extends Controller
 
 		}
 
+			/*		LANCEMENT ET RECUPERATION DE LA REQUETE 		*/
+			$tabOffre = OffreEmploi::model()->findAll($requete);
 
-		/*		On envoi le resultat 	*/
-		$this->render('index_search', array('data'=>$tabOffre));
+			$this->render('index_search', array('data'=>$tabOffre));
+		}	
+		
+		$this->render('index_search');
 
 	}
 
