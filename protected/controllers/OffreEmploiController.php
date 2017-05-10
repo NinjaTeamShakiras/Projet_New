@@ -163,33 +163,6 @@ class OffreEmploiController extends Controller
 		));
 	}
 
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return OffreEmploi the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-		$model=OffreEmploi::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param OffreEmploi $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='offre-emploi-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
 
 
 	/* Fonction qui change la date au formatr Américain pour la BDD */
@@ -320,19 +293,97 @@ class OffreEmploiController extends Controller
 	
 	}
 
+
+
+
 	/*	Fonction qui recherche une ou plusieurs entreprises dans la base en fonction 
 		des infos entrées par l'utilisateur 
 	*/		
 	public function actionSearch()
 	{
-		//On récupère la liste des offres d'emplois par rapport au type entré
-		$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
-		$tabOffre = OffreEmploi::model()->FindAll("poste_offre_emploi LIKE '%$poste_offre_emploi%'");
+		$posteIsSet = false; // Le POSTE à été donné ou non dans le formulaire de recherche
+		$typeIsSet = false; // Le TYPE à été donné ou non dans le formulaire de recherche
+		$lieuIsSet = false; // Le LIEU à été donné ou non dans le formulaire de recherche
+		$secteurIsSet = false; // Le SECTEUR à été donné ou non dans le formulaire de recherche
+		$requete = ""; // Requète SQL de recherche des offre correspondante
 
+
+		// On récupère les données du formulaire
+		$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
+		$type_offre_emploi = $_POST['OffreEmploi']['type_offre_emploi'];
+		$lieu_offre_emploi = $_POST['Adresse']['ville'];
+		$secteur_offre_emploi = $_POST['Entreprise']['secteur_activite_entreprise'];
+
+
+
+		/* 		ECRITURE DE LA REQUETE 		*/
+
+		// Requete pour POSTE
+		if($poste_offre_emploi != "")
+		{ // Si le poste est donnée, on ajoute la requète et on déclare qu'il est donnée.
+			$requete.="poste_offre_emploi LIKE '%$poste_offre_emploi%'";
+			$posteIsSet = true;
+		}
+
+
+		// Requete pour TYPE
+		if($type_offre_emploi != "")
+		{
+			if($posteIsSet)
+			{
+				$requete.=" AND type_offre_emploi = '$type_offre_emploi'";
+			}
+			else
+			{
+				$requete.="type_offre_emploi = '$type_offre_emploi'";
+			}
+			$typeIsSet = true;
+		}
+
+
+		// Requete pour LIEU
+		if($lieu_offre_emploi != "")
+		{
+			if($posteIsSet || $typeIsSet )
+			{
+				$requete.=" AND XXXXXXlieu_offre_emploi = '$lieu_offre_emploi'";
+			}
+			else
+			{
+				$requete.="XXXXXXlieu_offre_emploi = '$lieu_offre_emploi'";
+			}
+			$lieuIsSet = true;
+		}
+
+
+		// Requete pour Secteur
+		if($secteur_offre_emploi != "")
+		{
+			if($posteIsSet || $typeIsSet || $lieuIsSet)
+			{
+				$requete.=" AND XXXXXXsecteur_offre_emploi = '$secteur_offre_emploi'";
+			}
+			else
+			{
+				$requete.="XXXXXXsecteur_offre_emploi = '$secteur_offre_emploi'";
+			}
+			$secteurIsSet = true;
+		}
+
+
+		/*		LANCEMENT ET RECUPERATION DE LA REQUETE 		*/
+		$tabOffre = OffreEmploi::model()->findAll($requete);
+
+
+		/*		On envoi le resultat 	*/
 		$this->render('index_search', array('data'=>$tabOffre));
+
 	}
 
-	/*		Fonction utilisée lors de l'auto-complétion de la recherche par poste 		*/
+
+
+
+	/*		Fonction utilisée lors de l'auto-complétion de la recherche par Poste 		*/
 	public function actionGetAllPosteJSON()
 	{
 		/*		Tableau pour sauvegarder les résultats*/
@@ -347,6 +398,36 @@ class OffreEmploiController extends Controller
 	}
 
 
+	/*		Fonction utilisée lors de l'auto-complétion de la recherche par Lieu 		*/
+	public function actionGetAllLieuJSON()
+	{
+		/*		Tableau pour sauvegarder les résultats*/
+		$results_arr = array();
+
+		foreach ( Adresse::model()->findAll() as $key_int => $value_obj )
+		{
+			array_push( $results_arr, $value_obj->ville );
+		}
+
+		echo json_encode($results_arr);
+	}
+
+	/*		Fonction utilisée lors de l'auto-complétion de la recherche par Secteur d'activité		*/
+	public function actionGetAllSecteurJSON()
+	{
+		/*		Tableau pour sauvegarder les résultats*/
+		$results_arr = array();
+
+		foreach ( entreprises::model()->findAll() as $key_int => $value_obj )
+		{
+			array_push( $results_arr, $value_obj->secteur_activite_entreprise );
+		}
+
+		echo json_encode($results_arr);
+	}
+
+
+
 	/**
 	 * Lists all models postuler.
 	 */
@@ -354,5 +435,38 @@ class OffreEmploiController extends Controller
 	{
 		$this->render('recherche');
 	}
+
+
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return OffreEmploi the loaded model
+	 * @throws CHttpException
+	 */
+	public function loadModel($id)
+	{
+		$model=OffreEmploi::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Performs the AJAX validation.
+	 * @param OffreEmploi $model the model to be validated
+	 */
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='offre-emploi-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
+
+
+
 
 }

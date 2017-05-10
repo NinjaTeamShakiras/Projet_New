@@ -56,9 +56,19 @@
 		$nombreCandidature = 0; // Nombre de candidature a l'offre en question
 		$tabIdEmploye=array(); // Tableau des employe qui ont postuler à l'offre
 		$nombreOffre = 0; // nombre total d'offre d'emploi
+
+		$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
+		$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
+
+		print("<p> ".$nombreTotalOffre." offres.</p>");
 		
 		foreach ($model as $key => $offre ) // Pour chaque offre ...
 		{
+			$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+
+			// Pour récupéré l'adresse : 
+			$userEntreprise = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+			$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
 
 			// On affiche les offres de l'entreprise
 			if($offre->id_entreprise == $utilisateur->id_entreprise) // Si l'offre appartient à l'entreprise
@@ -70,6 +80,7 @@
 				print("<p> Type de l'offre : ".$offre->type_offre_emploi."</p>");
 				print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
 				print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+				print("<p> Lieu : ".$adresse->ville." </p>");
 				print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
 				print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
 				print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
@@ -110,11 +121,21 @@
 
 	}
 	else if( Utilisateur::est_employe(Yii::app()->user->role))
-	{  // Si employé on affiche toutes les offres d'emploi		
+	{  // Si employé on affiche toutes les offres d'emploi
+
+		$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
+		$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
+
+		print("<p> ".$nombreTotalOffre." offres.</p>");
+
 
 		foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :
 		{
 			$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+
+			// Pour récupéré l'adresse : 
+			$userEntreprise = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+			$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
 
 			//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 			//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
@@ -123,6 +144,7 @@
 			print("<p> Type de l'offre : ".$offre->type_offre_emploi."</p>");
 			print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
 			print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+			print("<p> Lieu : ".$adresse->ville." </p>");
 			print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
 			print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
 			print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");

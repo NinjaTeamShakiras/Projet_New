@@ -7,13 +7,18 @@ $this->breadcrumbs=array(
 	'Entreprises',
 );
 */
+
+	$this->menu=array(
+		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+		array('label'=>'Nouvelle recherche d\'offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
+	);
+
 ?>
 
 <h1>Résultat de votre recherche : </h1>
 
 
 <?php
-
 	$login = Yii::app()->user->getId();
 	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
 
@@ -44,8 +49,8 @@ $this->breadcrumbs=array(
 			// Bonus : si l'employé à postulé à l'offre en question, on affiche qu'il a postuler avec la date.
 			foreach($tablePostuler as $postuler)
 			{
-				if($postuler->id_employe == $utilisateur->id_employe)
-				{
+				if( ($postuler->id_offre_emploi == $offre->id_offre_emploi) && ($postuler->id_employe == $utilisateur->id_employe) )
+				{ // Si l'offre de la table postuler concerne l'offre en question et quel concerne l'employé :
 					print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
 				}
 			}
