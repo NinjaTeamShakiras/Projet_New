@@ -54,8 +54,8 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	else 
 	{ // Si autre on affiche toutes les possibilité
 		$this->menu=array(
-			array('label'=>'Postuler', 'url'=>array('index')),
-			array('label'=>'Créer une offre', 'url'=>array('create')),
+			array('label'=>'Postuler', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
+			array('label'=>'Dépostuler', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
 			array('label'=>'Modifier', 'url'=>array('update', 'id'=>$model->id_offre_emploi)),
 			//Marche pas
 			//array('label'=>'Supprimer', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_offre_emploi),'confirm'=>'Vous êtes sur le point de supprimer, voulez vous continuer ?')),
@@ -74,7 +74,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	$this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id_offre_emploi',
+		//'id_offre_emploi',
 		'poste_offre_emploi',
 		'type_offre_emploi',
 		array(
@@ -84,7 +84,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		'salaire_offre_emploi',
 		'experience_offre_emploi',
 		'description_offre_emploi',
-		'id_entreprise',
+		//'id_entreprise',
 		array(
 			'label'=>'Date de création de l\'offre',
 			'value'=>$model->date_creation_offre_emploi != NULL ? $date_creation : "Non renseignée",
@@ -130,10 +130,10 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	}
 
 	// !!!! NE MARCHE PAS !!!
-	/*		Message de postulation	*/
+	/*		Message de postulation
 	if( Yii::app()->request->getParam( 'postule' ) != NULL && Yii::app()->request->getParam( 'postule' ) == "true" ) 
 		echo '<div class="success-avis-employe" style="margin : 2% 0%; color : blue; border: solid 2px blue; padding : 2%;" >Vous avez bien postuler à cette offre</div>';
-
+	*/
 ?>
 
 

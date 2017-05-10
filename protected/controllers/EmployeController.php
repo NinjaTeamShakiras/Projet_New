@@ -19,6 +19,7 @@ class EmployeController extends Controller
 		);
 	}
 
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -26,24 +27,53 @@ class EmployeController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+		$user = Yii::app()->user;
+
+		//Si c'est un employe :
+			//Il a accès à la supression, a l'index, à la vue et la maj
+			//Il n'a pas accès à la partie admin
+		if($user->getState('type') == 'employe')
+		{
+			return array(
+				array('allow',
+					  'actions'=>['index','view', 'update', 'delete'],
+					),
+				array('deny',
+					  'actions'=>['admin'],
+					),
+			);
+		}
+
+		//Si c'est une entreprise :
+			//Il a accès à la vue et à l'index
+			//Il n'a pas accès à la maj, à la supression et à la partie admin
+		if($user->getState('type') == 'entreprise')
+		{
+
+			return array(
+					array('allow',
+						  'actions'=>['view', 'index'],
+						),
+					array('deny',
+						  'actions'=>['update','admin', 'delete'],
+						),
+			);
+		}	
+
+		//Si c'est un utilisateur non connecté
+			//Il a juste accès à l'index et à la vues
+		if($user->getState('type') == NULL)
+		{
+			return array(
+					array('allow',
+						  'actions'=>['index', 'view'],
+						  ),
+					);
+		}	
+
 	}
+
+
 
 	/**
 	 * Displays a particular model.
