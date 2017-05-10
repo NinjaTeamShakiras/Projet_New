@@ -1271,6 +1271,7 @@ HTTP_REFERER=http://localhost/prozzl/index.php?r=site/inscriptionEntreprise
 =======
 >>>>>>> 091c1d8774a214153b0bcc4fcf1e8f095624c7d2
 <<<<<<< HEAD
+<<<<<<< HEAD
 2017/05/10 08:33:29 [error] [php] Undefined variable: employe (C:\wamp64\www\prozzl\protected\views\formation\index.php:17)
 Stack trace:
 #0 C:\wamp64\www\yii\framework\web\CController.php(869): FormationController->renderFile()
@@ -2152,6 +2153,65 @@ Stack trace:
 #24 {main}
 REQUEST_URI=/prozzl/index.php?r=competence/formulaire_competence
 HTTP_REFERER=http://localhost/prozzl/index.php?r=experiencePro/formulaire_experience
+=======
+2017/05/10 11:03:14 [error] [exception.CException] exception 'CException' with message 'Property "LoginForm.role" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(96): CComponent->__get('role')
+#1 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#2 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 C:\wamp64\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#6 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#7 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#8 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/prozzl/index.php?r=site/login
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 11:05:08 [error] [exception.CException] exception 'CException' with message 'Property "LoginForm.UserIdentity" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(102): CComponent->__get('UserIdentity')
+#1 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#2 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 C:\wamp64\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#6 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#7 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#8 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/prozzl/index.php?r=site/login
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 11:12:46 [error] [php] Missing argument 1 for CWebUser::login(), called in C:\wamp64\www\prozzl\protected\controllers\SiteController.php on line 169 and defined (C:\wamp64\www\yii\framework\web\auth\CWebUser.php:227)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#2 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#3 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#4 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#6 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/inscriptionEmploye
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (169)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/10 11:15:54 [error] [exception.CException] exception 'CException' with message 'SiteController and its behaviors do not have a method or closure named "login".' in C:\wamp64\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(169): CComponent->__call('login', Array)
+#1 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(169): SiteController->login(Object(CWebUser))
+#2 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionInscriptionEmploye()
+#3 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\wamp64\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('inscriptionEmpl...')
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/inscriptio...')
+#8 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/prozzl/index.php?r=site/inscriptionEmploye
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/inscriptionEmploye
+>>>>>>> d07de9dadc3cb9f749d2819b218de528153764f9
 ---
 =======
 2017/05/10 09:34:58 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\yii\framework\web\auth\CAccessControlFilter.php:182
@@ -2767,6 +2827,7 @@ REQUEST_URI=/prozzl/index.php?r=offreEmploi/Search
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (330)
 in C:\wamp\www\prozzl\index.php (13)
 >>>>>>> 4272a279edeb652a428a7fe31cd41ee7b780455d
+<<<<<<< HEAD
 2017/05/10 12:23:51 [error] [exception.CException] exception 'CException' with message 'Property "Competence.intitule_competence" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
 Stack trace:
 #0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('intitule_compet...')
@@ -3859,3 +3920,5 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
 in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (236)
 in C:\wamp64\www\prozzl\index.php (13)
+=======
+>>>>>>> d07de9dadc3cb9f749d2819b218de528153764f9
