@@ -37,9 +37,5 @@
 		<?php echo CHtml::submitButton('Connexion'); ?>
 	</div>
 
-	<div class="row link">
-		<?php echo 'Vous ne possedez pas de compte ? Cliquez '.CHtml::link('ici',array('site/Inscription')); ?>
-	</div>
-
 <?php $this->endWidget(); ?>
 </div><!-- form -->

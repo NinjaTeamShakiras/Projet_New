@@ -38,10 +38,10 @@ class Entreprise extends CActiveRecord
 		return array(
 			array('nom_entreprise', 'required'),
 			array('nombre_employes, recherche_employes, anne_creation_entreprise, age_moyen_entreprise', 'numerical', 'integerOnly'=>true),
-			array('nom_entreprise, secteur_active_entreprise', 'length', 'max'=>45),
+			array('nom_entreprise, secteur_activite_entreprise', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_entreprise, nom_entreprise, nombre_employes, recherche_employes, secteur_active_entreprise, anne_creation_entreprise, age_moyen_entreprise', 'safe', 'on'=>'search'),
+			array('id_entreprise, nom_entreprise, nombre_employes, recherche_employes, secteur_activite_entreprise, anne_creation_entreprise, age_moyen_entreprise', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +70,7 @@ class Entreprise extends CActiveRecord
 			'nom_entreprise' => 'Nom Entreprise',
 			'nombre_employes' => 'Nombre Employes',
 			'recherche_employes' => 'Recherche Employes',
-			'secteur_active_entreprise' => 'Secteur Active Entreprise',
+			'secteur_activite_entreprise' => 'Secteur Active Entreprise',
 			'anne_creation_entreprise' => 'Anne Creation Entreprise',
 			'age_moyen_entreprise' => 'Age Moyen Entreprise',
 		);
@@ -98,7 +98,7 @@ class Entreprise extends CActiveRecord
 		$criteria->compare('nom_entreprise',$this->nom_entreprise,true);
 		$criteria->compare('nombre_employes',$this->nombre_employes);
 		$criteria->compare('recherche_employes',$this->recherche_employes);
-		$criteria->compare('secteur_active_entreprise',$this->secteur_active_entreprise,true);
+		$criteria->compare('secteur_activite_entreprise',$this->secteur_active_entreprise,true);
 		$criteria->compare('anne_creation_entreprise',$this->anne_creation_entreprise);
 		$criteria->compare('age_moyen_entreprise',$this->age_moyen_entreprise);
 

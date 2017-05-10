@@ -9,7 +9,7 @@
 */
 
 $titre ="";
-$utilisateur = Utilisateur::model()->FindByAttributes(array("login"=> Yii::app()->user->getId()));
+$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
 if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche la possibilité de maj/suppr l'offre en question

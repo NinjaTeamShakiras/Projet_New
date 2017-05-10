@@ -21,7 +21,7 @@
 
 <?php
 	$login = Yii::app()->user->getId();
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("login"=>$login)); // Récupération de l'utilisateur
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
 	$model = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 
 	$tablePostuler = Postuler::model()->FindAll();
