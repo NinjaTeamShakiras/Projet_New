@@ -48,8 +48,9 @@
 			//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 			//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
 			print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+			print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
 			print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
-			print("<p> Type de l'offre : ".$offre->type_offre_emploi."</p>");
+			print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
 			print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
 			print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
 			print("<p> Lieu : ".$adresse->ville." </p>");

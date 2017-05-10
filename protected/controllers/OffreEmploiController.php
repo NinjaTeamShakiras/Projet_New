@@ -301,6 +301,7 @@ class OffreEmploiController extends Controller
 	*/		
 	public function actionSearch()
 	{
+		$model = OffreEmploi::model()->FindAll();
 		$posteIsSet = false; // Le POSTE à été donné ou non dans le formulaire de recherche
 		$typeIsSet = false; // Le TYPE à été donné ou non dans le formulaire de recherche
 		$lieuIsSet = false; // Le LIEU à été donné ou non dans le formulaire de recherche
@@ -341,38 +342,50 @@ class OffreEmploiController extends Controller
 		}
 
 
-		// Requete pour LIEU
-		if($lieu_offre_emploi != "")
-		{
-			if($posteIsSet || $typeIsSet )
-			{
-				$requete.=" AND XXXXXXlieu_offre_emploi = '$lieu_offre_emploi'";
-			}
-			else
-			{
-				$requete.="XXXXXXlieu_offre_emploi = '$lieu_offre_emploi'";
-			}
-			$lieuIsSet = true;
-		}
-
-
-		// Requete pour Secteur
-		if($secteur_offre_emploi != "")
-		{
-			if($posteIsSet || $typeIsSet || $lieuIsSet)
-			{
-				$requete.=" AND XXXXXXsecteur_offre_emploi = '$secteur_offre_emploi'";
-			}
-			else
-			{
-				$requete.="XXXXXXsecteur_offre_emploi = '$secteur_offre_emploi'";
-			}
-			$secteurIsSet = true;
-		}
 
 
 		/*		LANCEMENT ET RECUPERATION DE LA REQUETE 		*/
 		$tabOffre = OffreEmploi::model()->findAll($requete);
+
+
+
+		// On affine encore avec le lieu si il est défini
+		$i = 0;
+		$tabResultatOffreLieu = array();
+		$tabResultatOffreSecteur = array();
+		if($lieu_offre_emploi != "")
+		{
+			foreach ($model as $offre) // Pour TOUTES les offres ...
+			{
+				$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+				// Pour récupéré l'adresse : 
+				$userEntreprise = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+				$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
+				$ville = $adresse->ville; // On récupère la ville de l'offre en question 
+
+				if($ville == $lieu_offre_emploi)
+				{ // Si le nom de la ville donné au formulaire est éguale à celui de l'offre tester
+					foreach($tabOffre as $offreDeCote)
+					{ // on parcours le tableau de nos offres mise de coté
+						if($offre == $offreDeCote)
+						{
+							$tabResultatOffreSecteurTypePoste[i] = $offre;
+							$i++;
+						}
+					}
+
+					
+				}
+
+			}
+			/*       A TERMINER				*/
+		}
+
+
+		if($secteur_offre_emploi != "")
+		{
+
+		}
 
 
 		/*		On envoi le resultat 	*/
