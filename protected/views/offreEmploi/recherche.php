@@ -73,6 +73,7 @@
 					'STAGE'=>'STAGE',
 					'ALTERNANCE'=>'ALTERNANCE',
 					'EXTRA'=>'EXTRA',
+					'XXXX'=>'Test type inexistant',
 				)
 			);
 
@@ -98,8 +99,9 @@
 			echo $form->dropDownList(
 				$entreprise,'secteur_activite_entreprise', array(
 					''=>'Sélectionner...',
-					'réseaux sociaux'=>'réseaux sociaux',
-					'Informatique'=>'Informatique',
+					'Réseaux sociaux'=>'Réseaux sociaux',
+					'Gestionnaire de version'=>'Gestionnaire de version',
+					'XXXX'=>'Test secteur inexistant',
 				)
 			);
 

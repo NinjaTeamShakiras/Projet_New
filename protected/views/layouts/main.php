@@ -38,7 +38,7 @@
 				array('label'=>'Accueil', 'url'=>array('/site/index')),
 				array('label'=>'Connexion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Ajouter des Infos', 'url'=>array('/Employe/FormulaireInsereInfos')),
+				array('label'=>'Ajouter des Infos', 'url'=>array('/Employe/AjoutInfos')),
 
 			),
 		)); ?>

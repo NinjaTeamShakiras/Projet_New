@@ -38,19 +38,19 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'secteur_active_entreprise'); ?>
-		<?php echo $form->textField($model,'secteur_active_entreprise',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->labelEx($model,'secteur_activite_entreprise'); ?>
+		<?php echo $form->textField($model,'secteur_activite_entreprise',array('size'=>45,'maxlength'=>45)); ?>
 		<?php
 			// Liste déroulante pour le choix du secteur d'activité
-			echo $form->dropDownList($model, 'secteur_active_entreprise', array('Touristique'=>'Touristique', 'Camping'=>'Camping', 'Restauration'=>'Restauration', 'Brasserie'=>'Brasserie'));
+			echo $form->dropDownList($model, 'secteur_activite_entreprise', array('Touristique'=>'Touristique', 'Camping'=>'Camping', 'Restauration'=>'Restauration', 'Brasserie'=>'Brasserie'));
 		?>
-		<?php echo $form->error($model,'secteur_active_entreprise'); ?>
+		<?php echo $form->error($model,'secteur_activite_entreprise'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'anne_creation_entreprise'); ?>
-		<?php echo $form->textField($model,'anne_creation_entreprise'); ?>
-		<?php echo $form->error($model,'anne_creation_entreprise'); ?>
+		<?php echo $form->labelEx($model,'annee_creation_entreprise'); ?>
+		<?php echo $form->textField($model,'annee_creation_entreprise'); ?>
+		<?php echo $form->error($model,'annee_creation_entreprise'); ?>
 	</div>
 
 	<div class="row">

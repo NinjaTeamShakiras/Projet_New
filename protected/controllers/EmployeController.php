@@ -36,7 +36,7 @@ class EmployeController extends Controller
 		{
 			return array(
 				array('allow',
-					  'actions'=>['index','view', 'update', 'delete','formulaireInsereInfos'],
+					  'actions'=>['index','view', 'update', 'delete','ajoutinfos'],
 					),
 				array('deny',
 					  'actions'=>['admin'],
@@ -176,42 +176,19 @@ class EmployeController extends Controller
 	/*Fonction qui affiche la page choixAjoutCV*/
 	public function actionChoixAjoutCV()
 	{
-		if (Yii::app()->user->getState('type') == null)
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+		if(isset($user))
 		{
-			$this->redirect(array('site/login'));
+			$this->redirect(array('site/index'));
+		}
+			Yii::app()->user->loginRequired();
+/*		if (Yii::app()->user->getState('type') == null)
+		{
 		}
 		else
 		{
 			$this->render('choixAjoutCV');
-		}
-	}
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Employe the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-		$model=Employe::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param Employe $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='employe-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+		}*/
 	}
 	
 	/* Fonction qui change la date au format Américain pour la BDD */
@@ -232,14 +209,19 @@ class EmployeController extends Controller
 			return $result;
 	}
 
-
-	public function actionFormulaireInsereInfos()
+	/* Fonction d'insertions des infos personnelles dans la base de données
+	--> L'utilisateur renseigne ses infos persos et elles sont enregistrées en BDD*/
+	public function actionAjoutInfos()
 	{
 		$formation = new Formation;
 		$experiencePro = new ExperiencePro;
 		$competence = new Competence;
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-
+		var_dump($user);
+		if($user==null)
+		{
+			Yii::app()->user->loginRequired();
+		}
 		if(isset($_POST['Competence']) && isset($_POST['ExperiencePro']) && isset($_POST['Competence']))
 		{
 			//On attributs les valeurs entrés par l'utilisateur dans le model Formation
@@ -270,6 +252,56 @@ class EmployeController extends Controller
 		}
 			//Sinon on renvoie la page inscription car les champs ne sont pas valides
 			$this->render('ajoutinfos', array('model'=>$user)); 
+	}
+
+
+
+	/*Fonction qui permet, soit d'uploader son CV sur le site, soit d'être rédirigé vers 
+	la page ajoutinfos.php suivant le bouton sur lequel on clique*/
+	public function choixCV()
+	{
+		//Si il choisi l'upload, on upload le CV
+		if(isset($_POST['upload']))
+		{
+			//METTRE ICI L'UPLOAD DU CV
+			$this->redirect(array('employe/index'));
+		}
+
+		//Si il choisit de renseigner ses infos, on le redirige vers le dit formulaire
+		if(isset($_POST['infos_persos']))
+		{
+			$this->render('ajoutinfos', array('model'));
+		}
+	}
+
+
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Employe the loaded model
+	 * @throws CHttpException
+	 */
+	public function loadModel($id)
+	{
+		$model=Employe::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Performs the AJAX validation.
+	 * @param Employe $model the model to be validated
+	 */
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='employe-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
 	}
 
 
