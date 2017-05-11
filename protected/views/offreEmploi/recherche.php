@@ -67,7 +67,7 @@
 			// Recherche par TYPE (liste déroulante )
 			echo $form->dropDownList(
 				$model, 'type_offre_emploi', array(
-					''=>'',
+					''=>'Sélectionner...',
 					'CDD'=>'CDD',
 					'CDI'=>'CDI', 
 					'STAGE'=>'STAGE',
@@ -95,13 +95,11 @@
 
 			// Recherche par Secteur
 
-			echo $form->textField(
-				$entreprise,'secteur_activite_entreprise', array(	
-					'class' => 'autocomplete-find-offreEmploi',
-					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllSecteurJSON'),
-					'size' => 45,
-					'maxlength' => 30,
-					'placeholder' => 'Rechercher par secteur d\'activité',
+			echo $form->dropDownList(
+				$entreprise,'secteur_activite_entreprise', array(
+					''=>'Sélectionner...',
+					'réseaux sociaux'=>'réseaux sociaux',
+					'Informatique'=>'Informatique',
 				)
 			);
 

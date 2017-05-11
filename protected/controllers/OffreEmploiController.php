@@ -346,57 +346,104 @@ class OffreEmploiController extends Controller
 
 
 		/*		LANCEMENT ET RECUPERATION DE LA REQUETE 		*/
-		$tabOffre = OffreEmploi::model()->findAll($requete);
-
-
-
-		// On affine encore avec le lieu si il est défini
-		$i = 0;
-		$tabResultatOffreLieu = array();
-		$tabResultatOffreSecteur = array();
-		if($lieu_offre_emploi != "")
-		{
-			foreach ($model as $offre) // Pour TOUTES les offres ...
-			{
-				$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
-				// Pour récupéré l'adresse : 
-				$userEntreprise = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
-				$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
-				$ville = $adresse->ville; // On récupère la ville de l'offre en question 
-
-				if($ville == $lieu_offre_emploi)
-				{ // Si le nom de la ville donné au formulaire est éguale à celui de l'offre tester
-					foreach($tabOffre as $offreDeCote)
-					{ // on parcours le tableau de nos offres mise de coté
-						if($offre == $offreDeCote)
-						{
-							$tabResultatOffreSecteurTypePoste[i] = $offre;
-							$i++;
-						}
-					}
-
-					
-				}
-
-			}
-			/*       A TERMINER				*/
-		}
-
-
-		if($secteur_offre_emploi != "")
-		{
-
-		}
-
-			/*		LANCEMENT ET RECUPERATION DE LA REQUETE 		*/
 			$tabOffre = OffreEmploi::model()->findAll($requete);
 
-			$this->render('index_search', array('data'=>$tabOffre));
-		}	
-		
-		$this->render('index_search');
 
+
+		// On affine encore avec le -- LIEU -- si il est défini
+		
+			$tabTemp = array(); // Tableau temporaire destiné à recevoir (temporairement) les offres trouvées dans une recherche et déjà présente dans le tableau des offres trouvée précédement
+			$i = 0;
+
+			if($lieu_offre_emploi != "")
+			{
+				if(!$posteIsSet && !$typeIsSet)
+				{ // Si aucun des recherche correspondante ci-dessus n'as été faite
+					$tabOffre = OffreEmploi::model()->findAll(); // On remplis le tableau d'offre avec toutes les offres
+				}
+
+				$tabAdresseLieuRechercher = adresse::model()->FindAll("ville LIKE '%$lieu_offre_emploi%'"); // On récupère toutes les adresses ressemblant à l'adresse données
+
+				foreach ($model as $offre) // Pour TOUTES les offres ...
+				{
+					$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+					// Pour récupéré l'adresse : 
+					$userOffre = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+					$adresseOffre = adresse::model()->FindByAttributes(array("id_adresse"=>$userOffre->id_adresse));
+
+					foreach($tabAdresseLieuRechercher as $adresseLieuRechercher)
+					{ // On parcours les adresses trouvées
+						
+						if($adresseOffre->ville == $adresseLieuRechercher->ville)
+						{ // Si l'adresse de l'offre en question est la même que celle rendu par la recherche
+							foreach($tabOffre as $offreDeCote)
+							{ // on parcours le tableau de nos offres mise de coté
+								if($offre == $offreDeCote)
+								{ // Si l'une des offre à déjà été mise de coté, on peux la conserver
+									$tabTemp[$i] = $offre; // On stoque dans un tableau temporaire qui deviendra $tabOffre
+									$i++;
+								}
+							}
+						}
+					}
+				}
+				
+				$tabOffre = $tabTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On réinitialise les variable temporaire pour le prochain
+				$tabTemp = array(); 
+				$i=0;
+
+				$lieuIsSet = true;
+
+			}
+			
+
+
+			// On affine encore avec le -- SECTEUR -- si il est défini
+
+			if($secteur_offre_emploi != "")
+			{ // Si le secteur à été remplis
+				if(!$posteIsSet && !$typeIsSet && !$lieuIsSet)
+				{ // Si aucun des recherche correspondante ci-dessus n'as été faite
+					$tabOffre = OffreEmploi::model()->findAll(); // On remplis le tableau d'offre avec toutes les offres
+				}
+				foreach ($model as $offre) // Pour TOUTES les offres ...
+				{
+					$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+					
+					if($secteur_offre_emploi == $entreprise->secteur_activite_entreprise)
+					{ // Si le secteur rentré correspond au secteur de l'offre
+						foreach($tabOffre as $offreDeCote)
+						{ // on parcours le tableau de nos offres mise de coté
+							if($offre == $offreDeCote)
+							{ // Si l'une des offre à déjà été mise de coté, on peux la conserver
+								$tabTemp[$i] = $offre; // On stoque dans un tableau temporaire qui deviendra $tabOffre
+								$i++;
+							}
+						}
+					}
+				}
+
+				$tabOffre = $tabTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On réinitialise les variable temporaire pour le prochain
+				$tabTemp = array(); 
+				$i=0;
+
+				$secteurIsSet = true;
+			}
+
+			$this->render('index_search', array('data'=>$tabOffre)); // On redirige avec le resultat.
+
+		}		
+		else
+		{
+			echo "Vous n'avez rien remplis.";
+			$this->render('index_search');
+		}
+		
 	}
+
+
 
 
 
@@ -425,20 +472,6 @@ class OffreEmploiController extends Controller
 		foreach ( Adresse::model()->findAll() as $key_int => $value_obj )
 		{
 			array_push( $results_arr, $value_obj->ville );
-		}
-
-		echo json_encode($results_arr);
-	}
-
-	/*		Fonction utilisée lors de l'auto-complétion de la recherche par Secteur d'activité		*/
-	public function actionGetAllSecteurJSON()
-	{
-		/*		Tableau pour sauvegarder les résultats*/
-		$results_arr = array();
-
-		foreach ( entreprises::model()->findAll() as $key_int => $value_obj )
-		{
-			array_push( $results_arr, $value_obj->secteur_activite_entreprise );
 		}
 
 		echo json_encode($results_arr);
