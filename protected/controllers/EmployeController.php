@@ -176,14 +176,19 @@ class EmployeController extends Controller
 	/*Fonction qui affiche la page choixAjoutCV*/
 	public function actionChoixAjoutCV()
 	{
-		if (Yii::app()->user->getState('type') == null)
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+		if(isset($user))
 		{
-			$this->redirect(array('site/login'));
+			$this->redirect(array('site/index'));
+		}
+			Yii::app()->user->loginRequired();
+/*		if (Yii::app()->user->getState('type') == null)
+		{
 		}
 		else
 		{
 			$this->render('choixAjoutCV');
-		}
+		}*/
 	}
 	
 	/* Fonction qui change la date au format Américain pour la BDD */
@@ -213,6 +218,10 @@ class EmployeController extends Controller
 		$competence = new Competence;
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
 
+		if(!isset($user))
+		{
+			Yii::app()->user->loginRequired();
+		}
 		if(isset($_POST['Competence']) && isset($_POST['ExperiencePro']) && isset($_POST['Competence']))
 		{
 			//On attributs les valeurs entrés par l'utilisateur dans le model Formation

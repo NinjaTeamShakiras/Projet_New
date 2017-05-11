@@ -5225,6 +5225,149 @@ HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
 ---
 =======
 >>>>>>> 436fbba71c5c5d5fc50bb839aa970bb71ef00c5f
+<<<<<<< HEAD
+2017/05/10 16:32:21 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\protected\controllers\EmployeController.php:249)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#1 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#4 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (249)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/10 16:32:30 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\protected\controllers\EmployeController.php:249)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#1 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#4 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (249)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/10 16:36:24 [error] [exception.CException] exception 'CException' with message 'EmployeController cannot find the requested view "choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(782): CController->renderPartial('choixAjoutCV', NULL, true)
+#1 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(185): CController->render('choixAjoutCV')
+#2 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionChoixAjoutCV()
+#3 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('choixAjoutCV')
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/choixAj...')
+#13 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/index
+---
+2017/05/10 16:42:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 16:43:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 16:44:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 16:44:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 16:45:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 18:45:20 [error] [php] strpos() expects parameter 1 to be string, array given (C:\wamp64\www\yii\framework\web\CController.php:706)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(867): SiteController->getViewFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\SiteController.php(96): SiteController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#6 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/login
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (96)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/10 16:45:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 16:46:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/10 16:48:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=employe/choixAjoutCV".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=employe/choixAjoutCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+=======
 >>>>>>> e7bce6e983add8ad46ad580e781559c14bc5a600
 2017/05/10 18:30:55 [error] [php] Undefined variable: url (C:\wamp\www\prozzl\protected\controllers\SiteController.php:96)
 Stack trace:
@@ -5237,6 +5380,7 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=site/login
 in C:\wamp\www\prozzl\protected\controllers\SiteController.php (96)
 in C:\wamp\www\prozzl\index.php (13)
+<<<<<<< HEAD
 2017/05/11 06:34:02 [error] [exception.CException] exception 'CException' with message 'Property "Entreprise.secteur_activite_entreprise" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
 Stack trace:
 #0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('secteur_activit...')
@@ -5267,3 +5411,17 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=employe/index
 HTTP_REFERER=http://localhost/prozzl/index.php?r=site/index
 ---
+=======
+2017/05/11 09:03:50 [error] [php] Undefined variable: url (C:\wamp\www\prozzl\protected\controllers\SiteController.php:96)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/login
+in C:\wamp\www\prozzl\protected\controllers\SiteController.php (96)
+in C:\wamp\www\prozzl\index.php (13)
+>>>>>>> 35c29019122bdb338a80ce8f6de55b347777e624
+>>>>>>> 12cb33e96346fca10d610caecdddf2d2ec4aec8e
