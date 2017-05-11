@@ -39,7 +39,7 @@
 				array('label'=>'Connexion', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Ajouter des Infos', 'url'=>array('/Employe/AjoutInfos')),
-
+				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois A SUPPRIMER (demander à franck avant ...)
 			),
 		)); ?>
 	</div><!-- mainmenu -->

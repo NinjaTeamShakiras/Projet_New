@@ -111,16 +111,33 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			$tabIdEmploye[$nombreCandidature] = $candidat->id_employe;
 			$nombreCandidature++;
 		}
-		
+
+
+		// Lien de suppression
+		if (!Utilisateur::est_employe(Yii::app()->user->role) )
+		{ // Si entreprise
+			echo CHtml::link('Supprimer cette offre', array('offreEmploi/delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
+		}
+
 
 		// Affichage des candidats ou non
 		if($nombreCandidature > 0) // Si il y a des candidats
 		{ // On affiche le nombre de candidat, puis un lien vers les candidats
 			print("<p> Vous avez ".$nombreCandidature." candidature pour cette offre : </p>");
 
-			for($i=0; $i<$nombreCandidature; $i++)
-			{ // On affiche un lien pour chacun des candidat
-				echo CHtml::link("<p> Voir la candidature $i </p>",array('employe/view', 'id'=>$tabIdEmploye[$i]));
+			$tablePostuler = Postuler::model()->FindAll();
+			for($i=0; $i<$nombreCandidature; $i++)// parcours de chaques candidatures (correspond à un employé)
+			{ 
+				// On affiche un lien pour chacun des candidat
+				//echo CHtml::link("<p> Voir la candidature $i </p>",array('employe/view', 'id'=>$tabIdEmploye[$i]));
+
+				foreach($tablePostuler as $postuler) // Parcours de TOUT les postulants
+				{ 
+				 	if( ($postuler->id_offre_emploi == $model->id_offre_emploi)  && ($tabIdEmploye[$i] == $postuler->id_employe) )
+				 	{ // Si l'offre de la table postuler concerne l'offre en question ET  :
+				 		print("<p>Candidat numéro ".$i." (id = ".$tabIdEmploye[$i].") a candidaté le ".$this->changeDateNaissance($postuler->date_postule).". </p>");
+				 	}
+				}
 			}
 		}
 		else
@@ -131,10 +148,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	}
 
 
-	if (!Utilisateur::est_employe(Yii::app()->user->role) )
-	{
-		echo CHtml::link('Supprimer cette offre', array('offreEmploi/delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
-	}
+
 
 	// !!!! NE MARCHE PAS !!!
 	/*		Message de postulation
