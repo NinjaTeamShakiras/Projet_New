@@ -22,7 +22,6 @@ $this->breadcrumbs=array(
 	$login = Yii::app()->user->getId();
 	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
 
-
 	$tablePostuler = Postuler::model()->FindAll(); // On récupère la table postuler
 	$nombreOffre = sizeof($data); // Nombre d'offre total
 
@@ -52,14 +51,18 @@ $this->breadcrumbs=array(
 			print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
 			print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 
-			// Bonus : si l'employé à postulé à l'offre en question, on affiche qu'il a postuler avec la date.
-			foreach($tablePostuler as $postuler)
+			// Bonus : si un employé est connecté et a postulé à l'offre en question, on affiche qu'il a postuler avec la date.
+			if($utilisateur != null)
 			{
-				if( ($postuler->id_offre_emploi == $offre->id_offre_emploi) && ($postuler->id_employe == $utilisateur->id_employe) )
-				{ // Si l'offre de la table postuler concerne l'offre en question et quel concerne l'employé :
-					print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+				foreach($tablePostuler as $postuler)
+				{
+				 	if( ($postuler->id_offre_emploi == $offre->id_offre_emploi) && ($postuler->id_employe == $utilisateur->id_employe) )
+				 	{ // Si l'offre de la table postuler concerne l'offre en question et quel concerne l'employé :
+				 		print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+				 	}
 				}
 			}
+			
 
 			echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 			echo "<hr/>";

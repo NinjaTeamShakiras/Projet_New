@@ -308,6 +308,7 @@ class OffreEmploiController extends Controller
 		$lieuIsSet = false; // Le LIEU à été donné ou non dans le formulaire de recherche
 		$secteurIsSet = false; // Le SECTEUR à été donné ou non dans le formulaire de recherche
 		$requete = ""; // Requète SQL de recherche des offre correspondante
+		$tabOffre = array();
 
 
 		// On récupère les données du formulaire
@@ -345,13 +346,14 @@ class OffreEmploiController extends Controller
 
 
 
-		/*		LANCEMENT ET RECUPERATION DE LA REQUETE 		*/
-			$tabOffre = OffreEmploi::model()->findAll($requete);
+			if($posteIsSet || $typeIsSet)
+			{ // Si la requete du poste ou du type est complété, on lancela requete
+				$tabOffre = OffreEmploi::model()->findAll($requete);
+			}
+			
 
 
-
-		// On affine encore avec le -- LIEU -- si il est défini
-		
+			// On affine encore avec le -- LIEU -- si il est défini
 			$tabTemp = array(); // Tableau temporaire destiné à recevoir (temporairement) les offres trouvées dans une recherche et déjà présente dans le tableau des offres trouvée précédement
 			$i = 0;
 
@@ -432,9 +434,16 @@ class OffreEmploiController extends Controller
 				$secteurIsSet = true;
 			}
 
+
+
+			if(!$posteIsSet && !$typeIsSet && !$lieuIsSet && !$secteurIsSet)
+			{ // Si la recherche n'a pas d'argument, onrenvoi tout
+				$tabOffre = OffreEmploi::model()->findAll();
+			}
+
 			$this->render('index_search', array('data'=>$tabOffre)); // On redirige avec le resultat.
 
-		}		
+		}
 		else
 		{
 			echo "Vous n'avez rien remplis.";
