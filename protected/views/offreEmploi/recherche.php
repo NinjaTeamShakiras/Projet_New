@@ -49,10 +49,12 @@
 	?>
 
 	<div class="row">
-		<!-- Recherche d'un poste (textfield + bouton submit) -->	
+		<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
 		<?php
 
+
 			/****		Recherche par POSTE 		****/
+
 			echo $form->textField(
 				$model,'poste_offre_emploi', array(	
 					'class' => 'autocomplete-find-offreEmploi',
@@ -106,7 +108,7 @@
 			?><br/><?php
 
 
-			
+
 			// Button d'envoi
 			echo CHtml::submitButton('Rechercher');
 		?>
@@ -119,6 +121,8 @@
 	<?php $this->endWidget(); ?>
 
 </div>
+
+
 
 
 
@@ -156,20 +160,4 @@
 	}
 
 </script>
-
-
-
-
-
-	<!-- On Affiche les resultats de la recherche : -->
-
-
-
-
-
-
-
-
-
-
 

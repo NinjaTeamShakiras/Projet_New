@@ -40,7 +40,9 @@
 
 
 
+
 <h1><?php echo $titre?></h1> <!-- Titre page -->
+
 
 
 
@@ -51,6 +53,7 @@
 	$tablePostuler = Postuler::model()->FindAll();
 
 
+	/*		ENTREPRISE 			*/
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche les offres d'emploi de l'entreprise
 		$nombreCandidature = 0; // Nombre de candidature a l'offre en question
@@ -120,7 +123,8 @@
 		}
 
 
-	}
+
+	} /*			EMPLOYE 			*/
 	else if( Utilisateur::est_employe(Yii::app()->user->role))
 	{  // Si employé on affiche toutes les offres d'emploi
 

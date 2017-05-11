@@ -6332,3 +6332,30 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=offreEmploi/recherche
 HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/index
 ---
+2017/05/11 15:53:56 [error] [php] Array to string conversion (C:\wamp\www\yii\framework\web\helpers\CHtml.php:2379)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\helpers\CHtml.php(1532): resolveNameID()
+#1 C:\wamp\www\yii\framework\web\widgets\CActiveForm.php(792): activeTextField()
+#2 C:\wamp\www\prozzl\protected\views\offreEmploi\recherche.php(66): CActiveForm->textField()
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#4 C:\wamp\www\yii\framework\web\CBaseController.php(95): OffreEmploiController->renderInternal()
+#5 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#6 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#7 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(496): OffreEmploiController->render()
+#8 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionRecherche()
+#9 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#11 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#14 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#18 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#20 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/recherche
+in C:\wamp\www\prozzl\protected\views\offreEmploi\recherche.php (66)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (496)
+in C:\wamp\www\prozzl\index.php (13)
