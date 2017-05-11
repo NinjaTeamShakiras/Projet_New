@@ -36,7 +36,7 @@ class EmployeController extends Controller
 		{
 			return array(
 				array('allow',
-					  'actions'=>['index','view', 'update', 'delete','formulaireInsereInfos'],
+					  'actions'=>['index','view', 'update', 'delete','ajoutinfos'],
 					),
 				array('deny',
 					  'actions'=>['admin'],
@@ -237,15 +237,15 @@ class EmployeController extends Controller
 			return $result;
 	}
 
-
-	public function actionFormulaireInsereInfos()
+	/*Fonction qui permet d'ajouter des infos sur l'employe */
+	public function actionAjoutInfos()
 	{
 		$formation = new Formation;
 		$experiencePro = new ExperiencePro;
 		$competence = new Competence;
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-
-		if(!isset($user))
+		var_dump($user);
+		if($user==null)
 		{
 			Yii::app()->user->loginRequired();
 		}

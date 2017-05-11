@@ -5392,3 +5392,84 @@ REQUEST_URI=/prozzl/index.php?r=site/login
 in C:\wamp\www\prozzl\protected\controllers\SiteController.php (96)
 in C:\wamp\www\prozzl\index.php (13)
 >>>>>>> 35c29019122bdb338a80ce8f6de55b347777e624
+2017/05/11 07:28:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=Employe/FormulaireInsereInfos".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=Employe/FormulaireInsereInfos
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/11 07:30:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FormulaireInsereInfos".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('FormulaireInser...')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('FormulaireInser...')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Employe/Formula...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
+HTTP_REFERER=http://localhost/prozzl/index.php
+---
+2017/05/11 07:30:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FormulaireInsereInfos".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('FormulaireInser...')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('FormulaireInser...')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Employe/Formula...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
+HTTP_REFERER=http://localhost/prozzl/index.php
+---
+2017/05/11 07:30:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FormulaireInsereInfos".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('FormulaireInser...')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('FormulaireInser...')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Employe/Formula...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
+HTTP_REFERER=http://localhost/prozzl/index.php
+---
+2017/05/11 07:30:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FormulaireInsereInfos".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('FormulaireInser...')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('FormulaireInser...')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Employe/Formula...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
+HTTP_REFERER=http://localhost/prozzl/index.php
+---
+2017/05/11 07:32:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=Employe/AjoutInfos".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=Employe/AjoutInfos
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/11 07:35:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "prozzl/index.php?r=Employe/AjoutInfos".' in C:\wamp64\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('prozzl/index.ph...')
+#1 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=prozzl/index.php?r=Employe/AjoutInfos
+HTTP_REFERER=http://localhost/prozzl/index.php?r=site/login
+---
+2017/05/11 07:36:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "FormulaireInsereInfos".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('FormulaireInser...')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('FormulaireInser...')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Employe/Formula...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=Employe/FormulaireInsereInfos
+---

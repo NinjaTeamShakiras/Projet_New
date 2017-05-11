@@ -94,7 +94,7 @@ class SiteController extends Controller
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 			{
-				$this->redirect(array(Yii::app()->user->getReturnUrl()));
+				$this->redirect(Yii::app()->user->getReturnUrl());
 				//Si l'utilisateur est une entreprise, on le redirige vers sa page
 				/*if(Yii::app()->user->getState('role') == "entreprise")
 				{
