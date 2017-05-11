@@ -21,12 +21,12 @@
 	<?php echo CHtml::encode($data->recherche_employes); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('secteur_active_entreprise')); ?>:</b>
-	<?php echo CHtml::encode($data->secteur_active_entreprise); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('secteur_activite_entreprise')); ?>:</b>
+	<?php echo CHtml::encode($data->secteur_activite_entreprise); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('anne_creation_entreprise')); ?>:</b>
-	<?php echo CHtml::encode($data->anne_creation_entreprise); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('annee_creation_entreprise')); ?>:</b>
+	<?php echo CHtml::encode($data->annee_creation_entreprise); ?>
 	<br />
 
 	<?php /*
