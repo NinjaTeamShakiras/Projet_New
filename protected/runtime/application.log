@@ -5237,3 +5237,14 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=site/login
 in C:\wamp\www\prozzl\protected\controllers\SiteController.php (96)
 in C:\wamp\www\prozzl\index.php (13)
+2017/05/11 09:03:50 [error] [php] Undefined variable: url (C:\wamp\www\prozzl\protected\controllers\SiteController.php:96)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/login
+in C:\wamp\www\prozzl\protected\controllers\SiteController.php (96)
+in C:\wamp\www\prozzl\index.php (13)
