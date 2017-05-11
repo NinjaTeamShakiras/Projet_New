@@ -15,6 +15,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche la possibilité de maj/suppr l'offre en question
 		$this->menu=array(
 			//array('label'=>'Créer une offre', 'url'=>array('create')),
+			array('label'=>'Retour à mes offres', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
 			array('label'=>'Modifier ', 'url'=>array('update', 'id'=>$model->id_offre_emploi)),
 			//Marche pas
 			//array('label'=>'Supprimer', 'url'=>array('delete','id'=>$model->id_offre_emploi)),
@@ -39,13 +40,19 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		if($aPostuler)
 		{
 			$this->menu=array(
-				array('label'=>'Dépostuler', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)), 
+				array('label'=>'Dépostuler', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
+				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
+				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
 			);
 		}
 		else
 		{
 			$this->menu=array(
-				array('label'=>'Postuler', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)), 
+				array('label'=>'Postuler', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
+				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
+				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
 			);
 		}
 		$titre = "Offre d'emploi";
