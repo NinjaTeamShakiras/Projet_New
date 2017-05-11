@@ -1,20 +1,10 @@
 <?php
 /* @var $this EntrepriseController */
 /* @var $dataProvider CActiveDataProvider */
-
-$this->breadcrumbs=array(
-	'Entreprises',
-);
-
-$this->menu=array(
-	array('label'=>'Create Entreprise', 'url'=>array('create')),
-	array('label'=>'Manage Entreprise', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Entreprises</h1>
+<p>Mettre ici la recherche dans la bilbiothèque de CV</p>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<p>Mettre ici le bouton pour publier une annonce</p>
+
+<h1><strong>Voir avec le client pour le dernier formulaire, c'est pas clair</strong></h1>

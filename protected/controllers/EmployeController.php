@@ -185,34 +185,6 @@ class EmployeController extends Controller
 			$this->render('choixAjoutCV');
 		}
 	}
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Employe the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-		$model=Employe::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param Employe $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='employe-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
 	
 	/* Fonction qui change la date au format Américain pour la BDD */
 	public function changeDateBDD($date)
@@ -232,7 +204,8 @@ class EmployeController extends Controller
 			return $result;
 	}
 
-
+	/* Fonction d'insertions des infos personnelles dans la base de données
+	--> L'utilisateur renseigne ses infos persos et elles sont enregistrées en BDD*/
 	public function actionFormulaireInsereInfos()
 	{
 		$formation = new Formation;
@@ -270,6 +243,54 @@ class EmployeController extends Controller
 		}
 			//Sinon on renvoie la page inscription car les champs ne sont pas valides
 			$this->render('ajoutinfos', array('model'=>$user)); 
+	}
+
+	/*Fonction qui permet, soit d'uploader son CV sur le site, soit d'être rédirigé vers 
+	la page ajoutinfos.php suivant le bouton sur lequel on clique*/
+	public function choixCV()
+	{
+		//Si il choisi l'upload, on upload le CV
+		if(isset($_POST['upload']))
+		{
+			//METTRE ICI L'UPLOAD DU CV
+			$this->redirect(array('employe/index'));
+		}
+
+		//Si il choisit de renseigner ses infos, on le redirige vers le dit formulaire
+		if(isset($_POST['infos_persos']))
+		{
+			$this->render('ajoutinfos', array('model'));
+		}
+	}
+
+
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Employe the loaded model
+	 * @throws CHttpException
+	 */
+	public function loadModel($id)
+	{
+		$model=Employe::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Performs the AJAX validation.
+	 * @param Employe $model the model to be validated
+	 */
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='employe-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
 	}
 
 

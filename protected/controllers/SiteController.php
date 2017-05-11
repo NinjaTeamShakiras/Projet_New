@@ -272,12 +272,12 @@ class SiteController extends Controller
 	{
 		if (isset($_POST['btnemploi']))
 		{
-			$this->redirect(array('site/inscriptionEmploye'));	
+			$this->redirect(array('employe/index'));	
 		} 
 
 		if (isset($_POST['btnemploye']))
 		{
-			$this->redirect(array('site/inscriptionEntreprise'));
+			$this->redirect(array('entreprise/index'));
 		}
 	}
 

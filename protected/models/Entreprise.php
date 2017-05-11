@@ -8,8 +8,8 @@
  * @property string $nom_entreprise
  * @property integer $nombre_employes
  * @property integer $recherche_employes
- * @property string $secteur_active_entreprise
- * @property integer $anne_creation_entreprise
+ * @property string $secteur_activite_entreprise
+ * @property integer $annee_creation_entreprise
  * @property integer $age_moyen_entreprise
  *
  * The followings are the available model relations:
@@ -37,11 +37,11 @@ class Entreprise extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('nom_entreprise', 'required'),
-			array('nombre_employes, recherche_employes, anne_creation_entreprise, age_moyen_entreprise', 'numerical', 'integerOnly'=>true),
+			array('nombre_employes, recherche_employes, annee_creation_entreprise, age_moyen_entreprise', 'numerical', 'integerOnly'=>true),
 			array('nom_entreprise, secteur_activite_entreprise', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_entreprise, nom_entreprise, nombre_employes, recherche_employes, secteur_activite_entreprise, anne_creation_entreprise, age_moyen_entreprise', 'safe', 'on'=>'search'),
+			array('id_entreprise, nom_entreprise, nombre_employes, recherche_employes, secteur_activite_entreprise, annee_creation_entreprise, age_moyen_entreprise', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +71,7 @@ class Entreprise extends CActiveRecord
 			'nombre_employes' => 'Nombre Employes',
 			'recherche_employes' => 'Recherche Employes',
 			'secteur_activite_entreprise' => 'Secteur Active Entreprise',
-			'anne_creation_entreprise' => 'Anne Creation Entreprise',
+			'annee_creation_entreprise' => 'Anne Creation Entreprise',
 			'age_moyen_entreprise' => 'Age Moyen Entreprise',
 		);
 	}
@@ -98,8 +98,8 @@ class Entreprise extends CActiveRecord
 		$criteria->compare('nom_entreprise',$this->nom_entreprise,true);
 		$criteria->compare('nombre_employes',$this->nombre_employes);
 		$criteria->compare('recherche_employes',$this->recherche_employes);
-		$criteria->compare('secteur_activite_entreprise',$this->secteur_active_entreprise,true);
-		$criteria->compare('anne_creation_entreprise',$this->anne_creation_entreprise);
+		$criteria->compare('secteur_activite_entreprise',$this->secteur_activite_entreprise,true);
+		$criteria->compare('annee_creation_entreprise',$this->annee_creation_entreprise);
 		$criteria->compare('age_moyen_entreprise',$this->age_moyen_entreprise);
 
 		return new CActiveDataProvider($this, array(
