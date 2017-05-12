@@ -6783,3 +6783,156 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=offreEmploi/delete&id=2
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (141)
 in C:\wamp\www\prozzl\index.php (13)
+2017/05/12 09:56:56 [error] [php] trim() expects parameter 1 to be string, array given (C:\wamp\www\yii\framework\web\CUrlManager.php:297)
+Stack trace:
+#0 C:\wamp\www\prozzl\protected\views\offreEmploi\view.php(173): CWebApplication->createUrl()
+#1 C:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(95): OffreEmploiController->renderInternal()
+#3 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#4 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#5 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(76): OffreEmploiController->render()
+#6 unknown(0): OffreEmploiController->actionView()
+#7 C:\wamp\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#8 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#9 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#11 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#14 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#18 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#20 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
+in C:\wamp\www\prozzl\protected\views\offreEmploi\view.php (173)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (76)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/12 09:58:02 [error] [php] trim() expects parameter 1 to be string, array given (C:\wamp\www\yii\framework\web\CUrlManager.php:297)
+Stack trace:
+#0 C:\wamp\www\prozzl\protected\views\offreEmploi\view.php(173): CWebApplication->createUrl()
+#1 C:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(95): OffreEmploiController->renderInternal()
+#3 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#4 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#5 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(76): OffreEmploiController->render()
+#6 unknown(0): OffreEmploiController->actionView()
+#7 C:\wamp\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#8 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#9 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#11 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#14 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#18 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#20 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
+in C:\wamp\www\prozzl\protected\views\offreEmploi\view.php (173)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (76)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/12 10:02:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "depostule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depostule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=depostule&id_offre=1
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=1
+---
+2017/05/12 10:02:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "depostule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depostule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=depostule&id_offre=1
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=1
+---
+2017/05/12 10:04:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "postule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('postule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=postule&id_offre=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:06:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "postule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('postule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=postule&id_offre=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:07:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "postule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('postule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=postule&id_offre=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:12:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "depostule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depostule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=depostule
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:12:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "postule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('postule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=postule&id_offre=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:12:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "depostule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depostule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=depostule
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:13:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "depostule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depostule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=depostule&id_offre=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:17:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "depostule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('depostule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=depostule&id_offre=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
+2017/05/12 10:18:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "postule".' in C:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('postule')
+#1 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#2 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/prozzl/index.php?r=postule&id_offre=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=4
+---
