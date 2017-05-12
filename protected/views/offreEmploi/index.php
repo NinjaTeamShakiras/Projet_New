@@ -71,7 +71,7 @@
 			}
 		}
 
-		print("<p> ".$nombreOffreEntreprise." offres.</p>");
+		print("<p>Vous avez posté ".$nombreOffreEntreprise." offres.</p>");
 		
 		foreach ($model as $key => $offre ) // Pour chaque offre ...
 		{
@@ -139,7 +139,7 @@
 		$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 		$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
 
-		print("<p> ".$nombreTotalOffre." offres.</p>");
+		print("<p> Postulez ou consultez ".$nombreTotalOffre." offres proposées par des entreprises.</p>");
 
 
 		foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :

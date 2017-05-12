@@ -89,15 +89,25 @@ class OffreEmploiController extends Controller
 
 		if(isset($_POST['OffreEmploi']))
 		{
+			
+			$utilisateur = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId())); 
 			$model->attributes=$_POST['OffreEmploi'];
+			$model->id_entreprise = $utilisateur->id_entreprise;
+
+			// On fournis la date de créationde l'offre
+			date_default_timezone_set('Europe/Paris');
+			$model->date_creation_offre_emploi = (new \DateTime())->format('Y-m-d H:i:s');
+
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create',array('model'=>$model));
 	}
+
+
+
 
 	/**
 	 * Updates a particular model.
@@ -114,6 +124,8 @@ class OffreEmploiController extends Controller
 		if(isset($_POST['OffreEmploi']))
 		{
 			$model->attributes=$_POST['OffreEmploi'];
+			$date_debut_offre_emploi_BDD = $this->changeDateBDD($model->date_debut_offre_emploi);
+			$model->date_debut_offre_emploi = $date_debut_offre_emploi_BDD;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
 		}

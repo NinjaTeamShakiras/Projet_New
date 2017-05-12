@@ -1,0 +1,63 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+h1.Titre
+{
+	font-size:80px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+}
+
+#row-login_1 
+{
+	text-align: center;
+	font-family:"Montserrat-Light";
+	font-size:25px;
+	margin-top:2cm;
+}
+
+#row-login_2
+{
+	text-align: center;
+	font-family:"Montserrat-Light";
+	font-size:25px;
+	margin-top:0.5cm;
+}
+.row-login input
+{
+	border-radius: 10px;
+}
+
+.row.rememberMe
+{
+	font-family:"Montserrat-Light";
+	font-size:20px;
+	margin-top:1cm;
+	text-align: center;
+}
+
+.row.buttons
+{
+	margin-top: 2.5cm;
+	text-align:center;
+}
+
+.btnConnexion
+{
+	background-color:#90ffb9;
+	color:Black;
+}
+
+.btnConnexion:hover
+{
+	background :#90ffb9;
+}
