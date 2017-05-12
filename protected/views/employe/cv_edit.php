@@ -3,13 +3,12 @@
 
 require './protected/vendor/autoload.php';
 
-//var_dump( pdf2string('./upload/1/cv_1.pdf') );
 
 /* -- On récupère le texte du CV de l'employe -- */
 
 
 $parser = new \Smalot\PdfParser\Parser();
-$pdf    = $parser->parseFile( './upload/1/cv_4.pdf' );
+$pdf    = $parser->parseFile( './upload/1/cv_2.pdf' );
  
 $PDFText_str = $pdf->getText();
 
