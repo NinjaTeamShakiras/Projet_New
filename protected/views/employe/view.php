@@ -98,8 +98,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 
 
 <?php 
-	/* --- Ajout du formulaire pour uploader le CV --- */
-	$this->renderPartial( '_upload_cv', array( 'model' => $model ) );
 
 	/* --- Page pour traiter le pdf --- */
 	$this->renderPartial( 'cv_edit', array( 'model' => $model ) );

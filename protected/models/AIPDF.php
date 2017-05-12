@@ -3,8 +3,8 @@
 /* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 	Ce qu'il manque :
 		- Repérer les expériences professionnelles, les compétences et les informations diverses
-		- La date de naissance de la personne ( avec mot clés? )
-		- Adresse qui ne sont pas dans une seule ligne ( 2, 3 .. )
+		- La date de naissance de la personne ou l'age ( avec mot clés? )
+		- L'adresse il faut tester plus de cas
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 
@@ -26,6 +26,7 @@ define( 'EMPTY_STR', "" );
 define( 'ESPACE', " " );
 define( 'POINT', '.' );
 define( 'TIRET', '-' );
+define( 'SLASH', '/' );
 define( 'DEBUG', FALSE );
 define( 'ALREADY_READ_ENTRY', '[[[READ]]]');
 
@@ -98,7 +99,9 @@ class AIPDF extends CActiveRecord
 																'site-web',
 																'âge',
 																'profil' 	);
-
+	/* --- --- --- --- --- ---
+		Mots clés spécifiques de la partie information personnel 
+	--- --- --- --- --- --- */
 	public static $specificTelephoneWords_arr = array( 	'téléphone',
 														'tél' 	);
 	public static $specificMailWords_arr = array( 	'mail',
@@ -107,6 +110,8 @@ class AIPDF extends CActiveRecord
 	public static $specificWebsiteWords_arr = array( 	'site web',
 														'site-web',
 														'website' 	);
+	public static $specificBirthDate_arr = array( 	'date de naissance',
+													'date naissance' 	);
 
 	public static $domainNameList_arr = array( 	'.fr', '.com', '.org', '.etu', '.wordpress' 	);
 
@@ -148,9 +153,14 @@ class AIPDF extends CActiveRecord
 		-- -- -- -- -- -- -- --*/
 		//self::add_cv_line( 'www.juanpi.fr' );
 		//self::add_cv_line( '4 avenue de Merande 73000 Chambéry' );
+		//self::add_cv_line( '4 avenue de Merande' );
+		//self::add_cv_line( 'Première étage' );
+		//self::add_cv_line( '73000 Chambéry' );
+		//self::add_cv_line( '73000 Chambéry' );
+		self::add_cv_line( 'date de naissance : 04/07/1996' );
+		//self::extract_site_web( 'date de naissance : 04/07/1996' );
+		
 		//var_dump( self::get_cv_content() );
-
-
 
 
 		/* -- -- -- -- -- -- -- --
@@ -246,6 +256,9 @@ class AIPDF extends CActiveRecord
 
 			/* -- On détermine le reste des informations personnelles sans l'utilisation des mots clés, sans répasser par les mêmes lignes -- */
 			self::get_personal_information_adapt();
+			/* -- Si il manque encore des informations personnelles on repasse par les lignes qui ont été lues -- */
+			self::get_personal_information_adapt( TRUE );
+
 		}
 		else 
 		{
@@ -278,6 +291,9 @@ class AIPDF extends CActiveRecord
 
 				if( $result_str !== NOT_FOUND_TERM )
 				{
+					/* -- Si le full mode est activé on doit vérifier que l'information ne se répète pas -- */
+					if( $fullMode_bool )
+						$result_str = self::str_delete_duplicata_entry( $result_str, 'Téléphone' );
 					self::add_found_information( 'Téléphone', $result_str );
 					self::delete_entry_information( $value_str );
 					break;
@@ -297,6 +313,9 @@ class AIPDF extends CActiveRecord
 
 				if( $result_str !== NOT_FOUND_TERM )
 				{
+					/* -- Si le full mode est activé on doit vérifier que l'information ne se répète pas -- */
+					if( $fullMode_bool )
+						$result_str = self::str_delete_duplicata_entry( $result_str, 'Mail' );
 					self::add_found_information( 'Mail', $result_str );
 					self::delete_entry_information( $value_str );
 					break;
@@ -316,6 +335,9 @@ class AIPDF extends CActiveRecord
 				/* -- Si un résultat a été trouvé -- */
 				if( $result_str !== NOT_FOUND_TERM )
 				{
+					/* -- Si le full mode est activé on doit vérifier que l'information ne se répète pas -- */
+					if( $fullMode_bool )
+						$result_str = self::str_delete_duplicata_entry( $result_str, 'Site-web' );
 					self::add_found_information( 'Site-web', $result_str );
 					self::delete_entry_information( $value_str );
 					break;
@@ -336,6 +358,9 @@ class AIPDF extends CActiveRecord
 				/* -- Si un résultat a été trouvé -- */
 				if( $result_str !== NOT_FOUND_TERM )
 				{
+					/* -- Si le full mode est activé on doit vérifier que l'information ne se répète pas -- */
+					if( $fullMode_bool )
+						$result_str = self::str_delete_duplicata_entry( $result_str, 'Adresse' );
 					self::add_found_information( 'Adresse', $result_str );					
 					self::delete_entry_information( $result_str );
 				}
@@ -402,9 +427,26 @@ class AIPDF extends CActiveRecord
 				self::add_found_information( 'Site-web', $result_str );
 				self::delete_entry_information( $line_str );
 			}
-			
 		}
-		
+		/* -- -- -- -- --
+			Partie adresse : Traité que dans la fonction "adapt" car on utilise des boucles, de plus, 
+			souvent les informations sont sur différentes lignes donc ce n'est pas adapté pour cette fonction-ci
+		-- -- -- -- -- */
+		/* -- -- -- -- --
+			Partie date de naissance
+		-- -- -- -- -- */
+		if( in_array( $wordKey_str, self::$specificBirthDate_arr ) )
+		{
+			/* -- Extraction du site web -- */
+			//$result_str = self::extract_date_naissance( $line_str, $wordKey_str );
+			$result_str = self::extract_date_naissance( $line_str );
+			/* -- Si la date de naissance a été trouvé on l'ajoute -- */
+			if( $result_str != NOT_FOUND_TERM )
+			{
+				self::add_found_information( 'Date-de-naissance', $result_str );
+				self::delete_entry_information( $line_str );
+			}
+		}
 	}
 
 
@@ -433,7 +475,7 @@ class AIPDF extends CActiveRecord
 
 			}
 			/* -- Si rien n'a été récupéré -- */
-			if( self::get_information_value( 'Nom' ) == NOT_FOUND_TERM && self::get_information_value( 'Prénom') == NOT_FOUND_TERM )
+			if( self::get_information_value( 'Nom' ) == NOT_FOUND_TERM && self::get_information_value( 'Prénom' ) == NOT_FOUND_TERM )
 			{
 				/* -- On parcourt les lignes qui on été déjà lues si cela ne fonctionne pas -- */
 				foreach ( self::get_cv_content() as $key_int => $line_str )
@@ -615,20 +657,26 @@ class AIPDF extends CActiveRecord
 
 	/*
 	 * 	Fonction pour extraire le site web dans une ligne d'information
-	 * 	Return : Le site Web (String) ou la constante NOT_FOUND_ITEM
+	 * 	Return : Le site Web (String) ou la constante NOT_FOUND_TERM
 	 */
 	public static function extract_site_web( $line_str, $wordKey_str = null )
 	{
 		$wordsFromLine_arr = explode( ESPACE, trim( $line_str ) );
 		/* -- On parcourt les mots -- */
-		foreach ( $wordsFromLine_arr as $key_int => $value_str ) 
+
+		if( sizeof( $wordsFromLine_arr ) > 0 )
 		{
-			/* -- Si c'est un URL on procede à l'extraire du mot -- */
-			if( self::match_web_url( $value_str ) )
+			/* -- On parcourt chaque mot -- */
+			foreach ( $wordsFromLine_arr as $key_int => $value_str ) 
 			{
-				return $value_str;
+				/* -- Si c'est un URL on procede à l'extraire du mot -- */
+				if( self::match_web_url( $value_str ) )
+				{
+					return $value_str;
+				}
 			}
 		}
+		
 		return NOT_FOUND_TERM;
 	}
 
@@ -636,27 +684,112 @@ class AIPDF extends CActiveRecord
 	/*
 	 * 	Fonction pour extraire une adresse dans les informations
 	 * 	Le paramètre est un tableau car une adresse peut être sur plusieurs lignes différentes
-	 * 	Return : L'adresse (String) si quelque chose a été trouvé ou la constante NOT_FOUND_ITEM
+	 * 	Return : L'adresse (String) si quelque chose a été trouvé ou la constante NOT_FOUND_TERM
 	 */
 	public static function extract_adresse_from_array( $informations_arr )
 	{
-		/* -- On parcourt toutes les lignes du CV -- */
-		foreach ( $informations_arr as $key_int => $value_str )
+		if( sizeof( $informations_arr ) > 0 )
 		{
-			/* -- Si on trouve un code postal dans la ligne cela veut dire qu'il y a des fortes chances 
-			que ce soit une adresse -- */
-			if( self::match_code_postal( $value_str ) )
+			/* -- On parcourt toutes les lignes du CV -- */
+			foreach ( $informations_arr as $key_int => $value_str )
 			{
-				/* -- On teste le cas où c'est tout dans la même ligne -- */
-				//var_dump(self::check_for_adresse_postal_structure( $value_str ));
-				if( self::check_for_adresse_postal_structure( $value_str ) )
-					return $value_str;
+				/* -- Si on trouve un code postal dans la ligne cela veut dire qu'il y a des fortes chances 
+				que ce soit une adresse -- */
+				if( self::match_code_postal( $value_str ) )
+				{
+					/* -- On teste le cas où c'est tout dans la même ligne -- */
+					if( self::check_for_adresse_postal_structure( $value_str ) )
+					{
+						return $value_str;
+					}
+					/* -- On teste le cas où l'adresse n'est pas sur la même ligne -- */
+					else
+					{
+						$testLine_str = $value_str;
+						$start_int = $key_int - 1;
+						$linesUp_int = 0;
+						/* -- On fait une boucle pour remonter jusqu'au début de l'adresse -- */
+						while ( !self::check_for_adresse_postal_structure( $testLine_str ) || !isset( $informations_arr[ $start_int ] ) )
+						{
+							$testLine_str = $informations_arr[ $start_int ] . ESPACE . $testLine_str;
+							$start_int --;
+							$linesUp_int ++;
+							if( $linesUp_int > 4 )
+								break;
+						}
+						if( self::check_for_adresse_postal_structure( $testLine_str ) )
+							return $testLine_str;
+					}
 
+				}
 			}
 		}
+		
 		return NOT_FOUND_TERM;
 	}
 	
+	/*
+	 *	Fontion pour extraire une date de naissance à partir d'une ligne
+	 *	Return : la date de naissance trouvée ou la constante NOT_FOUND_TERM
+	 */
+	public static function extract_date_naissance( $line_str, $wordKey_str = NULL )
+	{
+		/* -- On efface le mot clé -- */
+		if( !is_null($wordKey_str) )
+			$line_str = trim( self::delete_key_word_from_line( $line_str, $wordKey_str ) );
+		
+		/* -- S'il y a des slash c'est probablement une date de naissance -- */
+		if( strpos( $line_str, SLASH ) !== FALSE )
+		{
+			$index1_int = strpos( $line_str, SLASH, 0 );
+			$index2_int = strpos( $line_str, SLASH, $index1_int + 1 );
+			/* -- S'il y a au moins deux slash dans la chaîne -- */
+			if( $index1_int !== FALSE && $index2_int !== FALSE )
+			{
+				/* -- On coupe par mots -- */
+				$motsLine_arr = explode( ESPACE, $line_str );
+				/* -- On parcour chaque mot -- */
+				foreach ( $motsLine_arr as $key_int => $value_str )
+				{
+					$newIndex1_int = strpos( $value_str, SLASH );
+					$newIndex2_int = strpos( $value_str, SLASH, $newIndex1_int + 1 );
+					/* -- -- */
+					/* -- -- */
+					/* -- Il faut créer une fonction qui valide l'année de naissance, au moins 16 ans d'âge avec 2 ou 4 chiffres -- */
+					/* -- -- */
+					/* -- -- */
+					/* -- -- */
+					/* -- Si les deux premières chiffres sont numériques et si les dernières aussi -- */
+					if( is_numeric( substr( $value_str, 0, $newIndex1_int ) ) && is_numeric( substr( $value_str, $newIndex2_int + 1 ) ) )
+						return $value_str;
+				}
+			}
+		}
+		/* -- S'il y a des tirets c'est probablement une date de naissance -- */
+		else if( strpos( $line_str, SLASH ) !== FALSE )
+		{
+			/* -- -- */
+			/* -- -- */
+			/* -- Les dates du style 15-07-1996 ou 15-juillet-1996 -- */
+			/* -- -- */
+			/* -- -- */
+			/* -- -- */
+		}
+		else 
+		{
+			/* -- -- */
+			/* -- -- */
+			/* -- Les dates du style 15 juin 1996 -- */
+			/* -- -- */
+			/* -- -- */
+			/* -- -- */
+		}
+
+		return NOT_FOUND_TERM;
+	}
+
+
+
 
 
 
@@ -824,12 +957,12 @@ class AIPDF extends CActiveRecord
 		if( sizeof( $wordsLine_arr ) >= 4 )
 		{
 			/* -- Premier cas le numéro de rue est au début de la phrase-- */
-			if( is_numeric( $wordsLine_arr[0] ) )
+			if( is_numeric( $wordsLine_arr[0] ) && strlen( $wordsLine_arr[0] ) < 5 )
 			{
 				/* -- On vérifie ensuite où se termine la fin de l'adresse -- */
 				for ( $i = 1; $i < sizeof($wordsLine_arr); $i++ )
 				{ 
-					/* -- Si le reste des informations contient un code postal -- */
+					/* -- Si le reste des informations qui contient un code postal -- */
 					if( self::match_code_postal( $wordsLine_arr[ $i ] ) )
 					{
 						/* -- On teste si les mots d'après sont des possibles villes -- */
@@ -866,6 +999,36 @@ class AIPDF extends CActiveRecord
 
 		return $line_str;
 	}
+
+	/*
+	 *	Fonction pour enlever le tag read
+	 *	Return : Le string sans le tag [[[READ]]]
+	 */
+	public static function str_delete_read_tag( $string_str )
+	{
+		return str_replace( ALREADY_READ_ENTRY, ESPACE, $string_str );
+	}
+
+	/*
+	 *	Fonction pour tester qu'une nouvelle entrée ne possède pas d'autres entrées déjà présentes
+	 *	Ex: Adres - Mail [[[READ]]], c'est pour vérifier que si la ligne a déjà été marqué on doit
+	 *	faire attention car il y deux informations sur la même ligne
+	 *	Return : l'information sans l'information répété si elle existe
+	 */
+	public static function str_delete_duplicata_entry( $string_str, $informationName_str )
+	{
+		/* -- On parcourt les informations du tableau pour vérifier la partie qui 
+		pourrait être dupliquée-- */
+		foreach (self::get_information_array() as $key_str => $value_str)
+		{
+			if( trim($key_str) != trim( $informationName_str ) && $value_str !== NOT_FOUND_TERM )
+			{
+				$string_str = str_replace( $value_str, ESPACE, $string_str );
+			}
+		}
+		return $string_str;
+	}
+
 
 
 
@@ -929,7 +1092,9 @@ class AIPDF extends CActiveRecord
 	 */
 	public static function add_found_information( $information_str, $value_str )
 	{
-		self::$utilisateurInformation_arr[$information_str] = $value_str;
+		if( strpos($value_str, ALREADY_READ_ENTRY) !== FALSE )
+			$value_str = self::str_delete_read_tag( $value_str );
+		self::$utilisateurInformation_arr[$information_str] = trim( $value_str );
 	}
 
 	/*

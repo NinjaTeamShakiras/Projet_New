@@ -371,4 +371,31 @@ class EmployeController extends Controller
 			$this->redirect( $url );
 		}
 	}
+
+	/*
+	 *	Fonction pour uploader un CV sans que l'utilisateur soit connecté
+	 */
+	public function actionUploadTmpCV()
+	{
+		$employe = new Employe();
+		/* -- Récupération du CV -- */
+		$employe->cv_pdf = CUploadedFile::getInstance( $employe, 'cv_pdf');
+
+		if( !is_null( $employe->cv_pdf ) )
+		{
+			$id_int = session_id();
+			$path_str = './upload/session/';
+
+			/* -- Création d'un dossier pour sauvegarder le pdf s'il n'existe pas déjà -- */
+	        if( !file_exists( $path_str . $id_int ) )
+	        	mkdir( $path_str . $id_int );
+	        /* -- Sauvegarde du CV -- */
+			$employe->cv_pdf->saveAs( $path_str . $id_int . '/cv_' . $id_int . '.pdf' );
+			/* -- Redirection vers le profil -- */
+	    	$url =  $this->createUrl( 'site/redirectInscriptionCV', array( 'token' => $id_int ) );
+			$this->redirect( $url );
+		}
+		$url_str =  $this->createUrl( 'site/redirectInscriptionCV' );
+		$this->redirect( $url_str );
+	}
 }

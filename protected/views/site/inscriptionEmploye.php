@@ -60,5 +60,23 @@
 		<?php echo 'Vous possedez déjà un compte ? Cliquez '.CHtml::link('ici',array('site/login')); ?>
 	</div>
 
+
 <?php $this->endWidget(); ?>
+
+	<div class="wide form">
+		<p>Vous avez un CV en format PDF? Créez votre compte directement à partir de votre CV!</p>
+		<?php
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('site/redirectInscriptionCV'),
+				)
+			);
+		?>
+		<div class="row">
+			<!-- Bouton d'ajout du CV -->
+			<?php echo CHtml::submitButton('Créer mon compte à partir de mon CV'); ?>
+		</div>
+		<?php $this->endWidget(); ?>		
+	</div>
+
 </div>
