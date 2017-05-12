@@ -21,6 +21,11 @@
  */
 class Employe extends CActiveRecord
 {
+	/* --- 
+		Attribut pour enregistrer le CV 
+	--- */
+	public $cv_pdf;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -43,6 +48,7 @@ class Employe extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_employe, nom_employe, prenom_employe, date_naissance_employe, employe_travaille', 'safe', 'on'=>'search'),
+			//array( 'cv_pdf', 'file', 'types'=>'pdf', 'safe' => false )
 		);
 	}
 
@@ -75,6 +81,7 @@ class Employe extends CActiveRecord
 			'prenom_employe' => 'Prenom ',
 			'date_naissance_employe' => 'Date Naissance',
 			'employe_travaille' => 'Employe Travaille',
+			'cv_pdf' => 'CV employé'
 		);
 	}
 

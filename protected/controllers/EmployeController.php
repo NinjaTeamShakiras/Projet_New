@@ -69,8 +69,7 @@ class EmployeController extends Controller
 						  'actions'=>['index', 'view'],
 						  ),
 					);
-		}	
-
+		}
 	}
 
 
@@ -300,5 +299,37 @@ class EmployeController extends Controller
 		}
 	}
 
+	/**
+	 * Fonction pour télécharger le CV de l'employé
+	 */
+	public function actionUploadCV( $id_int )
+	{
+		/* -- On charge les propriétés de l'employé pour ajouter le cv en pdf -- */ 
+		$employe = $this->loadModel( $id_int );
+		
+		if( !is_null( $employe->cv_pdf ) )
+			$employe->cv_pdf = null;
 
+		$employe->cv_pdf = CUploadedFile::getInstance( $employe, 'cv_pdf');
+        if ( $employe->save() )
+        {
+        	/* -- Création d'un dossier pour sauvegarder le pdf s'il n'existe pas déjà -- */
+        	if( !file_exists( './upload/' . $id_int ) )
+        		mkdir( './upload/' . $id_int );
+        	/* -- Sauvegarde du CV -- */
+		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );
+			
+
+			//$myurl = 'filename.pdf['.$pagenumber.']';
+			/*$imagick = new Imagick('file.pdf[0]');
+			$imagick->setImageFormat('png');
+			file_put_contents( './upload/' . $id_int . '/cv_' . $id_int . '.png', $imagick );*/
+		    
+		    
+
+		    /* -- Redirection vers le profil -- */
+		    $url =  $this->createUrl( 'employe/view', array( 'id' => $id_int ) );
+			$this->redirect( $url );
+		}
+	}
 }

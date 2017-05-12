@@ -29,7 +29,7 @@
 	// Nombre d'offre total
 	$nombreOffre = sizeof($tabOffre); 
 
-	print("<p> Trouver les offres qui vous correspondes parmis ".$nombreOffre." offres.</p>");
+	print("<p> Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres.</p>");
 ?>
 
 <div class="wide form">
@@ -61,9 +61,9 @@
 	
 	<div class="row">	
 		<?php
-			//Recherche par TYPE DE POSTE (liste déroulante)
+			//Recherche par TYPE DE CONTRAT (liste déroulante)
 			//-->On ajoute l'option "Sélectionner pour la liste"
-			$static_type = array('empty' => Yii::t('', 'Sélectionner...'));
+			$static_type = array('' => Yii::t('', 'Sélectionner...'));
 			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
 			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre); // On affiche une liste déroulante de toutes les offres
 		?>
@@ -88,7 +88,7 @@
 		<?php
 			//Recherche par SECTEUR
 			//-->On ajoute l'option "Sélectionner pour la liste"
-			$static_secteur = array('empty' => Yii::t('', 'Sélectionner...'));
+			$static_secteur = array('' => Yii::t('', 'Sélectionner...'));
 			$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
 			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre); // On affiche une liste déroulante de tout les secteur d'activité
 		?>
