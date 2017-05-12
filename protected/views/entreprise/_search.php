@@ -32,18 +32,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'telephone_entreprise'); ?>
-		<?php echo $form->textField($model,'telephone_entreprise',array('size'=>12,'maxlength'=>12)); ?>
+		<?php echo $form->label($model,'secteur_activite_entreprise'); ?>
+		<?php echo $form->textField($model,'secteur_activite_entreprise',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'secteur_active_entreprise'); ?>
-		<?php echo $form->textField($model,'secteur_active_entreprise',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'anne_creation_entreprise'); ?>
-		<?php echo $form->textField($model,'anne_creation_entreprise'); ?>
+		<?php echo $form->label($model,'annee_creation_entreprise'); ?>
+		<?php echo $form->textField($model,'annee_creation_entreprise'); ?>
 	</div>
 
 	<div class="row">

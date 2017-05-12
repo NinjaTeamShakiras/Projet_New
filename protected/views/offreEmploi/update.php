@@ -2,6 +2,7 @@
 /* @var $this OffreEmploiController */
 /* @var $model OffreEmploi */
 
+/*
 $this->breadcrumbs=array(
 	'Offre Emplois'=>array('index'),
 	$model->id_offre_emploi=>array('view','id'=>$model->id_offre_emploi),
@@ -14,8 +15,9 @@ $this->menu=array(
 	array('label'=>'View OffreEmploi', 'url'=>array('view', 'id'=>$model->id_offre_emploi)),
 	array('label'=>'Manage OffreEmploi', 'url'=>array('admin')),
 );
+*/
 ?>
 
-<h1>Update OffreEmploi <?php echo $model->id_offre_emploi; ?></h1>
+<h1>Modifier votre offre (offre<?php echo $model->id_offre_emploi; ?>)</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

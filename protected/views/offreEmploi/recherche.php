@@ -1,66 +1,120 @@
+<?php
+/* @var $this OffreEmploiController */
+/* @var $dataProvider CActiveDataProvider */
+
+
+	$this->menu=array(
+		// Voir toutes les offres d'emplois
+		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')),
+	);
+
+?>
+
+<!-- Titre page -->
+<h1>Rechercher une offre : </h1>
+
+<?php
+	$login = Yii::app()->user->getId();
+	// Récupération de l'utilisateur
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
+	$model = OffreEmploi::model();
+	// Récupération de toutes les offres
+	$tabOffre = OffreEmploi::model()->FindAll();
+	// Récupération de toutes les entreprises
+	$tabEntreprise = entreprise::model()->FindAll();
+
+	$entreprise = entreprise::model();
+	$adresse = adresse::model();
+
+	// Nombre d'offre total
+	$nombreOffre = sizeof($tabOffre); 
+
+	print("<p> Trouver les offres qui vous correspondes parmis ".$nombreOffre." offres.</p>");
+?>
 
 <div class="wide form">
 
+	<?php
+		//Début du form
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('offreEmploi/Search'),
+			)
+		);
+	?>
 
-<?php
-
-$form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl('OffreEmploi/Search'),
-)); ?>
-
-<div class="row" align='center'>
-	<!-- Recherche d'une entreprise (textfield + bouton submit) -->	
+	<div class="row">
+		<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
 		<?php
+			//Recherche par POSTE
 			echo $form->textField(
-				$model,'nom_entreprise', array(
-					'class' => 'autocomplete-find-entreprise',
-					'url_data_auto' => Yii::app()->createUrl('Entreprise/GetAllEntreprisesJSON'),
+				$model,'poste_offre_emploi', array(	
+					'class' => 'autocomplete-find-offreEmploi',
+					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
 					'size' => 45,
-					'maxlength' => 45,
-					'placeholder' => 'Rechercher une entreprise'
+					'maxlength' => 30,
+					'placeholder' => 'Rechercher par poste',
 				)
 			);
 		?>
-
-
-
-
-
-
-
-
-<?php 
-
-$adresse = Adresse::model()->findAll();
-
-//Lorsqu'on clique sur le bouton sumbit, le formulaire renvoie vers actionSearch de EntrepriseController
-$form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl('Entreprise/Search'),
-)); ?>
-
-	<div class="row" align='center'>
-	<!-- Recherche d'une entreprise (textfield + bouton submit) -->	
-		<?php echo $form->textField($model,'nom_entreprise', array(		'class' => 'autocomplete-find-entreprise',
-																		'url_data_auto' => Yii::app()->createUrl('Entreprise/GetAllEntreprisesJSON'),
-																		'size' => 45,
-																		'maxlength' => 45,
-																		'placeholder' => 'Rechercher une entreprise'		) ); ?>
-		<?php echo CHtml::submitButton('Rechercher'); ?>
+	</div>
+	
+	<div class="row">	
+		<?php
+			//Recherche par TYPE DE POSTE (liste déroulante)
+			//-->On ajoute l'option "Sélectionner pour la liste"
+			$static_type = array('empty' => Yii::t('', 'Sélectionner...'));
+			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
+			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre); // On affiche une liste déroulante de toutes les offres
+		?>
+	</div>
+	
+	<div class="row">
+		<?php
+			//Recherche par LIEU
+			echo $form->textField(
+				$adresse,'ville', array(	
+					'class' => 'autocomplete-find-offreEmploi',
+					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllLieuJSON'),
+					'size' => 45,
+					'maxlength' => 30,
+					'placeholder' => 'Rechercher par lieu',
+				)
+			);
+		?>
+	</div>
+	
+	<div class="row">	
+		<?php
+			//Recherche par SECTEUR
+			//-->On ajoute l'option "Sélectionner pour la liste"
+			$static_secteur = array('empty' => Yii::t('', 'Sélectionner...'));
+			$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
+			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre); // On affiche une liste déroulante de tout les secteur d'activité
+		?>
+	</div>
+	
+	<div class="row buttons">	
+		<?php
+			// Button d'envoi
+			echo CHtml::submitButton('Rechercher');
+		?>
 	</div>
 
-	<div class="row buttons">
-		
+	<?php $this->endWidget(); ?>
+
 	</div>
 
-<?php $this->endWidget(); ?>
 
-</div><!-- search-form -->
+
+	<!-- Autocomplétion : -->
+
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-	var autocomplete_class = ".autocomplete-find-entreprise"; 
+	var autocomplete_class = ".autocomplete-find-offreEmploi"; 
 	var url_data = $(autocomplete_class).attr('url_data_auto');
 
 	$.ajax({
@@ -87,3 +141,4 @@ $form=$this->beginWidget('CActiveForm', array(
 	}
 
 </script>
+

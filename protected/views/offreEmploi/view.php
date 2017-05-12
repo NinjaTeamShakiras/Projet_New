@@ -15,6 +15,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche la possibilité de maj/suppr l'offre en question
 		$this->menu=array(
 			//array('label'=>'Créer une offre', 'url'=>array('create')),
+			array('label'=>'Retour à mes offres', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
 			array('label'=>'Modifier ', 'url'=>array('update', 'id'=>$model->id_offre_emploi)),
 			//Marche pas
 			//array('label'=>'Supprimer', 'url'=>array('delete','id'=>$model->id_offre_emploi)),
@@ -39,13 +40,19 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		if($aPostuler)
 		{
 			$this->menu=array(
-				array('label'=>'Dépostuler', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)), 
+				array('label'=>'Retirer ma candidature', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
+				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
+				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
 			);
 		}
 		else
 		{
 			$this->menu=array(
-				array('label'=>'Postuler', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)), 
+				array('label'=>'Postuler à cette offre', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
+				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
+				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
 			);
 		}
 		$titre = "Offre d'emploi";
@@ -54,8 +61,8 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	else 
 	{ // Si autre on affiche toutes les possibilité
 		$this->menu=array(
-			array('label'=>'Postuler', 'url'=>array('index')),
-			array('label'=>'Créer une offre', 'url'=>array('create')),
+			array('label'=>'Postuler', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
+			array('label'=>'Dépostuler', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
 			array('label'=>'Modifier', 'url'=>array('update', 'id'=>$model->id_offre_emploi)),
 			//Marche pas
 			//array('label'=>'Supprimer', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_offre_emploi),'confirm'=>'Vous êtes sur le point de supprimer, voulez vous continuer ?')),
@@ -74,7 +81,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	$this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id_offre_emploi',
+		//'id_offre_emploi',
 		'poste_offre_emploi',
 		'type_offre_emploi',
 		array(
@@ -84,7 +91,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		'salaire_offre_emploi',
 		'experience_offre_emploi',
 		'description_offre_emploi',
-		'id_entreprise',
+		//'id_entreprise',
 		array(
 			'label'=>'Date de création de l\'offre',
 			'value'=>$model->date_creation_offre_emploi != NULL ? $date_creation : "Non renseignée",
@@ -92,6 +99,8 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		),
 	));
 
+
+	/*		ENTREPRISE 			*/
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche les candidatures éventuelle
 		$nombreCandidature = 0;
@@ -104,16 +113,30 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			$tabIdEmploye[$nombreCandidature] = $candidat->id_employe;
 			$nombreCandidature++;
 		}
-		
+
+
+		// Lien de suppression
+		echo CHtml::link(CHtml::encode('Supprimer cette offre'), array('delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
+
 
 		// Affichage des candidats ou non
 		if($nombreCandidature > 0) // Si il y a des candidats
 		{ // On affiche le nombre de candidat, puis un lien vers les candidats
 			print("<p> Vous avez ".$nombreCandidature." candidature pour cette offre : </p>");
 
-			for($i=0; $i<$nombreCandidature; $i++)
-			{ // On affiche un lien pour chacun des candidat
-				echo CHtml::link("<p> Voir la candidature $i </p>",array('employe/view', 'id'=>$tabIdEmploye[$i]));
+			$tablePostuler = Postuler::model()->FindAll();
+			for($i=0; $i<$nombreCandidature; $i++)// parcours de chaques candidatures (correspond à un employé)
+			{ 
+				// On affiche un lien pour chacun des candidat
+				//echo CHtml::link("<p> Voir la candidature $i </p>",array('employe/view', 'id'=>$tabIdEmploye[$i]));
+
+				foreach($tablePostuler as $postuler) // Parcours de TOUT les postulants
+				{ 
+				 	if( ($postuler->id_offre_emploi == $model->id_offre_emploi)  && ($tabIdEmploye[$i] == $postuler->id_employe) )
+				 	{ // Si l'offre de la table postuler concerne l'offre en question ET  :
+				 		print("<p>Candidat numéro ".$i." (id = ".$tabIdEmploye[$i].") a candidaté le ".$this->changeDateNaissance($postuler->date_postule).". </p>");
+				 	}
+				}
 			}
 		}
 		else
@@ -124,16 +147,13 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	}
 
 
-	if (!Utilisateur::est_employe(Yii::app()->user->role) )
-	{
-		echo CHtml::link('Supprimer cette offre', array('offreEmploi/delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
-	}
+
 
 	// !!!! NE MARCHE PAS !!!
-	/*		Message de postulation	*/
+	/*		Message de postulation
 	if( Yii::app()->request->getParam( 'postule' ) != NULL && Yii::app()->request->getParam( 'postule' ) == "true" ) 
 		echo '<div class="success-avis-employe" style="margin : 2% 0%; color : blue; border: solid 2px blue; padding : 2%;" >Vous avez bien postuler à cette offre</div>';
-
+	*/
 ?>
 
 

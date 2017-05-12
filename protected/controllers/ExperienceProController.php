@@ -32,7 +32,7 @@ class ExperienceProController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','Formulaire_experience'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -169,5 +169,43 @@ class ExperienceProController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+		/* Fonction qui change la date au format Américain pour la BDD */
+	public function changeDateBDD($date)
+	{
+			$result = NULL;
+			$day = 0;
+			$month = 0;
+			$year = 0;
+
+			//On récupère chaque valeur grâce a substr
+			$year = substr($date, 6, 4);
+			$month = substr($date, 3, 2);
+			$day = substr($date, 0, 2);
+
+			$result = $year."-".$month."-".$day;
+
+			return $result;
+	}
+
+
+	public function actionFormulaire_experience()
+	{
+		$experiencePro = new ExperiencePro;
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		if(isset($_POST['ExperiencePro']))
+		{
+			//On attributs les valeurs entrés par l'utilisateur dans le model experience
+			$experiencePro->attributes = $_POST['ExperiencePro'];
+			$experiencePro->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
+			$experiencePro->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
+			$experiencePro->id_employe = $user->id_employe;
+			
+			//On save le model experience
+			$experiencePro->save();
+		}
+		$this->render('formulaire_experience_pro');
 	}
 }

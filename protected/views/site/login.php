@@ -7,7 +7,9 @@
 <h1>Connexion</h1>
 
 <div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php
+
+$form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
@@ -36,6 +38,22 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Connexion'); ?>
 	</div>
+
+	<?php 
+	if(Yii::app()->session['login'] == 'employe')
+	{
+		echo "<div>
+				<p>Vous n'êtes pas encore inscrit?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEmploye'))."</p>
+			 </div>";
+	}
+	else if(Yii::app()->session['login'] == 'entreprise')
+	{
+		echo "<div>
+				<p>Vous n'êtes pas encore inscrit?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEntreprise'))."</p>
+			 </div>";	
+	}
+	?>
+		
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->

@@ -37,7 +37,7 @@ $entreprise = Entreprise::model();
 		</div>
 
 		<div class="row">
-			<?php echo "<p>Vous êtes dêjà inscrit sur le site?".Chtml::link('Cliquez ici pour vous connectez', array('site/login'))."</p>"; ?>
+			<?php echo "<p>Vous êtes dêjà inscrit sur le site? ".Chtml::link('Cliquez ici pour vous connectez', array('site/login'))."</p>"; ?>
 		</div>	 
 
     

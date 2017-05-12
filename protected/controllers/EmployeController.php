@@ -1,4 +1,4 @@
-<?php
+<?php
 
 class EmployeController extends Controller
 {
@@ -19,6 +19,7 @@ class EmployeController extends Controller
 		);
 	}
 
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -26,24 +27,52 @@ class EmployeController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'uploadCV'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+		$user = Yii::app()->user;
+
+		//Si c'est un employe :
+			//Il a accès à la supression, a l'index, à la vue et la maj
+			//Il n'a pas accès à la partie admin
+		if($user->getState('type') == 'employe')
+		{
+			return array(
+				array('allow',
+					  'actions'=>['index','view', 'update', 'delete','ajoutinfos'],
+					),
+				array('deny',
+					  'actions'=>['admin'],
+					),
+			);
+		}
+
+		//Si c'est une entreprise :
+			//Il a accès à la vue et à l'index
+			//Il n'a pas accès à la maj, à la supression et à la partie admin
+		if($user->getState('type') == 'entreprise')
+		{
+
+			return array(
+					array('allow',
+						  'actions'=>['view', 'index'],
+						),
+					array('deny',
+						  'actions'=>['update','admin', 'delete'],
+						),
+			);
+		}	
+
+		//Si c'est un utilisateur non connecté
+			//Il a juste accès à l'index et à la vues
+		if($user->getState('type') == NULL)
+		{
+			return array(
+					array('allow',
+						  'actions'=>['index', 'view'],
+						  ),
+					);
+		}
 	}
+
+
 
 	/**
 	 * Displays a particular model.
@@ -143,6 +172,105 @@ class EmployeController extends Controller
 		));
 	}
 
+	/*Fonction qui affiche la page choixAjoutCV*/
+	public function actionChoixAjoutCV()
+	{
+
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+		if(isset($user))
+		{
+			$this->redirect(array('site/index'));
+		}
+			Yii::app()->user->loginRequired();
+	}
+	
+	/* Fonction qui change la date au format Américain pour la BDD */
+	public function changeDateBDD($date)
+	{
+			$result = NULL;
+			$day = 0;
+			$month = 0;
+			$year = 0;
+
+			//On récupère chaque valeur grâce a substr
+			$year = substr($date, 6, 4);
+			$month = substr($date, 3, 2);
+			$day = substr($date, 0, 2);
+
+			$result = $year."-".$month."-".$day;
+
+			return $result;
+	}
+
+	/* Fonction d'insertions des infos personnelles dans la base de données
+	--> L'utilisateur renseigne ses infos persos et elles sont enregistrées en BDD*/
+	public function actionAjoutInfos()
+	{
+		$formation = new Formation;
+		$experiencePro = new ExperiencePro;
+		$competence = new Competence;
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+		var_dump($user);
+		if($user==null)
+		{
+			Yii::app()->user->loginRequired();
+		}
+		if(isset($_POST['Competence']) && isset($_POST['ExperiencePro']) && isset($_POST['Competence']))
+		{
+			//On attributs les valeurs entrés par l'utilisateur dans le model Formation
+			$formation->attributes = $_POST['Formation'];
+			$formation->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
+			$formation->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
+			$formation->id_employe = $user->id_employe;
+
+			//On save le model formation
+			$formation->save();
+
+			//On attributs les valeurs entrés par l'utilisateur dans le model experience
+			$experiencePro->attributes = $_POST['ExperiencePro'];
+			$experiencePro->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
+			$experiencePro->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
+			$experiencePro->id_employe = $user->id_employe;
+			
+			//On save le model experience
+			$experiencePro->save();
+
+			//On attributs les valeurs entrés par l'utilisateur dans le model competence
+			$competence->attributes = $_POST['Competence'];
+			$competence->id_employe = $user->id_employe;
+
+			//On save le model competence 
+			$competence->save();
+
+		}
+			//Sinon on renvoie la page inscription car les champs ne sont pas valides
+			$this->render('ajoutinfos'); 
+	}
+
+
+	/*Fonction qui permet, soit d'uploader son CV sur le site, soit d'être rédirigé vers 
+	la page ajoutinfos.php suivant le bouton sur lequel on clique*/
+	public function choixCV()
+	{
+		//Si il choisi l'upload, on upload le CV
+		if(isset($_POST['upload']))
+		{
+			//METTRE ICI L'UPLOAD DU CV
+			$this->redirect(array('employe/index'));
+		}
+
+		//Si il choisit de renseigner ses infos, on le redirige vers le dit formulaire
+		if(isset($_POST['infos_persos']))
+		{
+			$this->render('ajoutinfos');
+		}
+	}
+
+
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -170,7 +298,6 @@ class EmployeController extends Controller
 			Yii::app()->end();
 		}
 	}
-
 
 	/**
 	 * Fonction pour télécharger le CV de l'employé
@@ -205,5 +332,4 @@ class EmployeController extends Controller
 			$this->redirect( $url );
 		}
 	}
-
 }

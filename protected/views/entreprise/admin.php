@@ -49,10 +49,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'nom_entreprise',
 		'nombre_employes',
 		'recherche_employes',
-		'telephone_entreprise',
-		'secteur_active_entreprise',
+		'secteur_activite_entreprise',
 		/*
-		'anne_creation_entreprise',
+		'annee_creation_entreprise',
 		'age_moyen_entreprise',
 		*/
 		array(
