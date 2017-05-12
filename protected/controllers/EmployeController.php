@@ -176,19 +176,16 @@ class EmployeController extends Controller
 	/*Fonction qui affiche la page choixAjoutCV*/
 	public function actionChoixAjoutCV()
 	{
+
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
 		if(isset($user))
 		{
 			$this->redirect(array('site/index'));
 		}
 			Yii::app()->user->loginRequired();
-/*		if (Yii::app()->user->getState('type') == null)
-		{
-		}
-		else
-		{
-			$this->render('choixAjoutCV');
-		}*/
 	}
 	
 	/* Fonction qui change la date au format Américain pour la BDD */
@@ -251,9 +248,8 @@ class EmployeController extends Controller
 
 		}
 			//Sinon on renvoie la page inscription car les champs ne sont pas valides
-			$this->render('ajoutinfos', array('model'=>$user)); 
+			$this->render('ajoutinfos'); 
 	}
-
 
 
 	/*Fonction qui permet, soit d'uploader son CV sur le site, soit d'être rédirigé vers 
@@ -270,7 +266,7 @@ class EmployeController extends Controller
 		//Si il choisit de renseigner ses infos, on le redirige vers le dit formulaire
 		if(isset($_POST['infos_persos']))
 		{
-			$this->render('ajoutinfos', array('model'));
+			$this->render('ajoutinfos');
 		}
 	}
 
