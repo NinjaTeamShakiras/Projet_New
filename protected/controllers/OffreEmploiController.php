@@ -342,24 +342,17 @@ class OffreEmploiController extends Controller
 	{
 		$model = OffreEmploi::model()->FindAll();
 
-		$posteIsSet = false; // Le POSTE à été donné ou non dans le formulaire de recherche
-		$typeIsSet = false; // Le TYPE à été donné ou non dans le formulaire de recherche
-		$lieuIsSet = false; // Le LIEU à été donné ou non dans le formulaire de recherche
-		$secteurIsSet = false; // Le SECTEUR à été donné ou non dans le formulaire de recherche
-		$requete = ""; // Requète SQL de recherche des offre correspondante
-		$tabOffre = array();
 
-
-		// On récupère les données du formulaire
 		if(isset($_POST['OffreEmploi']))
 		{
+			// On récupère les données du formulaire
 			$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
 			$type_offre_emploi = $_POST['OffreEmploi']['type_offre_emploi'];
 			$lieu_offre_emploi = $_POST['Adresse']['ville'];
 			$secteur_offre_emploi = $_POST['Entreprise']['secteur_activite_entreprise'];
 
-
-			$tabOffre = OffreEmploi::model()->findAll(); // Tableau de résultat d'offre rechercher
+			// Tableau de résultat d'offre rechercher
+			$tabOffre = OffreEmploi::model()->findAll(); 
 
 			// Initialisation des varaiable temp
 			$tabOffreTrouver = array(); // Tableau de stoquage des résultat d'une recherche brut
@@ -385,7 +378,8 @@ class OffreEmploiController extends Controller
 						}
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp; 
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTrouver = array();
@@ -413,7 +407,8 @@ class OffreEmploiController extends Controller
 						}
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp;
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTrouver = array();
@@ -449,7 +444,8 @@ class OffreEmploiController extends Controller
 						}
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp; 
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTemp = array(); 
@@ -473,7 +469,8 @@ class OffreEmploiController extends Controller
 						$i++;
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp; 
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTemp = array(); 

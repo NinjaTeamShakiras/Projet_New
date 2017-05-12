@@ -12,7 +12,7 @@
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise
 		$this->menu=array(
-			array('label'=>'Déposer une annonce gratuitement', 'url'=>array('create')), // On peut créer une offre d'emploi
+			array('label'=>'Déposer une annonce', 'url'=>array('create')), // On peut créer une offre d'emploi
 		);
 
 		$titre = "Mes offres d'emplois";
