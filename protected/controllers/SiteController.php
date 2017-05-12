@@ -85,8 +85,7 @@ class SiteController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-
-				var_dump(Yii::app()->user->getReturnUrl());
+;
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
@@ -175,10 +174,7 @@ class SiteController extends Controller
 					
 					if($user->save())
 					{
-						$identity = new UserIdentity($user->mail, $user->mot_de_passe);
-						$identity->authenticate();
-						Yii::app()->user->login($identity, 0);
-						$this->redirect(array('employe/index'));
+						$this->redirect(array('site/login'));
 					}
 				}
 			}
@@ -224,13 +220,8 @@ class SiteController extends Controller
 				//On save l'utilisateur
 				if($user ->save())
 				{
-					//On log l'utilisateur qui vient de créer son compte
-					$identity = new UserIdentity($user->mail, $user->mot_de_passe);
-					$identity->authenticate();
-					Yii::app()->user->login($identity, 0);
 					//On redirige vers la page 
-
-					$this->redirect(array('entreprise/index'));	
+					$this->redirect(array('site/login'));	
 				}
 			}
 
