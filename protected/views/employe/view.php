@@ -2,6 +2,17 @@
 /* @var $this EmployeController */
 /* @var $model Employe */
 
+
+/* -- Override de jquery avec la version 3.0 -- */
+$cs = Yii::app()->clientScript;
+$cs->scriptMap = array(
+'jquery.js' => Yii::app()->request->baseUrl.'/js/jquery.js',
+);
+$cs->registerCoreScript('jquery');
+/* -- Utilisation du script -- */
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_view.js');
+
+
 $this->breadcrumbs=array(
 	'Employes'=>array('index'),
 	$model->id_employe,
@@ -28,3 +39,12 @@ $this->menu=array(
 		'employe_travaille',
 	),
 )); ?>
+
+
+<?php 
+	/* --- Ajout du formulaire pour uploader le CV --- */
+	$this->renderPartial( '_upload_cv', array( 'model' => $model ) );
+
+	/* --- Page pour traiter le pdf --- */
+	$this->renderPartial( 'cv_edit', array( 'model' => $model ) );
+?>

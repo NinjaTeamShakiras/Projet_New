@@ -58,12 +58,20 @@
 	{ // Si entreprise on affiche les offres d'emploi de l'entreprise
 		$nombreCandidature = 0; // Nombre de candidature a l'offre en question
 		$tabIdEmploye=array(); // Tableau des employe qui ont postuler à l'offre
-		$nombreOffre = 0; // nombre total d'offre d'emploi
 
 		$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
-		$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
+		$nombreOffreEntreprise = 0; // Nombre d'offre total
 
-		print("<p> ".$nombreTotalOffre." offres.</p>");
+		foreach ($model as $key => $offre ) // Pour chaque offre
+		{
+			// Si l'offre appartient à l'entreprise
+			if($offre->id_entreprise == $utilisateur->id_entreprise)
+			{
+				$nombreOffreEntreprise++;
+			}
+		}
+
+		print("<p> ".$nombreOffreEntreprise." offres.</p>");
 		
 		foreach ($model as $key => $offre ) // Pour chaque offre ...
 		{
@@ -76,7 +84,7 @@
 			// On affiche les offres de l'entreprise
 			if($offre->id_entreprise == $utilisateur->id_entreprise) // Si l'offre appartient à l'entreprise
 			{
-				$nombreOffre++;
+				$nombreOffreEntreprise++;
 				//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 				//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
 				print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
@@ -117,7 +125,7 @@
 		}
 
 		// Si l'entreprise n'as pas d'offres, il faut bien afficher quelque chose
-		if($nombreOffre ==0)
+		if($nombreOffreEntreprise ==0)
 		{// Si il n'y a pas d'offre correspondante
 			print("<p> Aucune offre d'emploie </p>");
 		}

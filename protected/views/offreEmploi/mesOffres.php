@@ -32,10 +32,18 @@
 
 
 	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
-	$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
+	$nombreOffrePostuler = 0; // Nombre d'offre total
 
 
-	print("<p> Vous avez postuler a ".$nombreTotalOffre." offres.</p>");
+	foreach($tablePostuler as $postuler)
+	{
+		if($postuler->id_employe == $utilisateur->id_employe)
+		{
+			$nombreOffrePostuler++;
+		}
+	}
+	
+	print("<p> Vous avez postuler a ".$nombreOffrePostuler." offres.</p>");
 
 
 	// On vérifie si un champs comprend l'id de l'employé et l'id de l'offre. Si c'est le cas, l'employé à déjà postuler

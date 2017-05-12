@@ -15,7 +15,6 @@ class OffreEmploiController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -29,6 +28,7 @@ class OffreEmploiController extends Controller
 	{
 		$user = Yii::app()->user;
 
+		// Si employe on donne acces a la liste d'offre, à une ofre en particulier et à la possibilité de candidater
 		if($user->getState('type') == 'employe')
 		{
 			return array(
@@ -41,9 +41,9 @@ class OffreEmploiController extends Controller
 			);
 		}
 
+		// Si employe on donne acces a la liste d'offre, à une ofre en particulier à la modification d'une offre et à la suppression
 		if($user->getState('type') == 'entreprise')
 		{
-
 			return array(
 					array('allow',
 						  'actions'=>['view', 'index', 'delete', 'update'],
@@ -123,6 +123,9 @@ class OffreEmploiController extends Controller
 		));
 	}
 
+
+
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -130,12 +133,36 @@ class OffreEmploiController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		// On récupère les candidatures de l'offre
+		$candidatures = Postuler::model()->FindAll("id_offre_emploi LIKE '$id'");
+		
+		
+		// Suppression des candidatures de l'offre si il y en a
+		if($candidatures != null)
+		{
+			foreach($candidatures as $candidature)
+			{
+				$candidature->delete();
+			}
+		}
+		
+
+		// Récupération de l'offre
+		$offre = OffreEmploi::model()->FindByAttributes(array('id_offre_emploi'=>$id));
+
+		// Suppression de l'offre
+		$offre->delete();
+
+		//$this->loadModel($id)->delete();
+		$this->redirect('index.php?r=offreEmploi/index');
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		//if(!isset($_GET['ajax']))
+		//	$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+
+
+
 
 	/**
 	 * Lists all models.
