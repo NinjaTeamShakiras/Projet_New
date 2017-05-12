@@ -1,0 +1,82 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+.titre
+{
+	text-align:center;
+}
+
+.Recherche
+{
+	color:Black;
+	font-size:80px;
+	text-align:center;
+	font-family:"Bodoni FLF"; 
+	margin-top:3cm;
+
+}
+
+#page
+{
+	background-color:White;
+	border: 1px black outset;
+}
+
+.btnnoir
+{
+	background-color:#90ffb9;
+	line-height: 50px;
+	color:Black;
+	font-size: 20px;		
+	font-family:"Montserrat Light";	
+	border-radius:50px;
+	margin-top:4cm;
+}
+
+.btnnoir:hover
+{
+	background :#90ffb9;
+}
+
+.btnlink:active
+{
+	background :#90ffb9;
+}
+
+mark
+{
+	color:#ff50bc;
+	background-color:White;
+}
+
+.connexion
+{
+	color:Black;
+	text-align:center;
+	font-size:20px;	
+	font-family:"Bodoni FLF";
+	margin-top:6cm; 	
+
+}
+.btnredirect
+{
+	color:#ff50bc;
+	background-color:White;
+	font-size:20px;
+	text-align:center;
+	font-family:"Montserrat Light"
+}
+
+body
+{
+	background-color: White;
+}
