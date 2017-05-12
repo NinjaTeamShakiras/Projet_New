@@ -37,24 +37,10 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			}
 		}
 
-		if($aPostuler)
-		{
-			$this->menu=array(
-				array('label'=>'Retirer ma candidature', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
-				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
-				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
-				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
-			);
-		}
-		else
-		{
-			$this->menu=array(
-				array('label'=>'Postuler à cette offre', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
-				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
-				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
-				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
-			);
-		}
+		$this->menu=array(
+			array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+		);
+
 		$titre = "Offre d'emploi";
 		
 	}
@@ -144,8 +130,104 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			print("<p> Vous n'avez aucune candidature à cette offre </p>");
 		}
 
-	}
 
+	}/*			EMPLOYE 			*/
+	else if(Utilisateur::est_employe(Yii::app()->user->role))
+	{
+		?>
+
+
+		<!-- Formulaire avec le bouton pour postuler/dépostuler -->
+		<div class="wide form">
+			<?php
+				//Début du form
+				if($aPostuler)
+				{
+					$form=$this->beginWidget('CActiveForm',
+						array(
+							'action'=>Yii::app()->createUrl('/offreEmploi/depostule',array('id_offre'=>$model->id_offre_emploi))
+						)
+					);
+				}
+				else
+				{
+					$form=$this->beginWidget('CActiveForm',
+						array(
+							'action'=>Yii::app()->createUrl('/offreEmploi/postule',array('id_offre'=>$model->id_offre_emploi))
+						)
+					);
+				}
+			?>
+
+			<div class="row buttons">
+				<!-- Bouton pour postuler/Dépostuler -->
+				<?php 
+					if($aPostuler)
+					{
+						echo CHtml::submitButton('Retirer ma candidature');
+					}
+					else
+					{
+						echo CHtml::submitButton('Postuler');
+					}
+
+				?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		</div>
+
+
+
+
+
+		<!-- Formulaire avec le bouton pour voir mes candidatures -->
+		<div class="wide form">
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('offreEmploi/mesOffres') ,
+					)
+				);
+			?>
+
+			<div class="row buttons">
+				<!-- Bouton pour postuler -->
+				<?php echo CHtml::submitButton('Voir mes candidature'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+				
+		</div>
+
+
+
+
+		<!-- Formulaire avec le bouton pour rechercher une offre -->
+		<div class="wide form">
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('offreEmploi/recherche') ,
+					)
+				);
+			?>
+
+			<div class="row buttons">
+				<!-- Bouton pour postuler -->
+				<?php echo CHtml::submitButton('Rechercher une offre'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+				
+		</div>
+
+
+
+	<?php
+	}
 
 
 
