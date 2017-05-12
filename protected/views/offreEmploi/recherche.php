@@ -2,40 +2,35 @@
 /* @var $this OffreEmploiController */
 /* @var $dataProvider CActiveDataProvider */
 
-//$this->breadcrumbs=array(
-//	'Offre Emplois',
-//);
-
 
 	$this->menu=array(
-		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
+		// Voir toutes les offres d'emplois
+		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')),
 	);
 
 ?>
 
-
-
-<h1>Rechercher une offre : </h1> <!-- Titre page -->
-
-
+<!-- Titre page -->
+<h1>Rechercher une offre : </h1>
 
 <?php
 	$login = Yii::app()->user->getId();
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
+	// Récupération de l'utilisateur
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 	$model = OffreEmploi::model();
-	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
-	$tabEntreprise = entreprise::model()->FindAll(); // Récupération de toutes les entreprises
+	// Récupération de toutes les offres
+	$tabOffre = OffreEmploi::model()->FindAll();
+	// Récupération de toutes les entreprises
+	$tabEntreprise = entreprise::model()->FindAll();
 
 	$entreprise = entreprise::model();
 	$adresse = adresse::model();
 
-
-	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
+	// Nombre d'offre total
+	$nombreOffre = sizeof($tabOffre); 
 
 	print("<p> Trouver les offres qui vous correspondes parmis ".$nombreOffre." offres.</p>");
 ?>
-
-
 
 <div class="wide form">
 
@@ -51,10 +46,7 @@
 	<div class="row">
 		<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
 		<?php
-
-
-			/****		Recherche par POSTE 		****/
-
+			//Recherche par POSTE
 			echo $form->textField(
 				$model,'poste_offre_emploi', array(	
 					'class' => 'autocomplete-find-offreEmploi',
@@ -64,26 +56,22 @@
 					'placeholder' => 'Rechercher par poste',
 				)
 			);
-
-			?><br/><?php
-
-
-
-			/****		 Recherche par TYPE (liste déroulante )		****/
-
+		?>
+	</div>
+	
+	<div class="row">	
+		<?php
+			//Recherche par TYPE DE POSTE (liste déroulante)
+			//-->On ajoute l'option "Sélectionner pour la liste"
+			$static_type = array('empty' => Yii::t('', 'Sélectionner...'));
 			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
-			echo $form->dropDownList($model,'type_offre_emploi',$typeOffre); // On affiche une liste déroulante de toutes les offres
-
-			// // Version manuel
-			// echo $form->dropDownList($model, 'type_offre_emploi', array(''=>'Sélectionner...','CDD'=>'CDD','XXXX'=>'Test type inexistant',));
-
-			?><br/><?php
-
-
-
-
-			/****		 Recherche par LIEU 		****/
-
+			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre); // On affiche une liste déroulante de toutes les offres
+		?>
+	</div>
+	
+	<div class="row">
+		<?php
+			//Recherche par LIEU
 			echo $form->textField(
 				$adresse,'ville', array(	
 					'class' => 'autocomplete-find-offreEmploi',
@@ -93,36 +81,29 @@
 					'placeholder' => 'Rechercher par lieu',
 				)
 			);
-
-			?><br/><?php
-
-
-
-
-
-			/**** 			Recherche par SECTEUR 			****/
-
+		?>
+	</div>
+	
+	<div class="row">	
+		<?php
+			//Recherche par SECTEUR
+			//-->On ajoute l'option "Sélectionner pour la liste"
+			$static_secteur = array('empty' => Yii::t('', 'Sélectionner...'));
 			$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
-			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$secteurOffre); // On affiche une liste déroulante de tout les secteur d'activité
-
-			?><br/><?php
-
-
-
+			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre); // On affiche une liste déroulante de tout les secteur d'activité
+		?>
+	</div>
+	
+	<div class="row buttons">	
+		<?php
 			// Button d'envoi
 			echo CHtml::submitButton('Rechercher');
 		?>
-
-	</div>
-
-	<div class="row buttons">
 	</div>
 
 	<?php $this->endWidget(); ?>
 
-</div>
-
-
+	</div>
 
 
 
