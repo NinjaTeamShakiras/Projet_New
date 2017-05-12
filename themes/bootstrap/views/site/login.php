@@ -7,7 +7,7 @@
 <?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
       'Image accueil');
  
-      echo CHtml::link($image,array('site/index','id'=> 'accueil	')); ?>
+      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
 
 
 <h1 class="Titre">Connexion</h1>
