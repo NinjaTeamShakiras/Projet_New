@@ -42,31 +42,9 @@ $this->menu=array(
 
 
 <?php 
-	
-	$this->renderPartial( '_upload_cv', array( 	'model' => $model ) );
+	/* --- Ajout du formulaire pour uploader le CV --- */
+	$this->renderPartial( '_upload_cv', array( 'model' => $model ) );
 
+	/* --- Page pour traiter le pdf --- */
+	$this->renderPartial( 'cv_edit', array( 'model' => $model ) );
 ?>
-
-<?php 	
-	$url_pdf = './upload/' . $model->id_employe . "/cv_" . $model->id_employe . '.png';
-
-	if( file_exists( $url_pdf ) ) : 	
-?>
-		<div>
-			<canvas id="canvas" cv_url="<?php echo $url_pdf ?>"></canvas>
-			<!-- 
-			<iframe src="<?php //echo $url_pdf ?>#toolbar=0&navpanes=0&scrollbar=0" style="overflow: hidden; height: 50vh; width: 100%;" ></iframe>
-			-->
-		</div>
-
-		
-
-<?php  	
-	/* --- END IF le CV existe --- */
-	endif; 		
-?>
-
-
-<script type="text/javascript">
-	
-</script>

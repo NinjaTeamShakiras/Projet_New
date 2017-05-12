@@ -190,7 +190,7 @@ class EmployeController extends Controller
         	if( !file_exists( './upload/' . $id_int ) )
         		mkdir( './upload/' . $id_int );
         	/* -- Sauvegarde du CV -- */
-		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.png' );
+		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );
 			
 
 			//$myurl = 'filename.pdf['.$pagenumber.']';
