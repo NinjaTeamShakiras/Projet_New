@@ -116,11 +116,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 
 
 		// Lien de suppression
-		if (!Utilisateur::est_employe(Yii::app()->user->role) )
-		{ // Si entreprise
-			//echo CHtml::link('Supprimer cette offre', array('delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
-			echo CHtml::link('Supprimer cette offre', array('delete', 'id'=>$model->id_offre_emploi));
-		}
+		echo CHtml::link(CHtml::encode('Supprimer cette offre'), array('delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
 
 
 		// Affichage des candidats ou non
