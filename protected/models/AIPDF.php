@@ -2,8 +2,9 @@
 
 /* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 	Ce qu'il manque :
-		- Récupérer l'adresse domicile
 		- Repérer les expériences professionnelles, les compétences et les informations diverses
+		- La date de naissance de la personne ( avec mot clés? )
+		- Adresse qui ne sont pas dans une seule ligne ( 2, 3 .. )
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 
@@ -15,6 +16,7 @@
 		- Ajouter plus de nom de domaine
 		- Ajouter début de URL https:// (Pas reconnu pour le moment)
 		- Cas à traiter avec des PDF avec plusieurs pages
+		- Pour le code postal gérer les code postal du type 76 000, 74 300 etc. (avec un espace)
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 
@@ -22,8 +24,11 @@
 define( 'NOT_FOUND_TERM', -888888 );
 define( 'EMPTY_STR', "" );
 define( 'ESPACE', " " );
+define( 'POINT', '.' );
+define( 'TIRET', '-' );
 define( 'DEBUG', FALSE );
 define( 'ALREADY_READ_ENTRY', '[[[READ]]]');
+
 
 /**
  * Classe créée pour gérer l'inteligence artificielle du traitement de pdf
@@ -141,7 +146,8 @@ class AIPDF extends CActiveRecord
 		/* -- -- -- -- -- -- --
 			Testing pour ajouter d'autres lignes dans le CV
 		-- -- -- -- -- -- -- --*/
-		//self::add_cv_line( 'site web : www.juanpi.fr' );
+		//self::add_cv_line( 'www.juanpi.fr' );
+		//self::add_cv_line( '4 avenue de Merande 73000 Chambéry' );
 		//var_dump( self::get_cv_content() );
 
 
@@ -284,7 +290,7 @@ class AIPDF extends CActiveRecord
 		if( $informations_arr['Mail'] === NOT_FOUND_TERM )
 		{
 			$contentCV_arr = $fullMode_bool ? self::get_cv_content() : self::get_cv_non_read_content();
-			/* -- On parcourt les lignes non lues -- */
+			/* -- On parcourt les lignes du CV -- */
 			foreach ( $contentCV_arr as $key_int => $value_str )
 			{
 				$result_str = self::extract_mail( $value_str );
@@ -297,7 +303,47 @@ class AIPDF extends CActiveRecord
 				}
 			}
 		}
+		/* -- -- -- -- --
+			Partie site web
+		-- -- -- -- -- */
+		if( $informations_arr['Site-web'] === NOT_FOUND_TERM )
+		{
+			$contentCV_arr = $fullMode_bool ? self::get_cv_content() : self::get_cv_non_read_content();
+			/* -- On parcourt les lignes du CV -- */
+			foreach ( $contentCV_arr as $key_int => $value_str )
+			{
+				$result_str = self::extract_site_web( $value_str );
+				/* -- Si un résultat a été trouvé -- */
+				if( $result_str !== NOT_FOUND_TERM )
+				{
+					self::add_found_information( 'Site-web', $result_str );
+					self::delete_entry_information( $value_str );
+					break;
+				}
+			}
+		}
+		/* -- -- -- -- --
+			Partie Adresse
+		-- -- -- -- -- */
+		if( $informations_arr['Adresse'] === NOT_FOUND_TERM )
+		{
+			$contentCV_arr = $fullMode_bool ? self::get_cv_content() : self::get_cv_non_read_content();
+			/* -- On appelle la fonction extract -- */
+			if( sizeof( $contentCV_arr ) > 1 )
+			{
+				/* -- La fonction prend un tableau et non une ligne en paramètre -- */
+				$result_str = self::extract_adresse_from_array( $contentCV_arr );
+				/* -- Si un résultat a été trouvé -- */
+				if( $result_str !== NOT_FOUND_TERM )
+				{
+					self::add_found_information( 'Adresse', $result_str );					
+					self::delete_entry_information( $result_str );
+				}
+			}
+		}
 	}
+
+
 
 
 	/*
@@ -471,7 +517,13 @@ class AIPDF extends CActiveRecord
 			/* -- Si l'auteur du PDF à deux prénoms -- */
 			else
 			{
+				/* -- -- */
+				/* -- -- */
+				/* -- -- */
 				// Non traité pour l'instant
+				/* -- -- */
+				/* -- -- */
+				/* -- -- */
 			}
 			
 		}
@@ -495,9 +547,6 @@ class AIPDF extends CActiveRecord
 		/* -- Variables utiles -- */
 		$francePrefix_str = '+33';
 		$prefixes_arr = array( 	$francePrefix_str, '07', '06', '03', '04', '05', '02', '01' );
-		
-		/* -- On garde la ligne original -- */
-		$originalLine_string = $line_str;
 
 		/* -- On enleve le key word de la phrase -- */
 		if( !is_null( $wordKey_str) )
@@ -508,6 +557,9 @@ class AIPDF extends CActiveRecord
 		foreach ( $prefixes_arr as $key_int => $value_str )
 		{
 			$prefixeIndex_int = strpos( $line_str, $value_str );
+			/* -- On regarde s'il y a des points qui séparent le téléphone -- */
+			$line_str = self::str_replace_dots_other( $line_str );
+			/* -- On efface les espaces ensuite -- */
 			$deletedEspacesLine_str = self::delete_espace_string( $line_str );
 						
 			/* -- Si un prefixe correspond -- */
@@ -574,21 +626,40 @@ class AIPDF extends CActiveRecord
 			/* -- Si c'est un URL on procede à l'extraire du mot -- */
 			if( self::match_web_url( $value_str ) )
 			{
-				/* -- Partie HTTP -- */
-				/*$position_int = strpos( $value_str, 'http://' );
-				if( $position_int !== FALSE )
-					return substr( $value_str, $position_int, strlen( $value_str ) );
-
-				$position2_int = strpos( $value_str, 'www.' );
-				else if( $position2_int  !== FALSE )
-					return substr( $value_str, $posi)*/
-				/* --  -- */
 				return $value_str;
 			}
 		}
+		return NOT_FOUND_TERM;
 	}
 
+
+	/*
+	 * 	Fonction pour extraire une adresse dans les informations
+	 * 	Le paramètre est un tableau car une adresse peut être sur plusieurs lignes différentes
+	 * 	Return : L'adresse (String) si quelque chose a été trouvé ou la constante NOT_FOUND_ITEM
+	 */
+	public static function extract_adresse_from_array( $informations_arr )
+	{
+		/* -- On parcourt toutes les lignes du CV -- */
+		foreach ( $informations_arr as $key_int => $value_str )
+		{
+			/* -- Si on trouve un code postal dans la ligne cela veut dire qu'il y a des fortes chances 
+			que ce soit une adresse -- */
+			if( self::match_code_postal( $value_str ) )
+			{
+				/* -- On teste le cas où c'est tout dans la même ligne -- */
+				//var_dump(self::check_for_adresse_postal_structure( $value_str ));
+				if( self::check_for_adresse_postal_structure( $value_str ) )
+					return $value_str;
+
+			}
+		}
+		return NOT_FOUND_TERM;
+	}
 	
+
+
+
 
 
 
@@ -637,7 +708,7 @@ class AIPDF extends CActiveRecord
 	}
 
 	/*
-	 *	Fonction pour tester que les X chiffres d'un string à partir d'un index sont numériques
+	 *	Fonction pour tester que de X à I les chiffres d'un string sont numériques
 	 *	Return TRRUE si c'est le cas ou FALSE si ce n'est pas le cas
 	 */
 	public static function verify_X_characters_from_I( $string_str, $X_int, $I_int )
@@ -657,17 +728,14 @@ class AIPDF extends CActiveRecord
 	 */
 	public static function match_web_url( $string_str )
 	{
-		/* -- Différentes variables pour tester l'url -- */
-		$point_char = '.';
-
 		/* -- Taux de ressemblance si supérieur à 80% c'est probablement un url -- */
 		$taux_int = 0;
 		$acceptingLimit = 90;
 		/* -- Critères de recherche -- */
 		$HTTPPosition_int = strpos( $string_str, 'http://' );
 		$WWWPosition_int = strpos( $string_str, 'www.' );
-		$pointPosition_int = strpos( $string_str, $point_char );
-		$secondPointPosition_int = strpos( $string_str, $point_char, $pointPosition_int + 1);
+		$pointPosition_int = strpos( $string_str, POINT );
+		$secondPointPosition_int = @strpos( $string_str, POINT, $pointPosition_int + 1);
 
 		/* -- Augmentation du taux en fonction de la présence des critères -- */
 		if( $HTTPPosition_int !== FALSE )
@@ -688,7 +756,7 @@ class AIPDF extends CActiveRecord
 			/* -- On teste les URL du type juanpi.fr, hello.com car ce sont des URL aussi -- */
 			foreach ( self::$domainNameList_arr as  $value_str )
 			{
-				$domainName_str  = substr( $string_str, strpos( $string_str, $point_char ) );
+				$domainName_str  = substr( $string_str, strpos( $string_str, POINT ) );
 				if( $domainName_str == $value_str )
 					$taux_int += 80;
 			}
@@ -699,6 +767,109 @@ class AIPDF extends CActiveRecord
 	}
 
 
+	/*
+	 *	Fonction pour trouver un code postal dans une ligne d'entrée
+	 *	Return : TRUE si la ligne contient un code postal ou FALSE si ce n'est pas le cas
+	 */
+	public static function match_code_postal( $line_str )
+	{
+
+		$original_str = $line_str;
+		/* -- On enlève les possibles tirets et points qu'on puisse trouver -- */
+		$line_str = self::str_replace_dots_other( $line_str );
+		/* -- On sépare par mots -- */
+		$motsLines_arr = explode( ESPACE, trim( $line_str ) );
+		/* -- Vérification avant de parcourir -- */
+		if( sizeof( $motsLines_arr ) > 0 )
+		{
+			/* -- On parcourt chaque mot -- */
+			foreach ($motsLines_arr as $key_int => $value_str)
+			{
+
+				/* -- On cherche les chiffres d'abord -- */
+				if( is_numeric( $value_str ) )
+				{
+					/* -- On traite le premier cas,quand le code postal est du type 76000 -- */
+					if( strlen( $value_str ) == 5 )
+						return TRUE;
+					else
+					{
+						/* -- -- */
+						/* -- -- */
+						/* -- -- */
+						/* -- Il faut traiter le cas où le code postal est du type 76 000 -- */
+						/* -- -- */
+						/* -- -- */
+						/* -- -- */
+					}
+				}
+			}
+		}
+		return FALSE;
+	}
+
+
+	/*
+ 	 *	Fonction pour tester si la ligne passé en paramètre corresponds à une
+ 	 *	structure d'une adresse postal
+ 	 *	Return : TRUE si c'est le cas, FALSE sinon
+	 */
+	public static function check_for_adresse_postal_structure( $line_str )
+	{
+		/* -- On enlève les tirets et les points -- */
+		$line_str = self::str_replace_dots_other( $line_str );
+		/* -- On découpe par mots -- */
+		$wordsLine_arr = explode( ESPACE, $line_str );
+		/* -- S'il y au moins 4 mots dans la ligne -- */
+		if( sizeof( $wordsLine_arr ) >= 4 )
+		{
+			/* -- Premier cas le numéro de rue est au début de la phrase-- */
+			if( is_numeric( $wordsLine_arr[0] ) )
+			{
+				/* -- On vérifie ensuite où se termine la fin de l'adresse -- */
+				for ( $i = 1; $i < sizeof($wordsLine_arr); $i++ )
+				{ 
+					/* -- Si le reste des informations contient un code postal -- */
+					if( self::match_code_postal( $wordsLine_arr[ $i ] ) )
+					{
+						/* -- On teste si les mots d'après sont des possibles villes -- */
+						if( @strlen( $wordsLine_arr[ $i + 1 ] ) > 2 || @strlen( $wordsLine_arr[ $i - 1 ] ) > 2 )
+							return TRUE;
+					}
+				}
+			}
+			/* -- Si l'adresse ne commence pas par le numéro de rue -- */
+			else
+			{
+				/* -- Pour l'instant on peut faire s'il y a pas numéro mais qu'il y a un code postal suvi d'une ville-- */
+				/* -- On peut tester en utilsant une liste exhaustive de mots avenue, rue etc. -- */
+				/* -- En plus de la présence d'un adresse postal -- */
+			}
+		}
+		
+		return FALSE;
+	}
+
+
+	/*
+	 * 	Fonction pour enlèver les tirets et les points dans une ligne
+	 *	Sert à mieux répérer certaines informations et pour pouvoir couper les chaînes toujours par des espaces
+	 */
+	public static function str_replace_dots_other( $line_str )
+	{
+		/* -- On remplace les points par des espaces -- */
+		if( strpos( $line_str, POINT ) !== FALSE )
+			$line_str = str_replace( POINT, ESPACE, $line_str );
+		/* -- On remplace les tirets par des espaces-- */
+		if( strpos($line_str, TIRET ) !== FALSE )
+			$line_str = str_replace( TIRET, ESPACE, $line_str );
+
+		return $line_str;
+	}
+
+
+
+
 
 
 
@@ -706,7 +877,7 @@ class AIPDF extends CActiveRecord
 
 
 	/*************************************************************************************************************************************
-		Fonctions pour gérer les tableaux contenant les informations du CV et des informations retrouvées
+		Fonctions pour gérer les tableaux contenant les informations et les informations retrouvées
 	*************************************************************************************************************************************/
 	/*
 	 *	Fonction pour initialiser le tableau d'informations
@@ -719,6 +890,7 @@ class AIPDF extends CActiveRecord
 		$array_arr['Mail'] = NOT_FOUND_TERM;
 		$array_arr['Adresse'] = NOT_FOUND_TERM;
 		$array_arr['Site-web'] = NOT_FOUND_TERM;
+		$array_arr['Date-de-naissance'] = NOT_FOUND_TERM;
 	}
 
 	/*

@@ -148,9 +148,7 @@ if($utilisateur != null)
 			)
 		);
 
-		echo "<div class='row'>".
-			CHtml::submitButton('Voir mes informations personnelles !')
-		."</div>";
+		echo "<div class='row'>".CHtml::submitButton('Voir mes informations personnelles !')."</div>";
 
 	$this->endWidget();
 	echo "</div>";

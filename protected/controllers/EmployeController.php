@@ -116,19 +116,31 @@ class EmployeController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+				
+		$adresse = Adresse::model()->findByAttributes(array('id_adresse'=>$model->id_adresse));
+		$utilisateur = Utilisateur::model()->findByAttributes(array('id_employe'=>$model->id_employe));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Employe']))
+		if(isset($_POST['Employe']) && isset($_POST['Adresse']) && isset($_POST['Utilisateur']))
 		{
-			$model->attributes=$_POST['Employe'];
-			if($model->save())
+
+			//Transormation de la date puisque en Anglais dans la base en français dans le site
+			$model->date_naissance_employe = $this->changeDateBDD($_POST['Employe']['date_naissance_employe']);
+			//On enregistre les nouvelles données dans les modèles
+			$model->attributes = $_POST['Employe'];
+			$adresse->attributes = $_POST['Adresse'];
+			$utilisateur->mail = $_POST['Utilisateur']['mail'];
+
+			//On enregistre le modèle et on redirige
+			if($model->save() && $adresse->save() && $utilisateur->save())
 				$this->redirect(array('view','id'=>$model->id_employe));
+
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'adresse'=>$adresse, 'utilisateur'=>$utilisateur,
 		));
 	}
 
@@ -175,16 +187,18 @@ class EmployeController extends Controller
 	/*Fonction qui affiche la page choixAjoutCV*/
 	public function actionChoixAjoutCV()
 	{
-
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
 		unset(Yii::app()->session['login']);
 		Yii::app()->session['login'] = 'employe';
 
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-		if(isset($user))
+		
+		if($user == null)
 		{
-			$this->redirect(array('site/index'));
-		}
 			Yii::app()->user->loginRequired();
+		}
+		
+		$this->render('choixAjoutCV');
 	}
 	
 	/* Fonction qui change la date au format Américain pour la BDD */
@@ -205,10 +219,35 @@ class EmployeController extends Controller
 			return $result;
 	}
 
+	/*	Fonction qui change la date au format français
+	@param $date est une date récupérée depuis la BDD
+	*/
+	protected function changeDateNaissance($date)
+	{
+		$result = NULL;
+		$day = 0;
+		$month = 0;
+		$year = 0;
+
+		//On récupère chaque valeur grâce a substr
+		$year = substr($date, 0, 4);
+		$month = substr($date, 5, 2);
+		$day = substr($date, 8, 2);
+
+		$result = $day."/".$month."/".$year;
+
+		return $result;
+	}
+
+
 	/* Fonction d'insertions des infos personnelles dans la base de données
 	--> L'utilisateur renseigne ses infos persos et elles sont enregistrées en BDD*/
 	public function actionAjoutInfos()
 	{
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
 		$formation = new Formation;
 		$experiencePro = new ExperiencePro;
 		$competence = new Competence;

@@ -10,7 +10,8 @@
  * @property string $code_postal
  *
  * The followings are the available model relations:
- * @property Utilisateur[] $utilisateurs
+ * @property Employe[] $employes
+ * @property Entreprise[] $entreprises
  */
 class Adresse extends CActiveRecord
 {
@@ -30,7 +31,6 @@ class Adresse extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('rue, ville, code_postal', 'required'),
 			array('rue', 'length', 'max'=>100),
 			array('ville', 'length', 'max'=>45),
 			array('code_postal', 'length', 'max'=>5),
@@ -48,7 +48,8 @@ class Adresse extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'utilisateurs' => array(self::HAS_MANY, 'Utilisateur', 'id_adresse'),
+			'employes' => array(self::HAS_MANY, 'Employe', 'id_adresse'),
+			'entreprises' => array(self::HAS_MANY, 'Entreprise', 'id_adresse'),
 		);
 	}
 

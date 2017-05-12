@@ -12,7 +12,7 @@ $form=$this->beginWidget('CActiveForm', array(
 )); 
 
 echo "<p>".CHtml::submitButton('Télécharger mon CV sur le site', array('name' => 'upload'))."</p>"; 
-echo "<p>".CHtml::submitButton('', array('Renseigner mes informations personnelles et générer mon CV' => 'infos_persos'))."</p>"; 
+echo "<p>".CHtml::submitButton('Renseigner mes informations personnelles et générer mon CV', array('name'=> 'infos_persos'))."</p>"; 
 $this->endWidget(); 
 
 ?>
