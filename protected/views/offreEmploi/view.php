@@ -40,7 +40,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		if($aPostuler)
 		{
 			$this->menu=array(
-				array('label'=>'Dépostuler', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
+				array('label'=>'Retirer ma candidature', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
 				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
 				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
 				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
@@ -49,7 +49,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		else
 		{
 			$this->menu=array(
-				array('label'=>'Postuler', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
+				array('label'=>'Postuler à cette offre', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
 				array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
 				array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
 				array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
@@ -99,6 +99,8 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		),
 	));
 
+
+	/*		ENTREPRISE 			*/
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche les candidatures éventuelle
 		$nombreCandidature = 0;
@@ -116,7 +118,8 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		// Lien de suppression
 		if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		{ // Si entreprise
-			echo CHtml::link('Supprimer cette offre', array('offreEmploi/delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
+			//echo CHtml::link('Supprimer cette offre', array('delete', 'id'=>$model->id_offre_emploi), array('confirm'=> 'Etes-vous sur de vouloir supprimer cette offre ?'));
+			echo CHtml::link('Supprimer cette offre', array('delete', 'id'=>$model->id_offre_emploi));
 		}
 
 

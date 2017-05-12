@@ -123,6 +123,9 @@ class OffreEmploiController extends Controller
 		));
 	}
 
+
+
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -130,12 +133,33 @@ class OffreEmploiController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		echo "test";
+	/*	$candidatures = Postuler::model()->FindByAttributes(array('id_offre_emploi'=>$id)); // On récupère les candidatures de l'offre
+		echo "test";
+		
+		// Suppression des candidatures de l'offre
+		foreach($candidatures as $candidature)
+		{
+			$candidature->delete();
+		}
+
+		// Récupération de l'offre
+		$offre = OffreEmploi::model()->FindByAttributes(array('id_offre_emploi'=>$id));
+
+		// Suppression de l'offre
+		$offre->delete();
+
 		$this->loadModel($id)->delete();
+		$this->redirect('index');
+	*/
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		//if(!isset($_GET['ajax']))
+		//	$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+
+
+
 
 	/**
 	 * Lists all models.
