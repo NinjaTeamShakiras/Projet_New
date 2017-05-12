@@ -227,6 +227,7 @@ class EntrepriseController extends Controller
 	{
 
 		$model = competence::model()->FindAll();
+		$aRechercher = false;
 		
 		if(isset($_POST['Competence']))
 		{
@@ -258,7 +259,7 @@ class EntrepriseController extends Controller
 			/**** 		RECHERCHE		****/
 
 			/* 		Recherche par Intitule et niveau de compétence		*/
-			if( ($intitule_competence != null) && ($tabEmploye != null) )
+			if( ($intituleCompetenceIsSet || $niveauCompetenceIsSet) && ($tabEmploye != null) )
 			{
 				$requete = "";
 				if($intituleCompetenceIsSet && $niveauCompetenceIsSet)
@@ -300,6 +301,8 @@ class EntrepriseController extends Controller
 				// Réinitialisation des variable temporaire
 				$tabTemp = array(); 
 				$i=0;
+
+				$aRechercher = true;
 			}
 
 
@@ -315,7 +318,7 @@ class EntrepriseController extends Controller
 			/**** 		FIN RECHERCHE 		****/
 			
 			// On redirige avec le resultat.
-			$this->render('index_search', array('data'=>$tabEmploye)); 
+			$this->render('index_search', array('data'=>$tabEmploye,'aRechercher'=>$aRechercher)); 
 
 		}
 		else
@@ -324,11 +327,19 @@ class EntrepriseController extends Controller
 			$this->render('index_search');
 		}
 
-
-
 	}
 
 
+	public function actionTo_Candidatures()
+	{
+		$this->render('candidatures');
+	}
+
+	public function actionToCreateOffre()
+	{
+		echo "test";
+		$this->render('/offreEmploi/index');
+	}
 
 
 

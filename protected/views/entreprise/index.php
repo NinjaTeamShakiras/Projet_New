@@ -1,6 +1,20 @@
 <?php
 /* @var $this EntrepriseController */
 /* @var $dataProvider CActiveDataProvider */
+
+	if (!Utilisateur::est_employe(Yii::app()->user->role) )
+	{ // Si entreprise
+		$this->menu=array(
+			array('label'=>'Déposer une annonce', 'url'=>array('/offreEmploi/create')), // On peut créer une offre d'emploi
+			array('label'=>'Gérer mes annonce', 'url'=>array('/offreEmploi/index')), // Acces aux offres de l'entreprise
+			array('label'=>'Candidats', 'url'=>array('to_candidatures')), // Acces aux candidatures de l'entreprise
+		);
+
+		$titre = "Mes offres d'emplois";
+
+	}
+
+
 ?>
 
 <h1>Rechercher un CV : </h1>
@@ -61,14 +75,10 @@
 </div>
 
 
+<?php echo CHtml::button(CHtml::encode('Déposer une annonce'),array('to_create_offre')); ?>
 
 
 
 
-
-
-
-
-<p>Mettre ici le bouton pour publier une annonce</p>
 
 <h1><strong>Voir avec le client pour le dernier formulaire, c'est pas clair</strong></h1>

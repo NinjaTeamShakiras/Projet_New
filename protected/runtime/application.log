@@ -12240,3 +12240,357 @@ in C:\wamp\www\prozzl\index.php (13)
 =======
 >>>>>>> c275396c0ce5214c2aac533786b9e7791fb95fa2
 >>>>>>> 658edad637e146efba188c29d337d4c328f64042
+2017/05/12 22:20:14 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.role" is not defined.' in C:\wamp\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(12): CWebUser->__get('role')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', Array, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', Array, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#6 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(187): CController->render('index', Array)
+#7 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionIndex()
+#8 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/ind...')
+#18 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/index
+---
+2017/05/12 22:20:32 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.role" is not defined.' in C:\wamp\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(12): CWebUser->__get('role')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', Array, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', Array, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#6 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(187): CController->render('index', Array)
+#7 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionIndex()
+#8 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/')
+#18 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/
+---
+2017/05/12 22:24:18 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.role" is not defined.' in C:\wamp\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(12): CWebUser->__get('role')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', Array, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', Array, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#6 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(187): CController->render('index', Array)
+#7 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionIndex()
+#8 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/ind...')
+#18 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/index
+---
+2017/05/12 22:24:45 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.role" is not defined.' in C:\wamp\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(12): CWebUser->__get('role')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', Array, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', Array, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#6 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(187): CController->render('index', Array)
+#7 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionIndex()
+#8 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/')
+#18 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/
+---
+2017/05/12 22:24:46 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.role" is not defined.' in C:\wamp\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(12): CWebUser->__get('role')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', Array, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', Array, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#6 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(187): CController->render('index', Array)
+#7 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionIndex()
+#8 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/ind...')
+#18 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/index
+---
+2017/05/12 22:37:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 22:49:27 [error] [php] array_key_exists() expects parameter 2 to be array, string given (C:\wamp\www\yii\framework\web\helpers\CHtml.php:472)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#1 C:\wamp\www\yii\framework\web\CBaseController.php(95): OffreEmploiController->renderInternal()
+#2 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#3 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#4 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(187): OffreEmploiController->render()
+#5 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionIndex()
+#6 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#8 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#11 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#14 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#15 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#17 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/index
+in C:\wamp\www\prozzl\protected\views\offreEmploi\index.php (135)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (187)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/12 22:55:25 [error] [php] Array to string conversion (C:\wamp\www\prozzl\protected\views\entreprise\index.php:85)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(869): EntrepriseController->renderFile()
+#1 C:\wamp\www\yii\framework\web\CController.php(782): EntrepriseController->renderPartial()
+#2 C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php(174): EntrepriseController->render()
+#3 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): EntrepriseController->actionIndex()
+#4 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): EntrepriseController->runAction()
+#6 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): EntrepriseController->filterAccessControl()
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(265): EntrepriseController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework\web\CWebApplication.php(282): EntrepriseController->run()
+#13 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=entreprise/index
+in C:\wamp\www\prozzl\protected\views\entreprise\index.php (85)
+in C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php (174)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/12 23:15:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "toCandidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('toCandidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('toCandidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/toCa...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/toCandidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:15:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "toCandidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('toCandidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('toCandidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/toCa...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/toCandidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:16:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:17:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:17:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:17:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:17:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:22:21 [error] [exception.CException] exception 'CException' with message 'EntrepriseController cannot find the requested view "/offreEmploi/candidatures".' in C:\wamp\www\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('/offreEmploi/ca...', NULL, true)
+#1 C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php(341): CController->render('/offreEmploi/ca...')
+#2 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): EntrepriseController->actionToCreateOffre()
+#3 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('tocreateoffre')
+#12 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/tocr...')
+#13 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/tocreateoffre
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:23:14 [error] [exception.CException] exception 'CException' with message 'EntrepriseController and its behaviors do not have a method or closure named "changeDateNaissance".' in C:\wamp\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(94): CComponent->__call('changeDateNaiss...', Array)
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(94): EntrepriseController->changeDateNaissance('2017-04-13 00:0...')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', NULL, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', NULL, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('/offreEmploi/in...', NULL, true)
+#6 C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php(341): CController->render('/offreEmploi/in...')
+#7 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): EntrepriseController->actionToCreateOffre()
+#8 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('tocreateoffre')
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/tocr...')
+#18 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/tocreateoffre
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:24:11 [error] [exception.CException] exception 'CException' with message 'EntrepriseController and its behaviors do not have a method or closure named "changeDateNaissance".' in C:\wamp\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(94): CComponent->__call('changeDateNaiss...', Array)
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\index.php(94): EntrepriseController->changeDateNaissance('2017-04-13 00:0...')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', NULL, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', NULL, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('/offreEmploi/in...', NULL, true)
+#6 C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php(341): CController->render('/offreEmploi/in...')
+#7 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): EntrepriseController->actionToCreateOffre()
+#8 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('tocreateoffre')
+#17 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/tocr...')
+#18 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#19 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/tocreateoffre
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:24:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---
+2017/05/12 23:25:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "candidatures".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('candidatures')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('candidatures')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('entreprise/cand...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=entreprise/candidatures
+HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
+---

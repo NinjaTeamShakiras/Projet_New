@@ -13,6 +13,7 @@
 	{ // Si entreprise
 		$this->menu=array(
 			array('label'=>'Déposer une annonce', 'url'=>array('create')), // On peut créer une offre d'emploi
+			
 		);
 
 		$titre = "Mes offres d'emplois";
@@ -129,6 +130,10 @@
 		{// Si il n'y a pas d'offre correspondante
 			print("<p> Aucune offre d'emploie </p>");
 		}
+
+		// Bouton de retour vers index
+		echo CHtml::button(CHtml::encode('Retour profil'),array('/Entreprise/index'));
+
 
 
 

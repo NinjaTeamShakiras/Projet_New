@@ -10,7 +10,9 @@ $this->breadcrumbs=array(
 
 	$this->menu=array(
 		array('label'=>'Retour index', 'url'=>array('/entreprise/index')), // Voir toutes les offres d'emplois
-		//array('label'=>'Nouvelle recherche d\'offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
+		array('label'=>'Déposer une annonce', 'url'=>array('/offreEmploi/create')), // On peut créer une offre d'emploi
+		array('label'=>'Gérer mes annonce', 'url'=>array('/offreEmploi/index')), // Acces aux offres de l'entreprise
+		array('label'=>'Candidats', 'url'=>array('/entreprise/candidatures')), // Acces aux candidatures de l'entreprise
 	);
 
 ?>
@@ -86,18 +88,34 @@ $this->breadcrumbs=array(
 
 	if($nombreEmploye>0)
 	{
-		print("<p> ".$nombreEmploye." employe correspondent à votre recherche.</p>");
-
-		foreach($data as $employe)
+		if($aRechercher)
 		{
-			print("<p> L'employe : ".$employe->id_employe." (id)</p>");
+			print("<p> ".$nombreEmploye." candidats correspondent à votre recherche.</p>");
+
+			foreach($data as $employe)
+			{
+				print("<p> L'employe : ".$employe->id_employe." (id)</p>");
+			}
 		}
+		else
+		{
+			print("<p> Votre recherche était vide, à défaut, voici les ".$nombreEmploye." candidats présent sur prozzl.</p>");
+
+			foreach($data as $employe)
+			{
+				print("<p> L'employe : ".$employe->id_employe." (id)</p>");
+			}
+		}
+		
 
 	}
 	else
 	{// Sinon, on dit simplement qu'il n'y en a pas
 		print("<p> Aucun candidat ne correspondent à votre recherche.</p>");
 	}
+
+
+	echo CHtml::button(CHtml::encode('Déposer une annonce'),array('/offreEmploi/create'));
 
 ?>
 
