@@ -24,6 +24,7 @@
 	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
 	$model = OffreEmploi::model();
 	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
+	$tabEntreprise = entreprise::model()->FindAll(); // Récupération de toutes les entreprises
 
 	$entreprise = entreprise::model();
 	$adresse = adresse::model();
@@ -48,10 +49,12 @@
 	?>
 
 	<div class="row">
-		<!-- Recherche d'un poste (textfield + bouton submit) -->	
+		<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
 		<?php
 
-			// Recherche par POSTE
+
+			/****		Recherche par POSTE 		****/
+
 			echo $form->textField(
 				$model,'poste_offre_emploi', array(	
 					'class' => 'autocomplete-find-offreEmploi',
@@ -64,22 +67,22 @@
 
 			?><br/><?php
 
-			// Recherche par TYPE (liste déroulante )
-			echo $form->dropDownList(
-				$model, 'type_offre_emploi', array(
-					''=>'',
-					'CDD'=>'CDD',
-					'CDI'=>'CDI', 
-					'STAGE'=>'STAGE',
-					'ALTERNANCE'=>'ALTERNANCE',
-					'EXTRA'=>'EXTRA',
-				)
-			);
+
+
+			/****		 Recherche par TYPE (liste déroulante )		****/
+
+			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
+			echo $form->dropDownList($model,'type_offre_emploi',$typeOffre); // On affiche une liste déroulante de toutes les offres
+
+			// // Version manuel
+			// echo $form->dropDownList($model, 'type_offre_emploi', array(''=>'Sélectionner...','CDD'=>'CDD','XXXX'=>'Test type inexistant',));
 
 			?><br/><?php
 
-			// Recherche par Lieu
-			
+
+
+
+			/****		 Recherche par LIEU 		****/
 
 			echo $form->textField(
 				$adresse,'ville', array(	
@@ -93,19 +96,19 @@
 
 			?><br/><?php
 
-			// Recherche par Secteur
 
-			echo $form->textField(
-				$entreprise,'secteur_activite_entreprise', array(	
-					'class' => 'autocomplete-find-offreEmploi',
-					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllSecteurJSON'),
-					'size' => 45,
-					'maxlength' => 30,
-					'placeholder' => 'Rechercher par secteur d\'activité',
-				)
-			);
+
+
+
+			/**** 			Recherche par SECTEUR 			****/
+
+			$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
+			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$secteurOffre); // On affiche une liste déroulante de tout les secteur d'activité
 
 			?><br/><?php
+
+
+
 			// Button d'envoi
 			echo CHtml::submitButton('Rechercher');
 		?>
@@ -118,6 +121,8 @@
 	<?php $this->endWidget(); ?>
 
 </div>
+
+
 
 
 
@@ -155,20 +160,4 @@
 	}
 
 </script>
-
-
-
-
-
-	<!-- On Affiche les resultats de la recherche : -->
-
-
-
-
-
-
-
-
-
-
 

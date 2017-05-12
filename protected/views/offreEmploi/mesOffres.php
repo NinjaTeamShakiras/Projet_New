@@ -21,17 +21,22 @@
 
 
 <?php
+
 	$login = Yii::app()->user->getId();
 	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login)); // Récupération de l'utilisateur
 	$model = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 
-	$tablePostuler = Postuler::model()->FindAll();
+
+	$tablePostuler = Postuler::model()->FindAll(); // On récupère toutes les Candidatures
 	$aPostuler = false;
+
 
 	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 	$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
 
+
 	print("<p> Vous avez postuler a ".$nombreTotalOffre." offres.</p>");
+
 
 	// On vérifie si un champs comprend l'id de l'employé et l'id de l'offre. Si c'est le cas, l'employé à déjà postuler
 	foreach($tablePostuler as $postuler)
@@ -69,5 +74,6 @@
 	{
 		echo "Vous n'avez jamais postuler !";
 	}
+	
 
 ?>
