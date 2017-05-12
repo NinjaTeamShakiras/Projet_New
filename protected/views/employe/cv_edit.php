@@ -1,4 +1,4 @@
-<h1>Analyse du CV</h1>
+<h1>Analyse du CV[TESTING]</h1>
 <?php
 
 require './protected/vendor/autoload.php';
@@ -8,7 +8,7 @@ require './protected/vendor/autoload.php';
 
 
 $parser = new \Smalot\PdfParser\Parser();
-$pdf    = $parser->parseFile( './upload/1/cv_2.pdf' );
+$pdf    = $parser->parseFile( './upload/1/cv_4.pdf' );
  
 $PDFText_str = $pdf->getText();
 
