@@ -10,8 +10,6 @@
 
 
 
-<h1>Liste de mes candidatures</h1> <!-- Titre page -->
-
 
 
 <?php
@@ -30,47 +28,27 @@
 
 
 	?>
-
-		<!-- Formulaire avec le bouton pour Mon profil -->
-		<div class="wide form">
-			<?php
-				//Début du form
-				$form=$this->beginWidget('CActiveForm',
-					array(
-						'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
-					)
-				);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-				
-		</div>
-
-
-
-		<!-- Formulaire avec le bouton pour Rechercher -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/recherche'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Rechercher une offre'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
+<!-- MENU 	-->
+<div class="dropdown">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+	Menu 
+	<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<li>
+			<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+			Mon profil
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+			Rechercher une offre
+			</a>
+		</li>
+	</ul>
+</div>
+	
+<h1>Liste de mes candidatures</h1> <!-- Titre page -->
 
 
 	<?php

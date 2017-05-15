@@ -64,9 +64,28 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	}
 ?>
 
+<!-- MENU 	-->
+<div class="dropdown">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+	Menu 
+	<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<li>
+			<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil">
+			Mes Candidatures
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=offreEmploi/recherche&id=<?php echo $user->id_employe;?>" title="Mon profil">
+			Rechercher une offre
+			</a>
+		</li>
+	</ul>
+</div>
 	
 <!-- Affichage des infos persos -->	
-<div class="wide form">	
+<div class="form">	
 
 	<?php
 		//Début du formulaire de vue des infos persos

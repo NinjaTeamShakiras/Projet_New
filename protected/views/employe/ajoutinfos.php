@@ -1,4 +1,4 @@
-<div class="wide form">
+<div class="form">
 	<?php
 		$formation= formation::model();
 
@@ -60,7 +60,7 @@
 </div>		
 
 
-<div class="wide form">
+<div class="form">
 	<?php
 		$experiencePro= ExperiencePro::model();
 
