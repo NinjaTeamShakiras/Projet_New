@@ -330,9 +330,44 @@ class EntrepriseController extends Controller
 	}
 
 
+	public function actionCandidats()
+	{
+		$this->render('candidatures',array('data'=>-2));
+	}
+
+
+
 	public function actionCandidatures()
 	{
-		$this->render('candidatures');
+
+		if($_POST['OffreEmploi']['id_offre_emploi'] != '')
+		{
+			// On récupère les données du formulaire
+			$idOffre = $_POST['OffreEmploi']['id_offre_emploi'];
+
+			$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
+
+			$offre = offreEmploi::model()->FindByAttributes(array("id_offre_emploi"=>$idOffre));
+
+			$candidatures = postuler::model()->findAll("id_offre_emploi = '$idOffre'");
+
+			$employes = array();
+
+			foreach($candidatures as $candidature)
+			{
+				$employes[] = employe::model()->findByAttributes(array("id_employe"=>$candidature->id_employe));
+			}
+
+
+			$this->render('candidatures', array('data'=>$employes));
+
+		}
+		else
+		{
+			$this->render('candidatures',array('data'=>-1));
+		}
+
 	}
 
 

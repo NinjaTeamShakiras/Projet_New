@@ -209,17 +209,8 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		$titre = "Offre d'emploi";
 		
 	}
-	else 
-	{ // Si autre on affiche toutes les possibilité
-		$this->menu=array(
-			array('label'=>'Postuler', 'url'=>array('postule', 'id_offre'=>$model->id_offre_emploi)),
-			array('label'=>'Dépostuler', 'url'=>array('depostule', 'id_offre'=>$model->id_offre_emploi)),
-			array('label'=>'Modifier', 'url'=>array('update', 'id'=>$model->id_offre_emploi)),
-			//Marche pas
-			//array('label'=>'Supprimer', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_offre_emploi),'confirm'=>'Vous êtes sur le point de supprimer, voulez vous continuer ?')),
-		);
 
-	}
+
 
 ?>
 <?php
@@ -245,6 +236,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 
 
 <?php
+	// On corrige l'affichage de date 
 	$date_creation = $this->changeDateNaissance($model->date_creation_offre_emploi);
 	$date_debut = $this->changeDateNaissance($model->date_debut_offre_emploi);
 
@@ -387,11 +379,11 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 				<!-- Bouton pour postuler/Dépostuler -->
 				<?php 
 					if($aPostuler)
-					{
+					{ // si l'employe à postuler
 						echo CHtml::submitButton('Retirer ma candidature');
 					}
 					else
-					{
+					{ // si l'employé n'a pas postulé
 						echo CHtml::submitButton('Postuler');
 					}
 
