@@ -7,22 +7,57 @@ $this->breadcrumbs=array(
 	'Entreprises',
 );
 */
-
-	$this->menu=array(
-		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
-		//array('label'=>'Nouvelle recherche d\'offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
-	);
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
 ?>
 
 
 
+		<!-- Formulaire avec le bouton pour voir mon profil -->
+<div class="wide form">
+	<?php
+		//Début du form
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
+			)
+		);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mon profil'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+		
+</div>
+
+
+<!-- Formulaire avec le bouton pour voir mes candidatures -->
+<div class="wide form">
+	<?php
+		//Début du form
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('offreEmploi/mesOffres') ,
+			)
+		);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mes candidatures'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+		
+</div>
+
+
+
+
 <h1>Nouvelle recherche : </h1>
 
-<?php
-	$login = Yii::app()->user->getId();
-	// Récupération de l'utilisateur
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
+<?php	
 	$model = OffreEmploi::model();
 	// Récupération de toutes les offres
 	$tabOffre = OffreEmploi::model()->FindAll();
@@ -180,31 +215,35 @@ $this->breadcrumbs=array(
 			$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
 
 
-			print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
-			print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-			print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
-			print("<p> Type de l'offre : ".$offre->type_offre_emploi."</p>");
-			print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
-			print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
-			print("<p> Lieu : ".$adresse->ville." </p>");
-			print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
-			print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
-			print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+			//print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+			//print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+			//print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
+			//print("<p> Type de l'offre : ".$offre->type_offre_emploi."</p>");
+			//print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+			//print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+			//print("<p> Lieu : ".$adresse->ville." </p>");
+			//print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+			//print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+			//print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 
-			// Bonus : si un employé est connecté et a postulé à l'offre en question, on affiche qu'il a postuler avec la date.
+
+			$nomLien = $offre->type_offre_emploi." - ".$entreprise->nom_entreprise." - ".$adresse->ville;
+			
+			// si un employé est connecté et a postulé à l'offre en question, on affiche qu'il a postuler avec la date.
 			if($utilisateur != null)
 			{
 				foreach($tablePostuler as $postuler)
 				{
 				 	if( ($postuler->id_offre_emploi == $offre->id_offre_emploi) && ($postuler->id_employe == $utilisateur->id_employe) )
 				 	{ // Si l'offre de la table postuler concerne l'offre en question et quel concerne l'employé :
-				 		print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+				 		$nomLien .=" --- Vous avez postuler à cette offre le ".$this->changeDateNaissance($postuler->date_postule);
+				 		break;
 				 	}
 				}
 			}
 			
+			echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 
-			echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 			echo "<hr/>";
 		}
 

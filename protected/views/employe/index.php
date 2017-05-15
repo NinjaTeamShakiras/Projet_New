@@ -20,6 +20,50 @@
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 ?>
+		<!--	MENU 	-->
+		<!-- Formulaire avec le bouton pour voir mon profil -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mon profil'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+
+
+		<!-- Formulaire avec le bouton pour Retour aux annonce -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/index'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mes annonces'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
 
 
 <!-- Formulaire de recherche d'une offre d'emploi -->

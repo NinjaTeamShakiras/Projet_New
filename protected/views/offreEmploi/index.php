@@ -6,35 +6,160 @@
 	'Offre Emplois',
 );
 */
-
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 	$titre ="";
 
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise
-		$this->menu=array(
-			array('label'=>'Déposer une annonce', 'url'=>array('create')), // On peut créer une offre d'emploi
-			
-		);
+		?>
+
+		<!-- 	MENU 	-->
+		<!-- Formulaire avec le bouton pour Retour aux annonce -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/entreprise/view',array('id'=>$utilisateur->id_entreprise)),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mon profil'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+
+
+
+		<!-- Formulaire avec le bouton pour Mes annonce -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/create'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Déposer une annonce'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+		<!-- Formulaire avec le bouton pour Rechercher cv -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/entreprise/index'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Rechercher un cv'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+		<?php
 
 		$titre = "Mes offres d'emplois";
 
 	}
 	else if( Utilisateur::est_employe(Yii::app()->user->role))  
 	{  // Si employé
-		$this->menu=array(
-			array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
-			array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
-		);
+
+		?>
+
+		<!--	MENU 	-->
+		<!-- Formulaire avec le bouton pour voir mon profil -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mon profil'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+		
+		<!-- Formulaire avec le bouton pour Mes candidature -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/mesOffres'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mes candidatures'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+
+				<!-- Formulaire avec le bouton pour Rechercher -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/recherche'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Rechercher une offre'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+		<?php
 		$titre = "Liste des offres d'emplois";
 
 	}
-	else 
-	{ // Si autre
-		$this->menu=array(
-			array('label'=>'Créer une offre', 'url'=>array('create')), // On peut créer et postuler à une offre d'emploie
-		);
-
-		$titre = "Liste des offres d'emplois";
+	else
+	{
+		$titre = "Vous n'êtes pas connecté";
 	}
 
 ?>
@@ -130,9 +255,6 @@
 		{// Si il n'y a pas d'offre correspondante
 			print("<p> Aucune offre d'emploie </p>");
 		}
-
-		// Bouton de retour vers index
-		echo CHtml::button(CHtml::encode('Retour profil'),array('/Entreprise/index'));
 
 
 
