@@ -124,12 +124,15 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		<?php
 			foreach($formations as $formation)
 			{
-				echo "<p>Date de début de la formation : ".$this->changeDateNaissance($formation->date_debut_formation)."</p>";
-				echo "<p>Date de fin de la formation : ".$this->changeDateNaissance($formation->date_fin_formation)."</p>";
-				echo "<p>Intitulé de la formation : ".$formation->intitule_formation."</p>";
-				echo "<p>Etablissement de la formation : ".$formation->etablissement_formation."</p>";
-				echo "<p>Diplome obtenu : ".$formation->diplome_formation."</p>";
-				echo "<p>Description de la formation : ".$formation->description_formation."</p>";
+				echo "<p><strong>Formation à ".$formation->etablissement_formation." du ".$this->changeDateNaissance($formation->date_debut_formation)." au ".$this->changeDateNaissance($formation->date_fin_formation)." : </strong></p>";
+				echo "<ul>";
+				echo "<li>Intitulé de la formation : ".$formation->intitule_formation."</li>";
+				echo "<li>Diplome obtenu : ".$formation->diplome_formation."</li>";
+				echo "<li>Description de la formation : ".$formation->description_formation."</li>";
+				echo "</ul>";
+				echo CHtml::link('Mettre à jour cette formation',array('Formation/update', 'id'=>$formation->id_formation));
+				echo " ";
+				echo CHtml::link('Supprimer cette formation',array('Formation/delete')); 
 			}
 		?>
 	</div>
@@ -140,11 +143,14 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		<?php
 			foreach($exp_pros as $exp_pro)
 			{
-				echo "<p>Date de début de l'expérience pro : ".$this->changeDateNaissance($exp_pro->date_debut_experience)."</p>";
-				echo "<p>Date de fin de l'expérience pro : ".$this->changeDateNaissance($exp_pro->date_fin_experience)."</p>";
-				echo "<p>Intitulé de l'expérience pro : ".$exp_pro->intitule_experience."</p>";
-				echo "<p>Entreprise dans laquelle vous êtiez salarié : ".$exp_pro->entreprise_experience."</p>";
-				echo "<p>Description de l'expérience pro : ".$exp_pro->description_experience."</p>";
+				echo "<p><strong>".$exp_pro->intitule_experience." du ".$this->changeDateNaissance($exp_pro->date_debut_experience)." au ".$this->changeDateNaissance($exp_pro->date_fin_experience)."</strong></p>";
+				echo "<ul>";	
+				echo "<li>Entreprise dans laquelle vous êtiez salarié : ".$exp_pro->entreprise_experience."</li>";
+				echo "<li>Description de l'expérience pro : ".$exp_pro->description_experience."</li>";
+				echo "</ul>";
+				echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience));
+				echo " ";
+				echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete')); 
 			}
 		?>	
 	</div>
@@ -152,18 +158,22 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	<h4>Mes compétences</h4>
 
 	<div class="row">
+		<ul>
 		<?php
 			foreach($competences as $competence)
 			{
-				echo "<p>Nom de la compétence : ".$competence->intitule_competence."</p>";
-				echo "<p>Mon niveau pour cette compétence : ".$competence->niveau_competence."</p>";
+				echo "<li>".$competence->intitule_competence.", Niveau ".$competence->niveau_competence."/5</li>";
+				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'));
+				echo " ";
+				echo CHtml::link('Supprimer cette compétence',array('Competence/delete')); 
 			}
 		?>
+		</ul>
 	</div>
 
 	<div class="row">
 		<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout')); ?>
-		<?php echo Chtml::submitButton('Mettre à jour mes informations complémentaires', array('name'=>'btnmaj')); ?>
+
 	</div>	
 
 	<?php $this->endWidget();?>	

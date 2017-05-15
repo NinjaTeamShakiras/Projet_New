@@ -63,11 +63,11 @@ class ExperiencePro extends CActiveRecord
 	{
 		return array(
 			'id_experience' => 'Id Experience',
-			'date_debut_experience' => 'Date Debut Experience',
-			'date_fin_experience' => 'Date Fin Experience',
-			'intitule_experience' => 'Intitule Experience',
-			'entreprise_experience' => 'Entreprise Experience',
-			'description_experience' => 'Description Experience',
+			'date_debut_experience' => 'Date de début de l\'expérience',
+			'date_fin_experience' => 'Date de fin de l\'éxperience',
+			'intitule_experience' => 'Intitule de l\'éxperience',
+			'entreprise_experience' => 'Entreprise dans laquelle vous avez travaillé',
+			'description_experience' => 'Description de l\'éxperience',
 			'id_employe' => 'Id Employe',
 		);
 	}
