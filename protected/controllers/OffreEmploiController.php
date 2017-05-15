@@ -100,7 +100,10 @@ class OffreEmploiController extends Controller
 
 
 			if($model->save())
+			{
+				Yii::app()->user->setFlash('success_create_offre', "<p style = color:blue;>L'offre ".$model->poste_offre_emploi." à bien été créer !</p>");
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
+			}
 		}
 
 		$this->render('create',array('model'=>$model));
@@ -127,7 +130,10 @@ class OffreEmploiController extends Controller
 			$date_debut_offre_emploi_BDD = $this->changeDateBDD($model->date_debut_offre_emploi);
 			$model->date_debut_offre_emploi = $date_debut_offre_emploi_BDD;
 			if($model->save())
+			{
+				Yii::app()->user->setFlash('success_update_offre', "<p style = color:blue;>L'offre ".$model->poste_offre_emploi." à bien été créer !</p>");
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
+			}
 		}
 
 		$this->render('update',array(
@@ -160,17 +166,15 @@ class OffreEmploiController extends Controller
 		
 
 		// Récupération de l'offre
+		$nomOffre = $offre->poste_offre_emploi;
 		$offre = OffreEmploi::model()->FindByAttributes(array('id_offre_emploi'=>$id));
 
 		// Suppression de l'offre
 		$offre->delete();
 
-		//$this->loadModel($id)->delete();
+		Yii::app()->user->setFlash('success_delete_offre', "<p style = color:blue;>L'offre ".$nomOffre." à bien été supprimée !</p>");
 		$this->redirect('index.php?r=offreEmploi/index');
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		//if(!isset($_GET['ajax']))
-		//	$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 
@@ -283,6 +287,15 @@ class OffreEmploiController extends Controller
 
 		if($postuler->save())
 		{ // Si la sauvegarde fonctionne
+			if($employeAPostuler)
+			{
+				Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien candidater au poste de "." !</p>");
+			}
+			else
+			{
+				Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien retirer votre candidature au poste de "." !</p>");
+			}
+			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien candidater au poste de "." !</p>");
 			$this->redirect(array('view','id'=>$id_offre));
 		}
 		else

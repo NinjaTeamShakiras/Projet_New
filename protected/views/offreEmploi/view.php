@@ -227,6 +227,12 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		// On adapte le titre
 		$titre = "Offre proposé par ".$entreprise->nom_entreprise.".";
 	}
+
+	// Message de confirmation de mise à jour
+	echo Yii::app()->user->getFlash('success_update_offre');
+	// Message de confirmation de création
+	echo Yii::app()->user->getFlash('success_create_offre');
+
 ?>
 
 
@@ -378,6 +384,8 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			<div class="row buttons">
 				<!-- Bouton pour postuler/Dépostuler -->
 				<?php 
+					// Message de confirmation de candidature
+					echo Yii::app()->user->getFlash('success_postule');
 					if($aPostuler)
 					{ // si l'employe à postuler
 						echo CHtml::submitButton('Retirer ma candidature');
