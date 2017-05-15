@@ -13934,3 +13934,26 @@ HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
 >>>>>>> aecbd9acb71ef0f06137d4248a8908b1947dec58
 >>>>>>> 6d9b7725a1446409753e5557547c41d718c222ef
 >>>>>>> dfe5708ed6ec1a2a031839a92c0cdee4b83958b9
+2017/05/15 11:44:20 [error] [php] Missing argument 3 for CActiveForm::radioButtonList(), called in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\ajoutinfos.php on line 102 and defined (C:\wamp64\www\yii\framework\web\widgets\CActiveForm.php:960)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#1 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#2 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#3 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(339): EmployeController->render()
+#4 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionAjoutInfos()
+#5 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#7 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#10 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#16 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=Employe/AjoutInfos
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\ajoutinfos.php (102)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (339)
+in C:\wamp64\www\prozzl\index.php (13)
