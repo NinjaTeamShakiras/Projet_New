@@ -3,20 +3,60 @@
 /* @var $dataProvider CActiveDataProvider */
 
 
-	$this->menu=array(
-		// Voir toutes les offres d'emplois
-		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')),
-	);
+$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
 ?>
+
+
+<!--	MENU 	-->
+		<!-- Formulaire avec le bouton pour voir mon profil -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mon profil'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+
+		<!-- Formulaire avec le bouton pour voir mes candidatures -->
+		<div class="wide form">
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('offreEmploi/mesOffres') ,
+					)
+				);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mes candidatures'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+				
+		</div>
+
+
+
 
 <!-- Titre page -->
 <h1>Rechercher une offre : </h1>
 
 <?php
-	$login = Yii::app()->user->getId();
-	// Récupération de l'utilisateur
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 	$model = OffreEmploi::model();
 	// Récupération de toutes les offres
 	$tabOffre = OffreEmploi::model()->FindAll();

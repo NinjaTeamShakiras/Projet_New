@@ -2,20 +2,95 @@
 /* @var $this EntrepriseController */
 /* @var $dataProvider CActiveDataProvider */
 
-	if (!Utilisateur::est_employe(Yii::app()->user->role) )
-	{ // Si entreprise
-		$this->menu=array(
-			array('label'=>'Déposer une annonce', 'url'=>array('/offreEmploi/create')), // On peut créer une offre d'emploi
-			array('label'=>'Gérer mes annonce', 'url'=>array('/offreEmploi/index')), // Acces aux offres de l'entreprise
-			array('label'=>'Candidats', 'url'=>array('to_candidatures')), // Acces aux candidatures de l'entreprise
-		);
-
-		$titre = "Mes offres d'emplois";
-
-	}
-
+$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
 ?>
+
+<!--	MENU 	-->
+
+<!-- Formulaire avec le bouton pour voir Déposer une annonce -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/offreEmploi/create'),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Déposer une annonce'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
+
+
+<!-- Formulaire avec le bouton pour voir mon profil -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/entreprise/view',array('id'=>$utilisateur->id_entreprise)),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mon profil'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
+
+
+
+
+<!-- Formulaire avec le bouton pour Mes annonces -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/offreEmploi/index'),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mes annonces'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
+
+<!-- Formulaire avec le bouton pour Mes candidats -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/entreprise/candidatures'),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mes candidats'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
 
 <h1>Rechercher un CV : </h1>
 
@@ -26,6 +101,8 @@
 
 	print("<p> Trouver le candidat que vous rechercher parmis ".$nombreEmploye." CV.</p>"); 
 ?>
+
+
 <!-- FORMAULAIRE DE RECHERCHE DE CV-->
 <div class="wide form">
 
@@ -75,10 +152,6 @@
 </div>
 
 
-<?php echo CHtml::button(CHtml::encode('Déposer une annonce'),array('to_create_offre')); ?>
 
-
-
-
-
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <h1><strong>Voir avec le client pour le dernier formulaire, c'est pas clair</strong></h1>
