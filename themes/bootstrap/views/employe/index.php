@@ -3,6 +3,11 @@
 /* @var $dataProvider CActiveDataProvider */
 
 ?>
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+      'Image accueil');
+ 
+      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
+
 
 <?php
 	$login = Yii::app()->user->getId();
@@ -20,58 +25,14 @@
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 ?>
-		<!--	MENU 	-->
-		<!-- Formulaire avec le bouton pour voir mon profil -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-
-
-		<!-- Formulaire avec le bouton pour Retour aux annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/index'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mes annonces'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
 
 
 <!-- Formulaire de recherche d'une offre d'emploi -->
-<div>
-	<?php echo "<h3>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
+<div class='row'>
+	<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis <mark>".$nombreOffre."</mark> offres</h3>"; ?>
 </div>	
 
-<div class="wide form">
+<div class="form">
 
 	<?php
 		//Début du form
@@ -82,13 +43,13 @@
 		);
 	?>
 
-	<div class="row">
+	<div id="row_field">
 		<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
 		<?php
 			//Recherche par POSTE
 			echo $form->textField(
 				$model,'poste_offre_emploi', array(	
-					'class' => 'autocomplete-find-offreEmploi',
+					'class' => 'field autocomplete-find-offreEmploi',
 					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
 					'size' => 45,
 					'maxlength' => 30,
@@ -98,20 +59,10 @@
 		?>
 	
 		<?php
-			//Recherche par TYPE DE CONTRAT (liste déroulante)
-			//-->On ajoute l'option "Sélectionner pour la liste"
-			$static_type = array('' => Yii::t('', 'Sélectionner le type de contrat'));
-			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
-			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre); // On affiche une liste déroulante de toutes les offres
-		?>
-	</div>
-	
-	<div class="row">
-		<?php
 			//Recherche par LIEU
 			echo $form->textField(
 				$adresse,'ville', array(	
-					'class' => 'autocomplete-find-offreEmploi',
+					'class' => 'field autocomplete-find-offreEmploi',
 					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllLieuJSON'),
 					'size' => 37,
 					'maxlength' => 30,
@@ -119,28 +70,40 @@
 				)
 			);
 		?>
+	</div>
+	
+	<div id="row_field2">
+		<?php
+			//Recherche par TYPE DE CONTRAT (liste déroulante)
+			//-->On ajoute l'option "Sélectionner pour la liste"
+			$static_type = array('' => Yii::t('', 'Sélectionner le type de contrat'));
+			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
+			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre, array('class'=>'menu_roulant')); // On affiche une liste déroulante de toutes les offres
+		?>
 	
 		<?php
 			//Recherche par SECTEUR
 			//-->On ajoute l'option "Sélectionner pour la liste"
 			$static_secteur = array('' => Yii::t('', 'Sélectionner le secteur'));
 			$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
-			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre); // On affiche une liste déroulante de tout les secteur d'activité
+			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre, array('class'=>'menu_roulant')); // On affiche une liste déroulante de tout les secteur d'activité
 		?>
 	
+	</div>
+	<div id='div_rechercher'>
 		<?php
 			// Button d'envoi
-			echo CHtml::submitButton('Rechercher');
-		?>
-	</div>
+			echo CHtml::submitButton('Rechercher',array('class'=>'btn btn-success','id'=>'btn_rechercher'));
 
-	<?php $this->endWidget(); ?>
+		$this->endWidget();
+ 		?>
+ 	</div>
 
 </div>
 
 
 <!-- Fomulaire avec le bouton de l'ajout du CV -->
-<div class="wide form">
+<div class="row">
 	<?php
 		//Début du form
 		$form=$this->beginWidget('CActiveForm',
@@ -148,20 +111,6 @@
 				'action'=>Yii::app()->createUrl('employe/choixAjoutCV'),
 			)
 		);
-	?>
-
-	<div class="row">
-		<!-- Bouton d'ajout du CV -->
-		<?php echo CHtml::submitButton('Ajouter mon CV'); ?>
-	</div>
-
-	<?php $this->endWidget(); ?>
-		
-</div>
-
-<!-- Formulaire avec le bouton pour postuler en click -->
-<div class="wide form">
-	<?php
 		//Début du form
 		$form=$this->beginWidget('CActiveForm',
 			array(
@@ -170,12 +119,15 @@
 		);
 	?>
 
-	<div class="row">
+		<!-- Bouton d'ajout du CV -->
+		<?php echo CHtml::submitButton('Ajouter mon CV',array('class'=>'btn btn-success ','id'=>'btn_cv'));
+		?>
 		<!-- Bouton pour postuler -->
-		<?php echo CHtml::submitButton('Postuler à une annonce en un seul click !'); ?>
-	</div>
+		<?php echo CHtml::submitButton('Postuler à une annonce en un seul click !',array('class'=>'btn btn-success','id'=>'btn_postuler')); ?>
 
-	<?php $this->endWidget(); ?>
+	<?php 
+	$this->endWidget(); 
+	$this->endWidget(); ?>
 </div>	
 
 <?php
@@ -192,7 +144,7 @@ if($utilisateur != null)
 			)
 		);
 
-		echo "<div class='row'>".CHtml::submitButton('Voir mes informations personnelles !')."</div>";
+		echo "<div class='row' id='row_infos'>".CHtml::submitButton('Voir mes informations personnelles !',array('class'=>'btn_page btn btn-success','id'=>'btn_infos'))."</div>";
 
 	$this->endWidget();
 	echo "</div>";

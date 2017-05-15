@@ -26,7 +26,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('salaire_offre_emploi')); ?>:</b>
-	<?php echo CHtml::encode($data->salaire_offre_emploi . ' €'); ?>
+	<?php echo CHtml::encode($data->salaire_offre_emploi.' €'); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('experience_offre_emploi')); ?>:</b>

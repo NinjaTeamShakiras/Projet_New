@@ -6,12 +6,6 @@
 //	'Offre Emplois',
 //);
 
-
-	$this->menu=array(
-		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
-		array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
-	);
-
 ?>
 
 
@@ -35,6 +29,51 @@
 	$nombreOffrePostuler = 0; // Nombre d'offre total
 
 
+	?>
+
+		<!-- Formulaire avec le bouton pour Mon profil -->
+		<div class="wide form">
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
+					)
+				);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Mon profil'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+				
+		</div>
+
+
+
+		<!-- Formulaire avec le bouton pour Rechercher -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/recherche'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Rechercher une offre'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+	<?php
 	foreach($tablePostuler as $postuler)
 	{
 		if($postuler->id_employe == $utilisateur->id_employe)

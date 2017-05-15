@@ -330,15 +330,9 @@ class EntrepriseController extends Controller
 	}
 
 
-	public function actionTo_Candidatures()
+	public function actionCandidatures()
 	{
 		$this->render('candidatures');
-	}
-
-	public function actionToCreateOffre()
-	{
-		echo "test";
-		$this->render('/offreEmploi/index');
 	}
 
 
