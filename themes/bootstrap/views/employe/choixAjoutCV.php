@@ -2,10 +2,14 @@
 /* @var $this EmployeController */
 /* @var $model Employe */
 ?>
+<?php	$login = Yii::app()->user->getId();
+	// Récupération de l'utilisateur
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));?>
+
 <?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
       'Image accueil');
  
-echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
+      echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
 
 <h1 id=titre>Comment souhaiter vous ajouter votre CV</h1>	
 

@@ -3,11 +3,6 @@
 /* @var $dataProvider CActiveDataProvider */
 
 ?>
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
-      'Image accueil');
- 
-      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
-
 
 <?php
 	$login = Yii::app()->user->getId();
@@ -25,6 +20,11 @@
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 ?>
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+      'Image accueil');
+ 
+      echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
+
 
 <!--  MENU 	-->
 <div class="dropdown">

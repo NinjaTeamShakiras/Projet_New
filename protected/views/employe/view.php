@@ -13,7 +13,6 @@ $cs->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_view.js');
 ?>
 
-<h3>Mes informations personnelles</h3>
 
 <?php
 
@@ -83,6 +82,9 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		</li>
 	</ul>
 </div>
+
+
+<h3>Mes informations personnelles</h3>
 	
 <!-- Affichage des infos persos -->	
 <div class="form">	
