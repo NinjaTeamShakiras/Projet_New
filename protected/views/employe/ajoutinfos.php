@@ -1,5 +1,12 @@
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png','Image accueil');
+ 
+      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
+
+
 <div class="form">
+
 	<?php
+		$user = Utilisateur::model()->FindByAttributes(array("mail"=>Yii::app()->user->getID()));
 		$formation= formation::model();
 
 		$form=$this->beginWidget('CActiveForm',array(
@@ -149,9 +156,10 @@
 		<?php echo CHtml::submitbutton("Ajouter une competence",array('name' => 'btnajoutcompetence')); ?>
 	</div>
 
+	<?php $this->endWidget(); ?>
+</div>	
+
 	<div class="row">
-		<?php echo CHtml::submitbutton("Retour à la page précédente",array('name' => 'retour')); ?>
+		<?php echo CHtml::button("Retour à la page précédente",array('name' => 'retour', 'submit'=>array('employe/view', 'id'=>$user->id_employe))); ?>
 	</div>
 
-	<?php $this->endWidget(); ?>
-</div>

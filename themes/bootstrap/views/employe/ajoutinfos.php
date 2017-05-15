@@ -161,10 +161,6 @@
 		<?php echo CHtml::submitbutton("Ajouter une competence",array('name' => 'btnajoutcompetence','id'=>'btn-ajoutcomp')); ?>
 	</div>
 
-	<div class="row" id="champ-valider">
-		<?php echo CHtml::submitbutton("Valider",array('name' => 'valider','id'=>'btn-valider')); ?>
-	</div>
-
 	<div class="row" id="champ-back">
 		<?php echo CHtml::submitbutton("Retour à la page précédente",array('name' => 'retour','id'=>'btn-back')); ?>
 	</div>

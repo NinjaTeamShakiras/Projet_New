@@ -62,33 +62,6 @@ class EntrepriseController extends Controller
 						  ),
 					);
 		}	
-
-
-
-
-
-
-
-
-
-
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
 	}
 
 	/**
@@ -168,6 +141,16 @@ class EntrepriseController extends Controller
 	 */
 	public function actionIndex()
 	{
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'entreprise';
+
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+		
+		if($user == null)
+		{
+			Yii::app()->user->loginRequired();
+		}
+
 		$dataProvider=new CActiveDataProvider('Entreprise');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

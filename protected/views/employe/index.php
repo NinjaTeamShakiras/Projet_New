@@ -20,8 +20,6 @@
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 ?>
-
-	</ul>
 		
 	
 <!--  MENU 	-->
