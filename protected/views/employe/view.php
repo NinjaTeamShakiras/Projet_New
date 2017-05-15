@@ -13,7 +13,7 @@ $cs->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_view.js');
 ?>
 
-<h3>Mes informations personelles</h3>
+<h3>Mes informations personnelles</h3>
 
 <?php
 
@@ -78,7 +78,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 
 		echo "<div class='row'>";
 		echo "<p>Nom : ".$model->nom_employe." ".$model->prenom_employe."</p>";
-		echo "<p>Date de naissance : ".$model->date_naissance_employe."</p>";
+		echo "<p>Date de naissance : ".$this->changeDateNaissance($model->date_naissance_employe)."</p>";
 		echo "<p>Adressse : ".$adresse."</p>";
 		echo "<p>Téléphone : ".$user->telephone."</p>";
 		echo "<p>Autre téléphone : ".$user->telephone2."</p>";
