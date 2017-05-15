@@ -2,9 +2,11 @@
 /* @var $this EntrepriseController */
 /* @var $dataProvider CActiveDataProvider */
 
+//Récupération de l'utilisateur
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
 ?>
+
 
 <!--	MENU 	-->
 
@@ -78,7 +80,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 	//Début du form
 	$form=$this->beginWidget('CActiveForm',
 		array(
-			'action'=>Yii::app()->createUrl('/entreprise/candidatures'),
+			'action'=>Yii::app()->createUrl('/entreprise/candidats'),
 		)
 	);
 	?>
@@ -153,5 +155,5 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <h1><strong>Voir avec le client pour le dernier formulaire, c'est pas clair</strong></h1>
