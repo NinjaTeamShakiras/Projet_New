@@ -29,7 +29,7 @@
 
 	<div id="row-login_2" class="row-login">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('class'=>'champ-input')); ?>
+		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
@@ -47,13 +47,13 @@
 	if(Yii::app()->session['login'] == 'employe')
 	{
 		echo "<div>
-				<p>Vous n'êtes pas encore inscrit ?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEmploye'))."</p>
+				<p id='pas-inscrit'>Vous n'êtes pas encore inscrit ? ".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEmploye'),array('id'=>'url-inscription'))."</p>
 			 </div>";
 	}
 	else if(Yii::app()->session['login'] == 'entreprise')
 	{
 		echo "<div>
-				<p>Vous n'êtes pas encore inscrit ?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEntreprise'))."</p>
+				<p id='pas-inscrit'>Vous n'êtes pas encore inscrit ? ".Chtml::link(' Inscrivez-vous ici', array('site/inscriptionEntreprise'),array('id'=>'url-inscription'))."</p>
 			 </div>";	
 	}
 	?>

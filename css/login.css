@@ -68,3 +68,16 @@ h1.Titre
 	background :#90ffb9;
 }
 
+#pas-inscrit
+{
+	margin-top:30px;
+	text-align: center;
+	font-family:"Montserrat-Light";
+	font-size: 20px;
+}
+
+#url-inscription
+{
+	color:#ff50bc;
+	background-color:White;
+}

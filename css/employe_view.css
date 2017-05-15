@@ -10,7 +10,7 @@
 	src: url('Montserrat-Light.otf');
 }
 
-#infos-perso
+#champ-infos-persos
 {
 	font-size:20px;
 	font-family:"Montserrat Light";
@@ -18,11 +18,13 @@
 	margin-bottom: 3%;
 }
 
-#maj-infos
+
+#btn-maj-infos
 {
 	background-color:rgb(250, 255, 189);
 	font-family:"Montserrat Light";
 	padding:1%;
+	font-size: 16px;
 }
 
 #info-comp
@@ -31,4 +33,4 @@
 	font-family:"Montserrat Light";
 	margin-top: 5%;
 	margin-bottom: 3%;
-}
+}		

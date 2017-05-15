@@ -71,7 +71,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 
 	
 <!-- Affichage des infos persos -->	
-<div class="wide form">	
+<div class="form">	
 
 	<?php
 		//Début du formulaire de vue des infos persos
@@ -81,20 +81,20 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 
-		echo "<div class='row' id='infos-perso'>";
-		echo "<p>Nom : ".$model->nom_employe." ".$model->prenom_employe."</p>";
-		echo "<p>Date de naissance : ".$model->date_naissance_employe."</p>";
-		echo "<p>Adressse : ".$adresse."</p>";
-		echo "<p>Téléphone : ".$user->telephone."</p>";
-		echo "<p>Autre téléphone : ".$user->telephone2."</p>";
-		echo "<p>Adresse mail : ".$user->mail."</p>";
-		echo "<p>Site WEB : ".$user->site_web."</p>";
-		echo "<p>Recherche un travail : ".$model->employe_travaille."</p>";
+		echo "<div class='row' id='champ-infos-persos'>";
+		echo "<p>Nom : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
+		echo "<p>Date de naissance : <label>".$model->date_naissance_employe."</label</p>";
+		echo "<p>Adressse : <label>".$adresse."</label></p>";
+		echo "<p>Téléphone : <label>".$user->telephone."</label></p>";
+		echo "<p>Autre téléphone : <label>".$user->telephone2."</label></p>";
+		echo "<p>Adresse mail : <label>".$user->mail."</label></p>";
+		echo "<p>Site WEB : <label>".$user->site_web."</label></p>";
+		echo "<p>Recherche un travail : <label>".$model->employe_travaille."</label></p>";
 		echo "</div>";
 	?>
 
 	<div class="row">
-		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'maj-infos')); ?>
+		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos')); ?>
 	</div>
 
 	<?php $this->endWidget();?>	
@@ -112,7 +112,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	$exp_pros = ExperiencePro::model()->FindAll("id_employe =".$model->id_employe);
 ?>
 
-<div class="wide form">
+<div class="form">
 
 	<?php
 	//Début du formulaire de vue des infos complémentaires
@@ -130,12 +130,12 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		<?php
 			foreach($formations as $formation)
 			{
-				echo "<p>Date de début de la formation : ".$this->changeDateNaissance($formation->date_debut_formation)."</p>";
-				echo "<p>Date de fin de la formation : ".$this->changeDateNaissance($formation->date_fin_formation)."</p>";
-				echo "<p>Intitulé de la formation : ".$formation->intitule_formation."</p>";
-				echo "<p>Etablissement de la formation : ".$formation->etablissement_formation."</p>";
-				echo "<p>Diplome obtenu : ".$formation->diplome_formation."</p>";
-				echo "<p>Description de la formation : ".$formation->description_formation."</p>";
+				echo "<p>Date de début de la formation : <label>".$this->changeDateNaissance($formation->date_debut_formation)."</label></p>";
+				echo "<p>Date de fin de la formation : <label>".$this->changeDateNaissance($formation->date_fin_formation)."</label></p>";
+				echo "<p>Intitulé de la formation : <label>".$formation->intitule_formation."</label></p>";
+				echo "<p>Etablissement de la formation : <label>".$formation->etablissement_formation."</label></p>";
+				echo "<p>Diplome obtenu : <label>".$formation->diplome_formation."</label></p>";
+				echo "<p>Description de la formation : <label>".$formation->description_formation."</label></p>";
 			}
 		?>
 	</div>
@@ -146,11 +146,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		<?php
 			foreach($exp_pros as $exp_pro)
 			{
-				echo "<p>Date de début de l'expérience pro : ".$this->changeDateNaissance($exp_pro->date_debut_experience)."</p>";
-				echo "<p>Date de fin de l'expérience pro : ".$this->changeDateNaissance($exp_pro->date_fin_experience)."</p>";
-				echo "<p>Intitulé de l'expérience pro : ".$exp_pro->intitule_experience."</p>";
-				echo "<p>Entreprise dans laquelle vous êtiez salarié : ".$exp_pro->entreprise_experience."</p>";
-				echo "<p>Description de l'expérience pro : ".$exp_pro->description_experience."</p>";
+				echo "<p>Date de début de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_debut_experience)."</label></p>";
+				echo "<p>Date de fin de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_fin_experience)."</label></p>";
+				echo "<p>Intitulé de l'expérience pro : <label>".$exp_pro->intitule_experience."</label></p>";
+				echo "<p>Entreprise dans laquelle vous êtiez salarié : <label>".$exp_pro->entreprise_experience."</label></p>";
+				echo "<p>Description de l'expérience pro : <label>".$exp_pro->description_experience."</label>	</p>";
 			}
 		?>	
 	</div>
@@ -158,20 +158,22 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	<p>Mes compétences</p>
 
 	<div class="row">
+		<ul>
 		<?php
 			foreach($competences as $competence)
 			{
-				echo "<p>Nom de la compétence : ".$competence->intitule_competence."</p>";
-				echo "<p>Mon niveau pour cette compétence : ".$competence->niveau_competence."</p>";
+				echo "<li>".$competence->intitule_competence."<label> Niveau ".$competence->niveau_competence."/5</label></li>";
+				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'));
+				echo " ";
+				echo CHtml::link('Supprimer cette compétence',array('Competence/delete')); 
 			}
 		?>
-	</div>
-
+		</ul>
 	</div>
 
 	<div class="row">
-		<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'maj-infos')); ?>
-		<?php echo Chtml::submitButton('Mettre à jour mes informations complémentaires', array('name'=>'btnmaj','id'=>'maj-infos')); ?>
+		<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'btn-maj-infos')); ?>
+
 	</div>	
 
 	<?php $this->endWidget();?>	
