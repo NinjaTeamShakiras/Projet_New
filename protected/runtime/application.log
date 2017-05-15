@@ -16347,3 +16347,14 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=20
 HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/create
 ---
+2017/05/15 18:58:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "mesOffre".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('mesOffre')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('mesOffre')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/mes...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/mesOffre
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/index
+---

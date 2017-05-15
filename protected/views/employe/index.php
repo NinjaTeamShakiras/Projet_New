@@ -50,7 +50,7 @@
 			//Début du form
 			$form=$this->beginWidget('CActiveForm',
 				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/index'),
+					'action'=>Yii::app()->createUrl('/offreEmploi/mesOffres'),
 				)
 			);
 			?>
