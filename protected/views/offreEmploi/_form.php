@@ -28,9 +28,18 @@
 	*/
 	?>
 
+
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'poste_offre_emploi'); ?>
-		<?php echo $form->textField($model,'poste_offre_emploi',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textField($model,'poste_offre_emploi',
+				array(
+					'size' => 30,
+					'maxlength' => 30,
+					'placeholder' => 'Secretaire',
+				)
+			); 
+		?>
 		<?php echo $form->error($model,'poste_offre_emploi'); ?>
 	</div>
 
@@ -46,25 +55,75 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_debut_offre_emploi'); ?>
-		<?php echo $form->textField($model,'date_debut_offre_emploi'); ?>
+		<?php 
+			// Si il y a une date (pour la mise à jour par exemple) on affiche la date
+			if($model->date_debut_offre_emploi != null)
+			{
+				echo $form->textField(
+					$model,'date_debut_offre_emploi',
+						array(
+							'value' => $this->changeDateNaissance($model->date_debut_offre_emploi),
+							'size' => 30,
+							'maxlength' => 30,
+							'placeholder' => 'JJ/MM/AAAA',
+						)
+					);
+			}
+			else
+			{
+				echo $form->textField(
+					$model,'date_debut_offre_emploi',
+						array(
+							'size' => 30,
+							'maxlength' => 30,
+							'placeholder' => 'jj/mm/aaaa',
+						)
+					);
+			}
+			
+		?>
 		<?php echo $form->error($model,'date_debut_offre_emploi'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'salaire_offre_emploi'); ?>
-		<?php echo $form->textField($model,'salaire_offre_emploi'); ?>
+		<?php 
+			echo $form->textField($model,'salaire_offre_emploi',
+				array(
+					'size' => 30,
+					'maxlength' => 30,
+					'placeholder' => '10000',
+				)
+			);
+		?>€
 		<?php echo $form->error($model,'salaire_offre_emploi'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'experience_offre_emploi'); ?>
-		<?php echo $form->textField($model,'experience_offre_emploi',array('size'=>60,'maxlength'=>500)); ?>
+		<?php 
+			echo $form->textField($model,'experience_offre_emploi',
+				array(
+					'size' => 60,
+					'maxlength' => 500,
+					'placeholder' => 'BAC S, 2 stage en entreprise minimum ...',
+				)
+			);
+		?>
 		<?php echo $form->error($model,'experience_offre_emploi'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description_offre_emploi'); ?>
-		<?php echo $form->textField($model,'description_offre_emploi',array('size'=>60,'maxlength'=>500)); ?>
+		<?php 
+			echo $form->textField($model,'description_offre_emploi',
+				array(
+					'size' => 60,
+					'maxlength' => 500,
+					'placeholder' => 'Acceuil et standard téléphonique pour une entreprise d\'hôtelerie',
+				)
+			);
+		?>
 		<?php echo $form->error($model,'description_offre_emploi'); ?>
 	</div>
 

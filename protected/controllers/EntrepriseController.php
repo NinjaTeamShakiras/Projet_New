@@ -26,6 +26,52 @@ class EntrepriseController extends Controller
 	 */
 	public function accessRules()
 	{
+		$user = Yii::app()->user;
+
+		// Si employe on donne acces a rien
+		if($user->getState('type') == 'employe')
+		{
+			return array(
+				array('allow',
+					  'actions'=>[],
+					),
+				array('deny',
+					  'actions'=>['admin'],
+					),
+			);
+		}
+
+		// Si employe on donne acces a la liste d'offre, à view, index, search, à delete et à update
+		if($user->getState('type') == 'entreprise')
+		{
+			return array(
+					array('allow',
+						  'actions'=>['view', 'index', 'delete', 'update', 'search'],
+						),
+					array('deny',
+						  'actions'=>['admin'],
+						),
+			);
+		}	
+
+		if($user->getState('type') == NULL)
+		{
+			return array(
+					array('deny',
+						  'actions'=>['*'],
+						  ),
+					);
+		}	
+
+
+
+
+
+
+
+
+
+
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
@@ -170,4 +216,131 @@ class EntrepriseController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+
+
+
+	/**
+	 * Recherche de cv
+	 */
+	public function actionSearch()
+	{
+
+		$model = competence::model()->FindAll();
+		$aRechercher = false;
+		
+		if(isset($_POST['Competence']))
+		{
+			// On récupère les données du formulaire
+			$intitule_competence = $_POST['Competence']['intitule_competence'];
+			$niveau_competence = $_POST['Competence']['niveau_competence'];
+
+			// Tableau de résultat d'employe rechercher
+			$tabEmploye = employe::model()->findAll();
+
+			$intituleCompetenceIsSet = false;
+			$niveauCompetenceIsSet = false;
+
+			if($intitule_competence != null)
+			{
+				$intituleCompetenceIsSet = true;
+			}
+			if( ($niveau_competence != null) && ($niveau_competence != null) )
+			{
+				$niveauCompetenceIsSet = true;
+			}
+
+			// Initialisation des varaiable temp
+			$tabTemp = array();
+			$i = 0;
+			
+
+
+			/**** 		RECHERCHE		****/
+
+			/* 		Recherche par Intitule et niveau de compétence		*/
+			if( ($intituleCompetenceIsSet || $niveauCompetenceIsSet) && ($tabEmploye != null) )
+			{
+				$requete = "";
+				if($intituleCompetenceIsSet && $niveauCompetenceIsSet)
+				{
+					$requete = "intitule_competence LIKE '%$intitule_competence%' AND niveau_competence LIKE '$niveau_competence'";
+				}
+				else if($intituleCompetenceIsSet)
+				{
+					$requete .= "intitule_competence LIKE '%$intitule_competence%'";
+				}
+				else if($niveauCompetenceIsSet)
+				{
+					$requete .= "niveau_competence LIKE '$niveau_competence'";
+				}
+
+				// On recherche toute les compétences ayant un intituler ressemblant à la recherche / et 
+				// éventuellement avec un certain niveau
+				$tabIntituleTrouver = competence::model()->findAll($requete);
+
+				foreach($tabEmploye as $employe)
+				{
+					foreach($tabIntituleTrouver as $competence)
+					{ // On parcours le tableau des intitulé de compétence trouvé
+						if( ($competence->id_employe == $employe->id_employe) )
+						{ // Si l'employe à déjà été mis de coté, on conserve
+							$tabTemp[$i] = $employe;
+							$i++;
+
+							// Si on ajoute une fois l'employe, il sera dans le tableau ..
+							// pas la peine de continuer le match pour cette employe
+							// on passe au suivant
+							break;
+						}
+					}
+				}
+				// On rétablis $tabEmploye avec le nouveau résultat affiné
+				$tabEmploye = $tabTemp;
+
+				// Réinitialisation des variable temporaire
+				$tabTemp = array(); 
+				$i=0;
+
+				$aRechercher = true;
+			}
+
+
+
+
+			/* 		Recherche par ??? de ???	*/
+
+
+
+
+
+
+			/**** 		FIN RECHERCHE 		****/
+			
+			// On redirige avec le resultat.
+			$this->render('index_search', array('data'=>$tabEmploye,'aRechercher'=>$aRechercher)); 
+
+		}
+		else
+		{
+			echo "Vous n'avez rien remplis.";
+			$this->render('index_search');
+		}
+
+	}
+
+
+	public function actionTo_Candidatures()
+	{
+		$this->render('candidatures');
+	}
+
+	public function actionToCreateOffre()
+	{
+		echo "test";
+		$this->render('/offreEmploi/index');
+	}
+
+
+
 }

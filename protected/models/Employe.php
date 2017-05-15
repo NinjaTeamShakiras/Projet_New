@@ -80,7 +80,7 @@ class Employe extends CActiveRecord
 			'nom_employe' => 'Nom ',
 			'prenom_employe' => 'Prenom ',
 			'date_naissance_employe' => 'Date Naissance',
-			'employe_travaille' => 'Employe Travaille',
+			'employe_travaille' => 'Recherche un travail',
 			'cv_pdf' => 'CV employé'
 		);
 	}

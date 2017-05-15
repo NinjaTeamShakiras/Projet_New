@@ -18,7 +18,10 @@
 	$utilisateur = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
 	$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$utilisateur->id_adresse));
 
-	var_dump($adresse);
+	if($adresse == null)
+	{
+		$adresse = Adresse::model();
+	}
 
 ?>
 
@@ -63,6 +66,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($utilisateur,'site_web'); ?>
+		<?php echo $form->textField($utilisateur,'site_web',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($utilisateur,'site_web'); ?>
+	</div>	
+
+	<div class="row">
 		<?php echo $form->labelEx($utilisateur,'telephone'); ?>
 		<?php echo $form->textField($utilisateur,'telephone',
 			array('size'=>15,
@@ -98,8 +107,9 @@
 		<?php echo $form->error($adresse,'ville'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Mettre à jour'); ?>
+	<div class="row">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Mettre à jour'); 
+			  echo CHtml::submitButton('Retour', array('name'=>'btnretour'));?>
 	</div>
 
 <?php $this->endWidget(); ?>
