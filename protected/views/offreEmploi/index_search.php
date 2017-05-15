@@ -68,7 +68,7 @@ $this->breadcrumbs=array(
 	$adresse = adresse::model();
 
 	// Nombre d'offre total
-	$nombreOffre = sizeof($tabOffre); 
+	$nombreOffre = sizeof($tabOffre);
 
 	print("<p> Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres.</p>");
 ?>

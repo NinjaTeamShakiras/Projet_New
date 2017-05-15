@@ -8,26 +8,123 @@ $this->breadcrumbs=array(
 );
 */
 
-	$this->menu=array(
-		array('label'=>'Retour index', 'url'=>array('/entreprise/index')), // Voir toutes les offres d'emplois
-		array('label'=>'Déposer une annonce', 'url'=>array('/offreEmploi/create')), // On peut créer une offre d'emploi
-		array('label'=>'Gérer mes annonce', 'url'=>array('/offreEmploi/index')), // Acces aux offres de l'entreprise
-		array('label'=>'Candidats', 'url'=>array('/entreprise/candidatures')), // Acces aux candidatures de l'entreprise
-	);
+//Récupération de l'utilisateur
+$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
 
 ?>
+
+
+
+<!--	MENU 	-->
+
+<!-- Formulaire avec le bouton pour Déposer une annonce -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/offreEmploi/create'),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Déposer une annonce'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
+
+
+<!-- Formulaire avec le bouton pour Mon profil -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/entreprise/view',array('id'=>$utilisateur->id_entreprise)),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mon profil'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
+
+
+
+
+<!-- Formulaire avec le bouton pour Mes annonces -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/offreEmploi/index'),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mes annonces'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
+
+
+<!-- Formulaire avec le bouton pour Mes candidats -->
+<div class="wide form">
+	<?php
+	//Début du form
+	$form=$this->beginWidget('CActiveForm',
+		array(
+			'action'=>Yii::app()->createUrl('/entreprise/candidats'),
+		)
+	);
+	?>
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Mes candidats'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+
+</div>
+
+
+
+
 
 
 
 <h1>Nouvelle recherche : </h1>
 
-<?php 
+
+
+<?php
+	// On récupère tous les employé
 	$tabEmploye = employe::model()->FindAll();
 
+	// On récupère le nombre total d'employe
 	$nombreEmploye = sizeof($tabEmploye);
 
 	print("<p> Trouver le CV que vous rechercher parmis ".$nombreEmploye." CV.</p>"); 
 ?>
+
+
+
+
 <!-- FORMAULAIRE DE RECHERCHE DE CV-->
 <div class="wide form">
 
@@ -39,6 +136,7 @@ $this->breadcrumbs=array(
 			)
 		);
 	?>
+
 
 	<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
 	<div class="row">
@@ -83,22 +181,32 @@ $this->breadcrumbs=array(
 <h1>Résultat de votre recherche : </h1>
 
 <?php
-	
-	$nombreEmploye = sizeof($data); // Nombre de employe matché
+	// On récupère le nombre d'employé matché
+	$nombreEmploye = sizeof($data);
 
+
+
+	// AFFICHAGE DES EMPLOYES
 	if($nombreEmploye>0)
-	{
+	{// Si le nombre d'employé matché est positif
 		if($aRechercher)
-		{
-			print("<p> ".$nombreEmploye." candidats correspondent à votre recherche.</p>");
+		{// Si unerecherche à été faite
+			if($nombreEmploye == 1)
+			{
+				print("<p> Vous avez ".$nombreEmploye." candidat correspondent à votre recherche.</p>");
+			}
+			else
+			{
+				print("<p> Vous avez ".$nombreEmploye." candidats correspondent à votre recherche.</p>");
+			}
 
 			foreach($data as $employe)
-			{
+			{// On affiche cahque employé matché
 				print("<p> L'employe : ".$employe->id_employe." (id)</p>");
 			}
 		}
 		else
-		{
+		{// Si aucune recherche n'a été faite on affiche tout les employés
 			print("<p> Votre recherche était vide, à défaut, voici les ".$nombreEmploye." candidats présent sur prozzl.</p>");
 
 			foreach($data as $employe)
@@ -113,9 +221,6 @@ $this->breadcrumbs=array(
 	{// Sinon, on dit simplement qu'il n'y en a pas
 		print("<p> Aucun candidat ne correspondent à votre recherche.</p>");
 	}
-
-
-	echo CHtml::button(CHtml::encode('Déposer une annonce'),array('/offreEmploi/create'));
 
 ?>
 

@@ -124,6 +124,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		<?php
 			foreach($formations as $formation)
 			{
+				echo Yii::app()->user->getFlash('success_maj_formation');
 				echo "<p><strong>Formation à ".$formation->etablissement_formation." du ".$this->changeDateNaissance($formation->date_debut_formation)." au ".$this->changeDateNaissance($formation->date_fin_formation)." : </strong></p>";
 				echo "<ul>";
 				echo "<li>Intitulé de la formation : ".$formation->intitule_formation."</li>";
@@ -132,7 +133,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 				echo "</ul>";
 				echo CHtml::link('Mettre à jour cette formation',array('Formation/update', 'id'=>$formation->id_formation));
 				echo " ";
-				echo CHtml::link('Supprimer cette formation',array('Formation/delete')); 
+				echo CHtml::link('Supprimer cette formation',array('Formation/delete', 'id'=>$formation->id_formation)); 
 			}
 		?>
 	</div>
@@ -143,6 +144,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		<?php
 			foreach($exp_pros as $exp_pro)
 			{
+				echo Yii::app()->user->getFlash('success_maj_exp');
 				echo "<p><strong>".$exp_pro->intitule_experience." du ".$this->changeDateNaissance($exp_pro->date_debut_experience)." au ".$this->changeDateNaissance($exp_pro->date_fin_experience)."</strong></p>";
 				echo "<ul>";	
 				echo "<li>Entreprise dans laquelle vous êtiez salarié : ".$exp_pro->entreprise_experience."</li>";
@@ -150,7 +152,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 				echo "</ul>";
 				echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience));
 				echo " ";
-				echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete')); 
+				echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete', 'id'=>$exp_pro->id_experience)); 
 			}
 		?>	
 	</div>
@@ -162,10 +164,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		<?php
 			foreach($competences as $competence)
 			{
+				echo Yii::app()->user->getFlash('success_maj_competence');
 				echo "<li>".$competence->intitule_competence.", Niveau ".$competence->niveau_competence."/5</li>";
-				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'));
+				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence));
 				echo " ";
-				echo CHtml::link('Supprimer cette compétence',array('Competence/delete')); 
+				echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence)); 
 			}
 		?>
 		</ul>
