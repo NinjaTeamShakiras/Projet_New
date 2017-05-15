@@ -101,7 +101,7 @@ class OffreEmploiController extends Controller
 
 			if($model->save())
 			{
-				Yii::app()->user->setFlash('success_create_offre', "<p style = color:blue;>L'offre ".$model->poste_offre_emploi." à bien été créer !</p>");
+				Yii::app()->user->setFlash('success_create_offre', "<p style = color:blue;>Votre offre au poste de ".$model->poste_offre_emploi." à bien été créer !</p>");
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
 			}
 		}
@@ -131,7 +131,7 @@ class OffreEmploiController extends Controller
 			$model->date_debut_offre_emploi = $date_debut_offre_emploi_BDD;
 			if($model->save())
 			{
-				Yii::app()->user->setFlash('success_update_offre', "<p style = color:blue;>L'offre ".$model->poste_offre_emploi." à bien été créer !</p>");
+				Yii::app()->user->setFlash('success_update_offre', "<p style = color:blue;>Votre offre au poste de '".$model->poste_offre_emploi."'' à bien été mise à jour !</p>");
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
 			}
 		}
@@ -166,13 +166,13 @@ class OffreEmploiController extends Controller
 		
 
 		// Récupération de l'offre
-		$nomOffre = $offre->poste_offre_emploi;
 		$offre = OffreEmploi::model()->FindByAttributes(array('id_offre_emploi'=>$id));
 
+		$nomOffre = $offre->poste_offre_emploi;
 		// Suppression de l'offre
 		$offre->delete();
 
-		Yii::app()->user->setFlash('success_delete_offre', "<p style = color:blue;>L'offre ".$nomOffre." à bien été supprimée !</p>");
+		Yii::app()->user->setFlash('success_delete_offre', "<p style = color:blue;>Votre annonce au poste de ".$nomOffre." à bien été supprimée !</p>");
 		$this->redirect('index.php?r=offreEmploi/index');
 
 	}
@@ -289,13 +289,13 @@ class OffreEmploiController extends Controller
 		{ // Si la sauvegarde fonctionne
 			if($employeAPostuler)
 			{
-				Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien candidater au poste de "." !</p>");
+				Yii::app()->user->setFlash('success_depostule_offre', "<p style = color:blue;>Vous avez bien retirer votre candidature !</p>");
 			}
 			else
 			{
-				Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien retirer votre candidature au poste de "." !</p>");
+				Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler au poste de !</p>");
 			}
-			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien candidater au poste de "." !</p>");
+			//Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien candidater au poste de "." !</p>");
 			$this->redirect(array('view','id'=>$id_offre));
 		}
 		else

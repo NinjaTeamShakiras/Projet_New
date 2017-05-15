@@ -85,7 +85,7 @@ class SiteController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-;
+
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
@@ -94,16 +94,6 @@ class SiteController extends Controller
 			if($model->validate() && $model->login())
 			{
 				$this->redirect(Yii::app()->user->getReturnUrl());
-				//Si l'utilisateur est une entreprise, on le redirige vers sa page
-				/*if(Yii::app()->user->getState('role') == "entreprise")
-				{
-					$this->redirect(array('entreprise/index'));
-				}
-				//Si l'utilisateur est un employe, on le reidirige vers sa page
-				else if(Yii::app()->user->getState('role') == "employe")
-				{
-					$this->redirect(array('employe/index'));
-				}*/
 			}
 		}
 		// display the login form
@@ -261,14 +251,15 @@ class SiteController extends Controller
 	public function actionAccueil()
 	{
 		if (isset($_POST['btnemploi']))
-		{
+		{// Si entreprise presser
 			$this->redirect(array('employe/index'));	
 		} 
 
 		if (isset($_POST['btnemploye']))
-		{
+		{// Si employe presser
 			$this->redirect(array('entreprise/index'));
 		}
+
 	}
 
 
