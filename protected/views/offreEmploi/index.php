@@ -12,7 +12,8 @@
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise
 		$this->menu=array(
-			array('label'=>'Déposer une annonce gratuitement', 'url'=>array('create')), // On peut créer une offre d'emploi
+			array('label'=>'Déposer une annonce', 'url'=>array('create')), // On peut créer une offre d'emploi
+			
 		);
 
 		$titre = "Mes offres d'emplois";
@@ -71,7 +72,7 @@
 			}
 		}
 
-		print("<p> ".$nombreOffreEntreprise." offres.</p>");
+		print("<p>Vous avez posté ".$nombreOffreEntreprise." offres.</p>");
 		
 		foreach ($model as $key => $offre ) // Pour chaque offre ...
 		{
@@ -130,6 +131,10 @@
 			print("<p> Aucune offre d'emploie </p>");
 		}
 
+		// Bouton de retour vers index
+		echo CHtml::button(CHtml::encode('Retour profil'),array('/Entreprise/index'));
+
+
 
 
 	} /*			EMPLOYE 			*/
@@ -139,7 +144,7 @@
 		$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 		$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
 
-		print("<p> ".$nombreTotalOffre." offres.</p>");
+		print("<p> Postulez ou consultez ".$nombreTotalOffre." offres proposées par des entreprises.</p>");
 
 
 		foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :

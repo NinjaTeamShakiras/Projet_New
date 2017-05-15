@@ -271,4 +271,10 @@ class SiteController extends Controller
 		}
 	}
 
+
+	public function actionRedirectInscriptionCV()
+	{
+		$this->render( 'inscription_cv' );
+	}
+
 }	
