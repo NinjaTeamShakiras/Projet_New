@@ -269,10 +269,31 @@ class EmployeController extends Controller
 		unset(Yii::app()->session['login']);
 		Yii::app()->session['login'] = 'employe';
 
-		/*if(isset($_POST['btnajoutcompetence']))
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+
+		if(isset($_POST['retour'])){
+			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
+		}
+
+		$this->render('ajoutinfos');
+
+	}
+
+	public function actionajoutCompetences()
+	{
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si il clique sur "ajouter une compétence", on la créé
+		if(isset($_POST['Competence']))
 		{
 			$competence = new Competence;
-			$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
 
 			//On attributs les valeurs entrés par l'utilisateur dans le model competence
 			$competence->attributes = $_POST['Competence'];
@@ -281,62 +302,66 @@ class EmployeController extends Controller
 			//On save le model competence 
 			$competence->save();
 
-			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
-		}*/
-
-
-
-		/*$formation = new Formation;
-		$experiencePro = new ExperiencePro;
-		$competence = new Competence;
-		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-
-		if($user==null)
-		{
-			Yii::app()->user->loginRequired();
+			$this->redirect(array('view', 'id'=>$user->id_employe));
 		}
 
-		if(isset($_POST['Formation']) || isset($_POST['ExperiencePro']) || isset($_POST['Competence']))
-		{
-			if(isset($_POST['Formation']))
-			{
-				//On attributs les valeurs entrés par l'utilisateur dans le model Formation
-				$formation->attributes = $_POST['Formation'];
-				$formation->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
-				$formation->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
-				$formation->id_employe = $user->id_employe;
-
-				//On save le model formation
-				$formation->save();
-			}
-			
-			if(isset($_POST['ExperiencePro']))
-			{
-				//On attributs les valeurs entrés par l'utilisateur dans le model experience
-				$experiencePro->attributes = $_POST['ExperiencePro'];
-				$experiencePro->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
-				$experiencePro->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
-				$experiencePro->id_employe = $user->id_employe;
-				
-				//On save le model experience
-				$experiencePro->save();
-			}
-
-			if(isset($_POST['Competence']))
-			{
-				//On attributs les valeurs entrés par l'utilisateur dans le model competence
-				$competence->attributes = $_POST['Competence'];
-				$competence->id_employe = $user->id_employe;
-
-				//On save le model competence 
-				$competence->save();
-			}
-
-			
-		}*/
-			
-		//Sinon on renvoie la page inscription car les champs ne sont pas valides
 		$this->render('ajoutinfos');
+	}
+
+	public function actionajoutFormation()
+	{
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si il clique sur ajouter une formation, on la créé
+		if(isset($_POST['Formation']))
+		{
+			$formation = new Formation;
+
+			//On attributs les valeurs entrés par l'utilisateur dans le model Formation
+			$formation->attributes = $_POST['Formation'];
+			$formation->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
+			$formation->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
+			$formation->id_employe = $user->id_employe;
+
+			//On save le model formation
+			$formation->save();
+
+			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
+			//$this->render('ajoutinfos');
+		}
+	}
+
+	public function actionajoutExpPro()
+	{
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si il clique sur ajouter une expérience pro, on la créé
+		if(isset($_POST['btnajoutexppro']) && isset($_POST['ExperiencePro']))
+		{
+			$experiencePro = new ExperiencePro;
+
+			//On attributs les valeurs entrés par l'utilisateur dans le model experience
+			$experiencePro->attributes = $_POST['ExperiencePro'];
+			$experiencePro->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
+			$experiencePro->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
+			$experiencePro->id_employe = $user->id_employe;
+				
+			//On save le model experience
+			$experiencePro->save();
+
+			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
+			//$this->render('ajoutinfos');
+		}
 	}
 
 	public function choixAjoutMAJInfos()

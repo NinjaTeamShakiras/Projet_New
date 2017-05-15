@@ -94,8 +94,10 @@ class FormationController extends Controller
 		if(isset($_POST['Formation']))
 		{
 			$model->attributes=$_POST['Formation'];
+			$model->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
+			$model->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_formation));
+				$this->redirect(array('employe/view', 'id'=>$model->id_employe));
 		}
 
 		$this->render('update',array(
@@ -187,6 +189,27 @@ class FormationController extends Controller
 			$result = $year."-".$month."-".$day;
 
 			return $result;
+	}
+
+
+	/*	Fonction qui change la date au format français
+	@param $date est une date récupérée depuis la BDD
+	*/
+	protected function changeDateNaissance($date)
+	{
+		$result = NULL;
+		$day = 0;
+		$month = 0;
+		$year = 0;
+
+		//On récupère chaque valeur grâce a substr
+		$year = substr($date, 0, 4);
+		$month = substr($date, 5, 2);
+		$day = substr($date, 8, 2);
+
+		$result = $day."/".$month."/".$year;
+
+		return $result;
 	}
 
 
