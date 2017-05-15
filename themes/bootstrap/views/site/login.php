@@ -29,7 +29,7 @@
 
 	<div id="row-login_2" class="row-login">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password',array('class'=>'champ-input')); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
