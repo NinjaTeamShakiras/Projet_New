@@ -10962,6 +10962,290 @@ HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=2
 >>>>>>> f8cb85ec30e55a2c36a039b63d46ea1a16c4ea85
 >>>>>>> 64803e1a328c4722354730ff25d01484e45168e2
 <<<<<<< HEAD
+2017/05/12 12:06:06 [error] [exception.CException] exception 'CException' with message 'Property "Employe.id_adresse" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('id_adresse')
+#1 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(120): CActiveRecord->__get('id_adresse')
+#2 [internal function]: EmployeController->actionUpdate('1')
+#3 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#4 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#5 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/update')
+#15 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#16 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/update&id=1
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=1
+---
+2017/05/12 12:21:40 [error] [exception.CException] exception 'CException' with message 'Property "Employe.id_adresse" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('id_adresse')
+#1 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(120): CActiveRecord->__get('id_adresse')
+#2 [internal function]: EmployeController->actionUpdate('1')
+#3 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#4 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#5 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/update')
+#15 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#16 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/update&id=1
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=1
+---
+2017/05/15 07:20:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "choixCV".' in C:\wamp64\www\yii\framework\web\CController.php:483
+=======
+<<<<<<< HEAD
+2017/05/12 12:27:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "choixCV".' in C:\wamp64\www\yii\framework\web\CController.php:483
+>>>>>>> 6d9b7725a1446409753e5557547c41d718c222ef
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('choixCV')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('choixCV')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/choixCV')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/choixCV
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/choixAjoutCV
+---
+<<<<<<< HEAD
+2017/05/15 07:20:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "choixCV".' in C:\wamp64\www\yii\framework\web\CController.php:483
+=======
+2017/05/12 12:31:45 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/view')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/view
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/update&id=4
+---
+2017/05/12 12:32:32 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/view')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/view
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/update&id=4
+---
+2017/05/12 12:32:34 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/view')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/view
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/update&id=4
+---
+2017/05/12 12:38:52 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '08/09/2005' for column 'date_naissance_employe' at row 1. The SQL statement executed was: UPDATE `employe` SET `id_employe`=:yp0, `nom_employe`=:yp1, `prenom_employe`=:yp2, `date_naissance_employe`=:yp3, `employe_travaille`=:yp4 WHERE `employe`.`id_employe`=4.
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (147)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 12:38:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '08/09/2005' for column 'date_naissance_employe' at row 1. The SQL statement executed was: UPDATE `employe` SET `id_employe`=:yp0, `nom_employe`=:yp1, `prenom_employe`=:yp2, `date_naissance_employe`=:yp3, `employe_travaille`=:yp4 WHERE `employe`.`id_employe`=4' in C:\wamp64\www\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1753): CDbCommand->execute()
+#1 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1127): CActiveRecord->updateByPk('4', Array)
+#2 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->update(NULL)
+#3 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(147): CActiveRecord->save()
+#4 [internal function]: EmployeController->actionUpdate('4')
+#5 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#6 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#7 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#14 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#16 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/update')
+#17 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#18 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/update&id=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/update&id=4
+---
+2017/05/12 12:43:44 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '58/58/5888' for column 'date_naissance_employe' at row 1. The SQL statement executed was: UPDATE `employe` SET `id_employe`=:yp0, `nom_employe`=:yp1, `prenom_employe`=:yp2, `date_naissance_employe`=:yp3, `employe_travaille`=:yp4 WHERE `employe`.`id_employe`=4.
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (147)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 12:43:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '58/58/5888' for column 'date_naissance_employe' at row 1. The SQL statement executed was: UPDATE `employe` SET `id_employe`=:yp0, `nom_employe`=:yp1, `prenom_employe`=:yp2, `date_naissance_employe`=:yp3, `employe_travaille`=:yp4 WHERE `employe`.`id_employe`=4' in C:\wamp64\www\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1753): CDbCommand->execute()
+#1 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1127): CActiveRecord->updateByPk('4', Array)
+#2 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->update(NULL)
+#3 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(147): CActiveRecord->save()
+#4 [internal function]: EmployeController->actionUpdate('4')
+#5 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#6 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#7 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#14 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#16 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/update')
+#17 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#18 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/update&id=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/update&id=4
+---
+2017/05/12 12:44:50 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '5888-58-58' for column 'date_naissance_employe' at row 1. The SQL statement executed was: UPDATE `employe` SET `id_employe`=:yp0, `nom_employe`=:yp1, `prenom_employe`=:yp2, `date_naissance_employe`=:yp3, `employe_travaille`=:yp4 WHERE `employe`.`id_employe`=4.
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (147)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 12:44:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '5888-58-58' for column 'date_naissance_employe' at row 1. The SQL statement executed was: UPDATE `employe` SET `id_employe`=:yp0, `nom_employe`=:yp1, `prenom_employe`=:yp2, `date_naissance_employe`=:yp3, `employe_travaille`=:yp4 WHERE `employe`.`id_employe`=4' in C:\wamp64\www\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1753): CDbCommand->execute()
+#1 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1127): CActiveRecord->updateByPk('4', Array)
+#2 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->update(NULL)
+#3 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(147): CActiveRecord->save()
+#4 [internal function]: EmployeController->actionUpdate('4')
+#5 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#6 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#7 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#14 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#16 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/update')
+#17 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#18 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/update&id=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/update&id=4
+---
+2017/05/12 13:19:31 [error] [php] Undefined index: Utilisateur = (C:\wamp64\www\prozzl\protected\controllers\EmployeController.php:147)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#3 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#6 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#10 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#12 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/update&id=4
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (147)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 13:21:17 [error] [php] Undefined variable: adresse (C:\wamp64\www\prozzl\protected\views\employe\view.php:20)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(85): EmployeController->render()
+#3 unknown(0): EmployeController->actionView()
+#4 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#5 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#8 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#11 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#15 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#17 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=4
+in C:\wamp64\www\prozzl\protected\views\employe\view.php (20)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (85)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 14:07:53 [error] [exception.CException] exception 'CException' with message 'Property "Formation.intitulé_formation" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('intitul\xC3\xA9_forma...')
+#1 C:\wamp64\www\prozzl\protected\views\employe\view.php(119): CActiveRecord->__get('intitul\xC3\xA9_forma...')
+#2 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp64\\www\\p...')
+#3 C:\wamp64\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp64\\www\\p...', Array, true)
+#4 C:\wamp64\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp64\\www\\p...', Array, true)
+#5 C:\wamp64\www\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(85): CController->render('view', Array)
+#7 [internal function]: EmployeController->actionView('4')
+#8 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#9 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#10 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#19 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/view')
+#20 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=4
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/update&id=4
+---
+2017/05/12 14:32:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "choixCV".' in C:\wamp64\www\yii\framework\web\CController.php:483
+>>>>>>> 6d9b7725a1446409753e5557547c41d718c222ef
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('choixCV')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('choixCV')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/choixCV')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
 2017/05/12 13:35:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "inscription_cv".' in C:\wamp\www\yii\framework\web\CController.php:483
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('inscription_cv')
@@ -11597,10 +11881,130 @@ Stack trace:
 #2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/choixCV')
 #3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
 #4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+>>>>>>> aecbd9acb71ef0f06137d4248a8908b1947dec58
+>>>>>>> 6d9b7725a1446409753e5557547c41d718c222ef
 #5 {main}
 REQUEST_URI=/prozzl/index.php?r=employe/choixCV
 HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/choixAjoutCV
 ---
+<<<<<<< HEAD
+2017/05/15 07:26:45 [error] [exception.CException] exception 'CException' with message 'Property "Employe.id_adresse" is not defined.' in C:\wamp64\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('id_adresse')
+#1 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(120): CActiveRecord->__get('id_adresse')
+#2 [internal function]: EmployeController->actionUpdate('1')
+#3 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#4 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#5 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/update')
+#15 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#16 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/update&id=1
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=1
+---
+=======
+<<<<<<< HEAD
+2017/05/12 14:59:06 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '--' for column 'date_debut_formation' at row 1. The SQL statement executed was: INSERT INTO `formation` (`intitule_formation`, `etablissement_formation`, `diplome_formation`, `date_debut_formation`, `date_fin_formation`, `description_formation`, `id_employe`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6).
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (292)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 14:59:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '--' for column 'date_debut_formation' at row 1. The SQL statement executed was: INSERT INTO `formation` (`intitule_formation`, `etablissement_formation`, `diplome_formation`, `date_debut_formation`, `date_fin_formation`, `description_formation`, `id_employe`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6)' in C:\wamp64\www\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1080): CDbCommand->execute()
+#1 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->insert(NULL)
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(292): CActiveRecord->save()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionAjoutInfos()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('ajoutInfos')
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/ajoutIn...')
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/ajoutInfos
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/ajoutInfos
+---
+2017/05/12 14:59:32 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '--' for column 'date_debut_formation' at row 1. The SQL statement executed was: INSERT INTO `formation` (`intitule_formation`, `etablissement_formation`, `diplome_formation`, `date_debut_formation`, `date_fin_formation`, `description_formation`, `id_employe`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6).
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (292)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 14:59:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '--' for column 'date_debut_formation' at row 1. The SQL statement executed was: INSERT INTO `formation` (`intitule_formation`, `etablissement_formation`, `diplome_formation`, `date_debut_formation`, `date_fin_formation`, `description_formation`, `id_employe`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6)' in C:\wamp64\www\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1080): CDbCommand->execute()
+#1 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->insert(NULL)
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(292): CActiveRecord->save()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionAjoutInfos()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('ajoutInfos')
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/ajoutIn...')
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/ajoutInfos
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/ajoutInfos
+---
+2017/05/12 15:00:49 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '--' for column 'date_debut_formation' at row 1. The SQL statement executed was: INSERT INTO `formation` (`intitule_formation`, `etablissement_formation`, `diplome_formation`, `date_debut_formation`, `date_fin_formation`, `description_formation`, `id_employe`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6).
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (292)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/12 15:00:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '--' for column 'date_debut_formation' at row 1. The SQL statement executed was: INSERT INTO `formation` (`intitule_formation`, `etablissement_formation`, `diplome_formation`, `date_debut_formation`, `date_fin_formation`, `description_formation`, `id_employe`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6)' in C:\wamp64\www\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(1080): CDbCommand->execute()
+#1 C:\wamp64\www\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->insert(NULL)
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(292): CActiveRecord->save()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionAjoutInfos()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('ajoutInfos')
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/ajoutIn...')
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/ajoutInfos
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/ajoutInfos
+---
+2017/05/15 07:04:53 [error] [php] Undefined index: Competence (C:\wamp64\www\prozzl\protected\controllers\EmployeController.php:272)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#1 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#4 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#7 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/ajoutInfos
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (272)
+in C:\wamp64\www\prozzl\index.php (13)
+=======
 2017/05/12 15:20:49 [error] [php] Undefined variable: value (C:\wamp\www\prozzl\protected\models\AIPDF.php:923)
 Stack trace:
 #0 C:\wamp\www\prozzl\protected\models\AIPDF.php(165): get_personal_information()
@@ -12762,6 +13166,7 @@ REQUEST_URI=/prozzl/index.php?r=entreprise/to_candidatures
 in C:\wamp\www\prozzl\protected\views\entreprise\candidatures.php (54)
 in C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php (335)
 in C:\wamp\www\prozzl\index.php (13)
+<<<<<<< HEAD
 2017/05/15 08:16:58 [error] [exception.CException] exception 'CException' with message 'The attribute must be specified in the format of "Name:Type:Label", where "Type" and "Label" are optional.' in C:\wamp\www\yii\framework\zii\widgets\CDetailView.php:185
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CBaseController.php(181): CDetailView->run()
@@ -13525,3 +13930,7 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=entreprise/view&id=
 HTTP_REFERER=http://localhost/prozzl/index.php?r=entreprise/index
 ---
+=======
+>>>>>>> aecbd9acb71ef0f06137d4248a8908b1947dec58
+>>>>>>> 6d9b7725a1446409753e5557547c41d718c222ef
+>>>>>>> dfe5708ed6ec1a2a031839a92c0cdee4b83958b9

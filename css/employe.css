@@ -1,0 +1,110 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+#titre
+{
+	font-size:40px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+}
+
+#div_rechercher
+{
+	text-align:center;	
+	font-family:"Montserrat Light"
+}
+
+#btn_rechercher
+{
+	padding:1%;
+	background-color:#90ffb9;
+	color:Black;
+	border-radius: 50px;
+}
+
+#btn_postuler
+{
+	background-color:#90ffb9;
+	color:Black;
+	border-radius: 50px;
+	width:20%;
+	height:10%;
+	margin-left:39%;
+	font-family:"Montserrat Light";
+}
+
+#btn_cv
+{
+	background-color:#90ffb9;
+	color:Black;
+	border-radius: 50px;
+	width:20%;
+	height:10%;
+	margin-left:10%;
+	font-family:"Montserrat Light";
+}
+
+.btn_page:hover
+{
+	background :#90ffb9;
+}
+
+.btn_page:active
+{
+	background :#90ffb9;
+}
+
+mark
+{
+	color:#ff50bc;
+	background-color:White;
+}
+
+#row_field
+{
+	text-align: center;
+	margin-top: 2%;
+}
+
+#row_field2
+{
+	text-align: center;
+	margin-top: 2%;
+}
+
+.field
+{
+	text-align: center;
+	padding:1.0%;
+	background-color:rgb(250, 255, 189);
+	font-family:"Montserrat Light";
+}
+
+.menu_roulant
+{
+	padding:1.0%;
+	border-radius: 10%;
+	background-color:rgb(250, 255, 189);
+	font-family:"Montserrat Light";
+}
+
+#btn_infos
+{
+	background-color:#ff50bc;
+	font-family:"Montserrat Light";
+}
+
+#row_infos
+{
+	text-align: center;
+
+}

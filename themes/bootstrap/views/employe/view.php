@@ -13,7 +13,12 @@ $cs->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_view.js');
 ?>
 
-<h3>Mes informations personelles</h3>
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+      'Image accueil');
+ 
+      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
+
+<h3 id='titre'>Mes informations personelles</h3>
 
 <?php
 
@@ -76,7 +81,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 
-		echo "<div class='row'>";
+		echo "<div class='row' id='infos-perso'>";
 		echo "<p>Nom : ".$model->nom_employe." ".$model->prenom_employe."</p>";
 		echo "<p>Date de naissance : ".$model->date_naissance_employe."</p>";
 		echo "<p>Adressse : ".$adresse."</p>";
@@ -89,7 +94,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	?>
 
 	<div class="row">
-		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles'); ?>
+		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'maj-infos')); ?>
 	</div>
 
 	<?php $this->endWidget();?>	
@@ -98,7 +103,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 
 
 
-<h3>Mes informations complémentaires</h3>
+<h3 id='titre'>Mes informations complémentaires</h3>
 
 <?php
 	//Récupération des modèles d'informations complémentaires
@@ -117,8 +122,9 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 	?>	
+	<div id='info-comp'>
 
-	<h4>Mes formations / Parcours scolaire</h4>
+	<p>Mes formations / Parcours scolaire</p>
 
 	<div class="row">
 		<?php
@@ -134,7 +140,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		?>
 	</div>
 
-	<h4>Mes expériences professionnelles</h4>
+	<p>Mes expériences professionnelles</p>
 
 	<div class="row">
 		<?php
@@ -149,7 +155,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		?>	
 	</div>
 
-	<h4>Mes compétences</h4>
+	<p>Mes compétences</p>
 
 	<div class="row">
 		<?php
@@ -161,9 +167,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		?>
 	</div>
 
+	</div>
+
 	<div class="row">
-		<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout')); ?>
-		<?php echo Chtml::submitButton('Mettre à jour mes informations complémentaires', array('name'=>'btnmaj')); ?>
+		<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'maj-infos')); ?>
+		<?php echo Chtml::submitButton('Mettre à jour mes informations complémentaires', array('name'=>'btnmaj','id'=>'maj-infos')); ?>
 	</div>	
 
 	<?php $this->endWidget();?>	

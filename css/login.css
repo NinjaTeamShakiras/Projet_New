@@ -37,6 +37,11 @@ h1.Titre
 	border-radius: 10px;
 }
 
+.row-login input::invalid
+{
+	border: 1px solid red;
+}
+
 .row.rememberMe
 {
 	font-family:"Montserrat-Light";
@@ -55,9 +60,11 @@ h1.Titre
 {
 	background-color:#90ffb9;
 	color:Black;
+	border-radius: 50px;
 }
 
 .btnConnexion:hover
 {
 	background :#90ffb9;
 }
+

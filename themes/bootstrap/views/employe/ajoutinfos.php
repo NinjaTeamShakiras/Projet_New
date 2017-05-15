@@ -1,14 +1,3 @@
-<?php
-//Override de jquery avec la version 3.0 
-$cs = Yii::app()->clientScript;
-$cs->scriptMap = array(
-'jquery.js' => Yii::app()->request->baseUrl.'/js/jquery.js',
-);
-$cs->registerCoreScript('jquery');
-//Appel du fichier js correspondant à la page
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/infoscomplementaires.js');
-?>
-
 <h1>Formations</h1>
 
 <div class="from">
@@ -111,10 +100,8 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/infoscompl
 			<?php echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5'),array('separator' => ' ')); ?>
 			<?php echo $form->error($competence,'niveau_competence'); ?>
 		</div>
-
-		</div>
-		<div class="row">
-			<?php echo CHtml::submitbutton("Ajouter une competence",array('id' => 'btnajoutcompetence')); ?>
+		<div class="row buttons">
+			<?php echo CHtml::submitbutton("Ajouter une competence",array('name' => 'btnajoutcompetence')); ?>
 		</div>
 
 		<div class="row buttons">
