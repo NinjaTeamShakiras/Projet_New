@@ -1,3 +1,9 @@
+
+body
+{
+	background-color: White;
+}
+
 @font-face 
 {
 	font-family: "Bodoni FLF";
@@ -21,7 +27,7 @@
 	font-size:80px;
 	text-align:center;
 	font-family:"Bodoni FLF"; 
-	margin-top:3cm;
+	margin-top:2cm;
 
 }
 
@@ -30,7 +36,10 @@
 	background-color:White;
 	border: 1px black outset;
 }
-
+.twobuttons
+{
+	margin-top: 1cm;
+}
 .btnnoir
 {
 	background-color:#90ffb9;
@@ -39,7 +48,7 @@
 	font-size: 20px;		
 	font-family:"Montserrat Light";	
 	border-radius:50px;
-	margin-top:4cm;
+	margin-top:2cm;
 }
 
 .btnnoir:hover
@@ -64,7 +73,8 @@ mark
 	text-align:center;
 	font-size:20px;	
 	font-family:"Bodoni FLF";
-	margin-top:4cm; 	
+	margin-top:3cm; 	
+	margin-bottom: default;
 
 }
 
@@ -75,9 +85,4 @@ mark
 	font-size:20px;
 	text-align:center;
 	font-family:"Montserrat Light"
-}
-
-body
-{
-	background-color: White;
 }
