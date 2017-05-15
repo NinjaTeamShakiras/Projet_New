@@ -18,7 +18,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
  
       echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
 
-<h3 id='titre'>Mes informations personelles</h3>
+<h3 id='titre'>Mes informations personnelles</h3>
 
 <?php
 
@@ -83,7 +83,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 
 		echo "<div class='row' id='champ-infos-persos'>";
 		echo "<p>Nom : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
-		echo "<p>Date de naissance : <label>".$model->date_naissance_employe."</label</p>";
+		echo "<p>Date de naissance : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
 		echo "<p>Adressse : <label>".$adresse."</label></p>";
 		echo "<p>Téléphone : <label>".$user->telephone."</label></p>";
 		echo "<p>Autre téléphone : <label>".$user->telephone2."</label></p>";
