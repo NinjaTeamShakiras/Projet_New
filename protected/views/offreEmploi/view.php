@@ -385,7 +385,9 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 				<!-- Bouton pour postuler/Dépostuler -->
 				<?php 
 					// Message de confirmation de candidature
-					echo Yii::app()->user->getFlash('success_postule');
+					echo Yii::app()->user->getFlash('success_postule_offre');
+					echo Yii::app()->user->getFlash('success_depostule_offre');
+
 					if($aPostuler)
 					{ // si l'employe à postuler
 						echo CHtml::submitButton('Retirer ma candidature');

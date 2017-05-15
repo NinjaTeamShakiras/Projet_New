@@ -227,7 +227,7 @@ $this->breadcrumbs=array(
 			//print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 
 
-			$nomLien = $offre->type_offre_emploi." - ".$entreprise->nom_entreprise." - ".$adresse->ville;
+			$nomLien = $offre->type_offre_emploi." - ".$entreprise->nom_entreprise." - ".$adresse->ville." - ".$offre->poste_offre_emploi;
 			
 			// si un employé est connecté et a postulé à l'offre en question, on affiche qu'il a postuler avec la date.
 			if($utilisateur != null)
