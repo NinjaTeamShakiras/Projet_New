@@ -15,7 +15,6 @@ class FormationController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -28,7 +27,7 @@ class FormationController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'delete'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -97,6 +96,7 @@ class FormationController extends Controller
 			$model->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
 			$model->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
 			if($model->save())
+				Yii::app()->user->setFlash('success_maj_formation', "<p style = color:blue;>La formation ".$model->intitule_formation." à bien été mise à jour !</p>");
 				$this->redirect(array('employe/view', 'id'=>$model->id_employe));
 		}
 
@@ -112,11 +112,14 @@ class FormationController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		//On récupère l'id employé pour a redirection
+		$user = $model->id_employe;
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		//On supprime la compétence
+		$model->delete();
+
+		$this->redirect(array('employe/view', 'id'=>$user));
 	}
 
 	/**

@@ -58,8 +58,8 @@ class Competence extends CActiveRecord
 	{
 		return array(
 			'id_competence' => 'Id Competence',
-			'intitule_competence' => 'Intitule Competence',
-			'niveau_competence' => 'Niveau Competence',
+			'intitule_competence' => 'Nom de la compétence',
+			'niveau_competence' => 'niveau de la compétence',
 			'id_employe' => 'Id Employe',
 		);
 	}

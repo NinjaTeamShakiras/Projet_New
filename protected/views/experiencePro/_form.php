@@ -59,8 +59,8 @@
 		<?php echo $form->error($model,'description_experience'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="row">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Mettre à jour'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
