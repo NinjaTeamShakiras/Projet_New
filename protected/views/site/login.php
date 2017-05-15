@@ -15,7 +15,9 @@ $form=$this->beginWidget('CActiveForm', array(
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
-)); ?>
+)); 
+
+?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
@@ -43,13 +45,13 @@ $form=$this->beginWidget('CActiveForm', array(
 	if(Yii::app()->session['login'] == 'employe')
 	{
 		echo "<div>
-				<p>Vous n'êtes pas encore inscrit?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEmploye'))."</p>
+				<p>Vous n'êtes pas encore inscrit ?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEmploye'))."</p>
 			 </div>";
 	}
 	else if(Yii::app()->session['login'] == 'entreprise')
 	{
 		echo "<div>
-				<p>Vous n'êtes pas encore inscrit?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEntreprise'))."</p>
+				<p>Vous n'êtes pas encore inscrit ?".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEntreprise'))."</p>
 			 </div>";	
 	}
 	?>
