@@ -8,7 +8,8 @@
 <?php echo Yii::app()->user->getFlash('success_ajout_exp'); ?>	
 
 
-<div class="wide form">
+<div class="form">
+
 	<?php
 		$user = Utilisateur::model()->FindByAttributes(array("mail"=>Yii::app()->user->getID()));
 		$formation= formation::model();
@@ -71,7 +72,7 @@
 </div>		
 
 
-<div class="wide form">
+<div class="form">
 	<?php
 		$experiencePro= ExperiencePro::model();
 

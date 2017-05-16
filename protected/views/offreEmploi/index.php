@@ -13,69 +13,37 @@
 	{ // Si entreprise
 		?>
 
+
 		<!-- 	MENU 	-->
-		<!-- Formulaire avec le bouton pour Retour aux annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/entreprise/view',array('id'=>$utilisateur->id_entreprise)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+					Déposer une annonce
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/candidats" title="Mes candidats">
+					Mes candidats
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/index" title="Rechercher un CV">
+					Rechercher un CV
+					</a>
+				</li>
+			</ul>
 		</div>
 
-
-
-
-
-
-		<!-- Formulaire avec le bouton pour Mes annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/create'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Déposer une annonce'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-		<!-- Formulaire avec le bouton pour Rechercher cv -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/entreprise/index'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Rechercher un cv'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
 
 
 
@@ -85,6 +53,9 @@
 		echo Yii::app()->user->getFlash('success_delete_offre');
 
 
+
+
+
 	}
 	else if( Utilisateur::est_employe(Yii::app()->user->role))  
 	{  // Si employé
@@ -92,67 +63,28 @@
 		?>
 
 		<!--	MENU 	-->
-		<!-- Formulaire avec le bouton pour voir mon profil -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-		
-		<!-- Formulaire avec le bouton pour Mes candidature -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/mesOffres'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mes candidatures'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-
-				<!-- Formulaire avec le bouton pour Rechercher -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/recherche'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Rechercher une offre'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+					Mes candidatures
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					Rechercher une offre
+					</a>
+				</li>
+			</ul>
 		</div>
 
 		<?php

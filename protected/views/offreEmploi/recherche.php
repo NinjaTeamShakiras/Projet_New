@@ -8,47 +8,31 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 ?>
 
 
-<!--	MENU 	-->
-		<!-- Formulaire avec le bouton pour voir mon profil -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-
-		<!-- Formulaire avec le bouton pour voir mes candidatures -->
-		<div class="wide form">
-			<?php
-				//Début du form
-				$form=$this->beginWidget('CActiveForm',
-					array(
-						'action'=>Yii::app()->createUrl('offreEmploi/mesOffres') ,
-					)
-				);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mes candidatures'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-				
-		</div>
+<!-- MENU 	-->
+<div class="dropdown">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+	Menu 
+	<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<li>
+			<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+			Mon Profil
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+			Mes candidatures
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+			Liste des offres d'emplois
+			</a>
+		</li>
+	</ul>
+</div>
+	
 
 
 

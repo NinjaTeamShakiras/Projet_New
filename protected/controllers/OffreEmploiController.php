@@ -287,15 +287,7 @@ class OffreEmploiController extends Controller
 
 		if($postuler->save())
 		{ // Si la sauvegarde fonctionne
-			if($employeAPostuler)
-			{
-				Yii::app()->user->setFlash('success_depostule_offre', "<p style = color:blue;>Vous avez bien retirer votre candidature !</p>");
-			}
-			else
-			{
-				Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler au poste de !</p>");
-			}
-			//Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien candidater au poste de "." !</p>");
+			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler a cette offre !</p>");
 			$this->redirect(array('view','id'=>$id_offre));
 		}
 		else
@@ -338,6 +330,7 @@ class OffreEmploiController extends Controller
 		foreach($tablePostuler as $postuler){
 			if($postuler->id_employe == $employe && $postuler->id_offre_emploi == $id_offre){
 				$postuler->delete(); // On supprime la ligne concerné
+				Yii::app()->user->setFlash('success_depostule_offre', "<p style = color:blue;>Vous avez bien retirer votre candidature à cette offre !</p>");
 			}
 		}
 		

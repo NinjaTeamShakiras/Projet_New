@@ -13,12 +13,6 @@ $cs->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_view.js');
 ?>
 
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
-      'Image accueil');
- 
-      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
-
-<h3 id='titre'>Mes informations personnelles</h3>
 
 <?php
 
@@ -69,7 +63,41 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	}
 ?>
 
-	
+
+
+
+	<div>
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+      'Image accueil');
+ 
+      echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); ?>
+
+	</div>
+
+	<!-- MENU 	-->
+
+	<div class="dropdown">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+		Menu 
+		<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li>
+				<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil">
+				Mes Candidatures
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=offreEmploi/recherche&id=<?php echo $user->id_employe;?>" title="Mon profil">
+				Rechercher une offre
+				</a>
+			</li>
+		</ul>
+	</div>
+
+
+<h3 id='titre'>Mes informations personnelles</h3>
+
 <!-- Affichage des infos persos -->	
 <div class="form">	
 
@@ -173,7 +201,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 					echo Yii::app()->user->getFlash('success_maj_competence');
 				echo "<li>".$competence->intitule_competence."<label> Niveau ".$competence->niveau_competence."/5</label></li>";
 				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence));
-				echo " ";
+				echo "   ";
 				echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence)); 
 			}
 		?>

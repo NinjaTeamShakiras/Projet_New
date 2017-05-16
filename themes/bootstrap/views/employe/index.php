@@ -3,11 +3,6 @@
 /* @var $dataProvider CActiveDataProvider */
 
 ?>
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
-      'Image accueil');
- 
-      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
-
 
 <?php
 	$login = Yii::app()->user->getId();
@@ -25,8 +20,33 @@
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 ?>
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+      'Image accueil');
+ 
+      echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
 
 
+<!--  MENU 	-->
+<div class="dropdown">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+	Menu
+	<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<li>
+			<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+			Mon Profil
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+			Mes Candidatures
+			</a>
+		</li>
+	</ul>
+</div>
+
+	
 <!-- Formulaire de recherche d'une offre d'emploi -->
 <div class='row'>
 	<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis <mark>".$nombreOffre."</mark> offres</h3>"; ?>

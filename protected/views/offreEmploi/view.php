@@ -21,94 +21,42 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		?>
 
 		<!--	MENU 	-->
-		<!-- Formulaire avec le bouton pour voir mon profil -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/entreprise/view',array('id'=>$utilisateur->id_entreprise)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+					Déposer une annonce
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Mes annonces
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/candidats" title="Mes candidats">
+					Mes candidats
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/index" title="Rechercher un CV">
+					Rechercher un CV
+					</a>
+				</li>
+			</ul>
 		</div>
 
 
 
-
-
-		<!-- Formulaire avec le bouton pour Mes annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/index'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mes annonces'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-
-
-		<!-- Formulaire avec le bouton pour Modifier annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/update',array('id'=>$model->id_offre_emploi)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Modifier mon annonce'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-
-
-
-		<!-- Formulaire avec le bouton pour Supprimer annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/delete',array('id'=>$model->id_offre_emploi)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Supprimer mon annonce'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
 
 
 
@@ -119,7 +67,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 
 
 
-	}
+	} /* 	EMPLOYE 	*/
 	else if( Utilisateur::est_employe(Yii::app()->user->role))
 	{  // Si employé on affiche la possibilité de postuler à l'offre en question
 		$tablePostuler = Postuler::model()->FindAll();
@@ -138,70 +86,35 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 
 
 		<!--	MENU 	-->
-		<!-- Formulaire avec le bouton pour voir mon profil -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+					Mes candidatures
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					Rechercher une offre
+					</a>
+				</li>
+			</ul>
 		</div>
 
-
-
-
-		<!-- Formulaire avec le bouton pour voir mes candidatures -->
-		<div class="wide form">
-			<?php
-				//Début du form
-				$form=$this->beginWidget('CActiveForm',
-					array(
-						'action'=>Yii::app()->createUrl('offreEmploi/mesOffres') ,
-					)
-				);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Voir mes candidature'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-				
-		</div>
-
-
-
-
-
-
-		<!-- Formulaire avec le bouton pour rechercher une offre -->
-		<div class="wide form">
-			<?php
-				//Début du form
-				$form=$this->beginWidget('CActiveForm',
-					array(
-						'action'=>Yii::app()->createUrl('offreEmploi/recherche'),
-					)
-				);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Rechercher une offre'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-				
-		</div>
 
 
 	<?php
@@ -335,6 +248,53 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			print("<p> Vous n'avez aucune candidature à cette offre </p>");
 		}
 
+		?>
+
+
+		<!-- Formulaire avec le bouton pour Modifier annonce -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/update',array('id'=>$model->id_offre_emploi)),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Modifier mon annonce'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+
+
+		<!-- Formulaire avec le bouton pour Supprimer annonce -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/delete',array('id'=>$model->id_offre_emploi)),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Supprimer mon annonce'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+
+
+	<?php
+
 
 
 
@@ -359,9 +319,14 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		?> 
 
 
+
 		<!-- Formulaire avec le bouton pour postuler/dépostuler -->
 		<div class="wide form">
 			<?php
+				// Message de confirmation de candidature
+				echo Yii::app()->user->getFlash('success_postule_offre');
+				echo Yii::app()->user->getFlash('success_depostule_offre');
+
 				//Début du form
 				if($aPostuler)
 				{
@@ -384,10 +349,6 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			<div class="row buttons">
 				<!-- Bouton pour postuler/Dépostuler -->
 				<?php 
-					// Message de confirmation de candidature
-					echo Yii::app()->user->getFlash('success_postule_offre');
-					echo Yii::app()->user->getFlash('success_depostule_offre');
-
 					if($aPostuler)
 					{ // si l'employe à postuler
 						echo CHtml::submitButton('Retirer ma candidature');

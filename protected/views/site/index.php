@@ -14,5 +14,10 @@ $form=$this->beginWidget('CActiveForm', array(
 
 echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploi')); 
 echo CHtml::submitButton('Un salarié', array('name' => 'btnemploye')); 
+?>
+<div class='connexion'>Déjà un compte? <?php echo CHtml::link('Connexion',array('site/login'));
+?>
+</div>
+<?php
 $this->endWidget(); 	
 ?>
