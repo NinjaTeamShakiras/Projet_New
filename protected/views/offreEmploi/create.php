@@ -11,6 +11,7 @@
 $this->menu=array(
 	array('label'=>'Liste de mes offres d\'emploi', 'url'=>array('index')),
 );
+
 ?>
 
 <h1>Créer une offre d'emploi</h1>

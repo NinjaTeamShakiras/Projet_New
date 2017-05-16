@@ -72,12 +72,12 @@ else
 <?php
 	/* --- Sert pour lire le PDF --- */
 	require './protected/vendor/autoload.php';
+	
 
-	$this->renderPartial( './../employe/_upload_cv', array( 'model' => Employe::model() ) );
-
-	/* -- Si leCV a été téléchargé par l'utilisateur -- */
+	/* -- Si le CV a été téléchargé par l'utilisateur -- */
 	if( isset( $_GET[ 'token' ] ) )
 	{
+		$informationsCV_arr = array();
 		/* -- On récupère le texte du CV de l'employe -- */
 		$parser = new \Smalot\PdfParser\Parser();
 		/* -- URL pour récupérer le cv temporaire -- */
@@ -94,14 +94,20 @@ else
 			/* -- On teste que la récupération du texte à réussi -- */
 			if (strlen( $PDFText_str ) > 100 )
 			{
-				echo '<div>Extraction réussie</div>';
-				AIPDF::start_algorithm( $CV_pdf );
+				echo '<div style="padding : 2% 0%; text-align: center; widht: 100%;"><b>Extraction des informations réussie</b></div>';
+				$informationsCV_arr = AIPDF::start_algorithm( $CV_pdf );
+				$this->renderPartial( './../site/inscriptionEmployeCV', array( 'informations_arr' => $informationsCV_arr ) );
 			}
 			else 
 			{
 				echo '<div>Problème de récupération du texte</div>';
 			}
 		}
+	}
+	/* -- S'il ne l'a pas téléchargé -- */
+	else
+	{
+		$this->renderPartial( './../employe/_upload_cv', array( 'model' => Employe::model() ) );
 	}
 
 
