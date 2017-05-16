@@ -1,3 +1,72 @@
+
+
+<?php
+
+$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
+/*		MENU 		*/
+if($utilisateur != null)
+{ // Si connecter
+	if (Utilisateur::est_employe(Yii::app()->user->role) )
+	{ // Si employe
+		?>
+
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+							Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+					Mes candidatures
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=employe/index" title="Rechercher une offre">
+					Rechercher une offre
+					</a>
+				</li>
+			</ul>
+		</div>
+		<?php
+	}
+}
+else
+{
+	?>
+	<div class="dropdown">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu 
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li>
+				<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+				Liste des offres d'emplois
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=employe/index" title="Rechercher une offre">
+				Rechercher une offre
+				</a>
+			</li>
+		</ul>
+	</div>
+	<?php
+}
+
+?>
 <h1>Inscription à partir du CV</h1>
 
 <?php
@@ -34,4 +103,29 @@
 			}
 		}
 	}
-?>
+
+
+
+	if($utilisateur == null )
+	{
+		?>
+		<!-- Formulaire avec le bouton pour Inscription -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/site/inscriptionEmploye'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Inscription manuel'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+		<?php 
+	}

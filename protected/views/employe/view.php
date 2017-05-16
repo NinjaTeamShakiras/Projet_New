@@ -92,6 +92,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	{
 		$model->employe_travaille = "Oui";
 	}
+?>
+
+
+<!-- Affichage des infos persos -->
+<?php
 
 //Si l'utilisateur consulte sa page on affiche les infos persos
 //Sinon, si l'utilisateur consulte les infos de quelqu'un d'autre, on affiche pas les infos persos

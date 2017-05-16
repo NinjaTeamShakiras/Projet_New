@@ -41,6 +41,11 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
+					</a>
+				</li>
+				<li>
 					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
 					Liste des offres d'emplois
 					</a>
@@ -66,8 +71,8 @@ else
 			</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 				<li>
-					<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
-					Inscription
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
 					</a>
 				</li>
 				<li>
@@ -75,11 +80,7 @@ else
 					Liste des offres d'emplois
 					</a>
 				</li>
-				<li>
-					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
-					Ajouter mon CV
-					</a>
-				</li>
+				
 			</ul>
 		</div>
 	<?php
@@ -160,6 +161,49 @@ else
 
 </div>
 
+
+
+<?php /* ?>
+<!-- Fomulaire avec le bouton de l'ajout du CV -->
+<div class="wide form">
+	<?php
+		//Début du form
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('employe/choixAjoutCV'),
+			)
+		);
+	?>
+
+	<div class="row">
+		<!-- Bouton d'ajout du CV -->
+		<?php echo CHtml::submitButton('Ajouter mon CV'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+		
+</div>
+
+<!-- Formulaire avec le bouton pour postuler en click -->
+<div class="wide form">
+	<?php
+		//Début du form
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('offreEmploi/recherche') ,
+			)
+		);
+	?>
+
+	<div class="row">
+		<!-- Bouton pour postuler -->
+		<?php echo CHtml::submitButton('Postuler à une annonce en un seul click !'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+</div>
+
+<?php */ ?>
 
 
 	
