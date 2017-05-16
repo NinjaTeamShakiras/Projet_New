@@ -10,9 +10,6 @@ $this->breadcrumbs=array(
 
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-$modelOffre = OffreEmploi::model();
-$tabOffre = OffreEmploi::model()->FindAll("id_entreprise =".$utilisateur->id_entreprise);
-
 ?>
 
 <!--	MENU 	-->
@@ -66,11 +63,21 @@ $tabOffre = OffreEmploi::model()->FindAll("id_entreprise =".$utilisateur->id_ent
 
 	<div class="row">	
 		<?php
-			//Afficher candidats par annonce
+			$modelOffre = OffreEmploi::model();
+			$Offres = OffreEmploi::model()->FindAll("id_entreprise =".$utilisateur->id_entreprise);
+			$tabOffres = array();
+
+			foreach ($Offres as $key=>$offre) {
+				$num = $key + 1;
+				$entreprise = Entreprise::model()->FindByAttributes(array('id_entreprise'=>$offre->id_entreprise));
+				$tabOffresPersonnalise[] = "Annonce ".$num." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi;
+			}
+
+			//Afficher candidats par anonce
 			//-->On ajoute l'option "Sélectionner pour la liste"
-			$static_type = array('' => Yii::t('', 'Sélectionner une annonce ...'));
-			$posteOffre = CHtml::listData($tabOffre,'id_offre_emploi','poste_offre_emploi'); // On récupère tout les type d'offre existant
-			echo $form->dropDownList($modelOffre,'id_offre_emploi',$static_type + $posteOffre); // On affiche une liste déroulante de toutes les offres
+			$static = array('' => Yii::t('', 'Sélectionner une annonce ...'));
+			$posteOffre = CHtml::listData($tabOffresPersonnalise,'id_offre_emploi','poste_offre_emploi'); // On récupère tout les type d'offre existant
+			echo $form->dropDownList($modelOffre,'id_offre_emploi',$static + $tabOffresPersonnalise); // On affiche une liste déroulante de toutes les offres
 
 		?>
 	</div>

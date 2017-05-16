@@ -73,10 +73,18 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	{
 		$employe->telephone = "Non renseigné";
 	}
+	else
+	{
+		$employe->telephone = $this->afficheTelephone($employe->telephone);
+	}
 
 	if($employe->telephone2 == null)
 	{
 		$employe->telephone2 = "Non renseigné";
+	}
+	else
+	{
+		$employe->telephone2 = $this->afficheTelephone($employe->telephone2);
 	}
 
 	//On définit si l'employé cherche un travail ou non
@@ -92,6 +100,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	{
 		$model->employe_travaille = "Oui";
 	}
+	
 ?>
 
 

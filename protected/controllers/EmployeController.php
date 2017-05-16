@@ -273,22 +273,6 @@ class EmployeController extends Controller
 		));
 	}
 
-	/*Fonction qui affiche la page choixAjoutCV*/
-	public function actionChoixAjoutCV()
-	{
-		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
-		unset(Yii::app()->session['login']);
-		Yii::app()->session['login'] = 'employe';
-
-		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-		
-		if($user == null)
-		{
-			Yii::app()->user->loginRequired();
-		}
-		
-		$this->render('choixAjoutCV');
-	}
 	
 	/* Fonction qui change la date au format Américain pour la BDD */
 	public function changeDateBDD($date)
@@ -340,6 +324,12 @@ class EmployeController extends Controller
 		//On récupère l'utilisateur
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
 
+		//Si l'utilisateur n'est pas connecté, on force la connexion
+		if($user == null)
+		{
+			Yii::app()->user->loginRequired();
+		}
+
 
 		if(isset($_POST['retour'])){
 			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
@@ -351,10 +341,6 @@ class EmployeController extends Controller
 
 	public function actionajoutCompetences()
 	{
-		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
-		unset(Yii::app()->session['login']);
-		Yii::app()->session['login'] = 'employe';
-
 		//On récupère l'utilisateur
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
 
@@ -380,10 +366,6 @@ class EmployeController extends Controller
 
 	public function actionajoutFormation()
 	{
-		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
-		unset(Yii::app()->session['login']);
-		Yii::app()->session['login'] = 'employe';
-
 		//On récupère l'utilisateur
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
 
@@ -411,10 +393,6 @@ class EmployeController extends Controller
 
 	public function actionajoutExpPro()
 	{
-		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
-		unset(Yii::app()->session['login']);
-		Yii::app()->session['login'] = 'employe';
-
 		//On récupère l'utilisateur
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
 
@@ -450,25 +428,6 @@ class EmployeController extends Controller
 		{
 			$this->render('ajoutInfos');
 		}	
-	}
-
-
-	/*Fonction qui permet, soit d'uploader son CV sur le site, soit d'être rédirigé vers 
-	la page ajoutinfos.php suivant le bouton sur lequel on clique*/
-	public function actionchoixCV()
-	{
-		//Si il choisi l'upload, on upload le CV
-		if(isset($_POST['upload']))
-		{
-			//METTRE ICI L'UPLOAD DU CV
-			$this->redirect(array('index'));
-		}
-
-		//Si il choisit de renseigner ses infos, on le redirige vers le dit formulaire
-		if(isset($_POST['infos_persos']))
-		{
-			$this->render('ajoutinfos');
-		}
 	}
 
 
@@ -558,6 +517,27 @@ class EmployeController extends Controller
 		$this->render('parametres');
 	}
 
+	/*Fonction qui change le numéro de téléphone pour un affichage avec des points tous les deux chiffres
+	@params $telephone est le numéro de téléphone*/
+	public function afficheTelephone($telephone)
+	{
+		$res = "";
+
+		for($i = 0; $i<10; $i++)
+		{
+			//Tous les deux chiffres on ajoute un point
+			if($i%2 == 0)
+			{
+				$num = substr($telephone, $i, 2);
+				$res .= $num.".";
+			}
+
+			//On enlève le point en trop
+			$res = substr($res, 0, 14);
+		}
+
+		return $res;
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

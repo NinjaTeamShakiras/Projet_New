@@ -183,7 +183,7 @@ if($utilisateur != null)
 				//print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
 				// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 
-				$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+				$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - créée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
 
 				echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 
@@ -259,7 +259,7 @@ if($utilisateur != null)
 			// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 
 
-			$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+			$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - créée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
 			foreach($tablePostuler as $postuler)
 			{
 				if($postuler->id_employe == $utilisateur->id_employe && $postuler->id_offre_emploi == $offre->id_offre_emploi )
@@ -311,7 +311,7 @@ else
 		// - print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
 		// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 
-		$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+		$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - créée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
 		
 		echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 

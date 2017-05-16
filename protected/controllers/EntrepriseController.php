@@ -91,6 +91,7 @@ class EntrepriseController extends Controller
 			$model->attributes=$_POST['Entreprise'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_entreprise));
+
 		}
 
 		$this->render('create',array(
