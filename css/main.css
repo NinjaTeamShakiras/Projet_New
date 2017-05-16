@@ -19,7 +19,12 @@ body
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px search-formlid #C9E0ED;
+	border-top: 3px solid #C9E0ED;
+}
+
+body
+{
+	background-color: white;
 }
 
 #content
@@ -34,7 +39,6 @@ body
 
 #footer
 {
-	background-image:url("../images/image6_1");
 	padding: 10px;
 	margin: 10px 20px;
 	font-size: 0.8em;
