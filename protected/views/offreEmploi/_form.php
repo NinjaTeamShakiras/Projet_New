@@ -2,6 +2,7 @@
 /* @var $this OffreEmploiController */
 /* @var $model OffreEmploi */
 /* @var $form CActiveForm */
+
 ?>
 
 <div class="form">
@@ -149,22 +150,11 @@
 	<div class="wide form">
 		<?php
 		//Début du form
-		if($model->isNewRecord)
-		{
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/index')
-				)
-			);
-		}
-		else
-		{
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/view', array('id'=>$model->id_offre_emploi))
-				)
-			);
-		}
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->request->geturlReferrer()
+			)
+		);
 		?>
 
 		<div class="row buttons">

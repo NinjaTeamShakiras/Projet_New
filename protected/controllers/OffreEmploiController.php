@@ -309,8 +309,43 @@ class OffreEmploiController extends Controller
 		$dataProvider=new CActiveDataProvider('OffreEmploi');
 		$this->render('mesOffres',array(
 			'dataProvider'=>$dataProvider,
+			'data'=>-2,
 		));
 	}
+
+
+
+	public function actionActualiseMesOffres()
+	{
+
+		if($_POST['OffreEmploi']['poste_offre_emploi'] != '')
+		{
+			// On récupère les données du formulaire
+			$posteOffre = $_POST['OffreEmploi']['poste_offre_emploi'];
+
+			// On récupère l'utilisateur
+			$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
+			// On récupère toutes les candidature de l'employe (utilisateur actuelle)
+			$tabPostule = postuler::model()->FindAll("id_employe = '$utilisateur->id_employe'");
+
+			// On récupère toutes les offres correspondants à l'employé et au poste qu'il à selectionné
+			foreach($tabPostule as $candidature)
+			{
+				$tabOffreEmploye[] = offreEmploi::model()->FindByAttributes(array("poste_offre_emploi"=>$posteOffre));
+			}
+
+			$this->render('mesOffres', array('data'=>$tabOffreEmploye));
+
+		}
+		else
+		{
+			$this->render('mesOffres',array('data'=>-1));
+		}
+
+	}
+
+
 
 
 
@@ -570,7 +605,6 @@ class OffreEmploiController extends Controller
 			Yii::app()->end();
 		}
 	}
-
 
 
 
