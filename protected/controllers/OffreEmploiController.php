@@ -287,7 +287,7 @@ class OffreEmploiController extends Controller
 
 		if($postuler->save())
 		{ // Si la sauvegarde fonctionne
-			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler a cette offre !</p>");
+			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler à cette offre !</p>");
 			$this->redirect(array('view','id'=>$id_offre));
 		}
 		else

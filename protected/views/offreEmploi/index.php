@@ -265,7 +265,7 @@ if($utilisateur != null)
 				if($postuler->id_employe == $utilisateur->id_employe && $postuler->id_offre_emploi == $offre->id_offre_emploi )
 				{
 					//print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
-					$nomLien .= " --- vous avez postuler à cette annonce le ".$this->changeDateNaissance($postuler->date_postule);
+					$nomLien .= " --- Vous avez postuler à cette annonce le ".$this->changeDateNaissance($postuler->date_postule);
 					break;
 				}
 			}

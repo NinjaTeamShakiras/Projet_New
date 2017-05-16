@@ -101,7 +101,7 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
-					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					<a href="index.php?r=employe/index" title="Rechercher une offre">
 					Rechercher une offre
 					</a>
 				</li>
