@@ -115,10 +115,20 @@ class EmployeController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		if(isset($_POST['btnretour']))
+		{
+			$this->redirect(array('employe/view', 'id'=>$id));
+		}
+
 		$model=$this->loadModel($id);
-				
-		$adresse = Adresse::model()->findByAttributes(array('id_adresse'=>$model->id_adresse));
-		$utilisateur = Utilisateur::model()->findByAttributes(array('id_employe'=>$model->id_employe));
+		
+		$utilisateur = Utilisateur::model()->findByAttributes(array('id_employe'=>$model->id_employe));		
+		$adresse = Adresse::model()->findByAttributes(array('id_adresse'=>$utilisateur->id_adresse));
+
+		if($adresse == null)
+		{
+			$adresse = new Adresse;
+		}
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -127,15 +137,27 @@ class EmployeController extends Controller
 		{
 
 			//Transormation de la date puisque en Anglais dans la base en français dans le site
-			$model->date_naissance_employe = $this->changeDateBDD($_POST['Employe']['date_naissance_employe']);
 			//On enregistre les nouvelles données dans les modèles
 			$model->attributes = $_POST['Employe'];
+			$model->date_naissance_employe = $this->changeDateBDD($_POST['Employe']['date_naissance_employe']);
+			
 			$adresse->attributes = $_POST['Adresse'];
+			$adresse->save();
+
+			$utilisateur->id_adresse = $adresse->id_adresse;
+			$utilisateur->site_web = $_POST['Utilisateur']['site_web'];
+			$utilisateur->telephone = $_POST['Utilisateur']['telephone'];
+			$utilisateur->telephone2 = $_POST['Utilisateur']['telephone2'];
 			$utilisateur->mail = $_POST['Utilisateur']['mail'];
 
+			var_dump($adresse);
+
 			//On enregistre le modèle et on redirige
-			if($model->save() && $adresse->save() && $utilisateur->save())
+			if($model->save() && $utilisateur->save())
+			{
+				Yii::app()->user->setFlash('success_maj_infos_persos', "<p style = color:blue;>Votre profil à bien été mise à jour !</p>");
 				$this->redirect(array('view','id'=>$model->id_employe));
+			}
 
 		}
 
@@ -163,6 +185,9 @@ class EmployeController extends Controller
 	 */
 	public function actionIndex()
 	{
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
 		$dataProvider=new CActiveDataProvider('Employe');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -248,17 +273,62 @@ class EmployeController extends Controller
 		unset(Yii::app()->session['login']);
 		Yii::app()->session['login'] = 'employe';
 
-		$formation = new Formation;
-		$experiencePro = new ExperiencePro;
-		$competence = new Competence;
+		//On récupère l'utilisateur
 		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-		var_dump($user);
-		if($user==null)
-		{
-			Yii::app()->user->loginRequired();
+
+
+		if(isset($_POST['retour'])){
+			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
 		}
-		if(isset($_POST['Competence']) && isset($_POST['ExperiencePro']) && isset($_POST['Competence']))
+
+		$this->render('ajoutinfos');
+
+	}
+
+	public function actionajoutCompetences()
+	{
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si il clique sur "ajouter une compétence", on la créé
+		if(isset($_POST['Competence']))
 		{
+			$competence = new Competence;
+
+			//On attributs les valeurs entrés par l'utilisateur dans le model competence
+			$competence->attributes = $_POST['Competence'];
+			$competence->id_employe = $user->id_employe;
+
+			//On save le model competence 
+			if($competence->save())
+			{
+				//Si c'est OK, on affiche un message de confirmation
+				Yii::app()->user->setFlash('success_ajout_competence', "<p style = color:blue;>La competence ".$competence->intitule_competence." à bien été ajoutée !</p>");
+				//$this->render('ajoutinfos');
+			}
+		}
+
+		$this->render('ajoutinfos');
+	}
+
+	public function actionajoutFormation()
+	{
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si il clique sur ajouter une formation, on la créé
+		if(isset($_POST['Formation']))
+		{
+			$formation = new Formation;
+
 			//On attributs les valeurs entrés par l'utilisateur dans le model Formation
 			$formation->attributes = $_POST['Formation'];
 			$formation->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
@@ -266,39 +336,71 @@ class EmployeController extends Controller
 			$formation->id_employe = $user->id_employe;
 
 			//On save le model formation
-			$formation->save();
+			if($formation->save())
+			{
+				//Si c'est OK, on affiche un message de confirmation
+				Yii::app()->user->setFlash('success_ajout_formation', "<p style = color:blue;>La formation ".$formation->intitule_formation." à bien été ajoutée !</p>");
+				$this->render('ajoutinfos');
+			}
+		}
+
+		$this->render('ajoutinfos');
+	}
+
+	public function actionajoutExpPro()
+	{
+		//On créé une variable globale définissant si on est côté employé ou entreprise sur le site
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si il clique sur ajouter une expérience pro, on la créé
+		if(isset($_POST['btnajoutexppro']) && isset($_POST['ExperiencePro']))
+		{
+			$experiencePro = new ExperiencePro;
 
 			//On attributs les valeurs entrés par l'utilisateur dans le model experience
 			$experiencePro->attributes = $_POST['ExperiencePro'];
 			$experiencePro->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
 			$experiencePro->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
 			$experiencePro->id_employe = $user->id_employe;
-			
+				
 			//On save le model experience
-			$experiencePro->save();
+			if($experiencePro->save())
+			{
+				//Si c'est OK, on affiche un message de confirmation
+				Yii::app()->user->setFlash('success_ajout_exp', "<p style = color:blue;>L'expérience pro ".$experiencePro->intitule_experience." à bien été ajoutée !</p>");
+				$this->redirect(array('employe/view', 'id'=>$user->id_employe));
+			}	
+		}
 
-			//On attributs les valeurs entrés par l'utilisateur dans le model competence
-			$competence->attributes = $_POST['Competence'];
-			$competence->id_employe = $user->id_employe;
+		$this-render('ajoutInfos');
+	}
 
-			//On save le model competence 
-			$competence->save();
+	public function choixAjoutMAJInfos()
+	{
+		if(isset($_POST['btnmaj']))
+		{
 
 		}
-			//Sinon on renvoie la page inscription car les champs ne sont pas valides
-			$this->render('ajoutinfos'); 
+		else if(isset($_POST['btnajout']))
+		{
+			$this->render('ajoutInfos');
+		}	
 	}
 
 
 	/*Fonction qui permet, soit d'uploader son CV sur le site, soit d'être rédirigé vers 
 	la page ajoutinfos.php suivant le bouton sur lequel on clique*/
-	public function choixCV()
+	public function actionchoixCV()
 	{
 		//Si il choisi l'upload, on upload le CV
 		if(isset($_POST['upload']))
 		{
 			//METTRE ICI L'UPLOAD DU CV
-			$this->redirect(array('employe/index'));
+			$this->redirect(array('index'));
 		}
 
 		//Si il choisit de renseigner ses infos, on le redirige vers le dit formulaire

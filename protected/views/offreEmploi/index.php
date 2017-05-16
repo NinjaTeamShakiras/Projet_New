@@ -6,35 +6,117 @@
 	'Offre Emplois',
 );
 */
-
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 	$titre ="";
 
+if($utilisateur != null)
+{ // Si connecter
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise
-		$this->menu=array(
-			array('label'=>'Déposer une annonce gratuitement', 'url'=>array('create')), // On peut créer une offre d'emploi
-		);
+		?>
 
-		$titre = "Mes offres d'emplois";
+		<!-- 	MENU 	-->
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+					Déposer une annonce
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/candidats" title="Mes candidats">
+					Mes candidats
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/index" title="Rechercher un CV">
+					Rechercher un CV
+					</a>
+				</li>
+			</ul>
+		</div>
 
-	}
+		<?php
+
+		$titre = "Mes annonces";
+		echo Yii::app()->user->getFlash('success_delete_offre');
+
+
+	}	/* 		EMPLOYE 	*/
 	else if( Utilisateur::est_employe(Yii::app()->user->role))  
 	{  // Si employé
-		$this->menu=array(
-			array('label'=>'Voir mes candidatures', 'url'=>array('/offreEmploi/mesOffres')), // Voir les offres d'emplois au quel l'employé à postulé
-			array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
-		);
+
+		?>
+
+		<!--	MENU 	-->
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+					Mes candidatures
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					Rechercher une offre
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<?php
 		$titre = "Liste des offres d'emplois";
 
 	}
-	else 
-	{ // Si autre
-		$this->menu=array(
-			array('label'=>'Créer une offre', 'url'=>array('create')), // On peut créer et postuler à une offre d'emploie
-		);
+}
+else
+{
+	?>
+	<div class="dropdown">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu 
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li>
+				<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+				Ajouter mon CV
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=employe/index" title="Rechercher une offre">
+				Rechercher une offre
+				</a>
+			</li>
+		</ul>
+	</div>
+	<?php
 
-		$titre = "Liste des offres d'emplois";
-	}
+	$titre = "Liste des offres d'emplois";
+}
 
 ?>
 
@@ -53,6 +135,9 @@
 	$tablePostuler = Postuler::model()->FindAll();
 
 
+
+if($utilisateur != null)
+{ // Si connecter
 	/*		ENTREPRISE 			*/
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche les offres d'emploi de l'entreprise
@@ -72,7 +157,8 @@
 		}
 
 		print("<p>Vous avez posté ".$nombreOffreEntreprise." offres.</p>");
-		
+
+		$annonceN = 0;
 		foreach ($model as $key => $offre ) // Pour chaque offre ...
 		{
 			$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
@@ -84,20 +170,23 @@
 			// On affiche les offres de l'entreprise
 			if($offre->id_entreprise == $utilisateur->id_entreprise) // Si l'offre appartient à l'entreprise
 			{
-				$nombreOffreEntreprise++;
+				$annonceN++;
 				//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 				//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
-				print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-				print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
-				print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
-				print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
-				print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
-				print("<p> Lieu : ".$adresse->ville." </p>");
-				print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
-				print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
-				print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
-				echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
-	
+				//print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+				// - print("<p> Annonce ".$annonceN." : Poste : ".$offre->poste_offre_emploi."</p>");
+				// - print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+				//print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+				//print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+				//print("<p> Lieu : ".$adresse->ville." </p>");
+				//print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+				//print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+				// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+
+				$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+
+				echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+
 				$candidats = Postuler::model()->FindAll("id_offre_emploi =".$offre->id_offre_emploi); // On récupère tout les candidats à l'offre
 
 				// Recherche du nombre de candidature et des candidat
@@ -132,6 +221,7 @@
 
 
 
+
 	} /*			EMPLOYE 			*/
 	else if( Utilisateur::est_employe(Yii::app()->user->role))
 	{  // Si employé on affiche toutes les offres d'emploi
@@ -139,11 +229,16 @@
 		$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 		$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
 
+		$annonceN = 0;
+
 		print("<p> Postulez ou consultez ".$nombreTotalOffre." offres proposées par des entreprises.</p>");
 
 
 		foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :
 		{
+
+			$annonceN++;
+
 			$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
 
 			// Pour récupéré l'adresse : 
@@ -152,33 +247,76 @@
 
 			//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 			//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
-			print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
-			print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-			print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
-			print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
-			print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
-			print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
-			print("<p> Lieu : ".$adresse->ville." </p>");
-			print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
-			print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
-			print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+			// - print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+			// - print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+			// - print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
+			// - print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+			// - print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+			// - print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+			// - print("<p> Lieu : ".$adresse->ville." </p>");
+			// - print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+			// - print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+			// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+
+
+			$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
 			foreach($tablePostuler as $postuler)
 			{
 				if($postuler->id_employe == $utilisateur->id_employe && $postuler->id_offre_emploi == $offre->id_offre_emploi )
 				{
-					print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+					//print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+					$nomLien .= " --- vous avez postuler à cette annonce le ".$this->changeDateNaissance($postuler->date_postule);
+					break;
 				}
 			}
-			echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+
+			
+			echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 			echo "<hr/>";
 		}
 
 	}
-	else 
-	{ // Si autre on affiche toutes les offres d'emploi
-		$this->widget('zii.widgets.CListView', array(
-			'dataProvider'=>$dataProvider,
-			'itemView'=>'_view',
-		));
+}
+else 
+{ // Si employe non connecté toutes les offres d'emploi
 
+	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
+	$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
+
+	$annonceN = 0;
+
+	print("<p> Postulez ou consultez ".$nombreTotalOffre." offres proposées par des entreprises.</p>");
+
+
+	foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :
+	{
+		$annonceN++;
+
+		$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+
+		// Pour récupéré l'adresse : 
+		$userEntreprise = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+		$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
+
+		//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
+		//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
+		// - print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+		// - print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+		// - print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
+		// - print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+		// - print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+		// - print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+		// - print("<p> Lieu : ".$adresse->ville." </p>");
+		// - print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+		// - print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+		// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+
+		$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+		
+		echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+
+		echo "<hr/>";
 	}
+
+
+}

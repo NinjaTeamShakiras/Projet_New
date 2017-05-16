@@ -1,0 +1,44 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+#titre
+{
+	font-size:40px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+}
+
+#CV
+{
+	margin-top: 2%;
+	text-align: center;
+	font-family:"Montserrat Light";
+}
+
+#infos
+{
+	margin-top: 2%;
+	text-align: center;
+	font-family:"Montserrat Light";	
+}
+
+#bouton-CV
+{
+	padding: 1%;
+	background-color:rgb(250, 255, 189);
+}
+
+#bouton-infos
+{
+	padding: 0.5%;
+	background-color:rgb(250, 255, 189);
+}

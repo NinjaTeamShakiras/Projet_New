@@ -15,19 +15,29 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_debut_experience'); ?>
-		<?php echo $form->textField($model,'date_debut_experience'); ?>
+		<?php echo $form->textField($model,'date_debut_experience', array(
+																	'value' => $this->changeDateNaissance($model->date_debut_experience),
+																	'size' => 20,
+																	'maxlength' => 10,
+																	'placeholder' => 'JJ/MM/AAAA',
+																	)
+		); ?>
 		<?php echo $form->error($model,'date_debut_experience'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_fin_experience'); ?>
-		<?php echo $form->textField($model,'date_fin_experience'); ?>
+		<?php echo $form->textField($model,'date_fin_experience', array(
+																	'value' => $this->changeDateNaissance($model->date_fin_experience),
+																	'size' => 20,
+																	'maxlength' => 10,
+																	'placeholder' => 'JJ/MM/AAAA',
+																)
+		); ?>
 		<?php echo $form->error($model,'date_fin_experience'); ?>
 	</div>
 
@@ -50,13 +60,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'id_employe'); ?>
-		<?php echo $form->textField($model,'id_employe'); ?>
-		<?php echo $form->error($model,'id_employe'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Mettre à jour'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

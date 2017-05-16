@@ -15,7 +15,6 @@ class CompetenceController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -28,7 +27,7 @@ class CompetenceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'delete'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -95,7 +94,8 @@ class CompetenceController extends Controller
 		{
 			$model->attributes=$_POST['Competence'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_competence));
+				Yii::app()->user->setFlash('success_maj_competence', "<p style = color:blue;>La compétence ".$model->intitule_competence." à bien été mise à jour !</p>");
+				$this->redirect(array('employe/view','id'=>$model->id_employe));
 		}
 
 		$this->render('update',array(
@@ -110,11 +110,18 @@ class CompetenceController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		//On récupère l'id de l'employe dont on aura besoin pour la redirection
+		$user = $model->id_employe;
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		//On supprime le model
+		if($model->delete())
+		{
+			//Si c'est OK, on affiche un message
+			Yii::app()->user->setFlash('success_sup_competence', "<p style = color:blue;>La compétence ".$model->intitule_competence." à bien été supprimée !</p>");
+		}
+
+		$this->redirect(array('employe/view', 'id'=>$user));
 	}
 
 	/**
@@ -168,24 +175,6 @@ class CompetenceController extends Controller
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
-		}
-	}
-
-	public function actionFormulaire_competence()
-	{			
-		$competence = new Competence;
-		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-		if(isset($_POST['Competence']))
-		{
-			$competence->attributes = $_POST['Competence'];
-			$competence->id_employe = $user->id_employe;
-			$competence->save();
-		}
-		$this->render('formulairecompetence');
-
-		if(isset($_POST['btnajoutcompetence']))
-		{
-		
 		}
 	}
 

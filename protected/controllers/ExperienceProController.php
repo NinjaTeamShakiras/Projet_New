@@ -15,7 +15,6 @@ class ExperienceProController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -28,7 +27,7 @@ class ExperienceProController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'delete'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -94,8 +93,11 @@ class ExperienceProController extends Controller
 		if(isset($_POST['ExperiencePro']))
 		{
 			$model->attributes=$_POST['ExperiencePro'];
+			$model->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
+			$model->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_experience));
+				Yii::app()->user->setFlash('success_maj_exp', "<p style = color:blue;>L'expérience pro ".$model->intitule_experience." à bien été mise à jour !</p>");
+				$this->redirect(array('employe/view','id'=>$model->id_employe));
 		}
 
 		$this->render('update',array(
@@ -110,11 +112,18 @@ class ExperienceProController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		//On récupère l'utilisateur car on en aura besoin pour plus tard
+		$user = $model->id_employe;
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		//On détruit le model
+		if($model->delete())
+		{
+			//Si c'est OK, on affiche un message de confirmation
+			Yii::app()->user->setFlash('success_sup_exp', "<p style = color:blue;>L'expérience pro ".$model->intitule_experience." à bien été supprimée !</p>");
+		}
+
+		$this->redirect(array('employe/view', 'id'=>$user));
 	}
 
 	/**
@@ -171,7 +180,7 @@ class ExperienceProController extends Controller
 		}
 	}
 
-		/* Fonction qui change la date au format Américain pour la BDD */
+	/* Fonction qui change la date au format Américain pour la BDD */
 	public function changeDateBDD($date)
 	{
 			$result = NULL;
@@ -187,6 +196,26 @@ class ExperienceProController extends Controller
 			$result = $year."-".$month."-".$day;
 
 			return $result;
+	}
+
+	/*	Fonction qui change la date au format français
+	@param $date est une date récupérée depuis la BDD
+	*/
+	protected function changeDateNaissance($date)
+	{
+		$result = NULL;
+		$day = 0;
+		$month = 0;
+		$year = 0;
+
+		//On récupère chaque valeur grâce a substr
+		$year = substr($date, 0, 4);
+		$month = substr($date, 5, 2);
+		$day = substr($date, 8, 2);
+
+		$result = $day."/".$month."/".$year;
+
+		return $result;
 	}
 
 

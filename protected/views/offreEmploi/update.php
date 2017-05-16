@@ -18,6 +18,6 @@ $this->menu=array(
 */
 ?>
 
-<h1>Modifier votre offre (offre<?php echo $model->id_offre_emploi; ?>)</h1>
+<h1>Modifier votre offre </h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

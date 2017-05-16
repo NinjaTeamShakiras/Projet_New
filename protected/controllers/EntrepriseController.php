@@ -26,23 +26,42 @@ class EntrepriseController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+		$user = Yii::app()->user;
+
+		// Si employe on donne acces a rien
+		if($user->getState('type') == 'employe')
+		{
+			return array(
+				array('allow',
+					  'actions'=>[],
+					),
+				array('deny',
+					  'actions'=>['admin'],
+					),
+			);
+		}
+
+		// Si employe on donne acces a la liste d'offre, à view, index, search, à delete et à update
+		if($user->getState('type') == 'entreprise')
+		{
+			return array(
+					array('allow',
+						  'actions'=>['view', 'index', 'delete', 'update', 'search'],
+						),
+					array('deny',
+						  'actions'=>['admin'],
+						),
+			);
+		}	
+
+		if($user->getState('type') == NULL)
+		{
+			return array(
+					array('deny',
+						  'actions'=>['*'],
+						  ),
+					);
+		}	
 	}
 
 	/**
@@ -95,6 +114,7 @@ class EntrepriseController extends Controller
 		{
 			$model->attributes=$_POST['Entreprise'];
 			if($model->save())
+				Yii::app()->user->setFlash('success_update_entreprise', "<p style = color:blue;>Votre profil à bien été mis à jour !</p>");
 				$this->redirect(array('view','id'=>$model->id_entreprise));
 		}
 
@@ -114,6 +134,7 @@ class EntrepriseController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
+			Yii::app()->user->setFlash('success_delete_entreprise', "<p style = color:blue;>Votre profil à bien été supprimer !</p>");
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
@@ -122,6 +143,16 @@ class EntrepriseController extends Controller
 	 */
 	public function actionIndex()
 	{
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'entreprise';
+
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+		
+		if($user == null)
+		{
+			Yii::app()->user->loginRequired();
+		}
+
 		$dataProvider=new CActiveDataProvider('Entreprise');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -170,4 +201,151 @@ class EntrepriseController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+
+
+
+	/**
+	 * Recherche de cv
+	 */
+	public function actionSearch()
+	{
+
+		$model = competence::model()->FindAll();
+		$aRechercher = false;
+		
+		if(isset($_POST['Competence']))
+		{
+			// On récupère les données du formulaire
+			$intitule_competence = $_POST['Competence']['intitule_competence'];
+			$niveau_competence = $_POST['Competence']['niveau_competence'];
+
+			// Tableau de résultat d'employe rechercher
+			$tabEmploye = employe::model()->findAll();
+
+			$intituleCompetenceIsSet = false;
+			$niveauCompetenceIsSet = false;
+
+			if($intitule_competence != null)
+			{
+				$intituleCompetenceIsSet = true;
+			}
+			if( ($niveau_competence != null) && ($niveau_competence != null) )
+			{
+				$niveauCompetenceIsSet = true;
+			}
+
+			// Initialisation des varaiable temp
+			$tabTemp = array();
+			$i = 0;
+			
+
+
+			/**** 		RECHERCHE		****/
+
+			/* 		Recherche par Intitule et niveau de compétence		*/
+			if( ($intituleCompetenceIsSet || $niveauCompetenceIsSet) && ($tabEmploye != null) )
+			{
+				$requete = "";
+				if($intituleCompetenceIsSet && $niveauCompetenceIsSet)
+				{
+					$requete = "intitule_competence LIKE '%$intitule_competence%' AND niveau_competence LIKE '$niveau_competence'";
+				}
+				else if($intituleCompetenceIsSet)
+				{
+					$requete .= "intitule_competence LIKE '%$intitule_competence%'";
+				}
+				else if($niveauCompetenceIsSet)
+				{
+					$requete .= "niveau_competence LIKE '$niveau_competence'";
+				}
+
+				// On recherche toute les compétences ayant un intituler ressemblant à la recherche / et 
+				// éventuellement avec un certain niveau
+				$tabIntituleTrouver = competence::model()->findAll($requete);
+
+				foreach($tabEmploye as $employe)
+				{
+					foreach($tabIntituleTrouver as $competence)
+					{ // On parcours le tableau des intitulé de compétence trouvé
+						if( ($competence->id_employe == $employe->id_employe) )
+						{ // Si l'employe à déjà été mis de coté, on conserve
+							$tabTemp[$i] = $employe;
+							$i++;
+
+							// Si on ajoute une fois l'employe, il sera dans le tableau ..
+							// pas la peine de continuer le match pour cette employe
+							// on passe au suivant
+							break;
+						}
+					}
+				}
+				// On rétablis $tabEmploye avec le nouveau résultat affiné
+				$tabEmploye = $tabTemp;
+
+				// Réinitialisation des variable temporaire
+				$tabTemp = array(); 
+				$i=0;
+
+				$aRechercher = true;
+			}
+
+
+			/**** 		FIN RECHERCHE 		****/
+			
+			// On redirige avec le resultat.
+			$this->render('index_search', array('data'=>$tabEmploye,'aRechercher'=>$aRechercher)); 
+
+		}
+		else
+		{
+			echo "Vous n'avez rien remplis.";
+			$this->render('index_search');
+		}
+
+	}
+
+
+	public function actionCandidats()
+	{
+		$this->render('candidatures',array('data'=>-2));
+	}
+
+
+
+	public function actionCandidatures()
+	{
+
+		if($_POST['OffreEmploi']['id_offre_emploi'] != '')
+		{
+			// On récupère les données du formulaire
+			$idOffre = $_POST['OffreEmploi']['id_offre_emploi'];
+
+			$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
+
+			$offre = offreEmploi::model()->FindByAttributes(array("id_offre_emploi"=>$idOffre));
+
+			$candidatures = postuler::model()->findAll("id_offre_emploi = '$idOffre'");
+
+			$employes = array();
+
+			foreach($candidatures as $candidature)
+			{
+				$employes[] = employe::model()->findByAttributes(array("id_employe"=>$candidature->id_employe));
+			}
+
+
+			$this->render('candidatures', array('data'=>$employes));
+
+		}
+		else
+		{
+			$this->render('candidatures',array('data'=>-1));
+		}
+
+	}
+
+
+
 }

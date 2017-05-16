@@ -3,20 +3,44 @@
 /* @var $dataProvider CActiveDataProvider */
 
 
-	$this->menu=array(
-		// Voir toutes les offres d'emplois
-		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')),
-	);
+$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
 ?>
+
+
+<!-- MENU 	-->
+<div class="dropdown">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+	Menu 
+	<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<li>
+			<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+			Mon Profil
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+			Mes candidatures
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+			Liste des offres d'emplois
+			</a>
+		</li>
+	</ul>
+</div>
+	
+
+
+
 
 <!-- Titre page -->
 <h1>Rechercher une offre : </h1>
 
 <?php
-	$login = Yii::app()->user->getId();
-	// Récupération de l'utilisateur
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 	$model = OffreEmploi::model();
 	// Récupération de toutes les offres
 	$tabOffre = OffreEmploi::model()->FindAll();

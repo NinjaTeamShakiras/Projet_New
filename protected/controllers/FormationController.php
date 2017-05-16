@@ -15,7 +15,6 @@ class FormationController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -28,7 +27,7 @@ class FormationController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'delete'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -94,8 +93,11 @@ class FormationController extends Controller
 		if(isset($_POST['Formation']))
 		{
 			$model->attributes=$_POST['Formation'];
+			$model->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
+			$model->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_formation));
+				Yii::app()->user->setFlash('success_maj_formation', "<p style = color:blue;>La formation ".$model->intitule_formation." à bien été mise à jour !</p>");
+				$this->redirect(array('employe/view', 'id'=>$model->id_employe));
 		}
 
 		$this->render('update',array(
@@ -110,11 +112,18 @@ class FormationController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		//On récupère l'id employé pour a redirection
+		$user = $model->id_employe;
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		//On supprime la compétence
+		if($model->delete())
+		{
+			//Si c'est OK, on affiche un message de supression
+			Yii::app()->user->setFlash('success_sup_formation', "<p style = color:blue;>La formation ".$model->intitule_formation." à bien été supprimée !</p>");
+		}
+
+		$this->redirect(array('employe/view', 'id'=>$user));
 	}
 
 	/**
@@ -187,6 +196,27 @@ class FormationController extends Controller
 			$result = $year."-".$month."-".$day;
 
 			return $result;
+	}
+
+
+	/*	Fonction qui change la date au format français
+	@param $date est une date récupérée depuis la BDD
+	*/
+	protected function changeDateNaissance($date)
+	{
+		$result = NULL;
+		$day = 0;
+		$month = 0;
+		$year = 0;
+
+		//On récupère chaque valeur grâce a substr
+		$year = substr($date, 0, 4);
+		$month = substr($date, 5, 2);
+		$day = substr($date, 8, 2);
+
+		$result = $day."/".$month."/".$year;
+
+		return $result;
 	}
 
 

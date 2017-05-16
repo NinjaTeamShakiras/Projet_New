@@ -100,7 +100,10 @@ class OffreEmploiController extends Controller
 
 
 			if($model->save())
+			{
+				Yii::app()->user->setFlash('success_create_offre', "<p style = color:blue;>Votre offre au poste de ".$model->poste_offre_emploi." à bien été créer !</p>");
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
+			}
 		}
 
 		$this->render('create',array('model'=>$model));
@@ -127,7 +130,10 @@ class OffreEmploiController extends Controller
 			$date_debut_offre_emploi_BDD = $this->changeDateBDD($model->date_debut_offre_emploi);
 			$model->date_debut_offre_emploi = $date_debut_offre_emploi_BDD;
 			if($model->save())
+			{
+				Yii::app()->user->setFlash('success_update_offre', "<p style = color:blue;>Votre offre au poste de '".$model->poste_offre_emploi."'' à bien été mise à jour !</p>");
 				$this->redirect(array('view','id'=>$model->id_offre_emploi));
+			}
 		}
 
 		$this->render('update',array(
@@ -162,15 +168,13 @@ class OffreEmploiController extends Controller
 		// Récupération de l'offre
 		$offre = OffreEmploi::model()->FindByAttributes(array('id_offre_emploi'=>$id));
 
+		$nomOffre = $offre->poste_offre_emploi;
 		// Suppression de l'offre
 		$offre->delete();
 
-		//$this->loadModel($id)->delete();
+		Yii::app()->user->setFlash('success_delete_offre', "<p style = color:blue;>Votre annonce au poste de '".$nomOffre."'' à bien été supprimée !</p>");
 		$this->redirect('index.php?r=offreEmploi/index');
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		//if(!isset($_GET['ajax']))
-		//	$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 
@@ -283,6 +287,7 @@ class OffreEmploiController extends Controller
 
 		if($postuler->save())
 		{ // Si la sauvegarde fonctionne
+			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler a cette offre !</p>");
 			$this->redirect(array('view','id'=>$id_offre));
 		}
 		else
@@ -325,6 +330,7 @@ class OffreEmploiController extends Controller
 		foreach($tablePostuler as $postuler){
 			if($postuler->id_employe == $employe && $postuler->id_offre_emploi == $id_offre){
 				$postuler->delete(); // On supprime la ligne concerné
+				Yii::app()->user->setFlash('success_depostule_offre', "<p style = color:blue;>Vous avez bien retirer votre candidature à cette offre !</p>");
 			}
 		}
 		
@@ -342,24 +348,17 @@ class OffreEmploiController extends Controller
 	{
 		$model = OffreEmploi::model()->FindAll();
 
-		$posteIsSet = false; // Le POSTE à été donné ou non dans le formulaire de recherche
-		$typeIsSet = false; // Le TYPE à été donné ou non dans le formulaire de recherche
-		$lieuIsSet = false; // Le LIEU à été donné ou non dans le formulaire de recherche
-		$secteurIsSet = false; // Le SECTEUR à été donné ou non dans le formulaire de recherche
-		$requete = ""; // Requète SQL de recherche des offre correspondante
-		$tabOffre = array();
 
-
-		// On récupère les données du formulaire
 		if(isset($_POST['OffreEmploi']))
 		{
+			// On récupère les données du formulaire
 			$poste_offre_emploi = $_POST['OffreEmploi']['poste_offre_emploi'];
 			$type_offre_emploi = $_POST['OffreEmploi']['type_offre_emploi'];
 			$lieu_offre_emploi = $_POST['Adresse']['ville'];
 			$secteur_offre_emploi = $_POST['Entreprise']['secteur_activite_entreprise'];
 
-
-			$tabOffre = OffreEmploi::model()->findAll(); // Tableau de résultat d'offre rechercher
+			// Tableau de résultat d'offre rechercher
+			$tabOffre = OffreEmploi::model()->findAll(); 
 
 			// Initialisation des varaiable temp
 			$tabOffreTrouver = array(); // Tableau de stoquage des résultat d'une recherche brut
@@ -385,7 +384,8 @@ class OffreEmploiController extends Controller
 						}
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp; 
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTrouver = array();
@@ -413,7 +413,8 @@ class OffreEmploiController extends Controller
 						}
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp;
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTrouver = array();
@@ -449,7 +450,8 @@ class OffreEmploiController extends Controller
 						}
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp; 
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTemp = array(); 
@@ -473,7 +475,8 @@ class OffreEmploiController extends Controller
 						$i++;
 					}
 				}
-				$tabOffre = $tabOffreTemp; // On rétablis $tabOffre avec le nouveau résultat affiné
+				// On rétablis $tabOffre avec le nouveau résultat affiné
+				$tabOffre = $tabOffreTemp; 
 				
 				// Réinitialisation des variable temporaire
 				$tabOffreTemp = array(); 

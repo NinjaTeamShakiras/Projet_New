@@ -6,17 +6,9 @@
 //	'Offre Emplois',
 //);
 
-
-	$this->menu=array(
-		array('label'=>'Liste des offres d\'emplois', 'url'=>array('/offreEmploi/index')), // Voir toutes les offres d'emplois
-		array('label'=>'Rechercher des offres d\'emplois', 'url'=>array('/offreEmploi/recherche')), // Rechercher des offres d'emplois
-	);
-
 ?>
 
 
-
-<h1>Liste de mes candidatures</h1> <!-- Titre page -->
 
 
 
@@ -35,6 +27,47 @@
 	$nombreOffrePostuler = 0; // Nombre d'offre total
 
 
+
+/* 		MENU 	*/
+if($utilisateur != null)
+{ // Si connecter
+	if (Utilisateur::est_employe(Yii::app()->user->role) )
+	{ // Si employe
+		?>
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu 
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=employe/index" title="Rechercher une offre">
+					Rechercher une offre
+					</a>
+				</li>
+			</ul>
+		</div>
+		<?php
+	}
+}
+
+?>
+
+	
+<h1>Mes candidatures</h1> <!-- Titre page -->
+
+
+	<?php
 	foreach($tablePostuler as $postuler)
 	{
 		if($postuler->id_employe == $utilisateur->id_employe)

@@ -140,7 +140,40 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour l\'offre'); ?>
 	</div>
+	<?php $this->endWidget(); ?>
 
-<?php $this->endWidget(); ?>
+
+
+
+
+	<div class="wide form">
+		<?php
+		//Début du form
+		if($model->isNewRecord)
+		{
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/index')
+				)
+			);
+		}
+		else
+		{
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/offreEmploi/view', array('id'=>$model->id_offre_emploi))
+				)
+			);
+		}
+		?>
+
+		<div class="row buttons">
+			<?php echo CHtml::submitButton('Annuler'); ?>
+		</div>
+
+		<?php $this->endWidget(); ?>
+		
+	</div>
+
 
 </div><!-- form -->

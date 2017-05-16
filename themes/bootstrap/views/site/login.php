@@ -7,7 +7,7 @@
 <?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
       'Image accueil');
  
-      echo CHtml::link($image,array('site/index','id'=> 'accueil	')); ?>
+      echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
 
 
 <h1 class="Titre">Connexion</h1>
@@ -42,6 +42,21 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Connexion',array('class'=>'btnConnexion btn btn-success')); ?>
 	</div>
+
+	<?php 
+	if(Yii::app()->session['login'] == 'employe')
+	{
+		echo "<div>
+				<p id='pas-inscrit'>Vous n'êtes pas encore inscrit ? ".Chtml::link('Inscrivez-vous ici', array('site/inscriptionEmploye'),array('id'=>'url-inscription'))."</p>
+			 </div>";
+	}
+	else if(Yii::app()->session['login'] == 'entreprise')
+	{
+		echo "<div>
+				<p id='pas-inscrit'>Vous n'êtes pas encore inscrit ? ".Chtml::link(' Inscrivez-vous ici', array('site/inscriptionEntreprise'),array('id'=>'url-inscription'))."</p>
+			 </div>";	
+	}
+	?>
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
