@@ -26,7 +26,7 @@
 #div-infos-comp
 {
 	color:White;
-	font-size: 25px;
+	font-size: 15px;
 }
 
 #titre-infos-comp
@@ -57,5 +57,16 @@
 .Modifier-supprimer-competence
 {
 	color:#90ffb9;
+	text-decoration:none;
 }
 
+.Modifier-supprimer-competence:hover
+{
+	color:#90ffb9;
+
+}
+div.form-infos-perso label
+{
+	font-weight: normal;
+	font-size: 18px;
+}

@@ -16,8 +16,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 
 <?php
 
-	//On récupère l'utilisateur correspondant à l'employé
-	$user = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
+	//On récupère les infos de l'employé qu'on consulte
+	$employe = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
+	//On récupère l'utilisateur qui visite la page
+	$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
 	//On récupère l'adresse correspondant à l'employé
 	$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adresse));
 
@@ -63,11 +65,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	}
 ?>
 
-
-<div class='arriere-plan-employe'>
+<?php echo "<iv class='arriere-plan-employe'>" ?>
 
 	<div>
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
+		<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); ?>
@@ -94,16 +95,22 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			</li>
 		</ul>
 	</div>
-
 <div id='contenu'> 
 <div id='div-infos-perso'>
 
-<h3 id='titre-infos-perso'>Mes informations personnelles</h3>
 
 <!-- Affichage des infos persos -->	
-<div class="form">	
+<?php
 
-	<?php
+//Si l'utilisateur consulte sa page on affiche les infos persos
+//Sinon, si l'utilisateur consulte les infos de quelqu'un d'autre, on affiche pas les infos persos
+if($user->id_employe == $_GET['id'])
+{	
+	echo "<h3 id='titre-infos-perso'>MES INFORMATIONS PERSONELLES</h3>";
+
+
+ 	echo "<div class='form-infos-perso form'>";	
+
 		//Début du formulaire de vue des infos persos
 		$form=$this->beginWidget('CActiveForm',
 			array(
@@ -111,30 +118,48 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 
-		echo "<div class='row'>";
-		echo "<p>Nom : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
-		echo "<p>Date de naissance : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
-		echo "<p>Adressse : <label>".$adresse."</label></p>";
-		echo "<p>Téléphone : <label>".$user->telephone."</label></p>";
-		echo "<p>Autre téléphone : <label>".$user->telephone2."</label></p>";
-		echo "<p>Adresse mail : <label>".$user->mail."</label></p>";
-		echo "<p>Site WEB : <label>".$user->site_web."</label></p>";
-		echo "<p>Recherche un travail : <label>".$model->employe_travaille."</label></p>";
-		echo "</div>";
-	?>
+	echo "<div class='row'>";
+		echo Yii::app()->user->getFlash('success_maj_infos_persos');
+		echo "<p>NOM : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
+		echo "<p>DATE DE NAISSANCE : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
+		echo "<p>ADRESSE : <label>".$adresse."</label></p>";
+		echo "<p>TELEPHONE : <label>".$user->telephone."</label></p>";
+		echo "<p>AUTRE TELEPHONE : <label>".$user->telephone2."</label></p>";
+		echo "<p>ADRESSE MAIL : <label>".$user->mail."</label></p>";
+		echo "<p>SITE WEB : <label>".$user->site_web."</label></p>";
+		echo "<p>RECHERCHE UN TRAVAIL : <label>".$model->employe_travaille."</label></p>";
+	echo "</div>";
 
-</div>	
-</div>
-	<div class="row">
-		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos')); ?>
-	</div>
+	echo"</div>";	
+	echo"</div>";
+	echo "<div class='row'>";
+		echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos'));
+	$this->endWidget();	
+	echo "</div>";
+}
+?>
 
-	<?php $this->endWidget();?>	
 <!-- Fin des infos persos -->
+
 
 <div id='div-infos-comp'>
 
-<h3 id='titre-infos-comp'>Mes informations complémentaires</h3>
+
+
+<!-- Début des infos complémentaires -->
+<?php
+//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+if($user->id_employe == $_GET['id'])
+{
+	echo "<h3 id='titre-infos-comp'>MES INFORMATIONS COMPLEMENTAIRES</h3>";
+}
+else
+{
+	echo "<h3 id='titre-infos-comp'>INFORMATIONS COMPLEMENTAIRES</h3>";
+}
+?>
+
+
 
 <?php
 	//Récupération des modèles d'informations complémentaires
@@ -154,7 +179,17 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		);
 	?>	
 
-	<p>Mes formations / Parcours scolaire</p>
+	<?php
+		//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+		if($user->id_employe == $_GET['id'])
+		{
+			echo "<h4>MES FORMATIONS/ PARCOURS SCOLAIRE </h4>";
+		}
+		else
+		{
+			echo "<h4>FORMATIONS/ PARCOURS SCOLAIRE</h4>";
+		}
+	?>
 
 	<div class="row">
 		<?php
@@ -173,7 +208,17 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		?>
 	</div>
 
-	<p>Mes expériences professionnelles</p>
+	<?php
+	//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+	if($user->id_employe == $_GET['id'])
+	{
+		echo "<h4>MES EXPERIENCES PROFESSIONNELLES</h4>";
+	}
+	else
+	{
+		echo "<h4>EXPERIENCES PROFESSIONNELLES</h4>";
+	}
+	?>
 
 	<div class="row">
 		<?php
@@ -193,7 +238,18 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		?>	
 	</div>
 
-	<p>Mes compétences</p>
+	<?php
+	//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+	if($user->id_employe == $_GET['id'])
+	{
+		echo "<h4>MES COMPETENCES</h4>";
+	}
+	else
+	{
+		echo "<h4>COMPETENCE</h4>";
+	}
+	?>
+
 
 	<div class="row">
 		<ul>
@@ -202,9 +258,9 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			{
 					echo Yii::app()->user->getFlash('success_maj_competence');
 				echo "<li>".$competence->intitule_competence."<label> Niveau ".$competence->niveau_competence."/5</label></li>";
-				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence,'class'=>'Modifier-supprimer-competence'));
+				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'),array('id'=>$competence->id_competence,'class'=>'modifier-supprimer-competence'));
 				echo "   ";
-				echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence,'class'=>'Modifier-supprimer-competence')); 
+				echo CHtml::link('Supprimer cette compétence',array('Competence/delete'),array('id'=>$competence->id_competence,'class'=>'Modifier-supprimer-competence')); 
 			}
 		?>
 		</ul>
