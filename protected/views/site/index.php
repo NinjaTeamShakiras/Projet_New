@@ -4,7 +4,7 @@
 echo "<h1>Prozzl</h1>";
 echo "<h1>Recruteur de l'industrie touristique</h1>";
 
-//$this->renderPartial('./../entreprise/_search_accueil', array('model'=>Entreprise::model()));
+echo Yii::app()->user->getFlash('suppr_compte');
 
 echo "<h2>Vous recherchez ?<h2>";
 
