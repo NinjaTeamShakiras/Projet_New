@@ -40,7 +40,7 @@
 		</li>
 		<li>
 			<a href="index.php?r=OffreEmploi/index&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
-			Mes Annonces
+			Mes Candidatures
 			</a>
 		</li>
 	</ul>
