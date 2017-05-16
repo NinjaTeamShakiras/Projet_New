@@ -110,18 +110,18 @@ else
 	{
 		?>
 		<!-- Formulaire avec le bouton pour Inscription -->
-		<div class="wide form">
+		<div class="form">
 			<?php
 			//Début du form
 			$form=$this->beginWidget('CActiveForm',
 				array(
-					'action'=>Yii::app()->createUrl('/site/inscriptionEmploye'),
+					'action'=>Yii::app()->createUrl('/employe/ajoutInfos'),
 				)
 			);
 			?>
 
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Inscription manuel'); ?>
+			<div class="row">
+				<?php echo CHtml::submitButton('Renseigner mes informations personnelles et générer mon CV'); ?>
 			</div>
 
 			<?php $this->endWidget(); ?>

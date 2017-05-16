@@ -11,9 +11,6 @@
 $titre ="";
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-
-
-
 if($utilisateur != null)
 { // Si connecter
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
@@ -376,7 +373,7 @@ else
 	?>
 		<!-- Formulaire avec le bouton pour postuler/dépostuler -->
 		<div class="wide form">
-			<?php $form=$this->beginWidget('CActiveForm',array('action'=>Yii::app()->createUrl('/site/redirectInscriptionCV')));?>
+			<?php $form=$this->beginWidget('CActiveForm',array('action'=>Yii::app()->createUrl('/offreEmploi/postule',array('id_offre'=>$model->id_offre_emploi))));?>
 
 			<div class="row buttons">
 				<!-- Bouton pour postuler/Dépostuler -->

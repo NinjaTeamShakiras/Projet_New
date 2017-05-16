@@ -257,8 +257,18 @@ class OffreEmploiController extends Controller
 	 */
 	public function actionPostule( $id_offre )
 	{
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
 		// On récupere l'id_employe
-		$idemploye = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
+		$employe = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()));
+
+		if($employe == null)
+		{
+			Yii::app()->user->loginRequired();;
+		}
+
+		$idemploye = $employe->id_employe;
 
 		// Boolléen qui vérifiera si l'employer à déjà postuler
 		$employeAPostuler = false;

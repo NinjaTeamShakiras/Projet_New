@@ -107,14 +107,7 @@ class SiteController extends Controller
 	{
 		Yii::app()->user->logout();
 
-		if(Yii::app()->session['logout '] == 'employe')
-		{
-			$this->redirect(array('employe/index'));
-		}
-		else if(Yii::app()->session['logout '] == 'entreprise')
-		{
-			$this->redirect(array('entreprise/index'));
-		}
+		$this->redirect(Yii::app()->homeUrl);
 	}
 
 	/* Fonction qui change la date au format Américain pour la BDD */
@@ -258,13 +251,17 @@ class SiteController extends Controller
 
 	public function actionAccueil()
 	{
+		unset(Yii::app()->session['login']);
+
 		if (isset($_POST['btnemploi']))
-		{// Si entreprise presser
+		{
+			// Si entreprise pressé
 			$this->redirect(array('employe/index'));	
 		} 
 
 		if (isset($_POST['btnemploye']))
-		{// Si employe presser
+		{
+			// Si employe pressé
 			$this->redirect(array('entreprise/index'));
 		}
 
