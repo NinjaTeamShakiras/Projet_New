@@ -19,6 +19,16 @@
 	background-size: cover;
 }
 
+.filtre-blanc
+{
+	background-color: rgba(255, 255,255, 0.4);
+}
+
+.filtre-noir
+{
+	background-color: rgba(0, 0,0, 0.4);
+}
+
 .logo
 {
 	text-align:center;
@@ -27,31 +37,29 @@
 
 .Recherche
 {
-	color:White;
-	opacity:0.75;
+	color:black;
+
 	font-size:100px;
 	text-align:center;
 	font-family:"Bodoni FLF"; 
 	margin-top:2cm;
 
-}
+}	
 
 .twobuttons
 {
-	margin-top: 1cm;
+	margin-top: 3cm;
 } 
 
 .btn-emploi 
 {
-	box-shadow:2px 2px 15px #aaa;
+	box-shadow:2px 2px 15px black;
 	background-color:#90ffb9;
 	color:Black;
 	border-radius: 50px;
-	width:20%;
-	height:60px;
-	margin-top:2cm;
-	font-size:18px;
-	margin-left: 22.5%
+	width:300px;
+	height:60px;	font-size:18px;
+	margin-left: 25%;
 }
 
 .btn-emploi:hover
@@ -66,13 +74,12 @@
 
 .btn-employe 
 {
-	box-shadow:2px 2px 15px #aaa;
+	box-shadow:2px 2px 15px black;
 	background-color:#90ffb9;
 	color:Black;
 	border-radius: 50px;
-	width:20%;
+	width:300px;
 	height:60px;
-	margin-top:2cm;
 	font-size:18px;
 	margin-left: 15%;
 }
@@ -90,7 +97,7 @@
 
 .connexion
 {
-	color:White;
+	color:black;
 	opacity: .75;
 	text-align:center;
 	font-size:60px;	
@@ -103,6 +110,7 @@
 .btnredirect
 {
 	color:#90ffb9;
+	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black, 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black;
 	font-size:40px;
 	text-align:center;
 	font-family:"Montserrat Light"
@@ -112,4 +120,44 @@
 {
 	color:#90ffb9;
 
+}
+
+.dropdown-toggle
+{
+   width: 200;
+}
+
+.btn-menu
+{
+	background-color:#404040; 
+	color:#90ffb9;
+}
+
+.btn-menu:hover
+{
+	background-color:#404040; 
+	color:#90ffb9;
+}
+
+.btn-menu:active
+{
+	background-color:#404040; 
+	color:#90ffb9;
+}
+
+.btn-menu:focus
+{
+	background-color:#404040; 
+	color:#90ffb9;
+}
+
+.btn-menu.active.focus, .btn-menu.active:focus,
+.btn-menu.active:hover, .btn-menu:active.focus,
+.btn-menu:active:focus, .btn-menu:active:hover,
+.open>.dropdown-toggle.btn-menu.focus,
+.open>.dropdown-toggle.btn-menu:focus, 
+.open>.dropdown-toggle.btn-menu:hover,
+{
+	background-color:#404040; 
+	color:#90ffb9;
 }

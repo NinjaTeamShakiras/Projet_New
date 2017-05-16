@@ -372,7 +372,6 @@ class EmployeController extends Controller
 			{
 				//Si c'est OK, on affiche un message de confirmation
 				Yii::app()->user->setFlash('success_ajout_competence', "<p style = color:blue;>La competence ".$competence->intitule_competence." à bien été ajoutée !</p>");
-				//$this->render('ajoutinfos');
 			}
 		}
 
@@ -404,7 +403,6 @@ class EmployeController extends Controller
 			{
 				//Si c'est OK, on affiche un message de confirmation
 				Yii::app()->user->setFlash('success_ajout_formation', "<p style = color:blue;>La formation ".$formation->intitule_formation." à bien été ajoutée !</p>");
-				$this->render('ajoutinfos');
 			}
 		}
 
@@ -436,11 +434,10 @@ class EmployeController extends Controller
 			{
 				//Si c'est OK, on affiche un message de confirmation
 				Yii::app()->user->setFlash('success_ajout_exp', "<p style = color:blue;>L'expérience pro ".$experiencePro->intitule_experience." à bien été ajoutée !</p>");
-				$this->redirect(array('employe/view', 'id'=>$user->id_employe));
 			}	
 		}
 
-		$this-render('ajoutInfos');
+		$this->render('ajoutinfos');
 	}
 
 	public function choixAjoutMAJInfos()

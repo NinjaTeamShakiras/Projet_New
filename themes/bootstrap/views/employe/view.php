@@ -65,37 +65,37 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	}
 ?>
 
-<?php echo "<iv class='arriere-plan-employe'>" ?>
+<?php echo "<div class='arriere-plan-employe'>" ?>
 
-	<div>
 		<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); ?>
 
-	</div>
 
-	<!-- MENU 	-->
+<!--  MENU 	-->
+<div class="btn-group" style="float: right;">
+	<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Menu
+   	<span class="caret"></span>
+   	</button>
+	<ul class="dropdown-menu dropdown-menu-right">
+		<li>
+			<a href="index.php?r=employe/view&id=<?php echo $user->id_employe;?>" title="Mon profil">
+			Mes candidature
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index&id=<?php echo $user->id_employe;?>" title="Mon profil">
+			Rechercher une offre
+			</a>
+		</li>
+	</ul>
+</div>
 
-	<div class="dropdown">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-		Menu 
-		<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			<li>
-				<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil">
-				Mes Candidatures
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=offreEmploi/recherche&id=<?php echo $user->id_employe;?>" title="Mon profil">
-				Rechercher une offre
-				</a>
-			</li>
-		</ul>
-	</div>
-<div id='contenu'> 
+<div class='filtre-blanc'> 
+
+
 <div id='div-infos-perso'>
 
 
@@ -118,8 +118,7 @@ if($user->id_employe == $_GET['id'])
 			)
 		);
 
-	echo "<div class='row'>";
-		echo Yii::app()->user->getFlash('success_maj_infos_persos');
+		echo "<div class='row'>";
 		echo "<p>NOM : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
 		echo "<p>DATE DE NAISSANCE : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
 		echo "<p>ADRESSE : <label>".$adresse."</label></p>";
@@ -128,17 +127,17 @@ if($user->id_employe == $_GET['id'])
 		echo "<p>ADRESSE MAIL : <label>".$user->mail."</label></p>";
 		echo "<p>SITE WEB : <label>".$user->site_web."</label></p>";
 		echo "<p>RECHERCHE UN TRAVAIL : <label>".$model->employe_travaille."</label></p>";
-	echo "</div>";
-
-	echo"</div>";	
-	echo"</div>";
-	echo "<div class='row'>";
-		echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos'));
-	$this->endWidget();	
-	echo "</div>";
+		echo "</div>";
 }
 ?>
 
+</div>	
+</div>
+	<div class="row">
+		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos')); ?>
+	</div>
+
+	<?php $this->endWidget();?>	
 <!-- Fin des infos persos -->
 
 
@@ -183,15 +182,14 @@ else
 		//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
 		if($user->id_employe == $_GET['id'])
 		{
-			echo "<h4>MES FORMATIONS/ PARCOURS SCOLAIRE </h4>";
+			echo "<h3>MES FORMATIONS / PARCOURS SCOLAIRE</h3>";
 		}
 		else
 		{
-			echo "<h4>FORMATIONS/ PARCOURS SCOLAIRE</h4>";
-		}
+			echo "<h3>FORMATIONS / PARCOURS SCOLAIRE</h3>";		}
 	?>
 
-	<div class="row">
+	<div class="row form-infos-comp">
 		<?php
 			foreach($formations as $formation)
 			{
@@ -202,8 +200,11 @@ else
 				echo "<p>Etablissement de la formation : <label>".$formation->etablissement_formation."</label></p>";
 				echo "<p>Diplome obtenu : <label>".$formation->diplome_formation."</label></p>";
 				echo "<p>Description de la formation : <label>".$formation->description_formation."</label></p>";
-				echo CHtml::link('Mettre à jour cette formation',array('Formation/update', 'id'=>$formation->id_formation));
-				echo CHtml::link('Supprimer cette formation',array('Formation/delete', 'id'=>$formation->id_formation)); 
+				echo "<div class='div-modifier-supprimer'>";
+				echo CHtml::link('Mettre à jour cette formation',array('Formation/update'),array('id'=>$formation->id_formation,'class'=>'Modifier-supprimer'));
+				echo " / ";
+				echo CHtml::link('Supprimer cette formation',array('Formation/delete'),array('id'=>$formation->id_formation,'class'=>'Modifier-supprimer')); 
+				echo "</div>";
 			}
 		?>
 	</div>
@@ -212,15 +213,15 @@ else
 	//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
 	if($user->id_employe == $_GET['id'])
 	{
-		echo "<h4>MES EXPERIENCES PROFESSIONNELLES</h4>";
+		echo "<h3>MES EXPERIENCES PROFESSIONELLES</h3>";
 	}
 	else
 	{
-		echo "<h4>EXPERIENCES PROFESSIONNELLES</h4>";
+		echo "<h3>EXPERIENCES PROFESSIONELLES</h3>";
 	}
 	?>
 
-	<div class="row">
+	<div class="row form-infos-comp">
 		<?php
 			foreach($exp_pros as $exp_pro)
 			{
@@ -231,9 +232,11 @@ else
 				echo "<p>Intitulé de l'expérience pro : <label>".$exp_pro->intitule_experience."</label></p>";
 				echo "<p>Entreprise dans laquelle vous êtiez salarié : <label>".$exp_pro->entreprise_experience."</label></p>";
 				echo "<p>Description de l'expérience pro : <label>".$exp_pro->description_experience."</label>	</p>";
-				echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience));
-				echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete', 'id'=>$exp_pro->id_experience)); 
-
+				echo "<div class='div-modifier-supprimer'>";
+				echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update'),array('id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer'));
+				echo " / ";
+				echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete'), array('id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer')); 
+				echo "</div>";
 			}
 		?>	
 	</div>
@@ -242,25 +245,25 @@ else
 	//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
 	if($user->id_employe == $_GET['id'])
 	{
-		echo "<h4>MES COMPETENCES</h4>";
+		echo "<h3>MES COMPETENCES</h3>";
 	}
 	else
 	{
-		echo "<h4>COMPETENCE</h4>";
+		echo "<h3>COMPETENCES</h3>";
 	}
 	?>
 
 
-	<div class="row">
+	<div class="row form-infos-comp	">
 		<ul>
 		<?php
 			foreach($competences as $competence)
 			{
 					echo Yii::app()->user->getFlash('success_maj_competence');
 				echo "<li>".$competence->intitule_competence."<label> Niveau ".$competence->niveau_competence."/5</label></li>";
-				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'),array('id'=>$competence->id_competence,'class'=>'modifier-supprimer-competence'));
-				echo "   ";
-				echo CHtml::link('Supprimer cette compétence',array('Competence/delete'),array('id'=>$competence->id_competence,'class'=>'Modifier-supprimer-competence')); 
+				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'),array('id'=>$competence->id_competence,'class'=>'modifier-supprimer'));
+				echo " / ";
+				echo CHtml::link('Supprimer cette compétence',array('Competence/delete'),array('id'=>$competence->id_competence,'class'=>'Modifier-supprimer')); 
 			}
 		?>
 		</ul>
