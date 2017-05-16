@@ -467,7 +467,8 @@ class OffreEmploiController extends Controller
 			{ // Si le secteur à été remplis
 				foreach ($tabOffre as $offreDeCote) // Pour TOUTES les offres ...
 				{
-					$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+					// On récupère l'entreprise qui propose l'offre
+					$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offreDeCote->id_entreprise));
 					
 					if($secteur_offre_emploi == $entreprise->secteur_activite_entreprise)
 					{ // Si le secteur rentré correspond au secteur de l'offre

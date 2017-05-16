@@ -70,8 +70,8 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
-					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
-					Liste des offres d'emplois
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
 					</a>
 				</li>
 				<li>
@@ -80,7 +80,7 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
-					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					<a href="index.php?r=employe/index" title="Rechercher une offre">
 					Rechercher une offre
 					</a>
 				</li>
