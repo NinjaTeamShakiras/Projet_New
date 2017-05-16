@@ -118,7 +118,7 @@ class AIPDF extends CActiveRecord
 		/***************
 		TESTS
 		***************/
-		self::tests_();
+		//self::tests_();
 
 
 		/* -- -- -- -- -- -- -- --
@@ -136,6 +136,11 @@ class AIPDF extends CActiveRecord
 		/* -- Affichage des résultats -- */
 		self::afficher_resultats();
 
+		/* -- On merge les tableaux pour envoyer les résultats -- */
+		$return_arr = self::get_information_array();
+		$return_arr['Expériences'] = self::$expPros_arr;
+		$return_arr['Formation'] = self::$formations_arr;
+		return $return_arr;
 	}
 /******************************************************************************************************************************************************************
 	TESTS
@@ -853,6 +858,7 @@ class AIPDF extends CActiveRecord
 		/* -- Variables normalisées -- */
 		$sanitizedLine_str = self::full_normalize_string( $line_str );
 		$sanitizedAuthorName_str = self::full_normalize_string( $authorMeta_str );
+
 		/* -- On teste si on trouve le nom dans la ligne des informations -- */
 		if( strstr( $sanitizedLine_str, $sanitizedAuthorName_str ) !== FALSE )
 		{
@@ -894,18 +900,45 @@ class AIPDF extends CActiveRecord
 					}
 				}
 			}
-			/* -- Si l'auteur du PDF à deux prénoms -- */
+			/* -- Si l'auteur du PDF à deux ou plusieurs prénoms -- */
 			else
 			{
-				/* -- -- */
-				/* -- -- */
-				/* -- -- */
-				// Non traité pour l'instant
-				/* -- -- */
-				/* -- -- */
-				/* -- -- */
+				/* -- On découpe en mots -- */
+				$explodedNameMeta_arr = explode( ESPACE, $authorMeta_str );
+				$explodedLine_arr = explode( ESPACE, $line_str );
+
+				/* -- Si l'auteur PDF a deux prénoms -- */
+				if( sizeof( $explodedNameMeta_arr ) == 2 && sizeof( $explodedLine_arr ) >= 2 )
+				{
+					/* -- Si on trouve des ressemblances -- */
+					if( self::full_normalize_string( trim($explodedNameMeta_arr[ 0 ]) ) == self::full_normalize_string( trim($explodedLine_arr[ 0 ]) ) )
+						$success_arr['Prénom'] = $explodedLine_arr[ 0 ];
+					if( self::full_normalize_string( trim($explodedNameMeta_arr[ 1 ]) ) == self::full_normalize_string( trim($explodedLine_arr[ 1 ]) ) )
+						$success_arr['Nom'] = $explodedLine_arr[ 1 ];
+					
+					/* -- On peut regarder les autres cas si on arrive pas à trouver l'information qu'on cherche -- */
+					if( !isset( $success_arr['Nom'] ) )
+					{
+						if( strpos( self::full_normalize_string( $explodedLine_arr[1] ), self::full_normalize_string( $explodedNameMeta_arr[1] ) ) !== FALSE )
+							$success_arr['Nom'] = $explodedLine_arr[1];
+					}
+				}
 			}
-			
+		}
+		/* -- Pour les noms et les prénoms qui peuvent être inversés -- */
+		else
+		{
+			/* -- On sépare en espaces -- */
+			$author_arr = explode( ESPACE, $authorMeta_str );
+			$line_arr = explode( ESPACE, $line_str );
+			if( sizeof( $author_arr ) >= 2 && sizeof( $line_arr ) )
+			{
+				/* -- Si on trouve des ressemblances -- */
+				if( self::full_normalize_string( trim($author_arr[ 0 ]) ) == self::full_normalize_string( trim($line_arr[ 1 ]) ) )
+					$success_arr['Prénom'] = $author_arr[ 0 ];
+				if( self::full_normalize_string( trim($author_arr[ 1 ]) ) == self::full_normalize_string( trim($line_arr[ 0 ]) ) )
+					$success_arr['Nom'] = $author_arr[ 1 ];				
+			}
 		}
 		return !empty( $success_arr ) ? $success_arr : NOT_FOUND_TERM;
 	}
