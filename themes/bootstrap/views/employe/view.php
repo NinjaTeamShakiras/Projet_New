@@ -64,10 +64,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 ?>
 
 
-
+<div class='arriere-plan-employe'>
 
 	<div>
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); ?>
@@ -95,8 +95,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		</ul>
 	</div>
 
+<div id='contenu'> 
+<div id='div-infos-perso'>
 
-<h3 id='titre'>Mes informations personnelles</h3>
+<h3 id='titre-infos-perso'>Mes informations personnelles</h3>
 
 <!-- Affichage des infos persos -->	
 <div class="form">	
@@ -109,7 +111,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 
-		echo "<div class='row' id='champ-infos-persos'>";
+		echo "<div class='row'>";
 		echo "<p>Nom : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
 		echo "<p>Date de naissance : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
 		echo "<p>Adressse : <label>".$adresse."</label></p>";
@@ -121,17 +123,18 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 		echo "</div>";
 	?>
 
+</div>	
+</div>
 	<div class="row">
 		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos')); ?>
 	</div>
 
 	<?php $this->endWidget();?>	
-</div>	
 <!-- Fin des infos persos -->
 
+<div id='div-infos-comp'>
 
-
-<h3 id='titre'>Mes informations complémentaires</h3>
+<h3 id='titre-infos-comp'>Mes informations complémentaires</h3>
 
 <?php
 	//Récupération des modèles d'informations complémentaires
@@ -150,7 +153,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 	?>	
-	<div id='info-comp'>
 
 	<p>Mes formations / Parcours scolaire</p>
 
@@ -200,18 +202,18 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			{
 					echo Yii::app()->user->getFlash('success_maj_competence');
 				echo "<li>".$competence->intitule_competence."<label> Niveau ".$competence->niveau_competence."/5</label></li>";
-				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence));
+				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence,'class'=>'Modifier-supprimer-competence'));
 				echo "   ";
-				echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence)); 
+				echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence,'class'=>'Modifier-supprimer-competence')); 
 			}
 		?>
 		</ul>
 	</div>
-
+	</div>	
+</div>
 	<div class="row">
 		<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'btn-maj-infos')); ?>
 
-	</div>	
 
 	<?php $this->endWidget();?>	
 </div>
@@ -222,3 +224,5 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	/* --- Page pour traiter le pdf --- */
 	$this->renderPartial( 'cv_edit', array( 'model' => $model ) );
 ?>
+</div>
+</div>

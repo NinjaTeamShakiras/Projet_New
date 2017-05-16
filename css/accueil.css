@@ -19,7 +19,7 @@
 	background-size: cover;
 }
 
-.titre
+.logo
 {
 	text-align:center;
 	font-size: 25px;
@@ -36,11 +36,6 @@
 
 }
 
-#page
-{
-	background-color:White;
-	border: 1px black outset;
-}
 .twobuttons
 {
 	margin-top: 1cm;

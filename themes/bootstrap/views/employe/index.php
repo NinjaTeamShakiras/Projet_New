@@ -49,10 +49,11 @@
 	</ul>
 </div>
 
+<div id='contenu'>
 	
 <!-- Formulaire de recherche d'une offre d'emploi -->
 <div class='row'>
-	<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
+	<?php echo "<h3 id='phrase-nb-offres'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
 </div>	
 
 <div class="form">
@@ -66,13 +67,13 @@
 		);
 	?>
 
-	<div id="champs-recherche">
+	<div id="div-champs-recherche">
 			<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
 			<?php
 				//Recherche par POSTE
 				echo $form->textField(
 					$model,'poste_offre_emploi', array(	
-						'class' => 'field autocomplete-find-offreEmploi',
+						'class' => 'champs-recherche autocomplete-find-offreEmploi',
 						'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
 						'size' => 45,
 						'maxlength' => 30,
@@ -85,7 +86,7 @@
 			//Recherche par LIEU
 			echo $form->textField(
 				$adresse,'ville', array(	
-					'class' => 'field autocomplete-find-offreEmploi',
+					'class' => 'champs-recherche autocomplete-find-offreEmploi',
 					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllLieuJSON'),
 					'size' => 45,
 					'maxlength' => 30,
@@ -95,13 +96,13 @@
 		?>
 	</div>
 	
-	<div id="champs-selection">
+	<div id="div-champs-selection">
 		<?php
 			//Recherche par TYPE DE CONTRAT (liste déroulante)
 			//-->On ajoute l'option "Sélectionner pour la liste"
 			$static_type = array('' => Yii::t('', 'Sélectionner le type de contrat'));
 			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
-			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre, array('class'=>'menu_roulant')); // On affiche une liste déroulante de toutes les offres
+			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre, array('class'=>'menu_roulant-selection')); // On affiche une liste déroulante de toutes les offres
 		?>
 	
 		<?php
@@ -109,11 +110,11 @@
 			//-->On ajoute l'option "Sélectionner pour la liste"
 			$static_secteur = array('' => Yii::t('', 'Sélectionner le secteur'));
 			$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
-			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre, array('class'=>'menu_roulant')); // On affiche une liste déroulante de tout les secteur d'activité
+			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre, array('class'=>'menu_roulant-selection')); // On affiche une liste déroulante de tout les secteur d'activité
 		?>
 	
 	</div>
-	<div id='div_rechercher'>
+	<div id='div-btn-rechercher'>
 		<?php
 			// Button d'envoi
 			echo CHtml::submitButton('Rechercher',array('class'=>'btn btn-success','id'=>'btn_rechercher'));
@@ -124,7 +125,8 @@
 
 </div>
 
-
+<?php
+/*
 <!-- Fomulaire avec le bouton de l'ajout du CV -->
 <div class="row">
 	<?php
@@ -155,6 +157,9 @@
 
 <?php
 
+?>
+</div>
+*/
 //Si l'utilisateur est connecté, on lui affiche un bouton pour voir ses infos persos
 if($utilisateur != null)
 {
@@ -167,7 +172,7 @@ if($utilisateur != null)
 			)
 		);
 
-		echo "<div class='row' id='row_infos'>".CHtml::submitButton('Voir mes informations personnelles !',array('class'=>'btn_page btn btn-success','id'=>'btn_infos'))."</div>";
+		echo "<div class='row' id='div_infos'>".CHtml::submitButton('Voir mes informations personnelles !',array('class'=>'btn_infos btn '))."</div>";
 
 	$this->endWidget();
 	echo "</div>";

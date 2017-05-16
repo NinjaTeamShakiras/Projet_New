@@ -10,21 +10,40 @@
 	src: url('Montserrat-Light.otf');
 }
 
-#champ-infos-persos
+
+#div-infos-perso
 {
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 5%;
-	margin-bottom: 3%;
+	color:White;
+	font-size: 25px;
 }
 
+#titre-infos-perso
+{
+	font-size: 40px;
+	text-align: center;
+}
+
+#div-infos-comp
+{
+	color:White;
+	font-size: 25px;
+}
+
+#titre-infos-comp
+{
+	font-size: 40px;
+	text-align: center;
+}
 
 #btn-maj-infos
 {
-	background-color:rgb(250, 255, 189);
+	background-color:#90ffb9;
 	font-family:"Montserrat Light";
 	padding:1%;
-	font-size: 16px;
+	color:Black;
+	border:2px solid ;
+}
+
 }
 
 #info-comp
@@ -34,4 +53,9 @@
 	margin-top: 5%;
 	margin-bottom: 3%;
 }		
+
+.Modifier-supprimer-competence
+{
+	color:#90ffb9;
+}
 

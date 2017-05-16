@@ -19,24 +19,57 @@
 	background-size: cover;
 }
 
-#titre
+#contenu
 {
-	font-size:60px;
+ background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#phrase-nb-offres
+{
+	font-size:70px;
 	font-family:"Bodoni FLF";
 	text-align: center;
-	color: Black;
+	color: White;
 
 }
 
-.menu_roulant
+
+#div-champs-recherche
 {
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+.champs-recherche
+{
+	text-align: center;
 	padding:1.0%;
-	border-radius: 10%;
-	background-color:rgb(250, 255, 189);
+	border:2px solid;		
 	font-family:"Montserrat Light";
 }
 
-#div_rechercher
+
+
+#div-champs-selection
+{
+	text-align: center;
+	margin-top: 2%;
+}
+
+
+
+.menu_roulant-selection
+{
+	border:2px solid;
+	padding:1.0%;
+	font-family:"Montserrat Light";
+}
+
+
+
+#div-btn-rechercher
 {
 	text-align:center;
 	margin-top: 2px;	
@@ -54,71 +87,20 @@
 	font-size:18px;
 }
 
-#btn_postuler
+
+#div_infos
 {
-	box-shadow:2px 2px 15px #aaa;
+	text-align: center;
+}
+
+
+.btn_infos 
+{
+
 	background-color:#90ffb9;
+	font-family:"Montserrat Light";
 	color:Black;
-	border-radius: 50px;
-	width:415px;
-	height:100px;
-	font-family:"Montserrat Light";
-	font-size:18px;
-	margin-left: 15%;
-}
-
-#btn_cv
-{
-	box-shadow:2px 2px 15px #aaa;
-	background-color:#90ffb9;
-	color:Black;
-	border-radius: 50px;
-	width:20%;
-	height:10%;
-	margin-left:23%;
-	font-family:"Montserrat Light";
-	font-size:18px;
-
-}
-
-.btn_page:hover
-{
-	background :#90ffb9;
-}
-
-.btn_page:active
-{
-	background :#90ffb9;
+	border:2px solid ;
 }
 
 
-#champs-recherche
-{
-	text-align: center;
-	margin-top: 10px;
-}
-
-#champs-selection
-{
-	text-align: center;
-	margin-top: 2%;
-}
-
-.field
-{
-	text-align: center;
-	padding:1.0%;
-		
-	font-family:"Montserrat Light";
-}
-
-#btn_infos
-{
-	background-color:#ff50bc;
-	font-family:"Montserrat Light";
-}
-
-#row_infos
-{
-	text-align: center;
-}
