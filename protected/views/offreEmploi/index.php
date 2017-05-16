@@ -169,16 +169,19 @@ if($utilisateur != null)
 				//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 				//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
 				//print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-				print("<p> Annonce ".$annonceN." : Poste : ".$offre->poste_offre_emploi."</p>");
-				print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+				// - print("<p> Annonce ".$annonceN." : Poste : ".$offre->poste_offre_emploi."</p>");
+				// - print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
 				//print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
 				//print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
 				//print("<p> Lieu : ".$adresse->ville." </p>");
 				//print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
 				//print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
-				print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
-				echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
-	
+				// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+
+				$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+
+				echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+
 				$candidats = Postuler::model()->FindAll("id_offre_emploi =".$offre->id_offre_emploi); // On récupère tout les candidats à l'offre
 
 				// Recherche du nombre de candidature et des candidat
@@ -221,11 +224,16 @@ if($utilisateur != null)
 		$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 		$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
 
+		$annonceN = 0;
+
 		print("<p> Postulez ou consultez ".$nombreTotalOffre." offres proposées par des entreprises.</p>");
 
 
 		foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :
 		{
+
+			$annonceN++;
+
 			$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
 
 			// Pour récupéré l'adresse : 
@@ -234,24 +242,31 @@ if($utilisateur != null)
 
 			//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 			//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
-			print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
-			print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-			print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
-			print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
-			print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
-			print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
-			print("<p> Lieu : ".$adresse->ville." </p>");
-			print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
-			print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
-			print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+			// - print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+			// - print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+			// - print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
+			// - print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+			// - print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+			// - print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+			// - print("<p> Lieu : ".$adresse->ville." </p>");
+			// - print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+			// - print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+			// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+
+
+			$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
 			foreach($tablePostuler as $postuler)
 			{
 				if($postuler->id_employe == $utilisateur->id_employe && $postuler->id_offre_emploi == $offre->id_offre_emploi )
 				{
-					print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+					//print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+					$nomLien .= " --- vous avez postuler à cette annonce le ".$this->changeDateNaissance($postuler->date_postule);
+					break;
 				}
 			}
-			echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+
+			
+			echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 			echo "<hr/>";
 		}
 
@@ -263,11 +278,15 @@ else
 	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 	$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
 
+	$annonceN = 0;
+
 	print("<p> Postulez ou consultez ".$nombreTotalOffre." offres proposées par des entreprises.</p>");
 
 
 	foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :
 	{
+		$annonceN++;
+
 		$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
 
 		// Pour récupéré l'adresse : 
@@ -276,18 +295,21 @@ else
 
 		//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 		//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
-		print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
-		print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-		print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
-		print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
-		print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
-		print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
-		print("<p> Lieu : ".$adresse->ville." </p>");
-		print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
-		print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
-		print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+		// - print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+		// - print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+		// - print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
+		// - print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+		// - print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+		// - print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+		// - print("<p> Lieu : ".$adresse->ville." </p>");
+		// - print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+		// - print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+		// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 
-		echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+		$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+		
+		echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+
 		echo "<hr/>";
 	}
 
