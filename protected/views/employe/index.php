@@ -50,6 +50,11 @@ if($utilisateur != null)
 					Mes candidatures
 					</a>
 				</li>
+				<li>
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
+					</a>
+				</li>
 			</ul>
 		</div>
 		<?php
@@ -66,8 +71,8 @@ else
 			</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 				<li>
-					<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
-					Inscription
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
 					</a>
 				</li>
 				<li>
@@ -75,11 +80,7 @@ else
 					Liste des offres d'emplois
 					</a>
 				</li>
-				<li>
-					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
-					Ajouter mon CV
-					</a>
-				</li>
+				
 			</ul>
 		</div>
 	<?php
@@ -164,6 +165,8 @@ else
 </div>
 
 
+
+<?php /* ?>
 <!-- Fomulaire avec le bouton de l'ajout du CV -->
 <div class="wide form">
 	<?php
@@ -201,7 +204,9 @@ else
 	</div>
 
 	<?php $this->endWidget(); ?>
-</div>	
+</div>
+
+<?php */ ?>
 
 
 	

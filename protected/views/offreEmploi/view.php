@@ -198,6 +198,10 @@ else
 		print("<p> Description de l'offre : ".$this->description_offre_emploi."</p>");
 		print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
 	}
+	else
+	{
+		
+	}
 	
 
 
