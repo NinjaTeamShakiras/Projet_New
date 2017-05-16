@@ -10,60 +10,55 @@
 
 $titre ="";
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
-$adresse = Adresse::model()->FindByAttributes(array("id_adresse"=>$utilisateur->id_adresse));
 
 
 
 
+if($utilisateur != null)
+{ // Si connecter
+	if (!Utilisateur::est_employe(Yii::app()->user->role) )
+		{ // Si entreprise on affiche la possibilité de maj/suppr l'offre en question
+			?>
 
-if (!Utilisateur::est_employe(Yii::app()->user->role) )
-	{ // Si entreprise on affiche la possibilité de maj/suppr l'offre en question
-		?>
-
-		<!--	MENU 	-->
-		<div class="dropdown">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-				Menu 
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li>
-					<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
-					Déposer une annonce
-					</a>
-				</li>
-				<li>
-					<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
-					Mon profil
-					</a>
-				</li>
-				<li>
-					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
-					Mes annonces
-					</a>
-				</li>
-				<li>
-					<a href="index.php?r=entreprise/candidats" title="Mes candidats">
-					Mes candidats
-					</a>
-				</li>
-				<li>
-					<a href="index.php?r=entreprise/index" title="Rechercher un CV">
-					Rechercher un CV
-					</a>
-				</li>
-			</ul>
-		</div>
-
-
-
-
-
-
-
+			<!--	MENU 	-->
+			<div class="dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+					Menu 
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<li>
+						<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+						Déposer une annonce
+						</a>
+					</li>
+					<li>
+						<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
+						Mon profil
+						</a>
+					</li>
+					<li>
+						<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+						Mes annonces
+						</a>
+					</li>
+					<li>
+						<a href="index.php?r=entreprise/candidats" title="Mes candidats">
+						Mes candidats
+						</a>
+					</li>
+					<li>
+						<a href="index.php?r=entreprise/index" title="Rechercher un CV">
+						Rechercher un CV
+						</a>
+					</li>
+				</ul>
+			</div>
 		<?php
 
 		$titre = "Mon offre d'emploi";
+
+
 
 
 
@@ -82,8 +77,6 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 		}
 
 		?>
-
-
 
 		<!--	MENU 	-->
 		<div class="dropdown">
@@ -114,14 +107,45 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 				</li>
 			</ul>
 		</div>
-
-
-
 	<?php
 
 		$titre = "Offre d'emploi";
 		
 	}
+}
+else
+{
+	?>
+
+	<!--	MENU 	-->
+	<div class="dropdown">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu 
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li>
+				<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
+				Inscription
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+				Liste des offres d'emplois
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=employe/index" title="Rechercher une offre">
+				Rechercher une offre
+				</a>
+			</li>
+		</ul>
+	</div>
+<?php
+
+	$titre = "Offre d'emploi";
+	
+}
 
 
 
@@ -159,6 +183,24 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	$date_creation = $this->changeDateNaissance($model->date_creation_offre_emploi);
 	$date_debut = $this->changeDateNaissance($model->date_debut_offre_emploi);
 
+	if($utilisateur != null)
+	{
+		$adresse = Adresse::model()->FindByAttributes(array("id_adresse"=>$utilisateur->id_adresse));
+
+		print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+		print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+		print("<p> Poste : ".$this->poste_offre_emploi."</p>");
+		print("<p> Type de contrat : ".$this->type_offre_emploi."</p>");
+		print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+		print("<p> Salaire proposé : ".$this->salaire_offre_emploi." €</p>");
+		print("<p> Lieu : ".$adresse->ville." </p>");
+		print("<p> Expérience nécéssaire : ".$this->experience_offre_emploi."</p>");
+		print("<p> Description de l'offre : ".$this->description_offre_emploi."</p>");
+		print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+	}
+	
+
+
 
 	$this->widget('zii.widgets.CDetailView', array(
 		'data'=>$model,
@@ -182,7 +224,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			),
 			array(
 				'label'=>'Lieu ',
-				'value'=>$adresse->ville,
+				//'value'=>$adresse->ville,
 			),
 			array(
 				'label'=>'Expérience nécéssaire ',
@@ -202,8 +244,11 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 
 
 
- 
 
+
+ 
+if($utilisateur != null)
+{
 	/*		ENTREPRISE 			*/
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche les candidatures éventuelle
@@ -368,6 +413,7 @@ if (!Utilisateur::est_employe(Yii::app()->user->role) )
 
 <?php
 	}
+}
 
 ?>
 

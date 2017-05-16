@@ -23,7 +23,7 @@
 
 <div class='arriere-plan-employe'>
 
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
@@ -66,20 +66,20 @@
 		);
 	?>
 
-	<div id="row_field">
-		<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
-		<?php
-			//Recherche par POSTE
-			echo $form->textField(
-				$model,'poste_offre_emploi', array(	
-					'class' => 'field autocomplete-find-offreEmploi',
-					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
-					'size' => 45,
-					'maxlength' => 30,
-					'placeholder' => 'Rechercher par poste',
-				)
-			);
-		?>
+	<div id="champs-recherche">
+			<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
+			<?php
+				//Recherche par POSTE
+				echo $form->textField(
+					$model,'poste_offre_emploi', array(	
+						'class' => 'field autocomplete-find-offreEmploi',
+						'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
+						'size' => 45,
+						'maxlength' => 30,
+						'placeholder' => 'Rechercher par poste',
+					)
+				);
+			?>
 	
 		<?php
 			//Recherche par LIEU
@@ -87,7 +87,7 @@
 				$adresse,'ville', array(	
 					'class' => 'field autocomplete-find-offreEmploi',
 					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllLieuJSON'),
-					'size' => 37,
+					'size' => 45,
 					'maxlength' => 30,
 					'placeholder' => 'Rechercher par lieu',
 				)
@@ -95,7 +95,7 @@
 		?>
 	</div>
 	
-	<div id="row_field2">
+	<div id="champs-selection">
 		<?php
 			//Recherche par TYPE DE CONTRAT (liste déroulante)
 			//-->On ajoute l'option "Sélectionner pour la liste"

@@ -24,6 +24,8 @@
 	font-size:60px;
 	font-family:"Bodoni FLF";
 	text-align: center;
+	color: Black;
+
 }
 
 .menu_roulant
@@ -36,7 +38,8 @@
 
 #div_rechercher
 {
-	text-align:center;	
+	text-align:center;
+	margin-top: 2px;	
 
 }
 
@@ -89,13 +92,13 @@
 }
 
 
-#row_field
+#champs-recherche
 {
 	text-align: center;
-	margin-top: 2%;
+	margin-top: 10px;
 }
 
-#row_field2
+#champs-selection
 {
 	text-align: center;
 	margin-top: 2%;
