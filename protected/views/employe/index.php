@@ -155,7 +155,7 @@ else
 	
 		<?php
 			// Button d'envoi
-			echo CHtml::submitButton('Rechercher');
+			echo CHtml::submitButton(' GO ');
 		?>
 	</div>
 
