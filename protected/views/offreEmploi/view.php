@@ -112,9 +112,11 @@ if($utilisateur != null)
 		$titre = "Offre d'emploi";
 		
 	}
+
+
 }
 else
-{
+{ // Si non connecté
 	?>
 
 	<!--	MENU 	-->
@@ -125,8 +127,8 @@ else
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 			<li>
-				<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
-				Inscription
+				<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+				Ajouter mon CV
 				</a>
 			</li>
 			<li>
@@ -152,7 +154,8 @@ else
 ?>
 <?php
 	$titre = "";
-	
+if($utilisateur != null)
+{
 	if(!Utilisateur::est_employe(Yii::app()->user->role))// Entreprise
 	{
 		$titre = "Votre offre de ".$model->poste_offre_emploi;
@@ -164,6 +167,11 @@ else
 		// On adapte le titre
 		$titre = "Offre proposé par ".$entreprise->nom_entreprise.".";
 	}
+}
+else
+{// Si non connecté
+	$titre = "Votre offre de ".$model->poste_offre_emploi;
+}
 
 	// Message de confirmation de mise à jour
 	echo Yii::app()->user->getFlash('success_update_offre');
@@ -183,70 +191,24 @@ else
 	$date_creation = $this->changeDateNaissance($model->date_creation_offre_emploi);
 	$date_debut = $this->changeDateNaissance($model->date_debut_offre_emploi);
 
-	if($utilisateur != null)
-	{
-		$adresse = Adresse::model()->FindByAttributes(array("id_adresse"=>$utilisateur->id_adresse));
+	$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$model->id_entreprise)); // On récupère l'entreprise qui propose l'offre
 
-		print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
-		print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-		print("<p> Poste : ".$this->poste_offre_emploi."</p>");
-		print("<p> Type de contrat : ".$this->type_offre_emploi."</p>");
-		print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
-		print("<p> Salaire proposé : ".$this->salaire_offre_emploi." €</p>");
-		print("<p> Lieu : ".$adresse->ville." </p>");
-		print("<p> Expérience nécéssaire : ".$this->experience_offre_emploi."</p>");
-		print("<p> Description de l'offre : ".$this->description_offre_emploi."</p>");
-		print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
-	}
-	else
-	{
-		
-	}
-	
+	// Pour récupéré l'adresse : 
+	$userEntreprise = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+	$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
 
 
 
-	$this->widget('zii.widgets.CDetailView', array(
-		'data'=>$model,
-		'attributes'=>array(
-			//'id_offre_emploi',
-			array(
-				'label'=>'Poste ',
-				'value'=>$model->poste_offre_emploi
-			),
-			array(
-				'label'=>'Type de contrat ',
-				'value'=>$model->type_offre_emploi
-			),
-			array(
-				'label'=>'Date de prévisionnel d\'embauche',
-				'value'=>$model->date_debut_offre_emploi != NULL ? $date_debut : "Non renseignée",
-				),
-			array(
-				'label'=>'Salaire ',
-				'value'=>$model->salaire_offre_emploi." €"
-			),
-			array(
-				'label'=>'Lieu ',
-				//'value'=>$adresse->ville,
-			),
-			array(
-				'label'=>'Expérience nécéssaire ',
-				'value'=>$model->experience_offre_emploi
-			),
-			array(
-				'label'=>'Description de l\'offre ',
-				'value'=>$model->description_offre_emploi
-			),
-			array(
-				'label'=>'Date de mise en ligne ',
-				'value'=>$model->date_creation_offre_emploi != NULL ? $date_creation : "Non renseignée"
-			),
-			//'id_entreprise',
-			),
-		));
-
-
+	print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+	print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+	print("<p> Poste : ".$model->poste_offre_emploi."</p>");
+	print("<p> Type de contrat : ".$model->type_offre_emploi."</p>");
+	print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($model->date_debut_offre_emploi)."</p>");
+	print("<p> Salaire proposé : ".$model->salaire_offre_emploi." €</p>");
+	print("<p> Lieu : ".$adresse->ville." </p>");
+	print("<p> Expérience nécéssaire : ".$model->experience_offre_emploi."</p>");
+	print("<p> Description de l'offre : ".$model->description_offre_emploi."</p>");
+	print("<p> Date de mise en ligne : ".$this->changeDateNaissance($model->date_creation_offre_emploi)."</p>");
 
 
 
@@ -418,8 +380,22 @@ if($utilisateur != null)
 <?php
 	}
 }
+else
+{
+	?>
+		<!-- Formulaire avec le bouton pour postuler/dépostuler -->
+		<div class="wide form">
+			<?php $form=$this->beginWidget('CActiveForm',array('action'=>Yii::app()->createUrl('/site/redirectInscriptionCV')));?>
+
+			<div class="row buttons">
+				<!-- Bouton pour postuler/Dépostuler -->
+				<?php echo CHtml::submitButton('Postuler');	?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		</div>
+
+		<?php
+}
 
 ?>
-
-
-

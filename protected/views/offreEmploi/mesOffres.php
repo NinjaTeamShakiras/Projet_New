@@ -60,34 +60,6 @@ if($utilisateur != null)
 		<?php
 	}
 }
-else
-{
-	?>
-	<div class="dropdown">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-			Menu 
-			<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			<li>
-				<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
-				Inscription
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
-				Liste des offres d'emplois
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=employe/index" title="Rechercher une offre">
-				Rechercher une offre
-				</a>
-			</li>
-		</ul>
-	</div>
-	<?php
-}
 
 ?>
 

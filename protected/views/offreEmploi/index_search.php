@@ -55,8 +55,8 @@ else
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 			<li>
-				<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
-				Inscription
+				<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+				Ajouter mon CV
 				</a>
 			</li>
 			<li>

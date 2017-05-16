@@ -29,7 +29,7 @@ if($utilisateur != null)
 				</li>
 				<li>
 					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
-							Mes candidatures
+					Mes candidatures
 					</a>
 				</li>
 				<li>
@@ -103,4 +103,29 @@ else
 			}
 		}
 	}
-?>
+
+
+
+	if($utilisateur == null )
+	{
+		?>
+		<!-- Formulaire avec le bouton pour Inscription -->
+		<div class="wide form">
+			<?php
+			//Début du form
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('/site/inscriptionEmploye'),
+				)
+			);
+			?>
+
+			<div class="row buttons">
+				<?php echo CHtml::submitButton('Inscription manuel'); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+		
+		</div>
+		<?php 
+	}
