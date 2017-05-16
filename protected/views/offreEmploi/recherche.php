@@ -21,8 +21,13 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 			</a>
 		</li>
 		<li>
-			<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
-			Rechercher une offre
+			<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+			Mes candidatures
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+			Liste des offres d'emplois
 			</a>
 		</li>
 	</ul>

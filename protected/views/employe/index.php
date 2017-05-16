@@ -35,8 +35,13 @@
 			</a>
 		</li>
 		<li>
+			<a href="index.php?r=OffreEmploi/index" title="Mon profil">
+			Liste des offres d'emplois
+			</a>
+		</li>
+		<li>
 			<a href="index.php?r=OffreEmploi/mesOffres" title="Mon profil">
-			Mes Annonces
+			Mes candidatures
 			</a>
 		</li>
 	</ul>
