@@ -8,7 +8,7 @@ require './protected/vendor/autoload.php';
 
 
 $parser = new \Smalot\PdfParser\Parser();
-$pdf    = $parser->parseFile( './upload/1/cv_4.pdf' );
+$pdf    = $parser->parseFile( './upload/test/cv_7.pdf' );
  
 $PDFText_str = $pdf->getText();
 
