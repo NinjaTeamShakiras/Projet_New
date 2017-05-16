@@ -1,7 +1,7 @@
 <?php
 /* @var $this SiteController */
 echo '<div class=arriere-plan>';
-echo '<div class="titre"><img src="images/Prozzl_full_white.png" alt="Prozzl"/></div>';
+echo '<div class="titre"><img src="images/Prozzl_full_grey.png" alt="Prozzl"/></div>';
 
 //$this->renderPartial('./../entreprise/_search_accueil', array('model'=>Entreprise::model()));
 

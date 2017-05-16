@@ -20,6 +20,9 @@
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 ?>
+
+<div class='arriere-plan-employe'>
+
 <?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
       'Image accueil');
  
@@ -49,7 +52,7 @@
 	
 <!-- Formulaire de recherche d'une offre d'emploi -->
 <div class='row'>
-	<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis <mark>".$nombreOffre."</mark> offres</h3>"; ?>
+	<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
 </div>	
 
 <div class="form">
@@ -170,5 +173,6 @@ if($utilisateur != null)
 	echo "</div>";
 }
 ?>
+</div>
 
 	

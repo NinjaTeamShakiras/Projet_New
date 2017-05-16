@@ -10,9 +10,18 @@
 	src: url('Montserrat-Light.otf');
 }
 
+.arriere-plan-employe
+{
+	background-image:url(../images/image9_1);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
 #titre
 {
-	font-size:0px;
+	font-size:60px;
 	font-family:"Bodoni FLF";
 	text-align: center;
 }
@@ -28,6 +37,7 @@
 #div_rechercher
 {
 	text-align:center;	
+
 }
 
 #btn_rechercher
@@ -62,7 +72,7 @@
 	border-radius: 50px;
 	width:20%;
 	height:10%;
-	margin-left:22.5%;
+	margin-left:23%;
 	font-family:"Montserrat Light";
 	font-size:18px;
 
@@ -78,11 +88,6 @@
 	background :#90ffb9;
 }
 
-mark
-{
-	color:#ff50bc;
-	background-color:White;
-}
 
 #row_field
 {
