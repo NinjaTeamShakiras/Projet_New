@@ -145,6 +145,7 @@ class EmployeController extends Controller
 			$adresse->save();
 
 			$utilisateur->id_adresse = $adresse->id_adresse;
+			$utilisateur->site_web = $_POST['Utilisateur']['site_web'];
 			$utilisateur->telephone = $_POST['Utilisateur']['telephone'];
 			$utilisateur->telephone2 = $_POST['Utilisateur']['telephone2'];
 			$utilisateur->mail = $_POST['Utilisateur']['mail'];
@@ -153,7 +154,10 @@ class EmployeController extends Controller
 
 			//On enregistre le modèle et on redirige
 			if($model->save() && $utilisateur->save())
+			{
+				Yii::app()->user->setFlash('success_maj_infos_persos', "<p style = color:blue;>Votre profil à bien été mise à jour !</p>");
 				$this->redirect(array('view','id'=>$model->id_employe));
+			}
 
 		}
 
@@ -300,9 +304,12 @@ class EmployeController extends Controller
 			$competence->id_employe = $user->id_employe;
 
 			//On save le model competence 
-			$competence->save();
-
-			$this->redirect(array('view', 'id'=>$user->id_employe));
+			if($competence->save())
+			{
+				//Si c'est OK, on affiche un message de confirmation
+				Yii::app()->user->setFlash('success_ajout_competence', "<p style = color:blue;>La competence ".$competence->intitule_competence." à bien été ajoutée !</p>");
+				//$this->render('ajoutinfos');
+			}
 		}
 
 		$this->render('ajoutinfos');
@@ -329,11 +336,15 @@ class EmployeController extends Controller
 			$formation->id_employe = $user->id_employe;
 
 			//On save le model formation
-			$formation->save();
-
-			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
-			//$this->render('ajoutinfos');
+			if($formation->save())
+			{
+				//Si c'est OK, on affiche un message de confirmation
+				Yii::app()->user->setFlash('success_ajout_formation', "<p style = color:blue;>La formation ".$formation->intitule_formation." à bien été ajoutée !</p>");
+				$this->render('ajoutinfos');
+			}
 		}
+
+		$this->render('ajoutinfos');
 	}
 
 	public function actionajoutExpPro()
@@ -357,11 +368,15 @@ class EmployeController extends Controller
 			$experiencePro->id_employe = $user->id_employe;
 				
 			//On save le model experience
-			$experiencePro->save();
-
-			$this->redirect(array('employe/view', 'id'=>$user->id_employe));
-			//$this->render('ajoutinfos');
+			if($experiencePro->save())
+			{
+				//Si c'est OK, on affiche un message de confirmation
+				Yii::app()->user->setFlash('success_ajout_exp', "<p style = color:blue;>L'expérience pro ".$experiencePro->intitule_experience." à bien été ajoutée !</p>");
+				$this->redirect(array('employe/view', 'id'=>$user->id_employe));
+			}	
 		}
+
+		$this-render('ajoutInfos');
 	}
 
 	public function choixAjoutMAJInfos()
@@ -379,13 +394,13 @@ class EmployeController extends Controller
 
 	/*Fonction qui permet, soit d'uploader son CV sur le site, soit d'être rédirigé vers 
 	la page ajoutinfos.php suivant le bouton sur lequel on clique*/
-	public function choixCV()
+	public function actionchoixCV()
 	{
 		//Si il choisi l'upload, on upload le CV
 		if(isset($_POST['upload']))
 		{
 			//METTRE ICI L'UPLOAD DU CV
-			$this->redirect(array('employe/index'));
+			$this->redirect(array('index'));
 		}
 
 		//Si il choisit de renseigner ses infos, on le redirige vers le dit formulaire
