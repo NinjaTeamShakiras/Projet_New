@@ -172,7 +172,7 @@ class OffreEmploiController extends Controller
 		// Suppression de l'offre
 		$offre->delete();
 
-		Yii::app()->user->setFlash('success_delete_offre', "<p style = color:blue;>Votre annonce au poste de ".$nomOffre." à bien été supprimée !</p>");
+		Yii::app()->user->setFlash('success_delete_offre', "<p style = color:blue;>Votre annonce au poste de '".$nomOffre."'' à bien été supprimée !</p>");
 		$this->redirect('index.php?r=offreEmploi/index');
 
 	}
