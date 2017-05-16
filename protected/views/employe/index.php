@@ -155,7 +155,7 @@ else
 	
 		<?php
 			// Button d'envoi
-			echo CHtml::submitButton(' GO ');
+			echo CHtml::submitButton('Rechercher');
 		?>
 	</div>
 
@@ -163,6 +163,45 @@ else
 
 </div>
 
+
+<!-- Fomulaire avec le bouton de l'ajout du CV -->
+<div class="wide form">
+	<?php
+		//Début du form
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('employe/choixAjoutCV'),
+			)
+		);
+	?>
+
+	<div class="row">
+		<!-- Bouton d'ajout du CV -->
+		<?php echo CHtml::submitButton('Ajouter mon CV'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+		
+</div>
+
+<!-- Formulaire avec le bouton pour postuler en click -->
+<div class="wide form">
+	<?php
+		//Début du form
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->createUrl('offreEmploi/recherche') ,
+			)
+		);
+	?>
+
+	<div class="row">
+		<!-- Bouton pour postuler -->
+		<?php echo CHtml::submitButton('Postuler à une annonce en un seul click !'); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+</div>	
 
 
 	
