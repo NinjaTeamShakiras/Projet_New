@@ -87,14 +87,11 @@ else
 }
 ?>
 
-
-
-
+	<?php echo Yii::app()->user->getFlash('logout_ok'); ?>
 
 <div>
 	<?php echo "<h3>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres ! </h3>"; ?>
 </div>	
-
 
 
 <!-- Formulaire de recherche d'une offre d'emploi -->

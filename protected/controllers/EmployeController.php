@@ -15,7 +15,6 @@ class EmployeController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -173,11 +172,76 @@ class EmployeController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		//On récupère l'utilisateur dans la base de données
+		$utilisateur = Utilisateur::model()->FindByAttributes(array('id_employe'=>$id));
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		/*Pour toutes les classes suivantes, on supprime soit l'occurence en entier, soit le champ
+		id_utilisateur est mis a null dans l'occurence */
+
+		//Dans la class Travaille
+		$jobs = Job::model()->FindAll();
+
+		foreach ($jobs as $job)
+		{
+			if($job->id_employe == $utilisateur->id_employe)
+				$job->delete();
+		}
+
+
+		//Dans la class Postuler
+		$postule = Postuler::model()->FindAll();
+
+		foreach ($postule as $post)
+		{
+			if($post->id_employe == $utilisateur->id_employe)
+				$post->delete();
+		}
+
+
+		//Dans la class Competence
+		$competences = Competence::model()->FindAll();
+
+		foreach($competences as $competence)
+		{
+			if($competence->id_employe == $utilisateur->id_employe)
+				$competence->delete();
+		}
+
+
+		//Dans la class Expériences pro
+		$exp_pros = ExperiencePro::model()->FindAll();
+
+		foreach($exp_pros as $exp)
+		{
+			if($exp->id_employe == $utilisateur->id_employe)
+				$exp->delete();
+		}
+
+		
+		//Dans la class Formation
+		$formations = Formation::model()->FindAll();
+
+		foreach($formations as $formation)
+		{
+			if($formation->id_employe == $utilisateur->id_employe)
+				$formation->delete();
+		}
+
+		//On supprime l'utilisateur
+		Yii::app()->user->logout(false);
+		$utilisateur->delete();
+					
+
+		//On supprime l'employé
+		$model=$this->loadModel($id);
+		$model->delete();
+
+		//On créé un message flash pour l'utilisateur
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			Yii::app()->user->setFlash('suppr_compte', "<p style = color:blue;>Votre profil à bien été supprimé !</p>");
+		
+		//On reidrige ensuite vers la page d'accueil
+		$this->redirect('index.php');
 	}
 
 	/**
@@ -411,35 +475,6 @@ class EmployeController extends Controller
 	}
 
 
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Employe the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-		$model=Employe::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param Employe $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='employe-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
-
 	/**
 	 * Fonction pour télécharger le CV de l'employé
 	 */
@@ -479,6 +514,8 @@ class EmployeController extends Controller
 	 */
 	public function actionUploadTmpCV()
 	{
+		/* -- On fait attendre avec sleep() faut penser à faire un chargement en javascript -- */
+		//sleep(5)
 		$employe = new Employe();
 		/* -- Récupération du CV -- */
 		$employe->cv_pdf = CUploadedFile::getInstance( $employe, 'cv_pdf');
@@ -500,4 +537,56 @@ class EmployeController extends Controller
 		$url_str =  $this->createUrl( 'site/redirectInscriptionCV' );
 		$this->redirect( $url_str );
 	}
-}
+
+
+	/*Fonction apellée dans ls paramètres du compte
+	--> Soit on se déconnecte, soit on supprime le compte*/
+	public function actionParametres()
+	{
+		//S'il cliques sur déconnexion, on apelle la fonction logout de SiteController
+		if(isset($_POST['btndeco']))
+		{
+			Yii::app()->user->logout(false);
+			Yii::app()->user->setFlash('logout_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
+			$this->redirect(array('employe/index'));
+		}
+
+		//S'il cliques sur supression du compte, on apelle actionDelete de ce controller
+		if(isset($_POST['btnsupcompte']))
+		{
+			$utilisateur = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+			$this->redirect(array('employe/delete', 'id'=>$utilisateur->id_employe));
+		}
+
+		$this->render('parametres');
+	}
+
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Employe the loaded model
+	 * @throws CHttpException
+	 */
+	public function loadModel($id)
+	{
+		$model=Employe::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Performs the AJAX validation.
+	 * @param Employe $model the model to be validated
+	 */
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='employe-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
+}	
