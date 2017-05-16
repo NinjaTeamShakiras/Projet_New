@@ -114,6 +114,7 @@ class EntrepriseController extends Controller
 		{
 			$model->attributes=$_POST['Entreprise'];
 			if($model->save())
+				Yii::app()->user->setFlash('success_update_entreprise', "<p style = color:blue;>Votre profil à bien été mis à jour !</p>");
 				$this->redirect(array('view','id'=>$model->id_entreprise));
 		}
 
@@ -133,6 +134,7 @@ class EntrepriseController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
+			Yii::app()->user->setFlash('success_delete_entreprise', "<p style = color:blue;>Votre profil à bien été supprimer !</p>");
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
@@ -287,15 +289,6 @@ class EntrepriseController extends Controller
 
 				$aRechercher = true;
 			}
-
-
-
-
-			/* 		Recherche par ??? de ???	*/
-
-
-
-
 
 
 			/**** 		FIN RECHERCHE 		****/
