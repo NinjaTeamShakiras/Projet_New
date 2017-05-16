@@ -101,7 +101,7 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
-					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					<a href="index.php?r=employe/index" title="Rechercher une offre">
 					Rechercher une offre
 					</a>
 				</li>
@@ -315,16 +315,7 @@ if($utilisateur != null)
 		// On rajoute la date de postulation
 		if($aPostuler)
 		{
-			$this->widget('zii.widgets.CDetailView', array(
-				'data'=>$model,
-				'attributes'=>array(
-					array(
-						'label'=>'Vous avez postuler le ',
-						'value'=>$datePostule != NULL ? $datePostule : "Non renseignée",
-					),
-
-				),
-			));
+			print"<p>Vous avez postuler à cette offre le ".$datePostule."</p>";
 		}
 
 		?> 
