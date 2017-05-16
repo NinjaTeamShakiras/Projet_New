@@ -46,6 +46,11 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
+					</a>
+				</li>
+				<li>
 					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
 					Liste des offres d'emplois
 					</a>
@@ -59,34 +64,6 @@ if($utilisateur != null)
 		</div>
 		<?php
 	}
-}
-else
-{
-	?>
-	<div class="dropdown">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-			Menu 
-			<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			<li>
-				<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
-				Inscription
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
-				Liste des offres d'emplois
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=employe/index" title="Rechercher une offre">
-				Rechercher une offre
-				</a>
-			</li>
-		</ul>
-	</div>
-	<?php
 }
 
 ?>
@@ -106,12 +83,15 @@ else
 	
 	print("<p> Vous avez postuler à ".$nombreOffrePostuler." offres.</p>");
 
+	$annonceN = 0;
 
 	// On vérifie si un champs comprend l'id de l'employé et l'id de l'offre. Si c'est le cas, l'employé à déjà postuler
 	foreach($tablePostuler as $postuler)
 	{
 		if($postuler->id_employe == $utilisateur->id_employe)
 		{
+
+			$annonceN++;
 			$offre = OffreEmploi::model()->FindByAttributes(array("id_offre_emploi"=>$postuler->id_offre_emploi)); // On récupère l'offre concernée
 			$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
 
@@ -121,18 +101,21 @@ else
 
 			//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
 			//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
-			print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
-			print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
-			print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
-			print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
-			print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
-			print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
-			print("<p> Lieu : ".$adresse->ville." </p>");
-			print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
-			print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
-			print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
-			print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
-			echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+			// - print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+			// - print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+			// - print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
+			// - print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+			// - print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+			// - print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+			// - print("<p> Lieu : ".$adresse->ville." </p>");
+			// - print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+			// - print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+			// - print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+			// - print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
+
+			$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - crée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+
+			echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 			echo "<hr/>";
 			$aPostuler = true;
 		}

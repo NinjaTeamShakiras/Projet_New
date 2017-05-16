@@ -70,8 +70,8 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
-					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
-					Liste des offres d'emplois
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
 					</a>
 				</li>
 				<li>
@@ -80,7 +80,7 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
-					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					<a href="index.php?r=employe/index" title="Rechercher une offre">
 					Rechercher une offre
 					</a>
 				</li>
@@ -102,8 +102,8 @@ else
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 			<li>
-				<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
-				Inscription
+				<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+				Ajouter mon CV
 				</a>
 			</li>
 			<li>
@@ -265,7 +265,7 @@ if($utilisateur != null)
 				if($postuler->id_employe == $utilisateur->id_employe && $postuler->id_offre_emploi == $offre->id_offre_emploi )
 				{
 					//print("<p> Vous avez postuler à cette offre le : ".$this->changeDateNaissance($postuler->date_postule)."</p>");
-					$nomLien .= " --- vous avez postuler à cette annonce le ".$this->changeDateNaissance($postuler->date_postule);
+					$nomLien .= " --- Vous avez postuler à cette annonce le ".$this->changeDateNaissance($postuler->date_postule);
 					break;
 				}
 			}

@@ -41,6 +41,11 @@ if($utilisateur != null)
 					</a>
 				</li>
 				<li>
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
+					</a>
+				</li>
+				<li>
 					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
 					Liste des offres d'emplois
 					</a>
@@ -48,11 +53,6 @@ if($utilisateur != null)
 				<li>
 					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
 					Mes candidatures
-					</a>
-				</li>
-				<li>
-					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
-					Ajouter mon CV
 					</a>
 				</li>
 			</ul>

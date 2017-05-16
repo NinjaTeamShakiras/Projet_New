@@ -287,7 +287,7 @@ class OffreEmploiController extends Controller
 
 		if($postuler->save())
 		{ // Si la sauvegarde fonctionne
-			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler a cette offre !</p>");
+			Yii::app()->user->setFlash('success_postule_offre', "<p style = color:blue;>Vous avez bien postuler à cette offre !</p>");
 			$this->redirect(array('view','id'=>$id_offre));
 		}
 		else
@@ -467,7 +467,8 @@ class OffreEmploiController extends Controller
 			{ // Si le secteur à été remplis
 				foreach ($tabOffre as $offreDeCote) // Pour TOUTES les offres ...
 				{
-					$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+					// On récupère l'entreprise qui propose l'offre
+					$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offreDeCote->id_entreprise));
 					
 					if($secteur_offre_emploi == $entreprise->secteur_activite_entreprise)
 					{ // Si le secteur rentré correspond au secteur de l'offre
