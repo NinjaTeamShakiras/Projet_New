@@ -12,15 +12,22 @@
 
 #titre
 {
-	font-size:40px;
+	font-size:0px;
 	font-family:"Bodoni FLF";
 	text-align: center;
+}
+
+.menu_roulant
+{
+	padding:1.0%;
+	border-radius: 10%;
+	background-color:rgb(250, 255, 189);
+	font-family:"Montserrat Light";
 }
 
 #div_rechercher
 {
 	text-align:center;	
-	font-family:"Montserrat Light"
 }
 
 #btn_rechercher
@@ -29,28 +36,36 @@
 	background-color:#90ffb9;
 	color:Black;
 	border-radius: 50px;
+	box-shadow:2px 2px 15px #aaa;	
+	font-family:"Montserrat Light";
+	font-size:18px;
 }
 
 #btn_postuler
 {
+	box-shadow:2px 2px 15px #aaa;
 	background-color:#90ffb9;
 	color:Black;
 	border-radius: 50px;
-	width:20%;
-	height:10%;
-	margin-left:39%;
+	width:415px;
+	height:100px;
 	font-family:"Montserrat Light";
+	font-size:18px;
+	margin-left: 15%;
 }
 
 #btn_cv
 {
+	box-shadow:2px 2px 15px #aaa;
 	background-color:#90ffb9;
 	color:Black;
 	border-radius: 50px;
 	width:20%;
 	height:10%;
-	margin-left:10%;
+	margin-left:22.5%;
 	font-family:"Montserrat Light";
+	font-size:18px;
+
 }
 
 .btn_page:hover
@@ -89,14 +104,6 @@ mark
 	font-family:"Montserrat Light";
 }
 
-.menu_roulant
-{
-	padding:1.0%;
-	border-radius: 10%;
-	background-color:rgb(250, 255, 189);
-	font-family:"Montserrat Light";
-}
-
 #btn_infos
 {
 	background-color:#ff50bc;
@@ -106,5 +113,4 @@ mark
 #row_infos
 {
 	text-align: center;
-
 }
