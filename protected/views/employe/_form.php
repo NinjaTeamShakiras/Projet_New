@@ -67,7 +67,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($utilisateur,'site_web'); ?>
-		<?php echo $form->textField($utilisateur,'site_web',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->textField($utilisateur,'site_web',array('size'=>45,'maxlength'=>45, 'placeholder'=>'www.monsite.fr')); ?>
 		<?php echo $form->error($utilisateur,'site_web'); ?>
 	</div>	
 

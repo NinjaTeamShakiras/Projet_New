@@ -2,6 +2,11 @@
  
       echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
 
+<!-- On affiche les messages de confirmation d'ajout d'infos -->
+<?php echo Yii::app()->user->getFlash('success_ajout_formation'); ?>
+<?php echo Yii::app()->user->getFlash('success_ajout_competence'); ?>
+<?php echo Yii::app()->user->getFlash('success_ajout_exp'); ?>	
+
 
 <div class="form">
 

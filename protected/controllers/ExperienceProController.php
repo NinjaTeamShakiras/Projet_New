@@ -96,7 +96,7 @@ class ExperienceProController extends Controller
 			$model->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
 			$model->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
 			if($model->save())
-				Yii::app()->user->setFlash('success_maj_exp', "<p style = color:blue;>La formation ".$model->intitule_experience." à bien été mise à jour !</p>");
+				Yii::app()->user->setFlash('success_maj_exp', "<p style = color:blue;>L'expérience pro ".$model->intitule_experience." à bien été mise à jour !</p>");
 				$this->redirect(array('employe/view','id'=>$model->id_employe));
 		}
 
@@ -117,7 +117,11 @@ class ExperienceProController extends Controller
 		$user = $model->id_employe;
 
 		//On détruit le model
-		$model->delete();
+		if($model->delete())
+		{
+			//Si c'est OK, on affiche un message de confirmation
+			Yii::app()->user->setFlash('success_sup_exp', "<p style = color:blue;>L'expérience pro ".$model->intitule_experience." à bien été supprimée !</p>");
+		}
 
 		$this->redirect(array('employe/view', 'id'=>$user));
 	}
