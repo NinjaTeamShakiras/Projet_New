@@ -94,7 +94,7 @@ class CompetenceController extends Controller
 		{
 			$model->attributes=$_POST['Competence'];
 			if($model->save())
-				Yii::app()->user->setFlash('success_maj_competence', "<p style = color:blue;>La formation ".$model->intitule_competence." à bien été mise à jour !</p>");
+				Yii::app()->user->setFlash('success_maj_competence', "<p style = color:blue;>La compétence ".$model->intitule_competence." à bien été mise à jour !</p>");
 				$this->redirect(array('employe/view','id'=>$model->id_employe));
 		}
 
@@ -114,7 +114,12 @@ class CompetenceController extends Controller
 		//On récupère l'id de l'employe dont on aura besoin pour la redirection
 		$user = $model->id_employe;
 
-		$model->delete();
+		//On supprime le model
+		if($model->delete())
+		{
+			//Si c'est OK, on affiche un message
+			Yii::app()->user->setFlash('success_sup_competence', "<p style = color:blue;>La compétence ".$model->intitule_competence." à bien été supprimée !</p>");
+		}
 
 		$this->redirect(array('employe/view', 'id'=>$user));
 	}

@@ -9,89 +9,38 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 
 <!--	MENU 	-->
-
-<!-- Formulaire avec le bouton pour voir Déposer une annonce -->
-<div class="wide form">
-	<?php
-	//Début du form
-	$form=$this->beginWidget('CActiveForm',
-		array(
-			'action'=>Yii::app()->createUrl('/offreEmploi/create'),
-		)
-	);
-	?>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Déposer une annonce'); ?>
-	</div>
-
-	<?php $this->endWidget(); ?>
-
-</div>
-
-
-
-<!-- Formulaire avec le bouton pour voir mon profil -->
-<div class="wide form">
-	<?php
-	//Début du form
-	$form=$this->beginWidget('CActiveForm',
-		array(
-			'action'=>Yii::app()->createUrl('/entreprise/view',array('id'=>$utilisateur->id_entreprise)),
-		)
-	);
-	?>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Mon profil'); ?>
-	</div>
-
-	<?php $this->endWidget(); ?>
-
+<div class="dropdown">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+		Menu 
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		<li>
+			<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+			Déposer une annonce
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
+			Mon profil
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+			Mes annonces
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=entreprise/candidats" title="Mes candidats">
+			Mes candidats
+			</a>
+		</li>
+	</ul>
 </div>
 
 
 
 
-
-<!-- Formulaire avec le bouton pour Mes annonces -->
-<div class="wide form">
-	<?php
-	//Début du form
-	$form=$this->beginWidget('CActiveForm',
-		array(
-			'action'=>Yii::app()->createUrl('/offreEmploi/index'),
-		)
-	);
-	?>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Mes annonces'); ?>
-	</div>
-
-	<?php $this->endWidget(); ?>
-
-</div>
-
-
-<!-- Formulaire avec le bouton pour Mes candidats -->
-<div class="wide form">
-	<?php
-	//Début du form
-	$form=$this->beginWidget('CActiveForm',
-		array(
-			'action'=>Yii::app()->createUrl('/entreprise/candidats'),
-		)
-	);
-	?>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Mes candidats'); ?>
-	</div>
-
-	<?php $this->endWidget(); ?>
-
-</div>
 
 
 <h1>Rechercher un CV : </h1>

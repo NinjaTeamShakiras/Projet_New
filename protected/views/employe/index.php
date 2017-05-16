@@ -23,34 +23,81 @@
 		
 	
 <!--  MENU 	-->
-<div class="dropdown">
-	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-	Menu
-	<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-		<li>
-			<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
-			Mon Profil
-			</a>
-		</li>
-		<li>
-			<a href="index.php?r=OffreEmploi/mesOffres" title="Mon profil">
-			Mes Annonces
-			</a>
-		</li>
-	</ul>
-</div>
+<?php
+if($utilisateur != null)
+{ // Si connecter
+	if (Utilisateur::est_employe(Yii::app()->user->role) )
+	{ // Si employe
+		?>
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+					Mon Profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+					Mes candidatures
+					</a>
+				</li>
+			</ul>
+		</div>
+		<?php
+	}
+
+}
+else
+{
+	?>
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=site/inscriptionEmploye" title="Inscription">
+					Inscription
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
+					</a>
+				</li>
+			</ul>
+		</div>
+	<?php
+}
+?>
+
+
+
+
+
+<div>
+	<?php echo "<h3>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres ! </h3>"; ?>
+</div>	
 
 
 
 <!-- Formulaire de recherche d'une offre d'emploi -->
-<div>
-	<?php echo "<h3>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
-</div>	
-
 <div class="wide form">
-
 	<?php
 		//Début du form
 		$form=$this->beginWidget('CActiveForm',
@@ -108,7 +155,7 @@
 	
 		<?php
 			// Button d'envoi
-			echo CHtml::submitButton('Rechercher');
+			echo CHtml::submitButton(' GO ');
 		?>
 	</div>
 
@@ -156,25 +203,5 @@
 	<?php $this->endWidget(); ?>
 </div>	
 
-<?php
-
-//Si l'utilisateur est connecté, on lui affiche un bouton pour voir ses infos persos
-if($utilisateur != null)
-{
-	//Formulaire pour voir ses infos persos
-	echo "<div class='wide form'>";
-		//Début du form
-		$form=$this->beginWidget('CActiveForm',
-			array(
-				'action'=>Yii::app()->createUrl('employe/view', array('id'=>$utilisateur->id_employe)),
-			)
-		);
-
-		echo "<div class='row'>".CHtml::submitButton('Voir mes informations personnelles !')."</div>";
-
-	$this->endWidget();
-	echo "</div>";
-}
-?>
 
 	

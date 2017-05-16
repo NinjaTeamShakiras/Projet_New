@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Les champs avec <span class="required">*</span> doivent être remplis.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -39,7 +39,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'secteur_activite_entreprise'); ?>
-		<?php echo $form->textField($model,'secteur_activite_entreprise',array('size'=>45,'maxlength'=>45)); ?>
+		<?php //echo $form->textField($model,'secteur_activite_entreprise',array('size'=>45,'maxlength'=>45)); ?>
 		<?php
 			// Liste déroulante pour le choix du secteur d'activité
 			echo $form->dropDownList($model, 'secteur_activite_entreprise', array('Touristique'=>'Touristique', 'Camping'=>'Camping', 'Restauration'=>'Restauration', 'Brasserie'=>'Brasserie'));
@@ -60,7 +60,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -9,75 +9,41 @@
 	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 	$titre ="";
 
+if($utilisateur != null)
+{ // Si connecter
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise
 		?>
 
 		<!-- 	MENU 	-->
-		<!-- Formulaire avec le bouton pour Retour aux annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/entreprise/view',array('id'=>$utilisateur->id_entreprise)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+					Déposer une annonce
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/candidats" title="Mes candidats">
+					Mes candidats
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/index" title="Rechercher un CV">
+					Rechercher un CV
+					</a>
+				</li>
+			</ul>
 		</div>
-
-
-
-
-
-
-		<!-- Formulaire avec le bouton pour Mes annonce -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/create'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Déposer une annonce'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-		<!-- Formulaire avec le bouton pour Rechercher cv -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/entreprise/index'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Rechercher un cv'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
 
 		<?php
 
@@ -85,84 +51,67 @@
 		echo Yii::app()->user->getFlash('success_delete_offre');
 
 
-	}
+	}	/* 		EMPLOYE 	*/
 	else if( Utilisateur::est_employe(Yii::app()->user->role))  
 	{  // Si employé
 
 		?>
 
 		<!--	MENU 	-->
-		<!-- Formulaire avec le bouton pour voir mon profil -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/employe/view',array('id'=>$utilisateur->id_employe)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mon profil'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-		
-		<!-- Formulaire avec le bouton pour Mes candidature -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/mesOffres'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Mes candidatures'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
-		</div>
-
-
-
-
-				<!-- Formulaire avec le bouton pour Rechercher -->
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/recherche'),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Rechercher une offre'); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-		
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+					Mes candidatures
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=offreEmploi/recherche&id=<?php echo $utilisateur->id_employe;?>" title="Rechercher une offre">
+					Rechercher une offre
+					</a>
+				</li>
+			</ul>
 		</div>
 
 		<?php
 		$titre = "Liste des offres d'emplois";
 
 	}
-	else
-	{
-		$titre = "Vous n'êtes pas connecté";
-	}
+}
+else
+{
+	?>
+	<div class="dropdown">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu 
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li>
+				<a href="index.php?r=employe/index" title="Rechercher une offre">
+				Rechercher une offre
+				</a>
+			</li>
+		</ul>
+	</div>
+	<?php
+
+	$titre = "Liste des offres d'emplois";
+}
 
 ?>
 
@@ -181,6 +130,9 @@
 	$tablePostuler = Postuler::model()->FindAll();
 
 
+
+if($utilisateur != null)
+{ // Si connecter
 	/*		ENTREPRISE 			*/
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
 	{ // Si entreprise on affiche les offres d'emploi de l'entreprise
@@ -304,11 +256,40 @@
 		}
 
 	}
-	else 
-	{ // Si autre on affiche toutes les offres d'emploi
-		$this->widget('zii.widgets.CListView', array(
-			'dataProvider'=>$dataProvider,
-			'itemView'=>'_view',
-		));
+}
+else 
+{ // Si employe non connecté toutes les offres d'emploi
 
+	$tabOffre = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
+	$nombreTotalOffre = sizeof($tabOffre); // Nombre d'offre total
+
+	print("<p> Postulez ou consultez ".$nombreTotalOffre." offres proposées par des entreprises.</p>");
+
+
+	foreach ($model as $key => $offre ) //  Pour chaque offre on affiche :
+	{
+		$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise)); // On récupère l'entreprise qui propose l'offre
+
+		// Pour récupéré l'adresse : 
+		$userEntreprise = utilisateur::model()->FindByAttributes(array("id_entreprise"=>$entreprise->id_entreprise));
+		$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$userEntreprise->id_adresse));
+
+		//print("<p> ID entreprise : ".$offre->id_entreprise."</p>");
+		//print("<p> ID offre : ".$offre->id_offre_emploi."</p>");
+		print("<p> Proposé par : ".$entreprise->nom_entreprise."</p>");
+		print("<p> Secteur d'activité : ".$entreprise->secteur_activite_entreprise." </p>");
+		print("<p> Poste : ".$offre->poste_offre_emploi."</p>");
+		print("<p> Type de contrat : ".$offre->type_offre_emploi."</p>");
+		print("<p> Date prévisionnel d'embauche : ".$this->changeDateNaissance($offre->date_debut_offre_emploi)."</p>");
+		print("<p> Salaire proposé : ".$offre->salaire_offre_emploi." €</p>");
+		print("<p> Lieu : ".$adresse->ville." </p>");
+		print("<p> Expérience nécéssaire : ".$offre->experience_offre_emploi."</p>");
+		print("<p> Description de l'offre : ".$offre->description_offre_emploi."</p>");
+		print("<p> Date de mise en ligne : ".$this->changeDateNaissance($offre->date_creation_offre_emploi)."</p>");
+
+		echo CHtml::link('Voir cette offre' ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
+		echo "<hr/>";
 	}
+
+
+}

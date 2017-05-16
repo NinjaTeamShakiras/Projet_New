@@ -117,7 +117,11 @@ class FormationController extends Controller
 		$user = $model->id_employe;
 
 		//On supprime la compétence
-		$model->delete();
+		if($model->delete())
+		{
+			//Si c'est OK, on affiche un message de supression
+			Yii::app()->user->setFlash('success_sup_formation', "<p style = color:blue;>La formation ".$model->intitule_formation." à bien été supprimée !</p>");
+		}
 
 		$this->redirect(array('employe/view', 'id'=>$user));
 	}
