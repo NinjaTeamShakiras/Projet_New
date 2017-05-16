@@ -106,7 +106,15 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
+
+		if(Yii::app()->session['logout '] == 'employe')
+		{
+			$this->redirect(array('employe/index'));
+		}
+		else if(Yii::app()->session['logout '] == 'entreprise')
+		{
+			$this->redirect(array('entreprise/index'));
+		}
 	}
 
 	/* Fonction qui change la date au format Américain pour la BDD */
