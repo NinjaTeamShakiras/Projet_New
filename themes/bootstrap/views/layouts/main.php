@@ -16,7 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/employe.css" >
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/choixAjoutCV.css" >
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/employe_view.css" >
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/employe_ajoutinfos	.css" >
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/employe_ajoutinfos.css" >
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/inscription_employe.css" >
 	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>../../../js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
