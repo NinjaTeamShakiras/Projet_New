@@ -165,6 +165,9 @@ class EmployeController extends Controller
 		));
 	}
 
+
+
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -233,7 +236,7 @@ class EmployeController extends Controller
 					
 
 		//On supprime l'employé
-		$model=$this->loadModel($id);
+		$model=$this->loadModel($id)->delete();
 		$model->delete();
 
 		//On créé un message flash pour l'utilisateur
