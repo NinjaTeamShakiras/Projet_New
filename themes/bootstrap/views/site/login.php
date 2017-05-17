@@ -41,7 +41,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Connexion',array('class'=>'btnConnexion btn btn-success')); ?>
+		<?php echo CHtml::submitButton('Connexion',array('class'=>'btnConnexion btn')); ?>
 	</div>
 
 	<?php 

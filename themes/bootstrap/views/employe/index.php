@@ -26,11 +26,17 @@
 <?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
       'Image accueil');
  
-      echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
+      echo CHtml::link($image,array('employe/index')); ?>
 
 
 <!--  MENU 	-->
-<div class="btn-group" style="float: right;">
+<?php
+if($utilisateur != null)
+{ // Si connecter
+	if (Utilisateur::est_employe(Yii::app()->user->role) )
+	{ // Si employe
+		?>
+		<div class="btn-group" style="float: right;">
 	<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		Menu
    	<span class="caret"></span>
@@ -38,18 +44,56 @@
 	<ul class="dropdown-menu dropdown-menu-right">
 		<li>
 			<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
-			Mon Profil
+			Mon profil
 			</a>
 		</li>
 		<li>
-			<a href="index.php?r=OffreEmploi/index&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
-			Mes Candidatures
+			<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+			Ajouter mon CV
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+			Liste des offres d'emplois
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/mesOffres" title="Mon profil">
+			Mes candidatures
 			</a>
 		</li>
 	</ul>
 </div>
+		<?php
+	}
+}
+else
+{
+	?>
+		<div class="btn-group" style="float: right;">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Menu
+		   	<span class="caret"></span>
+		   	</button>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li>
+					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+					Ajouter mon CV
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Liste des offres d'emplois
+					</a>
+				</li>
+			</ul>
+		</div>
+	<?php
+}
+?>
+<div class='filtre-blanc'>
 
-<div class='filtre-vert'>
+<?php echo Yii::app()->user->getFlash('logout_ok'); ?>
 	
 <!-- Formulaire de recherche d'une offre d'emploi -->
 <div class='row'>
