@@ -5,9 +5,9 @@
 		- 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
-
 /* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 	Amélioriations de l'algorithme : 
+		- Les blocs sont bien coupés s'il commencent pas une date mais faut trouver une alternative pour ceux qui finnissent pas une date etc.
 		- Vérification si un bloc contient une partie d'un ligne on l'efface
 		- Pour tester la séparation de blocs on peut reagarder dans les lignes non lues les structures qui apparaissent le plus
 		le découpage se ferait donc à partir de ses structures et pas des structures générales
@@ -16,8 +16,6 @@
 		- Plus de nom de domaine
 		- Ajouter début de URL https:// (Pas reconnu pour le moment)
 		- Cas à traiter avec des PDF avec plusieurs pages
-		- Pour le code postal gérer les code postal du type 76 000, 74 300 etc. (avec un espace)
-		- Cas où les informations sont suivis de deux points ex: date de naissance:07/06/1996 le explode ne fonctionnera pas 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 
@@ -68,7 +66,7 @@ class AIPDF extends CActiveRecord
 	public static $autres_arr = array();
 
 	/* --- --- Mots clés --- --- */
-	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'temps partiel', 'temps complet', 'stage', 'alternance' );
+	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'temps partiel', 'temps complet', 'stage', 'alternance', 'emploi' );
 
 	public static $blocsWordKeyFormation_arr = array(	'diplôme', 'université', 'lycée', 'baccalauréat', 'BAC', 'BAC+1', 'BAC+2', 'BAC+3', 'BAC+4',
 														'BAC+5', 'DUT', 'BTS', 'école', 'supérieure', 'licence', 'master', 'mention', 'études'	);
@@ -187,12 +185,14 @@ class AIPDF extends CActiveRecord
 					if( $formationIndex_int < $expProIndex_int && $expProIndex_int >= EXP_LIMIT )
 					{
 						if( DEBUG ) var_dump("Bloc : Expériences Pro");
-						array_push( self::$expPros_arr, $bloc_str );
+						if( !in_array( $bloc_str, self::$expPros_arr ) )
+							array_push( self::$expPros_arr, $bloc_str );
 					}
 					else if ($formationIndex_int > $expProIndex_int && $formationIndex_int >= FORMATION_LIMIT)
 					{
 						if( DEBUG ) var_dump("Bloc : Formations");
-						array_push( self::$formations_arr, $bloc_str );
+						if( !in_array( $bloc_str, self::$formations_arr ) )
+							array_push( self::$formations_arr, $bloc_str );
 					}
 					else
 					{

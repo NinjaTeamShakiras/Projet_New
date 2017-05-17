@@ -130,6 +130,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 					<div class='row'>
 						<?php
+						echo Yii::app()->user->getFlash('success_maj_infos_persos');
 						echo "<p>NOM : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
 						echo "<p>DATE DE NAISSANCE : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
 						echo "<p>ADRESSE : <label>".$adresse."</label></p>";
@@ -203,6 +204,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 					foreach($formations as $formation)
 					{
 						echo Yii::app()->user->getFlash('success_maj_formation');
+						echo Yii::app()->user->getFlash('success_sup_formation');
 						echo "<p>Date de début de la formation : <label>".$this->changeDateNaissance($formation->date_debut_formation)."</label></p>";
 						echo "<p>Date de fin de la formation : <label>".$this->changeDateNaissance($formation->date_fin_formation)."</label></p>";
 						echo "<p>Intitulé de la formation : <label>".$formation->intitule_formation."</label></p>";
@@ -213,9 +215,9 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						
 						<div class='div-modifier-supprimer'>
 							<?php
-							echo CHtml::link('Mettre à jour cette formation',array('Formation/update'),array('id'=>$formation->id_formation,'class'=>'Modifier-supprimer'));
+							echo CHtml::link('Mettre à jour cette formation',array('Formation/update', 'id'=>$formation->id_formation,'class'=>'Modifier-supprimer'));
 							echo " / ";
-							echo CHtml::link('Supprimer cette formation',array('Formation/delete'),array('id'=>$formation->id_formation,'class'=>'Modifier-supprimer')); 
+							echo CHtml::link('Supprimer cette formation',array('Formation/delete', 'id'=>$formation->id_formation,'class'=>'Modifier-supprimer')); 
 							?>
 						</div>
 						
@@ -244,6 +246,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						foreach($exp_pros as $exp_pro)
 						{
 							echo Yii::app()->user->getFlash('success_maj_exp');
+							echo Yii::app()->user->getFlash('success_sup_exp');
 							echo "<p>Date de début de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_debut_experience)."</label></p>";
 							echo "<p>Date de fin de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_fin_experience)."</label></p>";
 							echo "<p>Intitulé de l'expérience pro : <label>".$exp_pro->intitule_experience."</label></p>";
@@ -253,9 +256,9 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 							<div class='div-modifier-supprimer'>";	
 								<?php
-								echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update'),array('id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer'));
+								echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer'));
 								echo " / ";
-								echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete'), array('id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer')); 
+								echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete', 'id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer')); 
 								?>
 							</div>
 
@@ -285,6 +288,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						foreach($competences as $competence)
 						{
 							echo Yii::app()->user->getFlash('success_maj_competence');
+							echo Yii::app()->user->getFlash('success_sup_competence');
 							?>
 
 							<li>
@@ -292,9 +296,9 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 							</li>
 
 							<?php 
-							echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'),array('id'=>$competence->id_competence,'class'=>'modifier-supprimer'));
+							echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence,'class'=>'modifier-supprimer'));
 							echo " / ";
-							echo CHtml::link('Supprimer cette compétence',array('Competence/delete'),array('id'=>$competence->id_competence,'class'=>'Modifier-supprimer')); 
+							echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence,'class'=>'Modifier-supprimer')); 
 						}
 						?>
 					</ul>

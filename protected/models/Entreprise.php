@@ -67,12 +67,12 @@ class Entreprise extends CActiveRecord
 	{
 		return array(
 			'id_entreprise' => 'Id Entreprise',
-			'nom_entreprise' => 'Nom Entreprise',
-			'nombre_employes' => 'Nombre Employes',
-			'recherche_employes' => 'Recherche Employes',
-			'secteur_activite_entreprise' => 'Secteur Active Entreprise',
-			'annee_creation_entreprise' => 'Anne Creation Entreprise',
-			'age_moyen_entreprise' => 'Age Moyen Entreprise',
+			'nom_entreprise' => 'Nom de l\'entreprise',
+			'nombre_employes' => 'Nombre d\'employés',
+			'recherche_employes' => 'Je recherche des employés',
+			'secteur_activite_entreprise' => 'Secteur d\'activité',
+			'annee_creation_entreprise' => 'Année de création',
+			'age_moyen_entreprise' => 'Age moyen des salariés',
 		);
 	}
 

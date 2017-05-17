@@ -102,9 +102,10 @@ class OffreEmploiController extends Controller
 			
 			$utilisateur = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId())); 
 			$model->attributes=$_POST['OffreEmploi'];
+			$model->date_debut_offre_emploi=$this->changeDateBDD($_POST['OffreEmploi']['date_debut_offre_emploi']);
 			$model->id_entreprise = $utilisateur->id_entreprise;
 
-			// On fournis la date de créationde l'offre
+			// On fournis la date de création de l'offre
 			date_default_timezone_set('Europe/Paris');
 			$model->date_creation_offre_emploi = (new \DateTime())->format('Y-m-d H:i:s');
 
