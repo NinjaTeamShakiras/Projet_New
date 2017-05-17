@@ -14,8 +14,11 @@ $form=$this->beginWidget('CActiveForm', array(
 	'action'=>Yii::app()->createUrl('site/Accueil'),
 ));
 
-echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploi')); 
-echo CHtml::submitButton('Un salarié', array('name' => 'btnemploye')); 
+// Message d'acces refusé
+echo Yii::app()->user->getFlash('access_denied');
+
+echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploye')); 
+echo CHtml::submitButton('Un salarié', array('name' => 'btnentreprise')); 
 
 //Si l'utilisateur n'est pas connecté, on lui affiche le lien de connexion
 if(Yii::app()->user->isGuest)

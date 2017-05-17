@@ -6,11 +6,17 @@
  
       echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
 
+<!-- On affiche les messages de confirmation d'ajout d'infos -->
+<?php echo Yii::app()->user->getFlash('success_ajout_formation'); ?>
+<?php echo Yii::app()->user->getFlash('success_ajout_competence'); ?>
+<?php echo Yii::app()->user->getFlash('success_ajout_exp'); ?>	
+
 
 <div class="form">
 
 
 	<?php
+		$user = Utilisateur::model()->FindByAttributes(array("mail"=>Yii::app()->user->getID()));
 		$formation= formation::model();
 
 
@@ -165,7 +171,7 @@
 	</div>
 
 	<div class="row" id="champ-back">
-		<?php echo CHtml::submitbutton("Retour à la page précédente",array('name' => 'retour','id'=>'btn-back')); ?>
+		<?php echo CHtml::submitbutton("Retour à la page précédente",array('name' => 'retour', 'submit'=>array('employe/view','id'=>$user->id_employe))); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>

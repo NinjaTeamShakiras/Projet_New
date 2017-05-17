@@ -415,7 +415,7 @@ class EmployeController extends Controller
 			}	
 		}
 
-		$this-render('ajoutInfos');
+		$this->render('ajoutinfos');
 	}
 
 	public function choixAjoutMAJInfos()

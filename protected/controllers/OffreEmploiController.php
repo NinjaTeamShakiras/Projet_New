@@ -330,6 +330,9 @@ class OffreEmploiController extends Controller
 
 		if($_POST['OffreEmploi']['poste_offre_emploi'] != '')
 		{
+			// Tableau résultat des offres rechercher
+			$tabOffreEmploye = array();
+
 			// On récupère les données du formulaire
 			$posteOffre = $_POST['OffreEmploi']['poste_offre_emploi'];
 
@@ -341,9 +344,20 @@ class OffreEmploiController extends Controller
 
 			// On récupère toutes les offres correspondants à l'employé et au poste qu'il à selectionné
 			foreach($tabPostule as $candidature)
-			{
-				$tabOffreEmploye[] = offreEmploi::model()->FindByAttributes(array("poste_offre_emploi"=>$posteOffre));
+			{ // Pour les candidature de l'employe
+				// On récupère les offres candidatée
+				$tabOffrePostule[] = offreEmploi::model()->FindByAttributes(array("id_offre_emploi"=>$candidature->id_offre_emploi));
 			}
+
+			foreach($tabOffrePostule as $offrePostule)
+			{ // Pour les offres postuler
+				// On récupère les offres dont le poste correspond au poste recherché
+				if($offrePostule->poste_offre_emploi == $posteOffre)
+				{
+					$tabOffreEmploye[] = $offrePostule;
+				}
+			}
+
 
 			$this->render('mesOffres', array('data'=>$tabOffreEmploye));
 
