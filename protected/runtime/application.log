@@ -24580,3 +24580,41 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=offreEmploi/recherche
 HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
 ---
+2017/05/17 20:15:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "recherche".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('recherche')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('recherche')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/rec...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/recherche
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 22:16:08 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (C:\wamp64\www\yii\framework\web\helpers\CHtml.php:108)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\helpers\CHtml.php(163): renderAttributes()
+#1 C:\wamp64\www\yii\framework\web\helpers\CHtml.php(480): tag()
+#2 C:\wamp64\www\prozzl\protected\views\employe\ajoutinfos.php(183): button()
+#3 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#4 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#5 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#6 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#7 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(341): EmployeController->render()
+#8 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionAjoutInfos()
+#9 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#10 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#11 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#13 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#14 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#15 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#17 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#18 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#19 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#20 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/ajoutInfos
+in C:\wamp64\www\prozzl\protected\views\employe\ajoutinfos.php (183)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (341)
+in C:\wamp64\www\prozzl\index.php (13)

@@ -4,7 +4,7 @@ unset(Yii::app()->session['login']);
 ?>
 
 <div class=arriere-plan>
-	<div class=filtre-vert>
+	<div class=filtre-vert-clair>
 		<div class="logo"><img src="images/Prozzl.png" alt="Prozzl"/></div>
 
 		<?php

@@ -3,7 +3,7 @@ $login = Yii::app()->user->getId();
 // Récupération de l'utilisateur
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 ?>
-<div class='arriere-plan-employe'>
+<div>
 	<?php
 	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
 	echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
@@ -15,7 +15,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 
 	<div class='filtre-blanc'>
 
-		<div class="form">
+		<div class="form div-formation">
 			<?php
 			$user = Utilisateur::model()->FindByAttributes(array("mail"=>Yii::app()->user->getID()));
 			$formation= formation::model();
@@ -30,7 +30,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 			));
 			?>
 
-			<h1 class='intitule'>Formations</h1>
+			<h1 class='intitule'>FORMATIONS</h1>
 
 			<div class="row div-field">
 				<?php echo $form->labelEx($formation,'intitule_formation'); ?>
@@ -78,8 +78,10 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 		</div>
 		<!-- Fin de la div form -->
 
+		<div class='bande-blanche'></div>
 
-		<div class="form">
+
+		<div class="form div-exp-pro">
 			<?php
 				$experiencePro= ExperiencePro::model();
 
@@ -93,7 +95,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 				));
 			?>
 
-			<h1 class='intitule'>Experiences Professionnelles</h1>
+			<h1 class='intitule'>EXPERIENCES PROFESSIONNELLES</h1>
 
 			<div class="row div-field">
 				<?php echo $form->labelEx($experiencePro,'intitule_experience'); ?>
@@ -135,8 +137,10 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 		</div>	
 		<!-- Fin de la div form -->
 
+		<div class='bande-blanche'></div>
 
-		<div class='form'>
+
+		<div class='form div-competence'>
 
 			<?php
 
@@ -153,7 +157,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 			?>		
 
 
-			<h1 class='intitule'>Competences</h1>
+			<h1 class='intitule'>COMPETENCES</h1>
 
 				
 			<div class="row div-competence" id="competence">
@@ -175,10 +179,11 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 		</div>
 		<!-- Fin de la div form -->
 
-
 		<div class="row" id="champ-back">
-			<?php echo CHtml::link("Retour à la page précédente",array('employe/view','id'=>$user->id_employe),array('class'=>'link-back')); ?>
+		<?php echo CHtml::button("Retour",array('name' => 'retour', 'submit'=>array('employe/view', 'id'=>$user->id_employe),'class'=>'btn-maj')); ?>
 		</div>
+
+
 	</div>
 	<!-- Fin de la div fond blanc -->
 </div>

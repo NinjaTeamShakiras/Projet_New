@@ -1,4 +1,4 @@
-<?php
+<?php
 /* @var $this EmployeController */
 /* @var $model Employe */
 
@@ -43,7 +43,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 				</a>
 			</li>
 			<li>
-				<a href="index.php?r=offreEmploi/recherche" title="Recherche">
+				<a href="index.php?r=employe/index" title="Recherche">
 				Rechercher une offre
 				</a>
 			</li>
@@ -132,6 +132,9 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						echo Yii::app()->user->getFlash('success_maj_infos_persos');
 						echo "<p>NOM : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
 						echo "<p>DATE DE NAISSANCE : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
+						?>
+							<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos','class'=>'col-md-offset-6 col-xs-offset-4')); ?>
+						<?php
 						echo "<p>ADRESSE : <label>".$adresse."</label></p>";
 						echo "<p>TELEPHONE : <label>".$user->telephone."</label></p>";
 						echo "<p>AUTRE TELEPHONE : <label>".$user->telephone2."</label></p>";
@@ -141,13 +144,12 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						?>
 					</div>
 
-					<div class="row">
-						<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos')); ?>
-					</div>
+
 
 					<?php $this->endWidget();?>	
 
 				</div>
+				<div class="bande-blanche">	</div>
 				<?php	
 			}
 			?>
@@ -161,11 +163,11 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 			//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
 			if($user->id_employe == $_GET['id'])
 			{
-				echo "<h3 id='titre-infos-comp'>MES INFORMATIONS COMPLEMENTAIRES</h3>";
+				echo "<h2 id='titre-infos-comp'>MES INFORMATIONS COMPLEMENTAIRES</h2>";
 			}
 			else
-			{
-				echo "<h3 id='titre-infos-comp'>INFORMATIONS COMPLEMENTAIRES</h3>";
+				{
+				echo "<h2 id='titre-infos-comp'>INFORMATIONS COMPLEMENTAIRES</h2>";
 			}
 		
 
@@ -253,7 +255,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 							echo "<p>Description de l'expérience pro : <label>".$exp_pro->description_experience."</label>	</p>";
 							?>
 
-							<div class='div-modifier-supprimer'>";	
+							<div class='div-modifier-supprimer'>
 								<?php
 								echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer'));
 								echo " / ";
@@ -267,6 +269,12 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 				</div>
 				<!-- FIN EXPERIENCES PROFESSIONNELLES -->
 
+				<!-- Bouton ajout de nouvelles infos complémentaires -->
+				<div class="row">
+					<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'btn-maj-infos','class'=>'col-md-offset-6 col-xs-offset-4')); ?>
+				</div>
+				<!-- Fin bouton -->
+				
 				<!-- COMPETENCES -->
 				<?php
 				//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
@@ -304,11 +312,6 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 				</div>
 				<!-- FIN COMPETENCES -->
 
-					<!-- Bouton ajout de nouvelles infos complémentaires -->
-					<div class="row">
-						<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'btn-maj-infos')); ?>
-					</div>
-					<!-- Fin bouton -->
 
 				<?php $this->endWidget();?>
 			
@@ -317,9 +320,9 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 		</div>
 		<!-- Fin de la div infos-comp -->
 
-		<!-- Page pour traiter le PDF -->
+		<!-- Page pour traiter le PDF >
 		<?php $this->renderPartial( 'cv_edit', array( 'model' => $model ) );?>
-
+		-->
 		
 	</div>
 	<!-- Fin du filtre blanc -->
