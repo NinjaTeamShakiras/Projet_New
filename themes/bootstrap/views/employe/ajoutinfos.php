@@ -161,7 +161,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 				<?php echo $form->error($competence,'intitule_competence'); ?>
 				
 
-			<?php echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5'),array('separator' => ' ','class'=>'buttonlist'));?>
+			<?php echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5'),array('separator' => ' '));?>
 			<?php echo $form->error($competence,'niveau_competence'); ?>
 
 			</div>
