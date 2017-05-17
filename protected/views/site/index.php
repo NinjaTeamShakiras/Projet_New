@@ -12,8 +12,11 @@ $form=$this->beginWidget('CActiveForm', array(
 	'action'=>Yii::app()->createUrl('site/Accueil'),
 ));
 
-echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploi')); 
-echo CHtml::submitButton('Un salarié', array('name' => 'btnemploye')); 
+// Message d'acces refusé
+echo Yii::app()->user->getFlash('access_denied');
+
+echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploye')); 
+echo CHtml::submitButton('Un salarié', array('name' => 'btnentreprise')); 
 ?>
 <div class='connexion'>Déjà un compte? <?php echo CHtml::link('Connexion',array('site/login'));
 ?>
