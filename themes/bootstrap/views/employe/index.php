@@ -30,24 +30,65 @@
 
 
 <!--  MENU 	-->
-<div class="btn-group" style="float: right;">
-	<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<?php
+//Si l'utilisateur est connecté
+if($utilisateur != null)
+{
+	?>
+	<div class="btn-group" style="float: right;">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
 		Menu
-   	<span class="caret"></span>
-   	</button>
-	<ul class="dropdown-menu dropdown-menu-right">
-		<li>
-			<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
-			Mon Profil
-			</a>
-		</li>
-		<li>
-			<a href="index.php?r=OffreEmploi/index&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
-			Mes Candidatures
-			</a>
-		</li>
-	</ul>
-</div>
+		<span class="caret"></span>
+		</button>
+		<ul class="ddropdown-menu dropdown-menu-right">
+			<li>
+				<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+				Mon Profil
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
+				Ajouter mon CV
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+				Liste des offres d'emplois
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
+				Mes candidatures
+				</a>
+			</li>
+		</ul>
+	</div>
+	<?php
+}
+else
+{
+	?>
+	<div class="btn-group" style="float: right;">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu
+	   	<span class="caret"></span>
+	   	</button>
+		<ul class="dropdown-menu dropdown-menu-right">
+			<li>
+				<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
+				Mon Profil
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=OffreEmploi/index" title="Mon candidatures">
+				Mes Candidatures
+				</a>
+			</li>
+		</ul>
+	</div>
+	<?php
+}
+?>
 
 <div class='filtre-vert'>
 	
