@@ -251,7 +251,6 @@ class SiteController extends Controller
 
 	public function actionAccueil()
 	{
-		unset(Yii::app()->session['login']);
 
 		if (isset($_POST['btnemploi']))
 		{

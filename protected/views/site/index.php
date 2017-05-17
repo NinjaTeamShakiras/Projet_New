@@ -1,5 +1,7 @@
 <?php
 /* @var $this SiteController */
+unset(Yii::app()->session['login']);
+
 
 echo "<h1>Prozzl</h1>";
 echo "<h1>Recruteur de l'industrie touristique</h1>";
@@ -14,10 +16,14 @@ $form=$this->beginWidget('CActiveForm', array(
 
 echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploi')); 
 echo CHtml::submitButton('Un salarié', array('name' => 'btnemploye')); 
-?>
-<div class='connexion'>Déjà un compte? <?php echo CHtml::link('Connexion',array('site/login'));
-?>
-</div>
-<?php
+
+//Si l'utilisateur n'est pas connecté, on lui affiche le lien de connexion
+if(Yii::app()->user->isGuest)
+{
+     echo "<div class='connexion'>Déjà un compte?";
+     echo CHtml::link('Connexion',array('site/login'));
+     echo "</div>";
+}
+
 $this->endWidget(); 	
 ?>
