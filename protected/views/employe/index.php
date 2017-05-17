@@ -20,21 +20,27 @@
 	$nombreOffre = sizeof($tabOffre); // Nombre d'offre total
 
 ?>
-		
-	
-<!--  MENU 	-->
-<?php
-if($utilisateur != null)
-{ // Si connecter
-	if (Utilisateur::est_employe(Yii::app()->user->role) )
-	{ // Si employe
+
+<div class='arriere-plan-employe'>
+
+	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
+	      'Image accueil');
+	 
+	      echo CHtml::link($image,array('employe/index')); ?>
+
+
+	<!--  MENU 	-->
+	<?php
+	//Si l'utilisateur est connecté
+	if($utilisateur != null)
+	{
 		?>
-		<div class="dropdown">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+		<div class="btn-group" style="float: right;">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Menu
 			<span class="caret"></span>
 			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<ul class="dropdown-menu dropdown-menu-right">
 				<li>
 					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
 					Mon Profil
@@ -59,17 +65,15 @@ if($utilisateur != null)
 		</div>
 		<?php
 	}
-
-}
-else
-{
-	?>
-		<div class="dropdown">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-			Menu
-			<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	else
+	{
+		?>
+		<div class="btn-group" style="float: right;">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Menu
+		   	<span class="caret"></span>
+		   	</button>
+			<ul class="dropdown-menu dropdown-menu-right">
 				<li>
 					<a href="index.php?r=site/redirectInscriptionCV" title="Ajouter mon CV">
 					Ajouter mon CV
@@ -80,130 +84,128 @@ else
 					Liste des offres d'emplois
 					</a>
 				</li>
-				
 			</ul>
 		</div>
-	<?php
-}
-?>
-
-	<?php echo Yii::app()->user->getFlash('logout_ok'); ?>
-
-<div>
-	<?php echo "<h3>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres ! </h3>"; ?>
-</div>	
-
-
-<!-- Formulaire de recherche d'une offre d'emploi -->
-<div class="wide form">
-	<?php
-		//Début du form
-		$form=$this->beginWidget('CActiveForm',
-			array(
-				'action'=>Yii::app()->createUrl('offreEmploi/Search'),
-			)
-		);
+		<?php
+	}
 	?>
+	<div class='filtre-blanc'>
 
-	<div class="row">
-		<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
+		<?php echo Yii::app()->user->getFlash('logout_ok'); ?>
+			
+		<!-- Formulaire de recherche d'une offre d'emploi -->
+		<div class='row'>
+			<?php echo "<h3 id='phrase-nb-offres'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
+		</div>	
+
+		<div class="form">
+
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('offreEmploi/Search'),
+					)
+				);
+			?>
+
+			<div id="div-champs-recherche">
+					<!-- Recherche d'un poste (textfield + dropdownlist+ bouton submit) -->	
+					<?php
+						//Recherche par POSTE
+						echo $form->textField(
+							$model,'poste_offre_emploi', array(	
+								'class' => 'champs-recherche autocomplete-find-offreEmploi',
+								'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
+								'size' => 45,
+								'maxlength' => 30,
+								'placeholder' => 'Rechercher par poste',
+							)
+						);
+					?>
+			
+				<?php
+					//Recherche par LIEU
+					echo $form->textField(
+						$adresse,'ville', array(	
+							'class' => 'champs-recherche autocomplete-find-offreEmploi',
+							'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllLieuJSON'),
+							'size' => 45,
+							'maxlength' => 30,
+							'placeholder' => 'Rechercher par lieu',
+						)
+					);
+				?>
+			</div>
+			
+			<div id="div-champs-selection">
+				<?php
+					//Recherche par TYPE DE CONTRAT (liste déroulante)
+					//-->On ajoute l'option "Sélectionner pour la liste"
+					$static_type = array('' => Yii::t('', 'Sélectionner le type de contrat'));
+					$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
+					echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre, array('class'=>'menu_roulant-selection')); // On affiche une liste déroulante de toutes les offres
+				?>
+			
+				<?php
+					//Recherche par SECTEUR
+					//-->On ajoute l'option "Sélectionner pour la liste"
+					$static_secteur = array('' => Yii::t('', 'Sélectionner le secteur'));
+					$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
+					echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre, array('class'=>'menu_roulant-selection')); // On affiche une liste déroulante de tout les secteur d'activité
+				?>
+			
+			</div>
+			<div id='div-btn-rechercher'>
+				<?php
+					// Button d'envoi
+					echo CHtml::submitButton('Rechercher',array('class'=>'btn btn-success','id'=>'btn_rechercher'));
+
+				$this->endWidget();
+		 		?>
+		 	</div>
+
+		</div>
+
 		<?php
-			//Recherche par POSTE
-			echo $form->textField(
-				$model,'poste_offre_emploi', array(	
-					'class' => 'autocomplete-find-offreEmploi',
-					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllPosteJSON'),
-					'size' => 45,
-					'maxlength' => 30,
-					'placeholder' => 'Rechercher par poste',
-				)
-			);
-		?>
-	
+		/*
+		<!-- Fomulaire avec le bouton de l'ajout du CV -->
+		<div class="row">
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('employe/choixAjoutCV'),
+					)
+				);
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('offreEmploi/recherche') ,
+					)
+				);
+			?>
+
+				<!-- Bouton d'ajout du CV -->
+				<?php echo CHtml::submitButton('Ajouter mon CV',array('class'=>'btn btn-success ','id'=>'btn_cv'));
+				?>
+				<!-- Bouton pour postuler -->
+				<?php echo CHtml::submitButton('Postuler à une annonce en un seul click !',array('class'=>'btn btn-success','id'=>'btn_postuler')); ?>
+
+			<?php 
+			$this->endWidget(); 
+			$this->endWidget(); ?>
+		</div>	
+
 		<?php
-			//Recherche par TYPE DE CONTRAT (liste déroulante)
-			//-->On ajoute l'option "Sélectionner pour la liste"
-			$static_type = array('' => Yii::t('', 'Sélectionner le type de contrat'));
-			$typeOffre = CHtml::listData($tabOffre,'type_offre_emploi', 'type_offre_emploi'); // On récupère tout les type d'offre existant
-			echo $form->dropDownList($model,'type_offre_emploi',$static_type + $typeOffre); // On affiche une liste déroulante de toutes les offres
+
 		?>
-	</div>
-	
-	<div class="row">
-		<?php
-			//Recherche par LIEU
-			echo $form->textField(
-				$adresse,'ville', array(	
-					'class' => 'autocomplete-find-offreEmploi',
-					'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllLieuJSON'),
-					'size' => 37,
-					'maxlength' => 30,
-					'placeholder' => 'Rechercher par lieu',
-				)
-			);
+		</div>*/
 		?>
-	
-		<?php
-			//Recherche par SECTEUR
-			//-->On ajoute l'option "Sélectionner pour la liste"
-			$static_secteur = array('' => Yii::t('', 'Sélectionner le secteur'));
-			$secteurOffre = CHtml::listData($tabEntreprise,'secteur_activite_entreprise', 'secteur_activite_entreprise'); // On récupère tout les secteur d'offre existant
-			echo $form->dropDownList($entreprise,'secteur_activite_entreprise',$static_secteur + $secteurOffre); // On affiche une liste déroulante de tout les secteur d'activité
-		?>
-	
-		<?php
-			// Button d'envoi
-			echo CHtml::submitButton(' GO ');
-		?>
-	</div>
-
-	<?php $this->endWidget(); ?>
-
-</div>
-
-
-
-<?php /* ?>
-<!-- Fomulaire avec le bouton de l'ajout du CV -->
-<div class="wide form">
-	<?php
-		//Début du form
-		$form=$this->beginWidget('CActiveForm',
-			array(
-				'action'=>Yii::app()->createUrl('employe/choixAjoutCV'),
-			)
-		);
-	?>
-
-	<div class="row">
-		<!-- Bouton d'ajout du CV -->
-		<?php echo CHtml::submitButton('Ajouter mon CV'); ?>
-	</div>
-
-	<?php $this->endWidget(); ?>
 		
-</div>
-
-<!-- Formulaire avec le bouton pour postuler en click -->
-<div class="wide form">
-	<?php
-		//Début du form
-		$form=$this->beginWidget('CActiveForm',
-			array(
-				'action'=>Yii::app()->createUrl('offreEmploi/recherche') ,
-			)
-		);
-	?>
-
-	<div class="row">
-		<!-- Bouton pour postuler -->
-		<?php echo CHtml::submitButton('Postuler à une annonce en un seul click !'); ?>
+	<!-- Fermeture de la div du filtre -->	
 	</div>
-
-	<?php $this->endWidget(); ?>
+<!--Fermture de la div de l'arrière plan -->	
 </div>
-
-<?php */ ?>
-
 
 	
