@@ -79,11 +79,13 @@
 
 #btn_rechercher
 {
+	border-color: black;
+	font-weight: bold;
 	padding:1%;
 	background-color:#90ffb9;
 	color:Black;
 	border-radius: 50px;
-	box-shadow:2px 2px 15px #aaa;	
+	box-shadow:2px 2px 15px black;		
 	font-family:"Montserrat Light";
 	font-size:18px;
 }

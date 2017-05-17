@@ -91,6 +91,9 @@ text-align: center;
 
 .btnConnexion
 {
+	font-family:"Montserrat Light";
+	font-size: 25px;
+	font-weight: bold;
 	box-shadow:2px 2px 15px black;
 	background-color:#90ffb9;
 	color:Black;
@@ -119,4 +122,4 @@ text-align: center;
 	color:#90ffb9;
 	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black, 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black;
 	font-size:40px;
-}
+} 	

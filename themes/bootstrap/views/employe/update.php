@@ -1,21 +1,17 @@
-<?php
-/* @var $this EmployeController */
-/* @var $model Employe */
+<div class='arriere-plan-employe'>
+	<?php
+		/* @var $this EmployeController */
+		/* @var $model Employe */
+		$login = Yii::app()->user->getId();
+		// Récupération de l'utilisateur
+		$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
+		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+		echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe));
+	?>
 
-$this->breadcrumbs=array(
-	'Employes'=>array('index'),
-	$model->id_employe=>array('view','id'=>$model->id_employe),
-	'Update',
-);
+<div class='filtre-blanc'>
+	
+	<h1 class=intitule>Mettre à jour mes informations personelles</h1>
 
-$this->menu=array(
-	array('label'=>'List Employe', 'url'=>array('index')),
-	array('label'=>'Create Employe', 'url'=>array('create')),
-	array('label'=>'View Employe', 'url'=>array('view', 'id'=>$model->id_employe)),
-	array('label'=>'Manage Employe', 'url'=>array('admin')),
-);
-?>
-
-<h1>Update Employe <?php echo $model->id_employe; ?></h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+	<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+</div>

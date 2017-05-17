@@ -389,13 +389,18 @@ class EntrepriseController extends Controller
 	}
 
 
+	/**
+	 * Lien de redirection
+	 */
 	public function actionCandidats()
 	{
 		$this->render('candidatures',array('data'=>-2));
 	}
 
 
-
+	/**
+	 * Recherche de candidat
+	 */
 	public function actionCandidatures()
 	{
 
@@ -432,6 +437,7 @@ class EntrepriseController extends Controller
 
 
 
+
 	/*Fonction qui change le numéro de téléphone pour un affichage avec des points tous les deux chiffres
 	@params $telephone est le numéro de téléphone*/
 	public function afficheTelephone($telephone)
@@ -457,4 +463,4 @@ class EntrepriseController extends Controller
 
 
 
-}
+}// END CONTROLLER

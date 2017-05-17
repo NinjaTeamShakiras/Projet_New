@@ -11,40 +11,81 @@ $this->breadcrumbs=array(
 //Récupération de l'utilisateur
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
+if($utilisateur != null)
+{
+	if(Utilisateur::est_employe(Yii::app()->user->role) )
+	{// EMPLOYE
+		$employeConnecte = true;
+		?>
+			<h1>Vous n'êtes pas autorisé à .</h1>
+			<p>Utilisée le logo du site pour retourner à l'accueil.</p>
+		<?php
+	}
+	else if(!Utilisateur::est_employe(Yii::app()->user->role) )
+	{// ENTREPRISE
+			?>
+			<!--	MENU 	-->
+			<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+				Menu 
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li>
+					<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+					Déposer une annonce
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
+					Mon profil
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
+					Mes annonces
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=entreprise/candidats" title="Mes candidats">
+					Mes candidats
+					</a>
+				</li>
+			</ul>
+			</div>
 
+		<?php
+
+	}
+}
+else
+{ // Si non connecté
+
+
+	?>
+		<!--	MENU 	-->
+		<div class="dropdown">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
+			Menu 
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li>
+				<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
+				Déposer une annonce
+				</a>
+			</li>
+			<li>
+				<a href="index.php?r=site/inscriptionEntreprise" title="Inscription">
+				Inscription
+				</a>
+			</li>
+		</ul>
+		</div>
+
+	<?php
+}
 ?>
-
-
-
-<!--	MENU 	-->
-<div class="dropdown">
-	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-		Menu 
-		<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-		<li>
-			<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
-			Déposer une annonce
-			</a>
-		</li>
-		<li>
-			<a href="index.php?r=entreprise/view&id=<?php echo $utilisateur->id_entreprise;?>" title="Mon profil">
-			Mon profil
-			</a>
-		</li>
-		<li>
-			<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
-			Mes annonces
-			</a>
-		</li>
-		<li>
-			<a href="index.php?r=entreprise/candidats" title="Mes candidats">
-			Mes candidats
-			</a>
-		</li>
-	</ul>
-</div>
 
 
 

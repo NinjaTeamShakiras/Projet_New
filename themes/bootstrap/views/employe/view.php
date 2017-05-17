@@ -33,7 +33,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 	<!--  MENU 	-->
 	<div class="btn-group" style="float: right;">
-		<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Menu
 	   	<span class="caret"></span>
 	   	</button>
