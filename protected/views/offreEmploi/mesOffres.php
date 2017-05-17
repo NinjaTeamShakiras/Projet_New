@@ -150,14 +150,14 @@ if($utilisateur != null)
 	{
 		// Offre chercher et rendu
 		if($data == null)
-		{
+		{ // Si il n'y à pas d'offre ($data)
 			print("<p> Vous n'avez postuler à aucune offre </p>");
 		}
 		else
-		{
-			$annonceN = 0;
+		{ // Si il y a des offres
+			$annonceN = 0; // Affichage du numéro d'annonce
 			foreach($data as $offre)
-			{
+			{ // On parcours les offres
 				$annonceN++;
 				$entreprise = entreprise::model()->FindByAttributes(array("id_entreprise"=>$offre->id_entreprise));
 				$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - chez ".$entreprise->nom_entreprise;
@@ -168,9 +168,12 @@ if($utilisateur != null)
 
 	}
 
-	/* **************************************************************  */
+
+
 
 /*
+
+	// Ancienne version d'affichage
 	$annonceN = 0;
 
 	// On vérifie si un champs comprend l'id de l'employé et l'id de l'offre. Si c'est le cas, l'employé à déjà postuler

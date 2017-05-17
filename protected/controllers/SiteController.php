@@ -252,17 +252,48 @@ class SiteController extends Controller
 	public function actionAccueil()
 	{
 		unset(Yii::app()->session['login']);
+		$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-		if (isset($_POST['btnemploi']))
-		{
-			// Si entreprise pressé
-			$this->redirect(array('employe/index'));	
-		} 
 
 		if (isset($_POST['btnemploye']))
-		{
-			// Si employe pressé
-			$this->redirect(array('entreprise/index'));
+		{ // Si employe pressé
+			if($utilisateur != null)
+			{
+				if(Utilisateur::est_employe(Yii::app()->user->role) )
+				{ // Si employe
+					$this->redirect(array('employe/index'));
+				}
+				else if(!Utilisateur::est_employe(Yii::app()->user->role) )
+				{ // Si entreprise
+					Yii::app()->user->setFlash('access_denied', "<p style = color:blue;>Vous n'êtes pas autorisé à accéder à cette page !</p>");
+					$this->redirect(array('site/index'));
+				}
+			}
+			else
+			{ // Si non connecté
+				$this->redirect(array('employe/index'));
+			}	
+		} 
+
+		if (isset($_POST['btnentreprise']))
+		{ // Si entreprise pressé
+			if($utilisateur != null)
+			{
+				if(Utilisateur::est_employe(Yii::app()->user->role) )
+				{ // Si employe
+					Yii::app()->user->setFlash('access_denied', "<p style = color:blue;>Vous n'êtes pas autorisé à accéder à cette page !</p>");
+					$this->redirect(array('site/index'));
+				}
+				else if(!Utilisateur::est_employe(Yii::app()->user->role) )
+				{ // Si entreprise
+					$this->redirect(array('entreprise/index'));
+					
+				}
+			}
+			else
+			{ // Si non connecté
+				$this->redirect(array('entreprise/index'));
+			}	
 		}
 
 	}
