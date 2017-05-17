@@ -82,6 +82,16 @@ class OffreEmploiController extends Controller
 	 */
 	public function actionCreate()
 	{
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si l'utilisateur n'est pas connecté, on force la connexion
+		if($user == null)
+		{
+			Yii::app()->user->loginRequired();
+		}
+		
 		$model=new OffreEmploi;
 
 		// Uncomment the following line if AJAX validation is needed

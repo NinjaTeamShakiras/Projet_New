@@ -185,15 +185,6 @@ class EntrepriseController extends Controller
 	 */
 	public function actionIndex()
 	{
-		unset(Yii::app()->session['login']);
-		Yii::app()->session['login'] = 'entreprise';
-
-		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-		
-		if($user == null)
-		{
-			Yii::app()->user->loginRequired();
-		}
 
 		$dataProvider=new CActiveDataProvider('Entreprise');
 		$this->render('index',array(
@@ -341,7 +332,7 @@ class EntrepriseController extends Controller
 		}
 		else
 		{
-			echo "Vous n'avez rien remplis.";
+			echo "Vous n'avez rien rempli";
 			$this->render('index_search');
 		}
 
