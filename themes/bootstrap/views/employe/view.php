@@ -1,4 +1,4 @@
-<?php
+<?php
 /* @var $this EmployeController */
 /* @var $model Employe */
 
@@ -23,7 +23,6 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 ?>
 
 
-<div class='arriere-plan-employe'>
 
 	<?php 
 		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
@@ -39,12 +38,12 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 	   	</button>
 		<ul class="dropdown-menu dropdown-menu-right">
 			<li>
-				<a href="index.php?r=employe/view&id=<?php echo $user->id_employe;?>" title="Mes candidatures">
+				<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil">
 				Mes candidatures
 				</a>
 			</li>
 			<li>
-				<a href="index.php?r=offreEmploi/recherche" title="Recherche">
+				<a href="index.php?r=Employe/index" title="Mon profil">	
 				Rechercher une offre
 				</a>
 			</li>

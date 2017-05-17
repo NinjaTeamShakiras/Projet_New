@@ -1,4 +1,4 @@
-@font-face 
+@font-face 
 {
 	font-family: "Bodoni FLF";
 	src: url('BodoniFLF-Roman.ttf');
@@ -35,11 +35,11 @@ div.form-infos-perso label
 	font-weight: bold;
 	margin-top: 50px;
 	margin-bottom: 50px;
-	background-color:#90ffb9;
+	background-color:black;
 	font-family:"Montserrat Light";
 	box-shadow:2px 2px 15px black;
 	padding:1%;
-	color:black;
+	color:#90ffb9;
 	border:2px solid ;
 }
 

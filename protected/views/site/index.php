@@ -1,32 +1,36 @@
 <?php
 /* @var $this SiteController */
 unset(Yii::app()->session['login']);
-
-
-echo "<h1>Prozzl</h1>";
-echo "<h1>Recruteur de l'industrie touristique</h1>";
-
-echo Yii::app()->user->getFlash('suppr_compte');
-
-echo "<h2>Vous recherchez ?<h2>";
-
-$form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl('site/Accueil'),
-));
-
-// Message d'acces refusé
-echo Yii::app()->user->getFlash('access_denied');
-
-echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploye')); 
-echo CHtml::submitButton('Un salarié', array('name' => 'btnentreprise')); 
-
-//Si l'utilisateur n'est pas connecté, on lui affiche le lien de connexion
-if(Yii::app()->user->isGuest)
-{
-     echo "<div class='connexion'>Déjà un compte?";
-     echo CHtml::link('Connexion',array('site/login'));
-     echo "</div>";
-}
-
-$this->endWidget(); 	
 ?>
+
+<div class=arriere-plan>
+	<div class=filtre-vert>
+		<div class="logo"><img src="images/Prozzl.png" alt="Prozzl"/></div>
+
+		<?php
+		echo Yii::app()->user->getFlash('suppr_compte');
+
+		echo "<div class='Recherche'>Vous recherchez ? </div>";
+
+		$form=$this->beginWidget('CActiveForm', array(
+			'action'=>Yii::app()->createUrl('site/Accueil'),
+		));
+
+		// Message d'acces refusé
+		echo Yii::app()->user->getFlash('access_denied'); 
+		?>
+
+		<div class="twobuttons row ">
+			<?php
+			echo CHtml::submitButton('Un emploi/Un stage', array('name' => 'btnemploye','class' => 'btn btn-emploi col-md-offset-3 col-md-2 col-xs-offset-1 col-xs-2')); 
+			echo CHtml::submitButton('Un salarié', array('name' => 'btnentreprise','class' => 'btn btn-employe col-md-offset-2 col-xs-offset-2 '));  
+			?>
+		</div>
+
+		<div class='connexion'>Déjà un compte? <?php echo CHtml::link('Connexion',array('site/login'),array('class'=>'btnredirect'));?></div>	
+
+		<?php $this->endWidget(); ?>
+
+	</div>
+</div>
+
