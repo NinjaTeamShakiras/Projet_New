@@ -17,12 +17,13 @@
 	font-family:"Bodoni FLF";
 	text-align: center;
 	color: black;
+	margin-bottom:2cm;
 }
 
 
 .div-field
 {
-	font-size: 30px;
+	font-size: 20px;
 	color: black;
 	margin-bottom:1cm !important; 
 }
@@ -151,3 +152,4 @@ div.div-competence input
 {
 	color:#90ffb9;}
 }
+

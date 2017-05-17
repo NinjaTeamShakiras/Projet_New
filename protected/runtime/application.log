@@ -23727,8 +23727,158 @@ in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (663)
 in C:\wamp\www\prozzl\index.php (13)
 =======
 >>>>>>> 68cc4bf60fe0aaa5f7077f8d67d26eb9d5de2259
+<<<<<<< HEAD
+2017/05/17 15:55:09 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Formation/updat...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=Formation/update
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 15:55:16 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ExperiencePro/u...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=ExperiencePro/update
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 15:55:19 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Competence/upda...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=Competence/update
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 15:55:30 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Formation/updat...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=Formation/update
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 15:55:52 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Formation/updat...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=Formation/update
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 15:56:09 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('delete')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Formation/delet...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=Formation/delete
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 15:59:25 [error] [exception.CException] exception 'CException' with message 'OffreEmploiController cannot find the requested view "recherche".' in C:\wamp64\www\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(782): CController->renderPartial('recherche', NULL, true)
+#1 C:\wamp64\www\prozzl\protected\controllers\OffreEmploiController.php(610): CController->render('recherche')
+#2 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionRecherche()
+#3 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('recherche')
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/rec...')
+#13 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#14 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/recherche
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 15:59:47 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Formation/updat...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=Formation/update
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+=======
 >>>>>>> 765bcadb008fcb05dcfcd984f1054fe52e6743e8
 >>>>>>> 9c8867c2e8f0664bd78316c3de69c76b3a92eab9
+<<<<<<< HEAD
 2017/05/17 17:23:06 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\entreprise\view.php:51)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): EntrepriseController->renderFile()
@@ -23753,3 +23903,6 @@ REQUEST_URI=/prozzl/index.php?r=entreprise/view&id=1
 in C:\wamp\www\prozzl\protected\views\entreprise\view.php (51)
 in C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php (75)
 in C:\wamp\www\prozzl\index.php (13)
+=======
+>>>>>>> 502cced9a7e6874d21038b791ed7e88280cca72f
+>>>>>>> fa1d84250496094938e6d5201cd5fc996e3452ff

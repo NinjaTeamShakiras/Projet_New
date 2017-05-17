@@ -11,7 +11,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div clas="row">
-		<?php echo $form->labelEx($model, 'cv_pdf'); ?>
 		<?php echo $form->fileField($model, 'cv_pdf'); ?>
 		<?php echo $form->error($model, 'cv_pdf'); ?>
 	</div>
@@ -21,6 +20,26 @@
 		<?php echo CHtml::submitButton("Ajouter CV"); ?>
 	</div>
 
+	<div class="div-load-cv">
+		<p>Votre CV est en cours de traitement</p>
+		<div class="loader-upload-cv">Loading...</div>
+	</div>
+	
+
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$('#employe-upload-cv-form').on('submit', function(e){
+		e.preventDefault();
+		if( $('#Employe_cv_pdf').val() != "" )
+		{
+			$('.div-load-cv').show();
+			this.submit();
+		}
+
+	});
+</script>
+

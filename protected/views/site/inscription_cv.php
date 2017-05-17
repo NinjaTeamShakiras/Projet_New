@@ -103,6 +103,11 @@ else
 				echo '<div>Problème de récupération du texte</div>';
 			}
 		}
+		else
+		{
+			echo '<div>Téléchargez votre CV ici : </div>';
+			$this->renderPartial( './../employe/_upload_cv', array( 'model' => Employe::model() ) );
+		}
 	}
 	/* -- S'il ne l'a pas téléchargé -- */
 	else

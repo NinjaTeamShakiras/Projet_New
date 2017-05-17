@@ -1,4 +1,4 @@
-<h3>Veuillez vérifier vos informations</h3>
+<h3>Veuillez vérifier les informations qui ont été trouvées dans votre CV</h3>
 
 <div class="form">
 <?php
@@ -106,7 +106,6 @@
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Créer mon compte'); ?>
 	</div>
-
 
 <?php $this->endWidget(); ?>
 
