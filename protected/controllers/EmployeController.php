@@ -516,6 +516,11 @@ class EmployeController extends Controller
 			$this->redirect(array('employe/delete', 'id'=>$utilisateur->id_employe));
 		}
 
+		if(isset($_POST['btmmodifco']))
+		{
+			$this->render('modifParamCo');
+		}
+
 		$this->render('parametres');
 	}
 
@@ -567,6 +572,11 @@ class EmployeController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	protected function actionModifParamCo()
+	{
+		$this->render('modifParamCos');
 	}
 
 
