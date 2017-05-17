@@ -1,10 +1,10 @@
-<?php $login = Yii::app()->user->getId();
-	// Récupération de l'utilisateur
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));?>
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
-      'Image accueil');
- 
-      echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
+<?php 
+$login = Yii::app()->user->getId();
+// Récupération de l'utilisateur
+$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
+
+$image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png','Image accueil');
+echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); ?>
 
 <!-- On affiche les messages de confirmation d'ajout d'infos -->
 <?php echo Yii::app()->user->getFlash('success_ajout_formation'); ?>
@@ -13,20 +13,18 @@
 
 
 <div class="form">
-
-
 	<?php
-		$user = Utilisateur::model()->FindByAttributes(array("mail"=>Yii::app()->user->getID()));
-		$formation= formation::model();
+	$user = Utilisateur::model()->FindByAttributes(array("mail"=>Yii::app()->user->getID()));
+	$formation= formation::model();
 
-
-		$form=$this->beginWidget('CActiveForm',array(
-			'id'=>'infos-form',
-			'enableClientValidation'=>true,
-			'clientOptions'=>array(
-				'validateOnSubmit'=>true,
-			),
-		));
+	$form=$this->beginWidget('CActiveForm',array(
+		'id'=>'infos-form',
+		'action'=>Yii::app()->createUrl('employe/ajoutFormation'),
+		'enableClientValidation'=>true,
+		'clientOptions'=>array(
+			'validateOnSubmit'=>true,
+		),
+	));
 	?>
 
 	<h1 class='intitule'>Formations</h1>
@@ -52,13 +50,13 @@
 
 	<div class="row div-field" id="debut-formation">
 		<?php echo $form->labelEx($formation,'date_debut_formation'); ?>
-		<?php echo $form->textfield($formation,'date_debut_formation',array('class'=>'champ-input')); ?>
+		<?php echo $form->textfield($formation,'date_debut_formation',array('class'=>'champ-input', 'placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($formation,'date_debut_formation'); ?>
 	</div>
 
 	<div class="row div-field" id="fin-formation">
 		<?php echo $form->labelEx($formation,'date_fin_formation'); ?>
-		<?php echo $form->textfield($formation,'date_fin_formation',array('class'=>'champ-input')); ?>
+		<?php echo $form->textfield($formation,'date_fin_formation',array('class'=>'champ-input', 'placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($formation,'date_fin_formation'); ?>
 	</div>
 
@@ -74,9 +72,8 @@
 
 	<?php $this->endWidget(); ?>
 
-
-	</div>
-
+</div>
+<!-- Fin de la div form -->
 
 
 <div class="form">
@@ -110,13 +107,13 @@
 
 	<div class="row div-field" id="debut-experience">
 		<?php echo $form->labelEx($experiencePro,'date_debut_experience'); ?>
-		<?php echo $form->textfield($experiencePro,'date_debut_experience',array('class'=>'champ-input')); ?>
+		<?php echo $form->textfield($experiencePro,'date_debut_experience',array('class'=>'champ-input', 'placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($experiencePro,'date_debut_experience'); ?>
 	</div>
 
 	<div class="row div-field" id="fin-experience">
 		<?php echo $form->labelEx($experiencePro,'date_fin_experience'); ?>
-		<?php echo $form->textfield($experiencePro,'date_fin_experience',array('class'=>'champ-input')); ?>
+		<?php echo $form->textfield($experiencePro,'date_fin_experience',array('class'=>'champ-input', 'placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($experiencePro,'date_fin_experience'); ?>
 	</div>
 
@@ -133,10 +130,10 @@
 	<?php $this->endWidget(); ?>
 
 </div>	
+<!-- Fin de la div form -->
 
 
-
-<div>
+<div class='form'>
 
 	<?php
 
@@ -170,10 +167,11 @@
 		<?php echo CHtml::submitbutton("Ajouter une competence",array('name' => 'btnajoutcompetence','id'=>'btn-ajoutcomp')); ?>
 	</div>
 
-	<div class="row" id="champ-back">
-		<?php echo CHtml::submitbutton("Retour à la page précédente",array('name' => 'retour', 'submit'=>array('employe/view','id'=>$user->id_employe))); ?>
-	</div>
-
 	<?php $this->endWidget(); ?>
 
+</div>
+<!-- Fin de la div form -->
+
+<div class="row" id="champ-back">
+	<?php echo CHtml::submitbutton("Retour à la page précédente",array('name' => 'retour', 'submit'=>array('employe/view','id'=>$user->id_employe))); ?>
 </div>
