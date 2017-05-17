@@ -13,142 +13,76 @@
 .intitule
 {
 	font-size:40px;
+	font-weight: bold;
 	font-family:"Bodoni FLF";
 	text-align: center;
+	color: black;
 }
-
-#nom-formation
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 5%;
-}
-
-#lieu-formation
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}
-
-#diplome-obt
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}
-
-#debut-formation
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}
-
-#fin-formation
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}
-
-#description-formation
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}	
-
 
 
 .div-field
 {
-	width : 1000px;
+	font-size: 30px;
+	color: black;
+	margin-bottom:1cm !important; 
 }
 
 
 .champ-input
 {
-	float:right;
-	border-radius: 10px;
-	background-color:rgb(250, 255, 189);
+	margin-left: 5cm !important;
 	font-size:20px;
-	width: 50%;
+	width: 15cm;
 }
 
 
 .champ-description
 {
 	height: 20%;
-	margin-bottom: 5px;
+	margin-top:1cm !important;
 }
 
 
 #champ-btn-formation
 {
-	text-align: center;
+	text-align: left;
+	margin-left: 2cm;
+	margin-top: 3cm;
 }
 
 #btn-ajoutformation
 {
+	font-family:"Montserrat Light";
+	font-size: 25px;
+	font-weight: bold;
+	box-shadow:2px 2px 15px black;
 	background-color:#90ffb9;
 	color:Black;
-	border-radius: 50px;
-	width:400px;
-	height:5%;
-	font-family:"Montserrat Light";
-	margin-bottom:50px;
+	font-size:18px;
+	width:300px;
+	height:60px;
+}
+
+#champ-btn-exp-pro
+{
+	text-align: left;
+	margin-left: 2cm;
+	margin-top: 3cm;
 }
 
 #btn-ajoutexperience
 {
+	font-family:"Montserrat Light";
+	font-size: 25px;
+	font-weight: bold;
+	box-shadow:2px 2px 15px black;
 	background-color:#90ffb9;
 	color:Black;
-	border-radius: 50px;
+	font-size:18px;
 	width:400px;
-	height:5%;
-	font-family:"Montserrat Light";
-	margin-bottom:50px;
+	height:60px;
 }
 
-#intitule-experience
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 5%;
-}
-
-#entreprise-experience
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}	
-
-
-#debut-experience
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}	
-
-
-#fin-experience
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;
-}	
-
-
-#description-experience
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 2%;	
-	margin-bottom: 2%;
-}
 
 #competence
 {
@@ -159,47 +93,44 @@
 	margin-right: 0px;
 }
 
+div.div-competence label
+{
+	font-weight: bold;
+    font-size: 30px;
+    display: inline;
+    color: black;
+}
+
+div.div-competence input
+{
+
+}
 
 #competence_niveau_competence
 {
 	float:right;	
 }
 
-#champ-btn-exp-pro
-{
-	text-align: center;
-}
 
 #champ-ajout-comp
 {
-	text-align: center;
+	text-align: left;
+	margin-left: 2cm;
+	margin-top: 3cm;
 }
 #btn-ajoutcomp
 {
+	font-family:"Montserrat Light";
+	font-size: 25px;
+	font-weight: bold;
+	box-shadow:2px 2px 15px black;
 	background-color:#90ffb9;
 	color:Black;
-	border-radius: 50px;
-	width:400px;
-	height:5%;
-	text-align: center;
-	font-family:"Montserrat Light";
-	margin-top: 2cm;
+	font-size:18px;
+	width:300px;
+	height:60px;
 }
-#champ-valider
-{
-	text-align: center;
-	margin-top: 2cm;
-}
-#btn-valider
-{
-	background-color:#ff50bc;
-	color:Black;
-	border-radius: 50px;
-	width:250px;
-	height:5%;
-	text-align: center;
-	font-family:"Montserrat Light";	
-}
+
 
 #champ-back
 {
@@ -207,13 +138,16 @@
 	text-align: center;
 }
 
-#btn-back
+.link-back
 {
-	background-color:#ff50bc;
-	color:Black;
-	border-radius: 50px;
-	width:250px;
-	height:5%;
-	text-align: center;
-	font-family:"Montserrat Light";		
+	color:#90ffb9;
+	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black, 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black;
+	font-size:20px;
+	text-align:center;
+	font-family:"Montserrat Light"
+}
+
+.link-back:hover
+{
+	color:#90ffb9;}
 }
