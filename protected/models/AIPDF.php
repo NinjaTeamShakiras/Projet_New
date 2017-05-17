@@ -8,6 +8,7 @@
 
 /* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 	Amélioriations de l'algorithme : 
+		- Vérification si un bloc contient une partie d'un ligne on l'efface
 		- Pour tester la séparation de blocs on peut reagarder dans les lignes non lues les structures qui apparaissent le plus
 		le découpage se ferait donc à partir de ses structures et pas des structures générales
 		- Mots clés dans la base de données
@@ -125,7 +126,7 @@ class AIPDF extends CActiveRecord
 		/***************
 		TESTS
 		***************/
-		self::tests_();
+		//self::tests_();
 
 
 		/* -- -- -- -- -- -- -- --
@@ -141,7 +142,7 @@ class AIPDF extends CActiveRecord
 		self::differentiate_blocs();
 
 		/* -- Affichage des résultats -- */
-		self::afficher_resultats();
+		//self::afficher_resultats();
 
 		/* -- On merge les tableaux pour envoyer les résultats -- */
 		$return_arr = self::get_information_array();
@@ -154,10 +155,10 @@ class AIPDF extends CActiveRecord
 ******************************************************************************************************************************************************************/
 	public static function tests_()
 	{
-		//self::add_cv_line( ' 21 juillet 1996' );
-		//var_dump( self::is_a_experience_pro(  'ETUDES EXPERIENCES « Recherche un stage dans le domaine événementiel » EXTRAS' ) );
-		//var_dump( self::is_a_formation(  'ETUDES EXPERIENCES « Recherche un stage dans le domaine événementiel » EXTRAS' ) );
-		//var_dump( self::is_a_experience_pro(  ' 21 ans Nationalité Française Permis B, A, Bateau 491 chemin des mollasses 73160 Cognin Anglais : B1 confirmé Espagnol : A2 intermédiaire Arts martiaux (8ans) Plongée (bouteille/apnée) Athlétisme Gymnastique Ski - Escalade ... Lecture Tir à l’arc Jeux vidéo Amérique Asie ETAT CIVIL COORDONNEES VOYAGES LANGUES SPORTS LOISIRS' ) );
+		self::add_cv_line( ' 21 juillet 1996' );
+		var_dump( self::is_a_experience_pro(  'ETUDES EXPERIENCES « Recherche un stage dans le domaine événementiel » EXTRAS' ) );
+		var_dump( self::is_a_formation(  'ETUDES EXPERIENCES « Recherche un stage dans le domaine événementiel » EXTRAS' ) );
+		var_dump( self::is_a_experience_pro(  ' 21 ans Nationalité Française Permis B, A, Bateau 491 chemin des mollasses 73160 Cognin Anglais : B1 confirmé Espagnol : A2 intermédiaire Arts martiaux (8ans) Plongée (bouteille/apnée) Athlétisme Gymnastique Ski - Escalade ... Lecture Tir à l’arc Jeux vidéo Amérique Asie ETAT CIVIL COORDONNEES VOYAGES LANGUES SPORTS LOISIRS' ) );
 	}
 
 
