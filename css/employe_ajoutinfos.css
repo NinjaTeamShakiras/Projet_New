@@ -1,0 +1,153 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+.intitule
+{
+	font-size:40px;
+	font-weight: bold;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+}
+
+
+.div-field
+{
+	font-size: 30px;
+	color: black;
+	margin-bottom:1cm !important; 
+}
+
+
+.champ-input
+{
+	margin-left: 5cm !important;
+	font-size:20px;
+	width: 15cm;
+}
+
+
+.champ-description
+{
+	height: 20%;
+	margin-top:1cm !important;
+}
+
+
+#champ-btn-formation
+{
+	text-align: left;
+	margin-left: 2cm;
+	margin-top: 3cm;
+}
+
+#btn-ajoutformation
+{
+	font-family:"Montserrat Light";
+	font-size: 25px;
+	font-weight: bold;
+	box-shadow:2px 2px 15px black;
+	background-color:#90ffb9;
+	color:Black;
+	font-size:18px;
+	width:300px;
+	height:60px;
+}
+
+#champ-btn-exp-pro
+{
+	text-align: left;
+	margin-left: 2cm;
+	margin-top: 3cm;
+}
+
+#btn-ajoutexperience
+{
+	font-family:"Montserrat Light";
+	font-size: 25px;
+	font-weight: bold;
+	box-shadow:2px 2px 15px black;
+	background-color:#90ffb9;
+	color:Black;
+	font-size:18px;
+	width:400px;
+	height:60px;
+}
+
+
+#competence
+{
+	font-size:20px;
+	font-family:"Montserrat Light";
+	margin-top: 5%;
+	width: 710px;
+	margin-right: 0px;
+}
+
+div.div-competence label
+{
+	font-weight: bold;
+    font-size: 30px;
+    display: inline;
+    color: black;
+}
+
+div.div-competence input
+{
+
+}
+
+#competence_niveau_competence
+{
+	float:right;	
+}
+
+
+#champ-ajout-comp
+{
+	text-align: left;
+	margin-left: 2cm;
+	margin-top: 3cm;
+}
+#btn-ajoutcomp
+{
+	font-family:"Montserrat Light";
+	font-size: 25px;
+	font-weight: bold;
+	box-shadow:2px 2px 15px black;
+	background-color:#90ffb9;
+	color:Black;
+	font-size:18px;
+	width:300px;
+	height:60px;
+}
+
+
+#champ-back
+{
+	margin-top: 3cm;
+	text-align: center;
+}
+
+.link-back
+{
+	color:#90ffb9;
+	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black, 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black;
+	font-size:20px;
+	text-align:center;
+	font-family:"Montserrat Light"
+}
+
+.link-back:hover
+{
+	color:#90ffb9;}
+}

@@ -10,22 +10,65 @@
 	src: url('Montserrat-Light.otf');
 }
 
-#champ-infos-persos
+
+#div-infos-perso
 {
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 5%;
-	margin-bottom: 3%;
+	color:black;
+	font-size: 24px;
+	}	
+#titre-infos-perso
+{
+	font-size: 40px;
+	text-align: center;
+	margin-bottom: 50px;
+
 }
 
+div.form-infos-perso label
+{
+	font-weight: normal;
+	font-size: 15px;
+}
 
 #btn-maj-infos
-{
-	background-color:rgb(250, 255, 189);
+{	
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color:#90ffb9;
 	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
 	padding:1%;
-	font-size: 16px;
+	color:black;
+	border:2px solid ;
 }
+
+#div-infos-comp
+{
+	color:black;
+	font-size: 20px;
+}
+
+#titre-infos-comp
+{
+	font-size: 40px;
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#div-infos-comp h3
+{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+div.form-infos-comp label
+{
+	font-weight: normal;
+	font-size: 15px;
+}
+
 
 #info-comp
 {
@@ -35,3 +78,28 @@
 	margin-bottom: 3%;
 }		
 
+.div-modifier-supprimer
+{
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
+
+.Modifier-supprimer
+{
+	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black;
+	color:#90ffb9;
+	text-decoration:none;
+	margin-top: 30px;
+}
+
+.Modifier-supprimer:hover
+{
+	color:#90ffb9;
+
+}
+
+.row
+{
+	margin-left: 0;
+	margin-right: 0;
+}

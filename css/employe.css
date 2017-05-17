@@ -10,101 +10,100 @@
 	src: url('Montserrat-Light.otf');
 }
 
-#titre
+.arriere-plan-employe
 {
-	font-size:40px;
-	font-family:"Bodoni FLF";
-	text-align: center;
+	background-image:url(../images/image9_1);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
 }
 
-#div_rechercher
+#contenu
 {
-	text-align:center;	
-	font-family:"Montserrat Light"
+ background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#phrase-nb-offres
+{
+	font-size:70px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+
+}
+
+
+#div-champs-recherche
+{
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+.champs-recherche
+{
+	text-align: center;
+	padding:1.0%;
+	border:2px solid;		
+	font-family:"Montserrat Light";
+}
+
+
+
+#div-champs-selection
+{
+	text-align: center;
+	margin-top: 2%;
+}
+
+
+
+.menu_roulant-selection
+{
+	border:2px solid;
+	padding:1.0%;
+	font-family:"Montserrat Light";
+}
+
+
+
+#div-btn-rechercher
+{
+	text-align:center;
+	margin-top: 2px;	
+
 }
 
 #btn_rechercher
 {
+	border-color: black;
+	font-weight: bold;
 	padding:1%;
 	background-color:#90ffb9;
 	color:Black;
 	border-radius: 50px;
+	box-shadow:2px 2px 15px black;		
+	font-family:"Montserrat Light";
+	font-size:18px;
 }
 
-#btn_postuler
+
+#div_infos
 {
+	text-align: center;
+}
+
+
+.btn_infos 
+{
+
 	background-color:#90ffb9;
+	font-family:"Montserrat Light";
 	color:Black;
-	border-radius: 50px;
-	width:20%;
-	height:10%;
-	margin-left:39%;
-	font-family:"Montserrat Light";
+	border:2px solid ;
 }
 
-#btn_cv
-{
-	background-color:#90ffb9;
-	color:Black;
-	border-radius: 50px;
-	width:20%;
-	height:10%;
-	margin-left:10%;
-	font-family:"Montserrat Light";
-}
 
-.btn_page:hover
-{
-	background :#90ffb9;
-}
-
-.btn_page:active
-{
-	background :#90ffb9;
-}
-
-mark
-{
-	color:#ff50bc;
-	background-color:White;
-}
-
-#row_field
-{
-	text-align: center;
-	margin-top: 2%;
-}
-
-#row_field2
-{
-	text-align: center;
-	margin-top: 2%;
-}
-
-.field
-{
-	text-align: center;
-	padding:1.0%;
-		
-	font-family:"Montserrat Light";
-}
-
-.menu_roulant
-{
-	padding:1.0%;
-	border-radius: 10%;
-	background-color:rgb(250, 255, 189);
-	font-family:"Montserrat Light";
-}
-
-#btn_infos
-{
-	background-color:#ff50bc;
-	font-family:"Montserrat Light";
-}
-
-#row_infos
-{
-	text-align: center;
-
-}

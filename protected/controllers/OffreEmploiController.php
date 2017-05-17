@@ -82,6 +82,16 @@ class OffreEmploiController extends Controller
 	 */
 	public function actionCreate()
 	{
+
+		//On récupère l'utilisateur
+		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
+
+		//Si l'utilisateur n'est pas connecté, on force la connexion
+		if($user == null)
+		{
+			Yii::app()->user->loginRequired();
+		}
+		
 		$model=new OffreEmploi;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -257,8 +267,18 @@ class OffreEmploiController extends Controller
 	 */
 	public function actionPostule( $id_offre )
 	{
+		unset(Yii::app()->session['login']);
+		Yii::app()->session['login'] = 'employe';
+
 		// On récupere l'id_employe
-		$idemploye = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()))->id_employe;
+		$employe = Utilisateur::model()->FindByAttributes(array('mail' => Yii::app()->user->getId()));
+
+		if($employe == null)
+		{
+			Yii::app()->user->loginRequired();;
+		}
+
+		$idemploye = $employe->id_employe;
 
 		// Boolléen qui vérifiera si l'employer à déjà postuler
 		$employeAPostuler = false;
@@ -309,8 +329,57 @@ class OffreEmploiController extends Controller
 		$dataProvider=new CActiveDataProvider('OffreEmploi');
 		$this->render('mesOffres',array(
 			'dataProvider'=>$dataProvider,
+			'data'=>-2,
 		));
 	}
+
+
+
+	public function actionActualiseMesOffres()
+	{
+
+		if($_POST['OffreEmploi']['poste_offre_emploi'] != '')
+		{
+			// Tableau résultat des offres rechercher
+			$tabOffreEmploye = array();
+
+			// On récupère les données du formulaire
+			$posteOffre = $_POST['OffreEmploi']['poste_offre_emploi'];
+
+			// On récupère l'utilisateur
+			$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
+			// On récupère toutes les candidature de l'employe (utilisateur actuelle)
+			$tabPostule = postuler::model()->FindAll("id_employe = '$utilisateur->id_employe'");
+
+			// On récupère toutes les offres correspondants à l'employé et au poste qu'il à selectionné
+			foreach($tabPostule as $candidature)
+			{ // Pour les candidature de l'employe
+				// On récupère les offres candidatée
+				$tabOffrePostule[] = offreEmploi::model()->FindByAttributes(array("id_offre_emploi"=>$candidature->id_offre_emploi));
+			}
+
+			foreach($tabOffrePostule as $offrePostule)
+			{ // Pour les offres postuler
+				// On récupère les offres dont le poste correspond au poste recherché
+				if($offrePostule->poste_offre_emploi == $posteOffre)
+				{
+					$tabOffreEmploye[] = $offrePostule;
+				}
+			}
+
+
+			$this->render('mesOffres', array('data'=>$tabOffreEmploye));
+
+		}
+		else
+		{
+			$this->render('mesOffres',array('data'=>-1));
+		}
+
+	}
+
+
 
 
 
@@ -570,7 +639,6 @@ class OffreEmploiController extends Controller
 			Yii::app()->end();
 		}
 	}
-
 
 
 

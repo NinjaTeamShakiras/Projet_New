@@ -18,7 +18,6 @@
 	$utilisateur = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
 	$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$utilisateur->id_adresse));
 
-	var_dump($adresse);
 
 ?>
 

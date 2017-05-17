@@ -47,13 +47,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($formation,'date_debut_formation'); ?>
-		<?php echo $form->textfield($formation,'date_debut_formation'); ?>
+		<?php echo $form->textfield($formation,'date_debut_formation', array('placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($formation,'date_debut_formation'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($formation,'date_fin_formation'); ?>
-		<?php echo $form->textfield($formation,'date_fin_formation'); ?>
+		<?php echo $form->textfield($formation,'date_fin_formation', array('placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($formation,'date_fin_formation'); ?>
 	</div>
 
@@ -103,13 +103,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($experiencePro,'date_debut_experience'); ?>
-		<?php echo $form->textfield($experiencePro,'date_debut_experience'); ?>
+		<?php echo $form->textfield($experiencePro,'date_debut_experience', array('placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($experiencePro,'date_debut_experience'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($experiencePro,'date_fin_experience'); ?>
-		<?php echo $form->textfield($experiencePro,'date_fin_experience'); ?>
+		<?php echo $form->textfield($experiencePro,'date_fin_experience', array('placeholder'=>'JJ/MM/AAAA')); ?>
 		<?php echo $form->error($experiencePro,'date_fin_experience'); ?>
 	</div>
 

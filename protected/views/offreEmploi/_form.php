@@ -2,6 +2,7 @@
 /* @var $this OffreEmploiController */
 /* @var $model OffreEmploi */
 /* @var $form CActiveForm */
+
 ?>
 
 <div class="form">
@@ -36,7 +37,7 @@
 				array(
 					'size' => 30,
 					'maxlength' => 30,
-					'placeholder' => 'Secretaire',
+					'placeholder' => 'Accueil hotelière',
 				)
 			); 
 		?>
@@ -76,7 +77,7 @@
 						array(
 							'size' => 30,
 							'maxlength' => 30,
-							'placeholder' => 'jj/mm/aaaa',
+							'placeholder' => 'JJ/MM/AAAA',
 						)
 					);
 			}
@@ -92,12 +93,13 @@
 				array(
 					'size' => 30,
 					'maxlength' => 30,
-					'placeholder' => '10000',
+					'placeholder' => '0',
 				)
 			);
 		?>€
 		<?php echo $form->error($model,'salaire_offre_emploi'); ?>
 	</div>
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'experience_offre_emploi'); ?>
@@ -106,7 +108,7 @@
 				array(
 					'size' => 60,
 					'maxlength' => 500,
-					'placeholder' => 'BAC S, 2 stage en entreprise minimum ...',
+					'placeholder' => 'Diplomes, stages, ...',
 				)
 			);
 		?>
@@ -149,22 +151,11 @@
 	<div class="wide form">
 		<?php
 		//Début du form
-		if($model->isNewRecord)
-		{
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/index')
-				)
-			);
-		}
-		else
-		{
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/offreEmploi/view', array('id'=>$model->id_offre_emploi))
-				)
-			);
-		}
+		$form=$this->beginWidget('CActiveForm',
+			array(
+				'action'=>Yii::app()->request->geturlReferrer()
+			)
+		);
 		?>
 
 		<div class="row buttons">

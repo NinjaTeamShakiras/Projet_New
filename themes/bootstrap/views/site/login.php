@@ -3,14 +3,15 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 ?>
-
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+<div class='arriere-plan-login'>
+<div class='filtre-blanc'>
+<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
 
 
-<h1 class="Titre">Connexion</h1>
+<h1 class="titre-connexion">Connexion</h1>
 
 <div class="form-horizontal">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -21,15 +22,15 @@
 	),
 )); ?>
 
-	<div id="row-login_1" class="row-login">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
+	<div id="div-adresse-mail">
+		<p id=label-mail><?php echo $form->labelEx($model,'username'); ?></p>
+		<p id=champ-mail><?php echo $form->textField($model,'username',array("placeholder"=>"Entrez votre adresse Mail")); ?></p>
+		<p><?php echo $form->error($model,'username'); ?></p>
 	</div>
 
-	<div id="row-login_2" class="row-login">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
+	<div id="div-password" class="row-login">
+		<p id=label-pass><?php echo $form->labelEx($model,'password'); ?></p>
+		<p id=champ-pass><?php echo $form->passwordField($model,'password',array("placeholder"=>"XXX")); ?></p>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
@@ -40,7 +41,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Connexion',array('class'=>'btnConnexion btn btn-success')); ?>
+		<?php echo CHtml::submitButton('Connexion',array('class'=>'btnConnexion btn')); ?>
 	</div>
 
 	<?php 
@@ -60,3 +61,4 @@
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+</div>

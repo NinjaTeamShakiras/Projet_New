@@ -81,6 +81,12 @@ class EntrepriseController extends Controller
 	 */
 	public function actionCreate()
 	{
+
+		if(isset($_POST['btnretour']))
+		{ // annulation de l'action
+			$this->redirect('site/index');
+		}
+
 		$model=new Entreprise;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -90,13 +96,19 @@ class EntrepriseController extends Controller
 		{
 			$model->attributes=$_POST['Entreprise'];
 			if($model->save())
+				Yii::app()->user->setFlash('success_create_entreprise', "<p style = color:blue;>Votre profil à bien été créé !</p>");
 				$this->redirect(array('view','id'=>$model->id_entreprise));
+
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
 		));
 	}
+
+
+
+
 
 	/**
 	 * Updates a particular model.
@@ -105,23 +117,63 @@ class EntrepriseController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+
+		if(isset($_POST['btnretour']))
+		{ // annulation de l'action
+			$this->redirect(array('entreprise/view', 'id'=>$id));
+		}
+
 		$model=$this->loadModel($id);
+
+
+
+		$utilisateur = Utilisateur::model()->findByAttributes(array('id_entreprise'=>$model->id_entreprise));		
+		$adresse = Adresse::model()->findByAttributes(array('id_adresse'=>$utilisateur->id_adresse));
+
+		if($adresse == null)
+		{
+			$adresse = new Adresse;
+		}
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Entreprise']))
+		if(isset($_POST['Entreprise']) && isset($_POST['Adresse']) && isset($_POST['Utilisateur']))
 		{
-			$model->attributes=$_POST['Entreprise'];
-			if($model->save())
-				Yii::app()->user->setFlash('success_update_entreprise', "<p style = color:blue;>Votre profil à bien été mis à jour !</p>");
+
+			//Transormation de la date puisque en Anglais dans la base en français dans le site
+			//On enregistre les nouvelles données dans les modèles
+			$model->attributes = $_POST['Entreprise'];
+			
+			$adresse->attributes = $_POST['Adresse'];
+			$adresse->save();
+
+			$utilisateur->id_adresse = $adresse->id_adresse;
+			$utilisateur->telephone = $_POST['Utilisateur']['telephone'];
+			$utilisateur->telephone2 = $_POST['Utilisateur']['telephone2'];
+			$utilisateur->site_web = $_POST['Utilisateur']['site_web'];
+			$utilisateur->mail = $_POST['Utilisateur']['mail'];
+
+			//On enregistre le modèle et on redirige
+			if($model->save() && $utilisateur->save())
+			{
+				Yii::app()->user->setFlash('success_update_entreprise', "<p style = color:blue;>Votre profil à bien été mise à jour !</p>");
 				$this->redirect(array('view','id'=>$model->id_entreprise));
+			}
+
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model'=>$model, 'adresse'=>$adresse, 'utilisateur'=>$utilisateur,
 		));
+
 	}
+
+
+
+
+
+
 
 	/**
 	 * Deletes a particular model.
@@ -130,28 +182,59 @@ class EntrepriseController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		
+
+		//On récupère l'utilisateur dans la base de données
+		$utilisateur = Utilisateur::model()->FindByAttributes(array('id_entreprise'=>$id));
+
+		/*Pour toutes les classes suivantes, on supprime soit l'occurence en entier, soit le champ
+		id_utilisateur est mis a null dans l'occurence */
+
+		// On récupère les offres concernant l'entreprise
+		$offres = offreEmploi::model()->FindAll("id_entreprise = '$utilisateur->id_entreprise'");
+
+		// On récupère toutes les candidatures
+		$postules = postuler::model()->FindAll();
+		foreach($offres as $offre)
+		{ // Pour chaque offre on supprime les candidats à l'offre puis on supprime l'offre
+			foreach($postules as $candidature)
+			{
+				if($candidature->id_offre_emploi == $offre->id_offre_emploi)
+				{ // Si la candidature est sur l'offre en question, on supprime la candidature
+					$candidature->delete();
+				}
+			}
+			$offre->delete();
+		}
+		
+
+		//On supprime l'utilisateur
+		Yii::app()->user->logout(false);
+		$utilisateur->delete();
+
+
+		//On supprime l'entreprise
+		$model=$this->loadModel($id)->delete();
+
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			Yii::app()->user->setFlash('success_delete_entreprise', "<p style = color:blue;>Votre profil à bien été supprimer !</p>");
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		{
+			//On créé un message flash pour l'utilisateur
+			Yii::app()->user->setFlash('suppr_compte', "<p style = color:blue;>Votre profil à bien été supprimer !</p>");
+			//$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));	
+		}
+		$this->redirect('index.php');
 	}
+
+
+
 
 	/**
 	 * Lists all models.
 	 */
 	public function actionIndex()
 	{
-		unset(Yii::app()->session['login']);
-		Yii::app()->session['login'] = 'entreprise';
-
-		$user = Utilisateur::model()->FindBYattributes(array("mail"=>Yii::app()->user->GetId()));
-		
-		if($user == null)
-		{
-			Yii::app()->user->loginRequired();
-		}
 
 		$dataProvider=new CActiveDataProvider('Entreprise');
 		$this->render('index',array(
@@ -299,7 +382,7 @@ class EntrepriseController extends Controller
 		}
 		else
 		{
-			echo "Vous n'avez rien remplis.";
+			echo "Vous n'avez rien rempli";
 			$this->render('index_search');
 		}
 
@@ -345,6 +428,32 @@ class EntrepriseController extends Controller
 		}
 
 	}
+
+
+
+
+	/*Fonction qui change le numéro de téléphone pour un affichage avec des points tous les deux chiffres
+	@params $telephone est le numéro de téléphone*/
+	public function afficheTelephone($telephone)
+	{
+		$res = "";
+
+		for($i = 0; $i<10; $i++)
+		{
+			//Tous les deux chiffres on ajoute un point
+			if($i%2 == 0)
+			{
+				$num = substr($telephone, $i, 2);
+				$res .= $num.".";
+			}
+
+			//On enlève le point en trop
+			$res = substr($res, 0, 14);
+		}
+
+		return $res;
+	}
+
 
 
 
