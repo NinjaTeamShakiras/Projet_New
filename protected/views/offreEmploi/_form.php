@@ -37,7 +37,7 @@
 				array(
 					'size' => 30,
 					'maxlength' => 30,
-					'placeholder' => 'Secretaire',
+					'placeholder' => 'Accueil hotelière',
 				)
 			); 
 		?>
@@ -77,7 +77,7 @@
 						array(
 							'size' => 30,
 							'maxlength' => 30,
-							'placeholder' => 'jj/mm/aaaa',
+							'placeholder' => 'JJ/MM/AAAA',
 						)
 					);
 			}
@@ -93,12 +93,13 @@
 				array(
 					'size' => 30,
 					'maxlength' => 30,
-					'placeholder' => '10000',
+					'placeholder' => '0',
 				)
 			);
 		?>€
 		<?php echo $form->error($model,'salaire_offre_emploi'); ?>
 	</div>
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'experience_offre_emploi'); ?>
@@ -107,7 +108,7 @@
 				array(
 					'size' => 60,
 					'maxlength' => 500,
-					'placeholder' => 'BAC S, 2 stage en entreprise minimum ...',
+					'placeholder' => 'Diplomes, stages, ...',
 				)
 			);
 		?>

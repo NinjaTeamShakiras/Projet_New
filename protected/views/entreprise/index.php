@@ -67,23 +67,13 @@ else
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 			<li>
-				<a href="index.php?r=site/inscriptionEntreprise" title="Déposer une annonce">
+				<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
 				Déposer une annonce
 				</a>
 			</li>
 			<li>
-				<a href="index.php?r=site/inscriptionEntreprise" title="Mon profil">
-				Mon profil
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=site/inscriptionEntreprise" title="Liste des offres d'emplois">
-				Mes annonces
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=site/inscriptionEntreprise" title="Mes candidats">
-				Mes candidats
+				<a href="index.php?r=site/inscriptionEntreprise" title="Inscription">
+				Inscription
 				</a>
 			</li>
 		</ul>
@@ -159,8 +149,3 @@ else
 	<?php $this->endWidget(); ?>
 
 </div>
-
-
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<h1><strong>Voir avec le client pour le dernier formulaire, c'est pas clair</strong></h1>
