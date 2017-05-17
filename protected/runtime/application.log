@@ -23879,3 +23879,32 @@ HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
 >>>>>>> 765bcadb008fcb05dcfcd984f1054fe52e6743e8
 >>>>>>> 9c8867c2e8f0664bd78316c3de69c76b3a92eab9
 >>>>>>> 502cced9a7e6874d21038b791ed7e88280cca72f
+2017/05/17 16:14:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "recherche".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('recherche')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('recherche')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/rec...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/recherche
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
+2017/05/17 16:14:29 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('Formation/updat...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=Formation/update
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=2
+---
