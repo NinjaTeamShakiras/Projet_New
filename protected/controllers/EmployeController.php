@@ -474,7 +474,6 @@ class EmployeController extends Controller
 	public function actionUploadTmpCV()
 	{
 		/* -- On fait attendre avec sleep() faut penser à faire un chargement en javascript -- */
-		//sleep(5)
 		$employe = new Employe();
 		/* -- Récupération du CV -- */
 		$employe->cv_pdf = CUploadedFile::getInstance( $employe, 'cv_pdf');
@@ -569,4 +568,9 @@ class EmployeController extends Controller
 			Yii::app()->end();
 		}
 	}
-}	
+
+
+
+
+	
+}// END CONTROLLER	
