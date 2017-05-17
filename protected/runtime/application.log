@@ -18749,6 +18749,74 @@ in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\choixAjoutCV.php (12)
 in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (222)
 >>>>>>> 7efddf12f1140ab5a4816e56297661d680a0ce58
 in C:\wamp64\www\prozzl\index.php (13)
+<<<<<<< HEAD
+2017/05/16 07:43:47 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php:26)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(190): EmployeController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionIndex()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/index
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php (26)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (190)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/16 08:23:19 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php:26)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(190): EmployeController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionIndex()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/index
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php (26)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (190)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/16 08:34:28 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php:26)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(190): EmployeController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionIndex()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/index
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php (26)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (190)
+in C:\wamp64\www\prozzl\index.php (13)
+=======
 2017/05/16 10:49:27 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\employe\index.php:33)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
@@ -19463,7 +19531,36 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
 HTTP_REFERER=http://localhost/prozzl/index.php?r=OffreEmploi/index
 ---
+<<<<<<< HEAD
+2017/05/16 12:07:11 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\index_search.php:23)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#1 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#2 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(488): OffreEmploiController->render()
+#3 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionSearch()
+#4 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#6 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#13 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/Search
+in C:\wamp\www\prozzl\protected\views\offreEmploi\index_search.php (23)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (488)
+in C:\wamp\www\prozzl\index.php (13)
+<<<<<<< HEAD
+>>>>>>> 645b57ee1c8b331ef47b68f180583ba1ce7ea905
+=======
+2017/05/16 12:29:36 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:13)
+=======
 2017/05/16 13:52:05 [error] [php] Undefined variable: offre (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:201)
+>>>>>>> ab456c4c212ee56a34bccf2baa89926d0ac8775a
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
 #1 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
@@ -19487,7 +19584,80 @@ REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
 in C:\wamp\www\prozzl\protected\views\offreEmploi\view.php (201)
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (76)
 in C:\wamp\www\prozzl\index.php (13)
+<<<<<<< HEAD
+2017/05/16 12:29:50 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\index_search.php:23)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#1 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#2 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(488): OffreEmploiController->render()
+#3 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionSearch()
+#4 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#6 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#13 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/Search
+in C:\wamp\www\prozzl\protected\views\offreEmploi\index_search.php (23)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (488)
+in C:\wamp\www\prozzl\index.php (13)
+<<<<<<< HEAD
+>>>>>>> f5033418b90717a3a672dc17f782cc9f259b2cd4
+=======
+2017/05/16 12:40:51 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\index_search.php:23)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#1 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#2 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(488): OffreEmploiController->render()
+#3 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionSearch()
+#4 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#6 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#13 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/Search
+in C:\wamp\www\prozzl\protected\views\offreEmploi\index_search.php (23)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (488)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/16 13:04:06 [error] [php] Undefined variable: annonceN (C:\wamp\www\prozzl\protected\views\offreEmploi\index.php:305)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
+#1 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
+#2 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(191): OffreEmploiController->render()
+#3 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): OffreEmploiController->actionIndex()
+#4 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
+#6 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): OffreEmploiController->filterAccessControl()
+#9 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp\www\yii\framework\web\CController.php(265): OffreEmploiController->runActionWithFilters()
+#12 C:\wamp\www\yii\framework\web\CWebApplication.php(282): OffreEmploiController->run()
+#13 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=OffreEmploi/index
+in C:\wamp\www\prozzl\protected\views\offreEmploi\index.php (305)
+in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (191)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/16 13:04:57 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:13)
+=======
 2017/05/16 13:52:21 [error] [php] Undefined variable: offre (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:201)
+>>>>>>> ab456c4c212ee56a34bccf2baa89926d0ac8775a
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
 #1 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
@@ -19535,6 +19705,34 @@ REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
 in C:\wamp\www\prozzl\protected\views\offreEmploi\view.php (201)
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (76)
 in C:\wamp\www\prozzl\index.php (13)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 5a67117edb18d676fe75cae64361403d913b2f8d
+2017/05/16 11:12:49 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php:26)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(194): EmployeController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionIndex()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/index
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\index.php (26)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (194)
+in C:\wamp64\www\prozzl\index.php (13)
+=======
+2017/05/16 13:13:30 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:13)
+=======
 2017/05/16 14:08:40 [error] [php] Undefined variable: utilisateur (C:\wamp\www\prozzl\protected\views\site\inscriptionEmploye.php:4)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): SiteController->renderFile()
@@ -19650,6 +19848,7 @@ REQUEST_URI=/prozzl/index.php?r=offreEmploi/Search
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (470)
 in C:\wamp\www\prozzl\index.php (13)
 2017/05/16 14:25:38 [error] [php] Undefined variable: date_postule (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:318)
+>>>>>>> ab456c4c212ee56a34bccf2baa89926d0ac8775a
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
 #1 C:\wamp\www\yii\framework\web\CController.php(782): OffreEmploiController->renderPartial()
@@ -19701,6 +19900,40 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
 HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/view&id=1
 ---
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> bfc6b2accecae09bcd719889e73973afaa660f5c
+=======
+2017/05/16 13:42:59 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.role" is not defined.' in C:\wamp\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('role')
+#1 C:\wamp\www\prozzl\protected\views\offreEmploi\view.php(156): CWebUser->__get('role')
+#2 C:\wamp\www\yii\framework\web\CBaseController.php(126): require('C:\\wamp\\www\\pro...')
+#3 C:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\wamp\\www\\pro...', Array, true)
+#4 C:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\wamp\\www\\pro...', Array, true)
+#5 C:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php(76): CController->render('view', Array)
+#7 [internal function]: OffreEmploiController->actionView('1')
+#8 C:\wamp\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(OffreEmploiController), Array)
+#9 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OffreEmploiController), Object(ReflectionMethod), Array)
+#10 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#19 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/vie...')
+#20 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
+HTTP_REFERER=http://localhost/prozzl/index.php?r=OffreEmploi/index
+---
+>>>>>>> 8aa4befd70d8e4cb7d82d565b7e11dafbb65d7d2
+=======
 2017/05/16 14:30:47 [error] [php] Undefined variable: offre (C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php:470)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): OffreEmploiController->runAction()
@@ -20885,6 +21118,174 @@ HTTP_REFERER=http://localhost/prozzl/index.php?r=offreEmploi/actualiseMesOffres
 =======
 >>>>>>> ab456c4c212ee56a34bccf2baa89926d0ac8775a
 <<<<<<< HEAD
+<<<<<<< HEAD
+2017/05/16 13:38:58 [error] [php] file_get_contents(./upload/1/cv_2.pdf): failed to open stream: No such file or directory (C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php:72)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#1 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#2 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#3 C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php(225): EmployeController->renderPartial()
+#4 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#5 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#7 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#8 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(85): EmployeController->render()
+#9 unknown(0): EmployeController->actionView()
+#10 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#11 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#12 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#13 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#14 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#16 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#17 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#18 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#20 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#21 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#23 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=2
+in C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php (72)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\cv_edit.php (11)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php (225)
+2017/05/16 13:39:09 [error] [php] file_get_contents(./upload/1/cv_2.pdf): failed to open stream: No such file or directory (C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php:72)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#1 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#2 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#3 C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php(225): EmployeController->renderPartial()
+#4 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#5 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#7 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#8 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(85): EmployeController->render()
+#9 unknown(0): EmployeController->actionView()
+#10 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#11 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#12 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#13 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#14 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#16 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#17 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#18 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#20 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#21 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#23 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=2
+in C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php (72)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\cv_edit.php (11)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php (225)
+2017/05/16 13:39:15 [error] [php] file_get_contents(./upload/1/cv_2.pdf): failed to open stream: No such file or directory (C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php:72)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#1 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#2 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#3 C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php(225): EmployeController->renderPartial()
+#4 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#5 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#7 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#8 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(85): EmployeController->render()
+#9 unknown(0): EmployeController->actionView()
+#10 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#11 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#12 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#13 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#14 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#16 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#17 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#18 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#20 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#21 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#23 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=2
+in C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php (72)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\cv_edit.php (11)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php (225)
+2017/05/16 13:39:26 [error] [php] file_get_contents(./upload/1/cv_2.pdf): failed to open stream: No such file or directory (C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php:72)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#1 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#2 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#3 C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php(225): EmployeController->renderPartial()
+#4 C:\wamp64\www\yii\framework\web\CBaseController.php(126): require()
+#5 C:\wamp64\www\yii\framework\web\CBaseController.php(95): EmployeController->renderInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#7 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#8 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(85): EmployeController->render()
+#9 unknown(0): EmployeController->actionView()
+#10 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#11 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#12 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#13 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#14 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#16 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#17 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#18 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#20 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#21 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#22 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#23 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=2
+in C:\wamp64\www\prozzl\protected\src\Smalot\PdfParser\Parser.php (72)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\cv_edit.php (11)
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php (225)
+=======
+>>>>>>> 2566c46fea38834634b5e64986e595bcef5d3905
+2017/05/16 14:02:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php:574
+Stack trace:
+#0 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(83): EmployeController->loadModel('btn-back')
+#1 [internal function]: EmployeController->actionView('btn-back')
+#2 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(EmployeController), Array)
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(EmployeController), Object(ReflectionMethod), Array)
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/view')
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=btn-back
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/ajoutInfos
+---
+2017/05/16 14:03:45 [error] [php] Undefined variable: user (C:\wamp64\www\prozzl\themes\bootstrap\views\employe\ajoutinfos.php:173)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(348): EmployeController->render()
+#3 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(49): EmployeController->actionAjoutInfos()
+#4 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#6 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#9 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#12 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#13 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/ajoutInfos
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\ajoutinfos.php (173)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (348)
+in C:\wamp64\www\prozzl\index.php (13)
+=======
 2017/05/16 15:19:30 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\employe\view.php:86)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
@@ -21418,7 +21819,34 @@ in C:\wamp\www\prozzl\protected\controllers\SiteController.php (268)
 =======
 >>>>>>> 2566c46fea38834634b5e64986e595bcef5d3905
 >>>>>>> 28e3bf53401ce68a2db37748816ed33e62a6fe83
+<<<<<<< HEAD
+2017/05/16 20:33:03 [error] [php] Undefined variable: utilisateur (C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php:88)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(84): EmployeController->render()
+#3 unknown(0): EmployeController->actionView()
+#4 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#5 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#8 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#11 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#15 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#17 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=2
+in C:\wamp64\www\prozzl\themes\bootstrap\views\employe\view.php (88)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (84)
+in C:\wamp64\www\prozzl\index.php (13)
+=======
 >>>>>>> 125a97b75a4464b38426c5a217839480ba0f470b
+<<<<<<< HEAD
 2017/05/16 22:49:34 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\themes\bootstrap\views\employe\index.php:26)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
@@ -21507,3 +21935,6 @@ Stack trace:
 REQUEST_URI=/prozzl/index.php?r=site/Accueil
 in C:\wamp\www\prozzl\protected\controllers\SiteController.php (277)
 in C:\wamp\www\prozzl\index.php (13)
+=======
+>>>>>>> 8a7eb5a27d11d20d07e42830995e2a9ebbf2d932
+>>>>>>> 3d8df2be78897de372f63d0196497f815d184385

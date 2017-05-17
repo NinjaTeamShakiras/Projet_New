@@ -16,8 +16,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 
 <?php
 
-	//On récupère l'utilisateur correspondant à l'employé
-	$user = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
+	//On récupère les infos de l'employé qu'on consulte
+	$employe = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
+	//On récupère l'utilisateur qui visite la page
+	$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
 	//On récupère l'adresse correspondant à l'employé
 	$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adresse));
 
@@ -63,45 +65,52 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	}
 ?>
 
+<?php echo "<div class='arriere-plan-employe'>" ?>
 
-
-
-	<div>
-<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/icone_prozzl.png',
+		<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); ?>
 
-	</div>
 
-	<!-- MENU 	-->
+<!--  MENU 	-->
+<div class="btn-group" style="float: right;">
+	<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Menu
+   	<span class="caret"></span>
+   	</button>
+	<ul class="dropdown-menu dropdown-menu-right">
+		<li>
+			<a href="index.php?r=employe/view&id=<?php echo $user->id_employe;?>" title="Mon profil">
+			Mes candidature
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=OffreEmploi/index&id=<?php echo $user->id_employe;?>" title="Mon profil">
+			Rechercher une offre
+			</a>
+		</li>
+	</ul>
+</div>
 
-	<div class="dropdown">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-		Menu 
-		<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-			<li>
-				<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil">
-				Mes Candidatures
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=offreEmploi/recherche&id=<?php echo $user->id_employe;?>" title="Mon profil">
-				Rechercher une offre
-				</a>
-			</li>
-		</ul>
-	</div>
+<div class='filtre-blanc'> 
 
 
-<h3 id='titre'>Mes informations personnelles</h3>
+<div id='div-infos-perso'>
+
 
 <!-- Affichage des infos persos -->	
-<div class="form">	
+<?php
 
-	<?php
+//Si l'utilisateur consulte sa page on affiche les infos persos
+//Sinon, si l'utilisateur consulte les infos de quelqu'un d'autre, on affiche pas les infos persos
+if($user->id_employe == $_GET['id'])
+{	
+	echo "<h3 id='titre-infos-perso'>MES INFORMATIONS PERSONELLES</h3>";
+
+
+ 	echo "<div class='form-infos-perso form'>";	
+
 		//Début du formulaire de vue des infos persos
 		$form=$this->beginWidget('CActiveForm',
 			array(
@@ -109,29 +118,47 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 
-		echo "<div class='row' id='champ-infos-persos'>";
-		echo "<p>Nom : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
-		echo "<p>Date de naissance : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
-		echo "<p>Adressse : <label>".$adresse."</label></p>";
-		echo "<p>Téléphone : <label>".$user->telephone."</label></p>";
-		echo "<p>Autre téléphone : <label>".$user->telephone2."</label></p>";
-		echo "<p>Adresse mail : <label>".$user->mail."</label></p>";
-		echo "<p>Site WEB : <label>".$user->site_web."</label></p>";
-		echo "<p>Recherche un travail : <label>".$model->employe_travaille."</label></p>";
+		echo "<div class='row'>";
+		echo "<p>NOM : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
+		echo "<p>DATE DE NAISSANCE : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
+		echo "<p>ADRESSE : <label>".$adresse."</label></p>";
+		echo "<p>TELEPHONE : <label>".$user->telephone."</label></p>";
+		echo "<p>AUTRE TELEPHONE : <label>".$user->telephone2."</label></p>";
+		echo "<p>ADRESSE MAIL : <label>".$user->mail."</label></p>";
+		echo "<p>SITE WEB : <label>".$user->site_web."</label></p>";
+		echo "<p>RECHERCHE UN TRAVAIL : <label>".$model->employe_travaille."</label></p>";
 		echo "</div>";
-	?>
+}
+?>
 
+</div>	
+</div>
 	<div class="row">
 		<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos')); ?>
 	</div>
 
 	<?php $this->endWidget();?>	
-</div>	
 <!-- Fin des infos persos -->
 
 
+<div id='div-infos-comp'>
 
-<h3 id='titre'>Mes informations complémentaires</h3>
+
+
+<!-- Début des infos complémentaires -->
+<?php
+//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+if($user->id_employe == $_GET['id'])
+{
+	echo "<h3 id='titre-infos-comp'>MES INFORMATIONS COMPLEMENTAIRES</h3>";
+}
+else
+{
+	echo "<h3 id='titre-infos-comp'>INFORMATIONS COMPLEMENTAIRES</h3>";
+}
+?>
+
+
 
 <?php
 	//Récupération des modèles d'informations complémentaires
@@ -150,11 +177,19 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 			)
 		);
 	?>	
-	<div id='info-comp'>
 
-	<p>Mes formations / Parcours scolaire</p>
+	<?php
+		//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+		if($user->id_employe == $_GET['id'])
+		{
+			echo "<h3>MES FORMATIONS / PARCOURS SCOLAIRE</h3>";
+		}
+		else
+		{
+			echo "<h3>FORMATIONS / PARCOURS SCOLAIRE</h3>";		}
+	?>
 
-	<div class="row">
+	<div class="row form-infos-comp">
 		<?php
 			foreach($formations as $formation)
 			{
@@ -165,15 +200,28 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 				echo "<p>Etablissement de la formation : <label>".$formation->etablissement_formation."</label></p>";
 				echo "<p>Diplome obtenu : <label>".$formation->diplome_formation."</label></p>";
 				echo "<p>Description de la formation : <label>".$formation->description_formation."</label></p>";
-				echo CHtml::link('Mettre à jour cette formation',array('Formation/update', 'id'=>$formation->id_formation));
-				echo CHtml::link('Supprimer cette formation',array('Formation/delete', 'id'=>$formation->id_formation)); 
+				echo "<div class='div-modifier-supprimer'>";
+				echo CHtml::link('Mettre à jour cette formation',array('Formation/update'),array('id'=>$formation->id_formation,'class'=>'Modifier-supprimer'));
+				echo " / ";
+				echo CHtml::link('Supprimer cette formation',array('Formation/delete'),array('id'=>$formation->id_formation,'class'=>'Modifier-supprimer')); 
+				echo "</div>";
 			}
 		?>
 	</div>
 
-	<p>Mes expériences professionnelles</p>
+	<?php
+	//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+	if($user->id_employe == $_GET['id'])
+	{
+		echo "<h3>MES EXPERIENCES PROFESSIONELLES</h3>";
+	}
+	else
+	{
+		echo "<h3>EXPERIENCES PROFESSIONELLES</h3>";
+	}
+	?>
 
-	<div class="row">
+	<div class="row form-infos-comp">
 		<?php
 			foreach($exp_pros as $exp_pro)
 			{
@@ -184,34 +232,47 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 				echo "<p>Intitulé de l'expérience pro : <label>".$exp_pro->intitule_experience."</label></p>";
 				echo "<p>Entreprise dans laquelle vous êtiez salarié : <label>".$exp_pro->entreprise_experience."</label></p>";
 				echo "<p>Description de l'expérience pro : <label>".$exp_pro->description_experience."</label>	</p>";
-				echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience));
-				echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete', 'id'=>$exp_pro->id_experience)); 
-
+				echo "<div class='div-modifier-supprimer'>";
+				echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update'),array('id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer'));
+				echo " / ";
+				echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete'), array('id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer')); 
+				echo "</div>";
 			}
 		?>	
 	</div>
 
-	<p>Mes compétences</p>
+	<?php
+	//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
+	if($user->id_employe == $_GET['id'])
+	{
+		echo "<h3>MES COMPETENCES</h3>";
+	}
+	else
+	{
+		echo "<h3>COMPETENCES</h3>";
+	}
+	?>
 
-	<div class="row">
+
+	<div class="row form-infos-comp	">
 		<ul>
 		<?php
 			foreach($competences as $competence)
 			{
 					echo Yii::app()->user->getFlash('success_maj_competence');
 				echo "<li>".$competence->intitule_competence."<label> Niveau ".$competence->niveau_competence."/5</label></li>";
-				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence));
-				echo "   ";
-				echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence)); 
+				echo CHtml::link('Mettre à jour cette compétence',array('Competence/update'),array('id'=>$competence->id_competence,'class'=>'modifier-supprimer'));
+				echo " / ";
+				echo CHtml::link('Supprimer cette compétence',array('Competence/delete'),array('id'=>$competence->id_competence,'class'=>'Modifier-supprimer')); 
 			}
 		?>
 		</ul>
 	</div>
-
+	</div>	
+</div>
 	<div class="row">
 		<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'btn-maj-infos')); ?>
 
-	</div>	
 
 	<?php $this->endWidget();?>	
 </div>
@@ -222,3 +283,5 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 	/* --- Page pour traiter le pdf --- */
 	$this->renderPartial( 'cv_edit', array( 'model' => $model ) );
 ?>
+</div>
+</div>
