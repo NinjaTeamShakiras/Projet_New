@@ -1,13 +1,6 @@
 <?php
 /* @var $this EntrepriseController */
 /* @var $model Entreprise */
-
-$this->menu=array(
-	array('label'=>'Delete Entreprise', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_entreprise),'confirm'=>'Are you sure you want to delete this item?')),
-);
-
-
-
 ?>
 
 <!--	MENU 	-->
@@ -71,20 +64,20 @@ $this->menu=array(
 
 
 	print("<p> Nom de mon entreprise : ".$model->nom_entreprise."</p>");
-	print("<p> Nombres d'employés de l'entreprise : ".$nombreEmployes."</p>");
+	print("<p> Nombres d'employés : ".$nombreEmployes."</p>");
 	print("<p> Je recherche des employés : ".$rechercheEmployes."</p>");
-	print("<p> Mon secteur d'activité de mon entreprise : ".$secteurActivite."</p>");
+	print("<p> Secteur d'activité : ".$secteurActivite."</p>");
 	print("<p> Année de création de mon entreprise : ".$anneeCreation."</p>");
-	print("<p> Age moyen de mon entreprise : ".$ageMoyen."</p>");
+	print("<p> Age moyen des salariés : ".$ageMoyen."</p>");
 
-	print("<p> Code postale : ".$code_postal."</p>");
+	print("<p> Code postal : ".$code_postal."</p>");
 	print("<p> Ville : ".$ville."</p>");
 	print("<p> Rue : ".$rue."</p>");
 
-	print("<p> Téléphones principal : ".$telephone."</p>");
-	print("<p> Téléphones secondaire : ".$telephone2."</p>");
+	print("<p> Téléphone principal : ".$telephone."</p>");
+	print("<p> Téléphone secondaire : ".$telephone2."</p>");
 	print("<p> Site web : ".$siteWeb."</p>");
-	print("<p> Adresse mail de mon entreprise : ".$mail."</p>");
+	print("<p> Adresse mail : ".$mail."</p>");
 	
 ?>
 
