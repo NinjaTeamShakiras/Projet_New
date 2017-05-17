@@ -78,6 +78,12 @@
 		<?php echo $form->textField($adresse,'ville',array('placeholder' => 'Paris')); ?>
 		<?php echo $form->error($adresse,'ville'); ?>
 	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($adresse,'rue'); ?>
+		<?php echo $form->textField($adresse,'rue',array('placeholder' => 'Rue de Rivoli')); ?>
+		<?php echo $form->error($adresse,'rue'); ?>
+	</div>
 		
 	<div class="row">
 		<?php echo $form->labelEx($utilisateur,'telephone'); ?>

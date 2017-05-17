@@ -197,7 +197,7 @@ class OffreEmploiController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('OffreEmploi');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'dataProvider'=>$dataProvider,'data'=>-2
 		));
 	}
 
@@ -603,16 +603,6 @@ class OffreEmploiController extends Controller
 
 
 	/**
-	 * Lists all models postuler.
-	 */
-	public function actionRecherche()
-	{
-		$this->render('recherche');
-	}
-
-
-
-	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
@@ -642,4 +632,45 @@ class OffreEmploiController extends Controller
 
 
 
-}
+	/**
+	 * Recherche d'annonces pour une entreprise
+	 */
+	public function actionAnnoncesEntreprise()
+	{
+
+		if($_POST['OffreEmploi']['poste_offre_emploi'] != '')
+		{
+			// On récupère les données du formulaire
+			$posteOffre = $_POST['OffreEmploi']['poste_offre_emploi'];
+
+			// On récupère l'utilisateur
+			$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
+			// On récupère toutes les offres correspondant à la recherche
+			$tabOffre = offreEmploi::model()->FindAll("poste_offre_emploi = '$posteOffre'");
+
+			$tabOffreEntreprise = array();
+
+
+			foreach($tabOffre as $offre)
+			{
+				if($offre->id_entreprise == $utilisateur->id_entreprise)
+				{
+					$tabOffreEntreprise[] = $offre;
+				}
+			}
+
+			$this->render('index', array('data'=>$tabOffreEntreprise));
+
+		}
+		else
+		{
+			$this->render('index',array('data'=>-1));
+		}
+
+	}
+
+
+
+
+}// END CONTROLLER
