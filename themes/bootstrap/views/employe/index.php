@@ -36,11 +36,11 @@
 	{
 		?>
 		<div class="btn-group" style="float: right;">
-			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Menu
 			<span class="caret"></span>
 			</button>
-			<ul class="ddropdown-menu dropdown-menu-right">
+			<ul class="dropdown-menu dropdown-menu-right">
 				<li>
 					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
 					Mon Profil

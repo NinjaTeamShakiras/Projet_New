@@ -32,10 +32,12 @@ div.form-infos-perso label
 
 #btn-maj-infos
 {	
+	font-weight: bold;
 	margin-top: 50px;
 	margin-bottom: 50px;
 	background-color:#90ffb9;
 	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
 	padding:1%;
 	color:black;
 	border:2px solid ;
