@@ -5,6 +5,9 @@
 $this->menu=array(
 	array('label'=>'Delete Entreprise', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id_entreprise),'confirm'=>'Are you sure you want to delete this item?')),
 );
+
+
+
 ?>
 
 <!--	MENU 	-->
@@ -42,20 +45,47 @@ $this->menu=array(
 <h1>Mon profil</h1>
 
 <?php
+
+	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+
+	$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$utilisateur->id_adresse));
+	$nombreEmployes = $model->nombre_employes == null ? 'Non renseignée' : $model->nombre_employes;
+	$rechercheEmployes = $model->recherche_employes == 0 ? 'Non' : 'Oui';
+	$secteurActivite = $model->secteur_activite_entreprise == null ? 'Non renseignée' : $model->secteur_activite_entreprise;
+	$anneeCreation = $model->annee_creation_entreprise == null ? 'Non renseignée' : $model->annee_creation_entreprise;
+	$ageMoyen = $model->age_moyen_entreprise == null ? 'Non renseignée' : $model->age_moyen_entreprise;
+
+	$code_postal = $adresse->code_postal == null ? 'Non renseignée' : $adresse->code_postal;
+	$ville = $adresse->ville == null ? 'Non renseignée' : $adresse->ville;
+	$rue = $adresse->rue == null ? 'Non renseignée' : $adresse->rue;
+
+	$telephone = $utilisateur->telephone == null ? 'Non renseignée' : $this->afficheTelephone($utilisateur->telephone);
+	$telephone2 = $utilisateur->telephone2 == null ? 'Non renseignée' : $this->afficheTelephone($utilisateur->telephone2);
+	$siteWeb = $utilisateur->site_web == null ? 'Non renseignée' : $utilisateur->site_web;
+	$mail = $utilisateur->mail == null ? 'Non renseignée' : $utilisateur->mail;
+
+
+
 	echo Yii::app()->user->getFlash('success_update_entreprise');
 
-	$this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		//'id_entreprise',
-		'nom_entreprise',
-		'nombre_employes',
-		'recherche_employes',
-		'secteur_activite_entreprise',
-		'annee_creation_entreprise',
-		'age_moyen_entreprise',
-	),
-));
+
+
+	print("<p> Nom de mon entreprise : ".$model->nom_entreprise."</p>");
+	print("<p> Nombres d'employés de l'entreprise : ".$nombreEmployes."</p>");
+	print("<p> Je recherche des employés : ".$rechercheEmployes."</p>");
+	print("<p> Mon secteur d'activité de mon entreprise : ".$secteurActivite."</p>");
+	print("<p> Année de création de mon entreprise : ".$anneeCreation."</p>");
+	print("<p> Age moyen de mon entreprise : ".$ageMoyen."</p>");
+
+	print("<p> Code postale : ".$code_postal."</p>");
+	print("<p> Ville : ".$ville."</p>");
+	print("<p> Rue : ".$rue."</p>");
+
+	print("<p> Téléphones principal : ".$telephone."</p>");
+	print("<p> Téléphones secondaire : ".$telephone2."</p>");
+	print("<p> Site web : ".$siteWeb."</p>");
+	print("<p> Adresse mail de mon entreprise : ".$mail."</p>");
+	
 ?>
 
 
