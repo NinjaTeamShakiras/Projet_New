@@ -2,17 +2,17 @@
 
 /* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 	Ce qu'il manque :
-		- Repérer les expériences professionnelles, les compétences et les informations diverses
-		- Créer une fonction poursavoir quel needle utiliser
+		- 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
 
 /* -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 	Amélioriations de l'algorithme : 
-	 	- Téléphones séparés par des points ou des tirets
+		- Pour tester la séparation de blocs on peut reagarder dans les lignes non lues les structures qui apparaissent le plus
+		le découpage se ferait donc à partir de ses structures et pas des structures générales
 		- Mots clés dans la base de données
-		- Essayer de reconnaître le nom et le prénom avec l'aide du mail
-		- Ajouter plus de nom de domaine
+		- Reconnaître le nom et le prénom avec l'aide du mail
+		- Plus de nom de domaine
 		- Ajouter début de URL https:// (Pas reconnu pour le moment)
 		- Cas à traiter avec des PDF avec plusieurs pages
 		- Pour le code postal gérer les code postal du type 76 000, 74 300 etc. (avec un espace)
@@ -22,6 +22,8 @@
 
 /* --- Variables générales --- */
 define( 'NOT_FOUND_TERM', -888888 );
+define( 'EMPTY_STRUCTURE', -888889 );
+define( 'NOT_DEFINED_VAR', -888890 );
 define( 'EMPTY_STR', "" );
 define( 'ESPACE', " " );
 define( 'POINT', '.' );
@@ -29,8 +31,8 @@ define( 'TIRET', '-' );
 define( 'SLASH', '/' );
 define( 'DEBUG', FALSE );
 define( 'ALREADY_READ_ENTRY', '[[[READ]]]');
-define( 'EMPTY_STRUCTURE', -888889 );
 define( 'WORD', '[[[WORD]]]' );
+define( 'MONTH', '[[[MONTH]]]' );
 define( 'YEAR', '[[[YEAR]]]' );
 define( 'NUMBER', '[[[NUMBER]]]' );
 define( 'DURATION', '[[[DURATION]]]');
@@ -39,6 +41,9 @@ define( 'BRSTRING', '<///>' );
 define( 'EXP_LIMIT', 28.5 );
 define( 'FORMATION_LIMIT', 4.9 );
 define( 'MAX_SIZE_BLOC', 375 );
+define( 'MIN_SIZE_BLOC', 35 );
+define( 'MAX_LINES_BLOC', 10 );
+define( 'MIN_LINES_BLOC', 10 );
 
 
 /**
@@ -62,15 +67,15 @@ class AIPDF extends CActiveRecord
 	public static $autres_arr = array();
 
 	/* --- --- Mots clés --- --- */
-	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'extra', 'temps partiel', 'temps complet', 'stage' );
+	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'temps partiel', 'temps complet', 'stage', 'alternance' );
 
-	public static $blocsWordKeyFormation_arr = array(	'diplôme', 'université', 'BAC', 'BAC+1', 'BAC+2', 'BAC+3', 'BAC+4',
-														'BAC+5', 'DUT', 'BTS', 'école', 'licence', 'master', 'mention'	);
+	public static $blocsWordKeyFormation_arr = array(	'diplôme', 'université', 'lycée', 'baccalauréat', 'BAC', 'BAC+1', 'BAC+2', 'BAC+3', 'BAC+4',
+														'BAC+5', 'DUT', 'BTS', 'école', 'supérieure', 'licence', 'master', 'mention', 'études'	);
 
 	/* --- --- --- --- --- --- ---
 		Mots clés pour la partie information personnel
 	--- --- --- --- --- --- --- */
-	public static $blocsWordKeyInformationsPerso_arr = array( 	'téléphone', 'tél', 'nom', 'prénom', 'date de naissance', 'date naissance', 'nationnalité', 'adresse', 'mail', 'email', 'e-mail', 'permis de conduire', 'site web', 'site-web', 'âge', 'profil' 	);
+	public static $blocsWordKeyInformationsPerso_arr = array( 	'téléphone', 'nationnalité', 'permis', 'tél', 'nom', 'prénom', 'date de naissance', 'date naissance', 'adresse', 'mail', 'email', 'e-mail', 'permis de conduire', 'site web', 'site-web', 	);
 	/* --- --- --- --- --- ---
 		Mots clés spécifiques de la partie information personnel 
 	--- --- --- --- --- --- */
@@ -83,7 +88,9 @@ class AIPDF extends CActiveRecord
 		Tableaux annexes 
 	--- --- --- --- --- */
 	/* -- Tableau avec les mots qui désignent une durée -- */
-	public static $durationsNames_arr = array( 'année', 'années', 'jour', 'jours', 'semaine', 'semaines', 'heure', 'heures', 'mois', 'depuis' );
+	public static $durationsNames_arr = array( 'année', 'années', 'ans', 'jour', 'jours', 'semaine', 'semaines', 'heure', 'heures', 'mois', 'depuis' );
+	/* -- Tableau avec les mois et ses abréviations -- */
+	public static $months_arr = array( 'janvier', 'jan', 'février', 'mars', 'avril', 'avr', 'mai', 'juin', 'juillet', 'juil', 'août', 'septembre', 'sept', 'octobre', 'novembre', 'décembre', 'déc' );
 
 
 	/**
@@ -118,7 +125,7 @@ class AIPDF extends CActiveRecord
 		/***************
 		TESTS
 		***************/
-		//self::tests_();
+		self::tests_();
 
 
 		/* -- -- -- -- -- -- -- --
@@ -147,7 +154,10 @@ class AIPDF extends CActiveRecord
 ******************************************************************************************************************************************************************/
 	public static function tests_()
 	{
-		self::add_cv_line( ' 21 juillet 1996' );
+		//self::add_cv_line( ' 21 juillet 1996' );
+		//var_dump( self::is_a_experience_pro(  'ETUDES EXPERIENCES « Recherche un stage dans le domaine événementiel » EXTRAS' ) );
+		//var_dump( self::is_a_formation(  'ETUDES EXPERIENCES « Recherche un stage dans le domaine événementiel » EXTRAS' ) );
+		//var_dump( self::is_a_experience_pro(  ' 21 ans Nationalité Française Permis B, A, Bateau 491 chemin des mollasses 73160 Cognin Anglais : B1 confirmé Espagnol : A2 intermédiaire Arts martiaux (8ans) Plongée (bouteille/apnée) Athlétisme Gymnastique Ski - Escalade ... Lecture Tir à l’arc Jeux vidéo Amérique Asie ETAT CIVIL COORDONNEES VOYAGES LANGUES SPORTS LOISIRS' ) );
 	}
 
 
@@ -167,7 +177,8 @@ class AIPDF extends CActiveRecord
 			/* -- Parcours du tableau de blocs -- */
 			foreach ( $blocs_arr as $key_int => $bloc_str )
 			{
-				if( strlen( $bloc_str ) < MAX_SIZE_BLOC )
+				/* -- On teste si les blocs sont conformes -- */
+				if( strlen( $bloc_str ) <= MAX_SIZE_BLOC && strlen( $bloc_str ) >= MIN_SIZE_BLOC )
 				{
 					$formationIndex_int = self::is_a_formation( $bloc_str );
 					$expProIndex_int = self::is_a_experience_pro( $bloc_str );
@@ -184,15 +195,14 @@ class AIPDF extends CActiveRecord
 					}
 					else
 					{
-						/*************************************
-						**************************************
-						**************************************
-						On peut faire une deuxième verification avant de l'ajouter à autres
-						**************************************
-						*************************************/
 						if( DEBUG ) var_dump("Bloc : Autres informations");
 						array_push( self::$autres_arr, $bloc_str );
 					}
+				}
+				else
+				{
+					if( DEBUG ) var_dump("Bloc : Autres informations");
+					array_push( self::$autres_arr, $bloc_str );
 				}
 			}
 		}
@@ -201,13 +211,6 @@ class AIPDF extends CActiveRecord
 	 *	Fonction pour tester si un bloc est une formations
 	 *	Return : Un indice de ressemblance 
 	 */
-	/*********************************************
-	*********************************************
-	*********************************************
-		On peut améliorer en utilisant une longueur de concaténation plus grande pour regarder les résultats
-	*********************************************
-	*********************************************
-	*********************************************/
 	public static function is_a_formation( $bloc_str )
 	{
 		/* -- Initliasitaion indice correspondance -- */
@@ -269,10 +272,10 @@ class AIPDF extends CActiveRecord
 	 */
 	public static function is_a_experience_pro( $bloc_str )
 	{
-		/* -- Initliasitaion indice correspondance -- */
+		/* -- Initialisataion indice correspondance -- */
 		$index_int = 0;
-		/* -- Tableau pour garder les mots clés retrouvées -- */
-		$foundWords_arr = array();
+		/* -- Compteur de mots clés trouvées pour garder les mots clés retrouvées -- */
+		$wordCount_int = 0;
 		/* -- On sépare le bloc en mots -- */
 		$word_arr = explode( ESPACE, $bloc_str );
 
@@ -283,8 +286,11 @@ class AIPDF extends CActiveRecord
 		/* -- On regarde par rapport aux mots clés -- */
 		foreach ( self::$blocsWordKeyExperiencesPro_arr as $value_str )
 		{
-			if( strpos( self::full_normalize_string( $bloc_str ), self::full_normalize_string( $value_str ) ) )
-				$index_int += 15;
+			if( strpos( self::full_normalize_string( $bloc_str ), self::full_normalize_string( $value_str ) ) !== FALSE )
+			{
+				$index_int += 5.5;
+				$wordCount_int ++;
+			}
 		}
 		
 		/* -- On parcourt chaque tag du bloc -- */
@@ -304,6 +310,11 @@ class AIPDF extends CActiveRecord
 						$tmp_int = $index_int * 2.4 + 3.5;
 						$index_int += $tmp_int;
 					}
+					if( isset( $structs_arr[ $key_int - 1] ) && $structs_arr[ $key_int - 1] == NUMBER )
+					{
+						$tmp_int = $index_int * 3.4 + 4.5;
+						$index_int += $tmp_int;
+					}
 				}
 				if( $singleStruct_str == YEAR )
 				{
@@ -313,6 +324,15 @@ class AIPDF extends CActiveRecord
 				}
 			}
 		}
+		/* -- Si c'est un bloc extra et pas une expérience pro -- */
+		if( $wordCount_int >= 5 )
+			$index_int = $index_int - 100;
+		foreach (self::$blocsWordKeyInformationsPerso_arr as $key_int => $value_str)
+		{
+			if( strpos( self::full_normalize_string( $bloc_str ), self::full_normalize_string( $value_str ) ) !== FALSE )
+				$index_int == $index_int - 5.5; 
+		}
+
 		/* -- S'il y a des mots de formations on enlève les points qui sont ajoutés par la durée -- */
 		$index_int = $index_int - self::is_a_formation( $bloc_str );
 
@@ -330,135 +350,95 @@ class AIPDF extends CActiveRecord
 	 */
 	public static function start_segmentation()
 	{
-		/* -- Utilisée pour concaténer les blocs -- */
-		$currentBloc_str = EMPTY_STR;
 		/* -- Tableau avec les lignes du CV non lues -- */
 		$CVInformations_arr = self::get_cv_non_read_content();
-		/* -- Index pour parcourir le tableau sans repasser par les mêmes endroits -- */
-		$index_int = 0;
 		/* -- Initalisation du tableau -- */
 		self::init_array_cv_structures();
+ 		/* -- Tableau pile pour ajouter les indices retrouvés -- */
+		$index_arr = array();
+		/* -- On ajoute l'indice de départ -- */
+		array_push( $index_arr, 0 );
 
-		/* -- On parcourt toutes les lignes qui n'ont pas été lues -- */
+
+		/* -- On pacrout le tableau d'informations non lues -- */
 		foreach ( $CVInformations_arr as $key_int => $value_str )
 		{
-			/* -- On les marque en fonction de leur structure -- */
-			$tag_str = self::caracterize_line( $value_str, $key_int );
-			/* -- Si des tags on été retrouvés on les ajoute dans le tableau de structures de la classe -- */
-			if( !empty( $tag_str ) )
-				self::$CVstructures_arr[ $key_int ] = $tag_str;
-			/* -- Sinon on ajoute la constante EMPTY STRUCTURE -- */
-			else
-				self::$CVstructures_arr[ $key_int ] = EMPTY_STRUCTURE;	
-		}
-		/* -- Taille du tableau -- */
-		$sizeOf_int = sizeof( self::$CVstructures_arr );
-		$lastIndex_int = 0;
-		/* -- On parcourt le tableau des tags pour trouver les blocs qui se ressemblent -- */
-		for ( $i = 0; $i < $sizeOf_int; $i++ )
-		{
-			/* -- On ajoute la ligne à la même -- */
-			$currentBloc_str .= $CVInformations_arr[ $i ];
-			/* -- On parcourt à partir de i les autres lignes du tableau pour voir la ligne suivante
-			qui peut lui ressembler si c'est le cas on arrête et i prend la valeur du dernier indice + 1 -- */
-			for ( $j = $i + 1; $j < $sizeOf_int; $j++ )
+			/* -- On récupère la structure -- */
+			$structLine_str = self::caracterize_line( $value_str );
+			/* -- Chaîne pour concaténer -- */
+			$chaine_str = EMPTY_STR;
+			/* -- Si on peut découper -- */
+			if( self::is_a_bloc_start( $structLine_str ) )
 			{
-				/* -- Si on trouve une ressemblance on l'ajoute au tableau et on sort de la boucle -- */
-				/* -- Il faut également vérifier qu'il y a un structure présente -- */
-				if( self::is_same_structure( self::$CVstructures_arr[ $i ], self::$CVstructures_arr[ $j ] ) )
-				{
-					/* -- On ajoute le bloc au tableau -- */
-					array_push( self::$CVBlocs_arr, $currentBloc_str );
-					/* -- On efface tout avant -- */
-					$currentBloc_str = EMPTY_STR;
-					/* -- I prend la valeur de j pour ne pas reparcourir les mêmes lignes -- */
-					$i = $j - 1;
-					$lastIndex_int = $j;
-					break;
+				/* -- On concatène jusqu'au dernier indice trouvé -- */
+				for ( $i = $key_int - 1; $i >= end( $index_arr ); $i-- )
+				{ 
+					if( isset( $CVInformations_arr[ $i ] ) )
+						$chaine_str = $CVInformations_arr[ $i ] . $chaine_str;
 				}
-				/* -- Sinon on continue à concaténer les lignes ou à trouver des structures -- */
-				else
-				{
-					/* -- On teste si avant il n'y a pas une ligne avec une structure particulière -- */
-					if( self::is_similar_structure( self::$CVstructures_arr[ $i ], self::$CVstructures_arr[ $j ] ) )
-					{
-						/* -- On ajoute le bloc au tableau -- */
-						array_push( self::$CVBlocs_arr, $currentBloc_str );
-						/* -- On efface tout avant -- */
-						$currentBloc_str = EMPTY_STR;
-						/* -- I prend la valeur de j pour ne pas reparcourir les mêmes lignes -- */
-						$i = $j - 1;
-						$lastIndex_int = $j;
-						break;
-					}
-					/* -- Sinon on continue la concaténation -- */
-					else
-					{
-						$currentBloc_str .= $CVInformations_arr[ $j ];
-					}
-				}
+				/* -- On ajoute ensuite le bloc -- */
+				array_push( self::$CVBlocs_arr, $chaine_str );				
+				/* -- On ajoute l'indice au tableau d'indices -- */ 
+				array_push( $index_arr, $key_int );
 			}
 		}
-		/* -- On ajoute le dernier bloc s'il n'est pas vide -- */
-		$currentBloc_str = EMPTY_STR;
-		/* -- On concatène les dernières lignes -- */
-		for ($i=$lastIndex_int; $i < sizeof($CVInformations_arr); $i++)
-			$currentBloc_str .= $CVInformations_arr[$i];
-		/* -- On les ajoute au tableau segmenté -- */
-		if( !empty( $currentBloc_str ) )
-			array_push( self::$CVBlocs_arr, $currentBloc_str );
+		/* -- On parcourt une dernière fois pour ajouter le dernier bloc -- */
+		$endLine_str = EMPTY_STR;
+		for ( $i = sizeof( $CVInformations_arr ) - 1; $i >= end( $index_arr ); $i-- )
+		{ 
+			if( isset( $CVInformations_arr[ $i ] ) )
+				$endLine_str = $CVInformations_arr[ $i ] . $endLine_str;
+		}
+		array_push( self::$CVBlocs_arr, $endLine_str );
+		/* -- On efface les entry du tableau qui sont vides -- */
+		self::delete_empty_entries( self::$CVBlocs_arr );
+		
 
 		/* -- On segmente tant que possible à partir des saut des lignes --*/
 		$nbSegmentations_int = 999999;
 		while ( $nbSegmentations_int > 0 )
 			$nbSegmentations_int =  self::segment_bloc_array( self::$CVBlocs_arr, 2 );
-	}
-	
-	/*
-	 *	Fonction pour caractériser une ligne avec une structure
-	 */
-	public static function caracterize_line( $line_str )
-	{
-		/* -- Initialisations de la structure de la ligne -- */
-		$structure_str = EMPTY_STR;
-		/* -- On remplace les paranthèses les tirets etc. par des espaces -- */
-		$line_str = trim(self::str_replace_separator_symbols( $line_str ));
 
-		/* -- On sépare le mots en lignes -- */
-		$words_arr = explode( ESPACE, $line_str  );
-		/* -- On efface les entrées vide du tableau -- */
-		self::delete_empty_entries( $words_arr );
-		/* -- Vérification -- */
-		if( sizeof( $words_arr ) > 0 )
-		{
-			/* -- On parcourt chaque mot -- */
-			foreach ($words_arr as $key_int => $word_str )
-			{
-				/* -- S'il y a que des chiffres -- */
-				if( is_numeric( $word_str ) )
-				{
-					/* -- On teste si c'est une annéee -- */
-					if( self::str_is_a_valid_year( $word_str ) )
-						$structure_str .= YEAR . TIRET;
-					/* -- Sinon on le marque en tant que chiffre -- */
-					else
-						$structure_str .= NUMBER . TIRET;
-				}
-				/* -- S'il n'y a pas de chiffre, c'est donc un mot -- */
-				else
-				{
-					/* -- On détecte les durées qui sont des mots -- */
-					if( self::str_is_a_duration( $word_str ) )
-						$structure_str .= DURATION . TIRET;
-					/* -- Sinon on les marque en tant que mots simples -- */
-					else
-						$structure_str .= WORD . TIRET;
-				}
-			}
-		}
-		return $structure_str;
+		/* -- On segmente aussi les blocs avec trop des lignes -- */
+		$nbSegmentations_int = 999999;
+		while ( $nbSegmentations_int > 0 )
+			$nbSegmentations_int = self::segment_bloc_lines( self::$CVBlocs_arr );
 	}
-	
+
+	/*
+	 *	Fonction pour déterminer si on découpe le bloc
+	 *	Return : TRUE si le bloc correspond au critères FALSE sinon
+	 */
+	public static function is_a_bloc_start( $struct_str )
+	{
+		$structs_arr = explode( TIRET, $struct_str );
+		/* -- S'il y un seul tag -- */
+		if( sizeof( $structs_arr ) == 1 )
+		{
+			if( $structs_arr[0] === YEAR )
+				return TRUE;
+		}
+		/* -- S'il y a au moins deux tags -- */
+		if( sizeof( $structs_arr ) >= 2 )
+		{
+			/* -- S'il y a deux années à la suite  -- */
+			if( $structs_arr[0] === YEAR && $structs_arr[1] === YEAR )
+				return TRUE;
+			/* -- S'il y a l'année et la durée ou la durée et l'anée  -- */
+			if( $structs_arr[0] === YEAR && $structs_arr[1] === DURATION  )
+				return TRUE;
+			if( $structs_arr[0] === DURATION && $structs_arr[1] === YEAR  )
+				return TRUE;
+			/* -- Mois + année -- */
+			if( $structs_arr[0] === MONTH && $structs_arr[1] === YEAR  )
+				return TRUE;
+			/* -- Dernier choix si on a juste une année -- */
+			if( $structs_arr[0] === YEAR  )
+				return TRUE;
+		}
+		return FALSE;
+	}
+
 	/*
 	 *	Fonction qui permet de segmenter s'il y a plusieurs sauts de lignes vides, 
 	 *	le nombre de lignes vides à couper est défini par la variable $x_int
@@ -517,8 +497,55 @@ class AIPDF extends CActiveRecord
 		return $compter_int;
 	}
 
-
-
+	/*
+	 *	Fonction pour séparer les blocs qui contiennent trop de lignes
+	 *	Return : Le nombre de segmentations réalisées
+	 */
+	public static function segment_bloc_lines( &$array_arr )
+	{
+		/* -- Récupération du tableau et effacement du tableau -- */
+		$tmp_arr = $array_arr;
+		$array_arr = array();
+		/* -- Indice pour segmenter les lignes -- */
+		$count_int = 0;
+		/* -- On parcourt le tableau -- */
+		if (sizeof( $tmp_arr ) > 0 )
+		{
+			foreach ( $tmp_arr as $key_int => $value_str )
+			{
+				$str_str = EMPTY_STR;
+				/* -- On sépare le bloc en lignes -- */
+				$valuesBR_arr = explode( BR, nl2br( $value_str ) );
+				/* -- On efface les lignes vides -- */
+				self::delete_empty_entries( $valuesBR_arr );
+				/* -- Si le bloc contient plus de lignes que la limite -- */
+				if( sizeof( $valuesBR_arr ) > MAX_LINES_BLOC )
+				{
+					/* -- On concatene tout ce qu'il y avant -- */
+					for ( $i = MAX_LINES_BLOC; $i >= 0; $i-- )
+					{
+						if (isset( $valuesBR_arr[ $i ] ) )
+							$str_str = $valuesBR_arr[ $i ] . $str_str;
+					}
+					array_push( $array_arr, $str_str );
+					$str_str = EMPTY_STR;
+					/* -- On concatene tout ce qu'il y avant -- */
+					for ( $i = MAX_LINES_BLOC + 1; $i <= sizeof( $valuesBR_arr ); $i++ )
+					{
+						if (isset( $valuesBR_arr[ $i ] ) )
+							$str_str = $str_str . $valuesBR_arr[ $i ];
+					}
+					array_push( $array_arr , $str_str );
+					$count_int ++;
+				}
+				else
+				{
+					array_push( $array_arr, $value_str );
+				}
+			}
+		}
+		return $count_int;
+	}
 
 
 /******************************************************************************************************************************************************************
@@ -776,7 +803,6 @@ class AIPDF extends CActiveRecord
 		if( in_array( $wordKey_str, self::$specificBirthDate_arr ) )
 		{
 			/* -- Extraction du site web -- */
-			//$result_str = self::extract_date_naissance( $line_str, $wordKey_str );
 			$result_str = self::extract_date_naissance( $line_str );
 			/* -- Si rien n'a été trouvé on fait extract à partir de l'array -- */
 
@@ -1133,8 +1159,6 @@ class AIPDF extends CActiveRecord
 				/* -- On parcourt chaque mot -- */
 				foreach ( $motsLine_arr as $key_int => $value_str )
 				{
-					//$newIndex1_int = strpos( $value_str, $separator_char );
-					//$newIndex2_int = strpos( $value_str, $separator_char, $newIndex1_int + 1 );
 					/* -- On teste si c'est bien une date de naissance -- */
 					$date_str = self::str_is_date_naissance( $line_str, $separator_char );
 					if( $date_str !== FALSE )
@@ -1153,6 +1177,59 @@ class AIPDF extends CActiveRecord
 
 		return NOT_FOUND_TERM;
 	}
+	/*
+	 *	Fonction pour extraire une année dans une ligne
+	 */
+	public static function extract_year_from_str( $line_str )
+	{
+		$line_str = self::str_replace_separator_symbols( $line_str );
+		$words_arr = explode( ESPACE, $line_str );
+		if( sizeof( $words_arr ) > 0 )
+		{
+			foreach ( $words_arr as $key_int => $word_str )
+			{
+				if( self::str_is_a_valid_year( trim($word_str) ) )
+					return trim($word_str);
+			}
+		}
+		return NOT_FOUND_TERM;
+	}
+
+	/*
+	 *	Fonction pour extraire une année dans une ligne
+	 */
+	public static function extract_last_year_from_str( $line_str )
+	{
+		$line_str = self::str_replace_separator_symbols( $line_str );
+		$words_arr = explode( ESPACE, $line_str );
+		if( sizeof( $words_arr ) > 0 )
+		{
+			for ($i = sizeof( $words_arr ) - 1; $i >= 0 ; $i-- )
+			{ 
+				if( self::str_is_a_valid_year( trim($words_arr[ $i ]) ) )
+					return trim($words_arr[ $i ]);
+			}
+		}
+		return NOT_FOUND_TERM;
+	}
+
+	/*
+	 *	Fonction pour extraire un mois dans une ligne
+	 */
+	public static function extract_last_month_from_str( $line_str )
+	{
+		$line_str = self::str_replace_separator_symbols( $line_str );
+		$words_arr = explode( ESPACE, $line_str );
+		if( sizeof( $words_arr ) > 0 )
+		{
+			for ($i = sizeof( $words_arr ) - 1; $i >= 0 ; $i-- )
+			{ 
+				if( self::is_a_month_str( trim($words_arr[ $i ]) ) )
+					return trim($words_arr[ $i ]);
+			}
+		}
+		return NOT_FOUND_TERM;
+	} 
 
 
 
@@ -1454,9 +1531,6 @@ class AIPDF extends CActiveRecord
 	 */
 	public static function is_a_month( $line_str )
 	{
-		/* -- Tableau avec les mois -- */
-		$months_arr = array( 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre' );
-
 		/* -- Si le mois de l'année est exprimé en chiffres -- */
 		if( is_numeric( $line_str ) )
 		{
@@ -1468,11 +1542,26 @@ class AIPDF extends CActiveRecord
 		else
 		{
 			/* -- On teste pour chaque mois s'il correspond à la ligne -- */
-			foreach ( $months_arr as $value_str )
+			foreach ( self::$months_arr as $value_str )
 			{
 				if( self::full_normalize_string( $line_str ) == self::full_normalize_string( $value_str ) )
 					return TRUE;
 			}
+		}
+
+		return FALSE;
+	}
+	/*
+	 *	Fonction pour déterminer si c'est un mois de l'année
+	 *	Return : vrai si c'est un mois, FALSE si ce n'est pas le cas
+	 */
+	public static function is_a_month_str( $line_str )
+	{
+		/* -- On teste pour chaque mois s'il correspond à la ligne -- */
+		foreach ( self::$months_arr as $value_str )
+		{
+			if( self::full_normalize_string( $line_str ) == self::full_normalize_string( $value_str ) )
+				return TRUE;
 		}
 
 		return FALSE;
@@ -1547,7 +1636,7 @@ class AIPDF extends CActiveRecord
 			/* -- Parcourt du tableau en paramètre-- */
 			foreach ($array_arr as $key_int => $value_str )
 			{
-				if( empty( $value_str ) )
+				if( empty( trim($value_str) ) )
 					unset($array_arr[ $key_int ] );
 			}
 		}		
@@ -1596,71 +1685,6 @@ class AIPDF extends CActiveRecord
 	}
 
 	/*
- 	 *	Fonction pour tester si deux structures sont ressemblables
- 	 *	Renvoie TRUE si les structures sont ressemblables, FALSE sinon
-	 */
-	public static function is_same_structure( $structure1_str, $structure2_str)
-	{
-		/* -- On ne traite pas les structures vides -- */
-		if( $structure1_str !== EMPTY_STRUCTURE && $structure2_str !== EMPTY_STRUCTURE )
-		{
-			/* -- Si les deux structures sont égales -- */
-			if( $structure1_str === $structure2_str )
-			{
-				/* -- On teste que ce n'est pas des structures seulement avec des mots -- */
-				if( !self::structure_contains_only_words( $structure1_str ) )
-				{
-					return TRUE;
-				}
-				
-			}
-		}
-		return FALSE;
-	}
-
-	/*
-	 *	Fonction pour tester que la structure passée en paramètre ne contient pas que des mots
-	 * 	Return : TRUE si elle contient que des mots, FALSE si elle ne contient pas que des mots
-	 */
-	public static function structure_contains_only_words( $structure_str )
-	{
-		/* -- On découpe chaque structure pour savoir ce qu'il y dans la ligne et on efface les possibles blancs -- */
-		$structures_arr = explode( TIRET, $structure_str );
-		self::delete_empty_entries( $structures_arr );
-		/* -- Parcourt du tableau --*/
-		foreach ( $structures_arr as $value_str )
-		{
-			/* -- Si la structure contient autre chose que des mots --*/
-			if( $value_str !== WORD )
-				return FALSE;
-		}
-		return TRUE;
-	}
-
-		/*
- 	 *	Fonction pour tester si deux structures sont ressemblables
- 	 *	Renvoie TRUE si les structures sont ressemblables, FALSE sinon
-	 */
-	public static function is_similar_structure( $structure1_str, $structure2_str)
-	{
-		/* -- On découpe en structures simples -- */
-		$tagsStructure1_arr = explode( TIRET, $structure1_str );
-		$tagsStructure2_arr = explode( TIRET, $structure2_str );
-		self::delete_empty_entries( $tagsStructure1_arr );
-		self::delete_empty_entries( $tagsStructure2_arr );
-		/* -- On ne traite pas les structures vides -- */
-		if( $structure1_str !== EMPTY_STRUCTURE && $structure2_str !== EMPTY_STRUCTURE )
-		{
-			/* -- Si les deux structures commencent par une durée ou une année -- */
-			if( $tagsStructure1_arr[ 0 ] === DURATION && $tagsStructure2_arr[ 0 ] === DURATION ||  
-				$tagsStructure1_arr[ 0 ] === YEAR && $tagsStructure2_arr[ 0 ] === YEAR )
-				return TRUE;
-			/* -- Si la structure contient deux années -- */
-		}
-		return FALSE;
-	}
-
-	/*
 	 *	Fonction pour retrouver toutes les occurences du $needle_str dans la chaîne
 	 *	Return : Un tableau avec les indices de toutes les occurences
 	 */
@@ -1689,7 +1713,6 @@ class AIPDF extends CActiveRecord
 		return $line_str;
 	}
 
-
 	/*
 	 *	Fonction pour enlèver les saut de ligne et les tabulations dans une chaîne
 	 *	Return : La chaîne modifiée
@@ -1702,6 +1725,16 @@ class AIPDF extends CActiveRecord
 		return $string_str;
 	}
 
+	/*
+	 *	Fonction pour compter le nombre des lignes non vides dans un bloc
+	 *	Return : Un entier avec le nombre de lignes
+	 */
+	public static function count_non_empty_lines_bloc( $bloc_str )
+	{
+		$array_arr = explode( BR, nl2br( $bloc_str ) );
+		self::delete_empty_entries( $array_arr );
+		return sizeof( $array_arr ); 
+	}
 
 
 
@@ -1964,4 +1997,57 @@ class AIPDF extends CActiveRecord
 
 		return $string_str;
 	}
+
+
+	/*
+	 *	Fonction pour caractériser une ligne avec une structure
+	 */
+	public static function caracterize_line( $line_str )
+	{
+		/* -- Initialisations de la structure de la ligne -- */
+		$structure_str = EMPTY_STR;
+		/* -- On remplace les paranthèses les tirets etc. par des espaces -- */
+		$line_str = trim(self::str_replace_separator_symbols( $line_str ));
+
+		/* -- On sépare le mots en lignes -- */
+		$words_arr = explode( ESPACE, $line_str  );
+		/* -- On efface les entrées vide du tableau -- */
+		self::delete_empty_entries( $words_arr );
+		/* -- Vérification -- */
+		if( sizeof( $words_arr ) > 0 )
+		{
+			/* -- On parcourt chaque mot -- */
+			foreach ($words_arr as $key_int => $word_str )
+			{
+				/* -- S'il y a que des chiffres -- */
+				if( is_numeric( $word_str ) )
+				{
+					/* -- On teste si c'est une annéee -- */
+					if( self::str_is_a_valid_year( $word_str ) )
+						$structure_str .= YEAR . TIRET;
+					/* -- Sinon on le marque en tant que chiffre -- */
+					else
+						$structure_str .= NUMBER . TIRET;
+				}
+				/* -- S'il n'y a pas de chiffre, c'est donc un mot -- */
+				else
+				{
+					/* -- On détecte les durées qui sont des mots -- */
+					if( self::str_is_a_duration( $word_str ) )
+						$structure_str .= DURATION . TIRET;
+					/* -- Sinon on les marque en tant que mots simples -- */
+					else
+					{
+						/* -- On teste aussi si ce n'est pas un mois -- */
+						if( self::is_a_month( $word_str ) )
+							$structure_str .= MONTH .TIRET;
+						else
+							$structure_str .= WORD . TIRET;
+					}
+				}
+			}
+		}
+		return $structure_str;
+	}
+
 }

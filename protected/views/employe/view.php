@@ -275,5 +275,5 @@ else
 <?php 
 
 	/* --- Page pour traiter le pdf --- */
-	$this->renderPartial( 'cv_edit', array( 'model' => $model ) );
+	//$this->renderPartial( 'cv_edit', array( 'model' => $model ) );
 ?>
