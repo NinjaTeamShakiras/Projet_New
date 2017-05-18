@@ -208,4 +208,36 @@
 <!--Fermture de la div de l'arrière plan -->	
 </div>
 
+
+<!-- sur fond blanc-->
+	<h4 id=''>Créez votre profil pour postuler à des annonces !</h4>
+	<!-- encadré vert -->
+		<h4 id=''>Entrez en 1 clic votre CV au format PDF grace au bouton 'ajoutez votre CV' dans le menu</h4>
+	<!-- FIN encadré vert -->
+<!-- FIN sur fond blanc-->
+
+
+<!-- sur fond vert-->
+	<h4 id=''>Postulez en 1 clic à l’entreprise qui vous correspond </h4>
+<!-- FIN sur fond vert-->
+
+
+<!-- sur fond blanc-->
+	<h4 id=''>Un poste vous intéresse ?  </h4>
+	<!-- encadré vert -->
+		<h4 id=''>Postulez en 1 clic à leur annonce ! </h4>
+		<h4 id=''>Votre profil sera envoyé directement au recruteur </h4>
+	<!-- FIN encadré vert -->
+
+
+	<h4 id=''>PROZZL lutte contre les inégalités ! </h4>
+<!-- FIN sur fond blanc-->
+
+<!-- sur fond vert-->
+	<h4 id=''>Nous avons à cœur d’offrir à chacun la même chance  </h4>
+	<!-- encadré ROSE ?? -->
+		<h4 id=''>Pour éviter toute discrimination de genre, nationalité, religion, âge…Les profils des candidats sont envoyés sans leurs nom, coordonnées, âge  </h4>
+	<!-- FIN encadré ROSE ?? -->
+<!-- FIN sur fond vert-->
+
 	
