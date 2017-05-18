@@ -452,15 +452,7 @@ class EmployeController extends Controller
         	if( !file_exists( './upload/' . $id_int ) )
         		mkdir( './upload/' . $id_int );
         	/* -- Sauvegarde du CV -- */
-		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );
-			
-
-			//$myurl = 'filename.pdf['.$pagenumber.']';
-			/*$imagick = new Imagick('file.pdf[0]');
-			$imagick->setImageFormat('png');
-			file_put_contents( './upload/' . $id_int . '/cv_' . $id_int . '.png', $imagick );*/
-		    
-		    
+		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );		    
 
 		    /* -- Redirection vers le profil -- */
 		    $url =  $this->createUrl( 'employe/view', array( 'id' => $id_int ) );
@@ -473,7 +465,6 @@ class EmployeController extends Controller
 	 */
 	public function actionUploadTmpCV()
 	{
-		/* -- On fait attendre avec sleep() faut penser à faire un chargement en javascript -- */
 		$employe = new Employe();
 		/* -- Récupération du CV -- */
 		$employe->cv_pdf = CUploadedFile::getInstance( $employe, 'cv_pdf');
@@ -494,6 +485,25 @@ class EmployeController extends Controller
 		}
 		$url_str =  $this->createUrl( 'site/redirectInscriptionCV' );
 		$this->redirect( $url_str );
+	}
+
+	/*
+	 *	Action pour générer un CV
+	 */
+	public function actionGenerateCV()
+	{
+		$id_int = intval( $_GET[ 'id_employe' ] );
+		$employe = $this->loadModel( $id_int );
+		$path_str = './upload/' . $id_int;
+		$pathCVGenerated = $path_str . '/cv_generated_' . $id_int . '.pdf';
+
+		if( !file_exists( $path_str ) )
+			mkdir( $path_str );
+		
+		PDF::generate_cv_pdf( $pathCVGenerated, $employe );
+		/* -- Redirection vers le profil -- */
+	    $url =  $this->createUrl( 'employe/view', array( 'id' => $id_int, 'generation' => 'TRUE' ) );
+		$this->redirect( $url );
 	}
 
 

@@ -17,7 +17,8 @@
 	color:black;
 	font-size: 30px;
 	font-weight: bolder;
-	}	
+}
+
 #titre-infos-perso
 {
 	font-size: 50px;
@@ -34,7 +35,7 @@ div.form-infos-perso label
 	font-size: 20px;
 }
 
-#btn-maj-infos
+.btn-maj-infos
 {	
 	position: absolute;
 	font-weight: bold;
@@ -46,6 +47,25 @@ div.form-infos-perso label
 	padding:1%;
 	color:#90ffb9;
 	border:2px solid ;
+}
+
+.btn-maj-infos:hover
+{
+	color:#90ffb9;
+}
+
+.btn-maj-infos:active
+{
+
+	color:#90ffb9;
+
+}
+
+.btn-maj-infos:focus
+{
+
+	color:#90ffb9;
+	
 }
 
 #div-infos-comp
@@ -104,6 +124,8 @@ div.form-infos-comp label
 
 .bande-blanche
 {
+	margin-left: 5cm;
+	margin-right: 5cm;
 	height: 10px;
 	background-color: white;
 }

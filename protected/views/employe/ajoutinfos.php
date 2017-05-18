@@ -160,7 +160,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 			<h1 class='intitule'>COMPETENCES</h1>
 
 				
-			<div class="row div-competence" id="competence">
+			<div class="row" id="competence">
 				<?php echo $form->textfield($competence,'intitule_competence',array('placeholder'=>'Intitule de la competence', 'size'=>30)); ?>
 				<?php echo $form->error($competence,'intitule_competence'); ?>
 				

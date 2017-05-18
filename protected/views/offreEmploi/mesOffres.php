@@ -90,7 +90,6 @@ if($utilisateur != null)
 
 ?>
 
- <!-- ---------------------------------------------------------------- -->
  
 <div class="wide form">
 
@@ -106,6 +105,7 @@ if($utilisateur != null)
 	<div class="row">
 		<?php
 			$modelOffre = OffreEmploi::model();
+			$tabOffreEmploye = array();
 
 			$tabOffreEmploye = array();
 

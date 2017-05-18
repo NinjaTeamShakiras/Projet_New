@@ -30,3 +30,10 @@
 	color:#90ffb9;
 	border:2px solid ;
 }
+
+.btn-maj:hover,
+.btn-maj:active,
+.btn-maj:focus
+{
+	color: #90ffb9;
+}

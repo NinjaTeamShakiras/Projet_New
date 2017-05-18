@@ -25,29 +25,6 @@
 	background-attachment: fixed;
 }
 
-#contenu
-{
- background-color: rgba(0, 0, 0, 0.5);
-}
-
-
-#phrase-nb-offres
-{
-	font-size:50px;
-	font-family:"Bodoni FLF";
-	text-align: center;
-	color: black;
-	margin-bottom: 2cm;
-
-}
-
-
-#div-champs-recherche
-{
-	text-align: center;
-	margin-top: 10px;
-}
-
 
 .champs-recherche
 {
@@ -72,15 +49,6 @@
 }
 
 
-
-#div-btn-rechercher
-{
-	text-align:center;
-	margin-top:1cm;	
-	margin-top:2cm;		
-
-}
-
 .btn_rechercher
 {
 	border-color: #90ffb9;
@@ -96,12 +64,12 @@
 	margin-bottom: 20px; 
 }
 
-.btn_rechercher:hover,
-.btn_recherche:active,
-.btn_rechercher:focus
+.btn_rechercher:hover
 {
-	color:#90ffb9;
+	background :#90ffb9;
+	color: black;
 }
+
 
 
 
@@ -116,6 +84,21 @@
 	font-weight: bolder;
 	margin-right: 60px;
 	margin-left: 60px;
+}
+
+
+#div-infos-comp
+{
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
+}
+{
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
 }
 
 
