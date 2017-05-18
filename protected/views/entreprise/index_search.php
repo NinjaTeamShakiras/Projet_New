@@ -29,7 +29,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 		if(!Utilisateur::est_employe(Yii::app()->user->role) )
 		{// ENTREPRISE
 				?>
-				<!--	MENU 	-->
+			<!--	MENU 	-->
 			<div class="btn-group" style="float: right;">
 				<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					Menu

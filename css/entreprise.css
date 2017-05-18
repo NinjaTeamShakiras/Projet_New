@@ -120,13 +120,20 @@
 	margin-bottom: 200px;
 }
 
+
 #div-accueil-entreprise-search
 {
 	margin-bottom: 30px;
 }
+
 #div-accueil-entreprise
 {
 	margin-bottom: 200px;
+}
+
+#div-accueil-entreprise-view
+{
+	margin-bottom: 30px;
 }
 
 
@@ -171,6 +178,23 @@
 	margin-top: 2px;	
 
 }
+
+#div-infos-perso
+{
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
+	margin-top: 100px;
+	margin-left: 80px;
+	margin-bottom: 100px;
+}
+
+#div-infos-perso-detaille
+{
+	margin-top: 30px;
+}
+
 
 
 
