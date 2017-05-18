@@ -113,10 +113,7 @@ class AIPDF extends CActiveRecord
 	 */
 	public static function start_algorithm( $informations_pdf )
 	{
-		/* -- Nouveau utilisateur et employé pour sauvegarder les informations -- */
-		$utilisateur = new Utilisateur();
-		$employe = new Employe();
-		/* -- Initialisation du tableau pour enrefistrer et sauvegarder les informations lors du parcours du CV -- */
+		/* -- Initialisation du tableau pour enregistrer et sauvegarder les informations lors du parcours du CV -- */
 		self::init_array_found_informations( self::$utilisateurInformation_arr );
 		/* -- Initalisation du tableau -- */
 		self::$CVContents_arr = self::explode_into_lines( $informations_pdf->getText() );

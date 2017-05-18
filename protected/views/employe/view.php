@@ -320,9 +320,9 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 		</div>
 		<!-- Fin de la div infos-comp -->
 
-		<!-- Page pour traiter le PDF >
-		<?php $this->renderPartial( 'cv_edit', array( 'model' => $model ) );?>
-		-->
+		<!-- Page pour traiter le PDF -->
+		<?php //$this->renderPartial( 'cv_edit', array( 'model' => $model ) );?>
+		
 		
 	</div>
 	<!-- Fin du filtre blanc -->
