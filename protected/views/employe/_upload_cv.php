@@ -1,5 +1,5 @@
 
-<div class="form">
+<div class="form form-upload-cv">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id' => 'employe-upload-cv-form',
@@ -10,14 +10,14 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div clas="row">
+	<div clas="row upload-input">
 		<?php echo $form->fileField($model, 'cv_pdf'); ?>
 		<?php echo $form->error($model, 'cv_pdf'); ?>
 	</div>
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton("Ajouter CV"); ?>
+		<?php echo CHtml::submitButton("Ajouter CV", array( 'class' => 'btn-upload-cv' ) ); ?>
 	</div>
 
 	<div class="div-load-cv">

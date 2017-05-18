@@ -155,7 +155,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						?>
 							<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('class'=>'btn-maj-infos btn col-md-offset-6 col-xs-offset-4')); ?>
 						<?php
-						echo CHtml::link('Générer mon CV PDF', array('employe/generateCV', 'id_employe' => $user->id_employe ), array('class'=>'col-md-offset-6 col-xs-offset-4'));
+						echo CHtml::link('Générer mon CV en format PDF', array('employe/generateCV', 'id_employe' => $user->id_employe ), array( 'id' => 'btn-generate-cv', 'class'=>'col-md-offset-6 col-xs-offset-4'));
 						echo "<p>ADRESSE : <label>".$adresse."</label></p>";
 						echo "<p>TELEPHONE : <label>".$user->telephone."</label></p>";
 						echo "<p>AUTRE TELEPHONE : <label>".$user->telephone2."</label></p>";
