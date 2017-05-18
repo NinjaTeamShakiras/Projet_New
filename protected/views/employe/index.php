@@ -26,7 +26,7 @@
 	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
 	      'Image accueil');
 	 
-	      echo CHtml::link($image,array('employe/index')); ?>
+	      echo CHtml::link($image,array('site/index')); ?>
 
 
 	<!--  MENU 	-->
@@ -159,13 +159,15 @@
 			<div id='div-btn-rechercher'>
 				<?php
 					// Button d'envoi
-					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
+					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn'));
 
 				$this->endWidget();
 		 		?>
 		 	</div>
 
 		</div>
+	</div>
+	<!-- Fermeture de la div du filtre -->	
 
 		<?php
 		/*
@@ -203,8 +205,6 @@
 		</div>*/
 		?>
 		
-	<!-- Fermeture de la div du filtre -->	
-	</div>
 <!--Fermture de la div de l'arrière plan -->	
 </div>
 

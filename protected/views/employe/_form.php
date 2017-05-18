@@ -108,8 +108,8 @@
 	</div>
 
 	<div class="row div-field">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Mettre à jour',array('class'=>'btn-maj')); 
-			  echo CHtml::submitButton('Retour', array('name'=>'btnretour','class'=>'btn-maj'));?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Mettre à jour',array('class'=>'btn-maj btn')); 
+			  echo CHtml::submitButton('Retour', array('name'=>'btnretour','class'=>'btn-maj btn'));?>
 	</div>
 
 <?php $this->endWidget(); ?>

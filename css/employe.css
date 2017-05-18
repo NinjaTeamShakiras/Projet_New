@@ -28,10 +28,11 @@
 
 #phrase-nb-offres
 {
-	font-size:70px;
+	font-size:50px;
 	font-family:"Bodoni FLF";
 	text-align: center;
 	color: black;
+	margin-bottom: 2cm;
 
 }
 
@@ -73,7 +74,8 @@
 #div-btn-rechercher
 {
 	text-align:center;
-	margin-top: 2px;	
+	margin-top:1cm;	
+	margin-top:2cm;		
 
 }
 
@@ -90,11 +92,13 @@
 	font-size:18px;
 }
 
-.btn_rechercher:hover
+.btn_rechercher:hover,
+.btn_recherche:active,
+.btn_rechercher:focus
 {
-	background :#90ffb9;
-	color: black;
+	color:#90ffb9;
 }
+
 
 
 
