@@ -281,7 +281,7 @@ else
 					);
 					?>
 
-					<div class="row buttons">
+					<div class="row">
 						<?php echo CHtml::submitButton('Modifier mon annonce',array('class'=>'btn-candidature')); ?>
 					</div>
 
@@ -303,7 +303,7 @@ else
 					);
 					?>
 
-					<div class="row buttons">
+					<div class="row">
 						<?php echo CHtml::submitButton('Supprimer mon annonce',array('class'=>'btn-canditure')); ?>
 					</div>
 
