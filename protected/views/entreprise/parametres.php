@@ -2,7 +2,7 @@
 	//Début du formulaire de vue des infos persos
 	$form=$this->beginWidget('CActiveForm',
 		array(
-			'action'=>Yii::app()->createUrl('employe/parametres'),
+			'action'=>Yii::app()->createUrl('Entreprise/parametres'),
 		)
 	);
 

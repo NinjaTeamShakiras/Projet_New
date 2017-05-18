@@ -103,12 +103,6 @@
 		<?php echo $form->error($utilisateur,'site_web'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($utilisateur,'mail'); ?>
-		<?php echo $form->textField($utilisateur,'mail',array('placeholder' => 'prozzl@gmail.fr')); ?>
-		<?php echo $form->error($utilisateur,'mail'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour'); ?>
 		<?php echo CHtml::submitButton('Retour', array('name'=>'btnretour'));?>
