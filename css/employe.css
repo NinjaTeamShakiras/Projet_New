@@ -25,29 +25,6 @@
 	background-attachment: fixed;
 }
 
-#contenu
-{
- background-color: rgba(0, 0, 0, 0.5);
-}
-
-
-#phrase-nb-offres
-{
-	font-size:50px;
-	font-family:"Bodoni FLF";
-	text-align: center;
-	color: black;
-	margin-bottom: 2cm;
-
-}
-
-
-#div-champs-recherche
-{
-	text-align: center;
-	margin-top: 10px;
-}
-
 
 .champs-recherche
 {
@@ -107,6 +84,30 @@
 
 /****************/
 /* 		ID 		*/
+
+#contenu
+{
+ background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#phrase-nb-offres
+{
+	font-size:50px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+	margin-bottom: 2cm;
+
+}
+
+
+#div-champs-recherche
+{
+	text-align: center;
+	margin-top: 10px;
+}
+
 #div-infos h4
 {
 	text-align: center;
@@ -145,14 +146,9 @@
 
 
 
-#contenu
+#titre
 {
- background-color: rgba(0, 0, 0, 0.5);
-}
-
-
-#phrase-nb-offres
-{
+	padding-top: 20px;
 	font-size:70px;
 	font-family:"Bodoni FLF";
 	text-align: center;

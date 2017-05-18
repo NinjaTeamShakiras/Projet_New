@@ -69,6 +69,12 @@ if($utilisateur != null)
 					Rechercher une offre
 					</a>
 				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
 			</ul>
 		</div>
 		<?php
@@ -85,10 +91,11 @@ if($utilisateur != null)
 	</div>
 
 	<div class='div-postule-ou-non'>
-
-
 			<?php
 			$tablePostuler = postuler::model()->FindAll("id_employe = '$utilisateur->id_employe'");
+			$tabOffreEmploye = array();
+
+			// On récupère toutes les offres postulées par l'employé
 			foreach($tablePostuler as $postuler)
 			{
 				$nombreOffrePostuler++;

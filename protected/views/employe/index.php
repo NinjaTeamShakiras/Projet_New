@@ -61,6 +61,12 @@
 					Mes candidatures
 					</a>
 				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
 			</ul>
 		</div>
 		<?php
@@ -98,7 +104,7 @@
 			
 		<!-- Formulaire de recherche d'une offre d'emploi -->
 		<div class='row'>
-			<?php echo "<h3 id='phrase-nb-offres'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
+			<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
 		</div>	
 
 		<div class="form">

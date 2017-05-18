@@ -13,10 +13,14 @@
 	$model = OffreEmploi::model()->FindAll(); // Récupération de toutes les offres
 	$tablePostuler = Postuler::model()->FindAll();
 	
-	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-	echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); 
-	
+?>
+<div id='div-accueil-entreprise-search'>
 
+	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
+	      'Image accueil');
+	 
+	      echo CHtml::link($image,array('entreprise/index')); ?>
+<?php
 if($utilisateur != null)
 { // Si connecter
 	if (!Utilisateur::est_employe(Yii::app()->user->role) )
@@ -48,6 +52,12 @@ if($utilisateur != null)
 				<li>
 					<a href="index.php?r=entreprise/index" title="Rechercher un CV">
 					Rechercher un CV
+					</a>
+				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+					Déconnexion
 					</a>
 				</li>
 			</ul>
@@ -90,6 +100,12 @@ if($utilisateur != null)
 				<li>
 					<a href="index.php?r=employe/index" title="Rechercher une offre">
 					Rechercher une offre
+					</a>
+				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+					Déconnexion
 					</a>
 				</li>
 			</ul>
@@ -169,9 +185,6 @@ else
 
 				print("<p>Vous avez posté ".$nombreOffreEntreprise." offres.</p>");
 
-
-
-
 				?>
 				<div class="wide form">
 
@@ -184,7 +197,7 @@ else
 						);
 					?>
 
-					<div class="row">	
+					<div id="div-champs-selection">	
 						<?php
 							$modelOffre = OffreEmploi::model();
 							$tabOffre = OffreEmploi::model()->FindAll("id_entreprise =".$utilisateur->id_entreprise);
@@ -192,9 +205,9 @@ else
 
 							//Afficher candidats par anonce
 							//-->On ajoute l'option "Sélectionner pour la liste"
-							$static = array('' => Yii::t('', 'Sélectionner une annonce ...'));
+							$static = array('' => Yii::t('', 'Sélectionner un poste ...'));
 							$posteOffre = CHtml::listData($tabOffre,'poste_offre_emploi','poste_offre_emploi'); // On récupère tout les type d'offre existant
-							echo $form->dropDownList($modelOffre,'poste_offre_emploi',$static + $posteOffre); // On affiche une liste déroulante de toutes les offres
+							echo $form->dropDownList($modelOffre,'poste_offre_emploi',$static + $posteOffre, array('class'=>'menu_roulant-selection')); // On affiche une liste déroulante de toutes les offres
 
 						?>
 					</div>
@@ -202,7 +215,7 @@ else
 					<div class="row buttons">	
 						<?php
 							// Button d'envoi
-							echo CHtml::submitButton('Actualiser');
+							echo CHtml::submitButton('Actualiser',array('class'=>'btn_rechercher btn btn-success'));
 						?>
 					</div>
 
