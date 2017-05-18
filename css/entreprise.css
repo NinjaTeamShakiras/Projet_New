@@ -87,6 +87,21 @@
 }
 
 
+#div-infos-comp
+{
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
+}
+{
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+
 #div-info-padding
 {
 	padding-top: 60px;
@@ -94,12 +109,12 @@
 	margin-bottom: 20px;
 }
 
-#div-info-margin-fort
+#div-info-margin-leger
 {
 	margin-top: 20px;
 	margin-bottom: 50px;
 }
-#div-info-margin-leger
+#div-info-margin-fort
 {
 	margin-top: 40px;
 	margin-bottom: 200px;

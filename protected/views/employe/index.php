@@ -225,20 +225,16 @@
 	</div>
 
 
-	<div class='filtre-vert'>
-
-		<div id='div-info-padding'>
+	<div class='filtre-vert' id='div-info-padding'>
 		<h4>Postulez en 1 clic à l’entreprise qui vous correspond </h4>
-		</div>
-
 	</div>
 
-
-	<div id='div-info-margin-fort'>
-	<h4>Un poste vous intéresse ?  </h4>
-	</div>
 
 	<div id='div-info-margin-leger'>
+		<h4>Un poste vous intéresse ?  </h4>
+	</div>
+
+	<div id='div-info-margin-fort'>
 		<h4>Postulez en 1 clic à leur annonce ! </h4>
 		<h4>Votre profil sera envoyé directement au recruteur </h4>
 	</div>
