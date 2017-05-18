@@ -46,8 +46,31 @@ div.form-infos-perso label
 	box-shadow:2px 2px 15px black;
 	padding:1%;
 	color:#90ffb9;
-	border:2px solid ;
+	border:2px solid;
+	transition: all .2s linear;
 }
+
+#btn-generate-cv
+{
+	position: absolute;
+	font-weight: bold;
+	margin-top: -50px;
+	margin-bottom: 50px;
+	background-color:black;
+	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
+	padding:1%;
+	color:#90ffb9;
+	border:2px solid;
+	transition: all .2s linear;
+}
+
+#btn-generate-cv:hover, #btn-maj-infos:hover
+{
+	text-decoration: none;
+	transform: scale(1.05);
+}
+
 
 #div-infos-comp
 {

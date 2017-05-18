@@ -45,3 +45,68 @@
 {
 	display: none;
 }
+
+.div-back-upload-cv
+{
+  background-color: rgb( 144, 255, 185 );
+  text-align: center;
+  padding: 3% 0%;
+  margin: 2% 0%;
+}
+
+#dropdownMenu1
+{
+  float: right;
+  margin: 2.5% .1%;
+}
+
+#menu-upload
+{
+  margin: 5% .1%;
+}
+
+.btn-upload-cv
+{
+  border-color: #90ffb9;
+  font-weight: bold;
+  padding: 1%;
+  background-color: black;
+  color: #90ffb9;
+  border-radius: 50px;
+  box-shadow: 2px 2px 15px black;
+  font-family: "Montserrat Light";
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  transition: all .2s linear;
+}
+
+.btn-upload-cv:hover
+{
+  transform: scale(1.05);
+}
+
+.cv-upload-h1
+{
+  color: black;
+  font-family: "Bodoni FLF";
+  font-size: 4em;
+}
+
+.form-upload-cv, .form-upload-cv form div
+{
+  text-align: center;
+}
+
+
+.form-upload-cv .upload-input
+{
+  text-align: center;
+}
+#ytEmploye_cv_pdf, #Employe_cv_pdf
+{
+  color: black;
+  font-family: "Montserrat Light";
+  font-size: 1.5em;
+  margin: 4% auto;
+}
