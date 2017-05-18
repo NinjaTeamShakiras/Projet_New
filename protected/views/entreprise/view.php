@@ -24,11 +24,16 @@
 			<a href="index.php?r=entreprise/candidats" title="Mes candidats">
 			Mes candidats
 			</a>
-			<li>
-				<a href="index.php?r=entreprise/index" title="Rechercher un CV">
-				Rechercher un CV
-				</a>
-			</li>
+		</li>	
+		<li>
+			<a href="index.php?r=entreprise/index" title="Rechercher un CV">
+			Rechercher un CV
+			</a>
+		</li>
+		<li>
+			<a href="index.php?r=Entreprise/parametres" title="Parametres">
+			Paramètres de mon compte
+			</a>
 		</li>
 	</ul>
 </div>

@@ -516,9 +516,9 @@ class EmployeController extends Controller
 			$this->redirect(array('employe/delete', 'id'=>$utilisateur->id_employe));
 		}
 
-		if(isset($_POST['btmmodifco']))
+		if(isset($_POST['btnmodifco']))
 		{
-			$this->render('modifParamCo');
+			$this->redirect(array('site/modifParamCo'));
 		}
 
 		$this->render('parametres');
@@ -545,6 +545,7 @@ class EmployeController extends Controller
 
 		return $res;
 	}
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -573,14 +574,6 @@ class EmployeController extends Controller
 			Yii::app()->end();
 		}
 	}
-
-	protected function actionModifParamCo()
-	{
-		$this->render('modifParamCos');
-	}
-
-
-
 
 	
 }// END CONTROLLER	

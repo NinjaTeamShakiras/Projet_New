@@ -15,7 +15,6 @@ class EntrepriseController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -458,6 +457,34 @@ class EntrepriseController extends Controller
 		}
 
 		return $res;
+	}
+
+
+	/*Fonction apellée dans ls paramètres du compte
+	--> Soit on se déconnecte, soit on supprime le compte*/
+	public function actionParametres()
+	{
+		//S'il cliques sur déconnexion, on apelle la fonction logout de SiteController
+		if(isset($_POST['btndeco']))
+		{
+			Yii::app()->user->logout(false);
+			Yii::app()->user->setFlash('logout_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
+			$this->redirect(array('entreprise/index'));
+		}
+
+		//S'il cliques sur supression du compte, on apelle actionDelete de ce controller
+		if(isset($_POST['btnsupcompte']))
+		{
+			$utilisateur = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+			$this->redirect(array('entreprise/delete', 'id'=>$utilisateur->id_entreprise));
+		}
+
+		if(isset($_POST['btnmodifco']))
+		{
+			$this->redirect(array('site/modifParamCo'));
+		}
+
+		$this->render('parametres');
 	}
 
 

@@ -304,4 +304,68 @@ class SiteController extends Controller
 		$this->render( 'inscription_cv' );
 	}
 
+
+	/*Fonction de modification du login et ou du mot de passe
+	-->Fonctionne pour employe et pour entreprise */
+	public function actionModifParamCo()
+	{
+		if(isset($_POST['btnmodifco']))
+		{
+
+			if ($this->	verif_mdp($_POST['Utilisateur']['mot_de_passe']) == 1)
+			{
+				//On récupère l'utilisateur en cours
+				$utilisateur = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+
+				//On attribue le nouveau login et le nouveau mot de passe
+				$utilisateur->mail = $_POST['Utilisateur']['mail'];
+				$utilisateur->mot_de_passe = $_POST['Utilisateur']['mot_de_passe'];
+
+				//Si les données sont sauvegardées
+				if($utilisateur->save())
+				{
+					//On log l'utilisateur avec ses nouveax login et mdp
+					$identity=new UserIdentity($utilisateur->mail,$utilisateur->mot_de_passe);
+					//Si les login et mdp sont fonctionnels, on le log
+					if($identity->authenticate())
+					{
+						Yii::app()->user->login($identity);
+						//On affiche un message de confirmation
+						Yii::app()->user->setFlash('succes_modif_paramco', "<p style = color:red;>Vos paramètres de connexion ont bien été modifiés !</p>");
+
+						//si l'utilisateur est un employé, on le redirige vers son index
+						if($utilisateur->id_employe != null)
+						{
+							$this->redirect(array('employe/index', 'id'=>$utilisateur->id_employe));
+						}
+						//Sinon on le redirige vers la page entreprise
+						else
+						{
+							$this->redirect(array('entreprise/index', 'id'=>$utilisateur->id_entreprise));
+						}	
+					}	 
+				}
+			}
+		}
+
+		if(isset($_POST['retour']))
+		{
+			//On récupère l'utilisateur en cours
+			$utilisateur = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+
+			//si l'utilisateur est un employé, on le redirige vers sa page parametres employe
+			if($utilisateur->id_employe != null)
+			{
+				$this->redirect(array('employe/parametres'));
+			}
+			//Sinon on le redirige vers vers sa page parametres entreprise
+			else
+			{
+				$this->redirect(array('entreprise/parametres'));
+			}
+		}
+
+		$this->render('modifParamCo');
+	}
+
 }	

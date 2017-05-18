@@ -27,9 +27,14 @@ unset(Yii::app()->session['login']);
 			?>
 		</div>
 
-		<div class='connexion'>Déjà un compte? <?php echo CHtml::link('Connexion',array('site/login'),array('class'=>'btnredirect'));?></div>	
+		<?php
+		if(Yii::app()->user->isGuest)
+		{
+     		echo "<div class='connexion'>Déjà un compte? <?php echo CHtml::link('Connexion',array('site/login'),array('class'=>'btnredirect'));?></div>";
+    	}
 
-		<?php $this->endWidget(); ?>
+		 $this->endWidget();
+		?>
 
 	</div>
 </div>
