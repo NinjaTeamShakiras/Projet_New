@@ -94,7 +94,16 @@ class ExperienceProController extends Controller
 		{
 			$model->attributes=$_POST['ExperiencePro'];
 			$model->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
-			$model->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
+			
+			if($_POST['ExperiencePro']['date_fin_experience'] != "")
+			{
+				$model->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
+			}
+			else
+			{
+				$model->date_fin_experience = null;
+			}
+			
 			if($model->save())
 				Yii::app()->user->setFlash('success_maj_exp', "<p style = color:blue;>L'expérience pro ".$model->intitule_experience." à bien été mise à jour !</p>");
 				$this->redirect(array('employe/view','id'=>$model->id_employe));

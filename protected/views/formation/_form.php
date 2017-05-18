@@ -17,6 +17,19 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+	<?php
+	//On change la date si besoin
+	if ($model->date_fin_formation == null)
+	{
+		$date = "";
+	}
+	else
+	{
+		$date = $model->date_fin_formation;
+	}
+	?>
+
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_debut_formation'); ?>
 		<?php echo $form->textField($model,'date_debut_formation', array(
@@ -32,7 +45,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_fin_formation'); ?>
 		<?php echo $form->textField($model,'date_fin_formation', array(
-																	'value' => $this->changeDateNaissance($model->date_fin_formation),
+																	'value' => $date,
 																	'size' => 20,
 																	'maxlength' => 10,
 																	'placeholder' => 'JJ/MM/AAAA',

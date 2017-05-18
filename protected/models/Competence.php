@@ -30,7 +30,7 @@ class Competence extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_employe','required'),
+			array('id_employe, intitule_competence, niveau_competence','required'),
 			array('id_employe', 'numerical', 'integerOnly'=>true),
 			array('intitule_competence, niveau_competence', 'length', 'max'=>45),
 			// The following rule is used by search().
