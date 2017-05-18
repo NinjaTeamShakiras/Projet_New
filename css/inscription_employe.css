@@ -13,10 +13,12 @@
 #titre-inscription
 {
 	color:black;
+	font-weight: bold;
 	font-size:100px;
 	text-align:center;
 	font-family:"Bodoni FLF"; 
 	margin-top:2cm;
+	margin-bottom: 2cm;
 }
 
 .div-label-champ
@@ -36,24 +38,26 @@
 
 .formulaire-inscriptionemploye
 {
-	color: black;
-	font-family:"Montserrat-Light";
-		font-size: 30px;
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
 }
 
 
 .btnInscription
 {
-	font-family:"Montserrat Light";
-	font-size: 25px;
+	border-color: #90ffb9;
 	font-weight: bold;
-	box-shadow:2px 2px 15px black;
-	background-color:#90ffb9;
-	color:Black;
-	font-size:18px;
+	padding:1%;
+	background-color:black;
+	color:#90ffb9;
 	border-radius: 50px;
+	box-shadow:2px 2px 15px black;		
+	font-family:"Montserrat Light";
+	font-size:18px;
 	width:300px;
-	height:60px;	
+	height:60px;	font-size:18px;		
 }
 
 .btnInscription:hover
@@ -66,7 +70,7 @@
 	margin-top:30px;
 	text-align: center;
 	font-family:"Montserrat-Light";
-	font-size: 30px;
+	font-size: 25px;
 	color: black;
 }
 
@@ -74,7 +78,8 @@
 {
 	color:#90ffb9;
 	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black, 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black;
-	font-size:40px;
+	font-size:27px;
+	font-weight: bold;
 }
 
 #cv-pdf
@@ -85,18 +90,23 @@
 	color: black;
 }
 
-#cv-button
+.cv-button
 {
-	font-family:"Montserrat Light";
-	font-size: 25px;
+	border-color: #90ffb9;
 	font-weight: bold;
-	margin-top: 50px;
-	box-shadow:2px 2px 15px black;
-	background-color:#90ffb9;
-	color:Black;
-	font-size:18px;
+	padding:1%;
+	background-color:black;
+	color:#90ffb9;
 	border-radius: 50px;
-	width:370px;
-	height:60px;
+	box-shadow:2px 2px 15px black;		
+	font-family:"Montserrat Light";
+	font-size:18px;
+	width:400px;
+	height:60px;	font-size:18px;	
 
+}
+
+.cv-button:hover
+{
+	background :#90ffb9;
 }

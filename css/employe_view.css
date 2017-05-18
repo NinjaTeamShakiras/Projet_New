@@ -13,25 +13,30 @@
 
 #div-infos-perso
 {
+	font-family:"Montserrat Light";
 	color:black;
-	font-size: 24px;
+	font-size: 30px;
+	font-weight: bolder;
 	}	
 #titre-infos-perso
 {
-	font-size: 40px;
+	font-size: 50px;
+	font-weight: bold;
 	text-align: center;
 	margin-bottom: 50px;
+	font-family: "Bodoni FLF";
 
 }
 
 div.form-infos-perso label
 {
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 20px;
 }
 
 #btn-maj-infos
 {	
+	position: absolute;
 	font-weight: bold;
 	margin-top: 50px;
 	margin-bottom: 50px;
@@ -45,38 +50,38 @@ div.form-infos-perso label
 
 #div-infos-comp
 {
+	font-family:"Montserrat Light";
 	color:black;
-	font-size: 20px;
+	font-size: 30px;
+	font-weight: bolder;
 }
 
 #titre-infos-comp
 {
-	font-size: 40px;
+	font-family: "Bodoni FLF";
+	font-size: 50px;
+	font-weight: bold;
 	text-align: center;
-	margin-top: 50px;
 	margin-bottom: 50px;
+	color: black;
+
 }
 
 #div-infos-comp h3
 {
 	margin-top: 50px;
 	margin-bottom: 50px;
+	font-weight: bold;
+	font-size: 35px;
 }
 
 div.form-infos-comp label
 {
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 20px;
 }
 
-
-#info-comp
-{
-	font-size:20px;
-	font-family:"Montserrat Light";
-	margin-top: 5%;
-	margin-bottom: 3%;
-}		
+	
 
 .div-modifier-supprimer
 {
@@ -87,19 +92,18 @@ div.form-infos-comp label
 .Modifier-supprimer
 {
 	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black;
-	color:#90ffb9;
-	text-decoration:none;
 	margin-top: 30px;
 }
 
-.Modifier-supprimer:hover
-{
-	color:#90ffb9;
-
-}
 
 .row
 {
 	margin-left: 0;
 	margin-right: 0;
+}
+
+.bande-blanche
+{
+	height: 10px;
+	background-color: white;
 }

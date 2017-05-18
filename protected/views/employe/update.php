@@ -1,4 +1,4 @@
-<div class='arriere-plan-employe'>
+<div>
 	<?php
 		/* @var $this EmployeController */
 		/* @var $model Employe */
@@ -11,7 +11,7 @@
 
 <div class='filtre-blanc'>
 	
-	<h1 class=intitule>Mettre à jour mes informations personelles</h1>
+	<h1 class=intitule>METTRE A JOUR MES INFORMATIONS PERSONELLES</h1>
 
 	<?php $this->renderPartial('_form', array('model'=>$model)); ?>
 </div>

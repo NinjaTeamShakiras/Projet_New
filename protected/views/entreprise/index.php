@@ -152,3 +152,16 @@ echo Yii::app()->user->getFlash('succes_modif_paramco');
 	<?php $this->endWidget(); ?>
 
 </div>
+
+
+
+
+
+
+<!-- sur fond blanc-->
+	<h4 id=''>Payez uniquement pour vos besoins !  </h4>
+	<!-- encadré vert -->
+		<h4 id=''>Payez 10 euros pour obtenir les coordonnées d’un candidat </h4>
+		<h4 id=''>Prozzl a comme objectif de faciliter l’accès à l’emploi et baisser le coût du recrutement </h4>
+	<!-- FIN encadré vert -->
+<!-- FIN sur fond blanc-->

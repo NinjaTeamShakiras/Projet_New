@@ -65,31 +65,55 @@
 		<textarea><?php print( $adresse->rue ); ?></textarea>
 	</div>
 
+	<p><b>Expériences professionnelles</b></p>
+
 <?php 	
 	if( sizeof( $informations_arr[ 'Expériences' ] ) > 0 ) :
 ?>
-		<p>Veuillez vérifier vos expériences professionnelles</p>
 <?php
 		foreach ( $informations_arr['Expériences'] as $key => $value_str ) :  
 ?>
+			<p>Expérience professionnelle <?php echo $key + 1; ?></p>
 			<textarea><?php print($value_str); ?></textarea>
 <?php 	
 		endforeach;
 	endif;
 ?>
 
+	<div class="row">
+	<?php 	if( sizeof( $informations_arr[ 'Expériences' ] ) > 0 ) :	 ?>
+		<p>Ajouter d'autres expériences professionnelles</p>
+	<?php  else : 	?>
+		<p>Ajouter vos expériences professionnelles</p>
+	<?php  endif;	?>
+		<textarea placeholder="Description de votre expérience professionnelle"></textarea>
+	</div>
+
+
+	<p><b>Formations</b></p>
+
+
 <?php 	
 	if( sizeof( $informations_arr[ 'Formation' ] ) > 0 ) :
 ?>
-		<p>Veuillez vérifier votre parcours</p>
 <?php
 		foreach ( $informations_arr['Formation'] as $key => $value_str ) :  
 ?>
+			<p>Formation <?php echo $key + 1; ?></p>
 			<textarea><?php print($value_str); ?></textarea>
 <?php 	
 		endforeach;
 	endif;
 ?>
+
+	<div class="row">
+	<?php 	if( sizeof( $informations_arr[ 'Formation' ] ) > 0 ) :	 ?>
+		<p>Ajouter d'autres formations</p>
+	<?php  else : 	?>
+		<p>Ajouter vos formations</p>
+	<?php  endif;	?>
+		<textarea placeholder="Votre formation"></textarea>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($utilisateur,'mot_de_passe'); ?>

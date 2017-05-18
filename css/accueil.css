@@ -29,6 +29,11 @@
 	background-color: rgba(0, 0,0, 0.4);
 }
 
+.filtre-vert-clair
+{
+	background-color: rgba(145, 255,185, 0.4);
+}
+
 .logo
 {
 	text-align:center;
@@ -38,7 +43,7 @@
 .Recherche
 {
 	color:black;
-
+	font-weight: bold;
 	font-size:100px;
 	text-align:center;
 	font-family:"Bodoni FLF"; 
@@ -53,13 +58,16 @@
 
 .btn-emploi 
 {
-	font-family:"Montserrat Light";
-	font-size: 25px;
+	border:3px solid;
+	border-color: #90ffb9;
 	font-weight: bold;
-	box-shadow:2px 2px 15px black;
-	background-color:#90ffb9;
-	color:Black;
+	padding:1%;
+	background-color:black;
+	color:#90ffb9;
 	border-radius: 50px;
+	box-shadow:2px 2px 15px black;		
+	font-family:"Montserrat Light";
+	font-size:18px;
 	width:300px;
 	height:60px;	font-size:18px;
 }
@@ -76,16 +84,18 @@
 
 .btn-employe 
 {
-	font-family:"Montserrat Light";
-	font-size: 25px;
+	border:3px solid;
+	border-color: #90ffb9;
 	font-weight: bold;
-	box-shadow:2px 2px 15px black;
-	background-color:#90ffb9;
-	color:Black;
+	padding:1%;
+	background-color:black;
+	color:#90ffb9;
 	border-radius: 50px;
-	width:300px;
-	height:60px;
+	box-shadow:2px 2px 15px black;		
+	font-family:"Montserrat Light";
 	font-size:18px;
+	width:300px;
+	height:60px;	font-size:18px;
 }
 
 .btn-employe:hover
@@ -104,7 +114,7 @@
 	color:black;
 	opacity: .75;
 	text-align:center;
-	font-size:60px;	
+	font-size:50px;	
 	font-family:"Bodoni FLF";
 	margin-top:3cm; 	
 	margin-bottom: default;
@@ -114,8 +124,9 @@
 .btnredirect
 {
 	color:#90ffb9;
+	font-weight: bold;
 	text-shadow: 2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, -2px 0 0 black, 2px 2px 0 black, 2px -2px 0 black, -2px 2px 0 black, -2px -2px 0 black;
-	font-size:40px;
+	font-size:30px;
 	text-align:center;
 	font-family:"Montserrat Light"
 }
@@ -126,35 +137,7 @@
 
 }
 
-.dropdown-toggle
-{
-   width: 200;
-}
-
-.btn-menu
-{
-	background-color:#404040; 
-	color:#90ffb9;
-}
-
-.btn-menu:hover
-{
-	background-color:#404040; 
-	color:#90ffb9;
-}
-
-.btn-menu:active
-{
-	background-color:#404040; 
-	color:#90ffb9;
-}
-
-.btn-menu:focus
-{
-	background-color:#404040; 
-	color:#90ffb9;
-}
-
+.dropdown-toggle
 .btn-menu.active.focus, .btn-menu.active:focus,
 .btn-menu.active:hover, .btn-menu:active.focus,
 .btn-menu:active:focus, .btn-menu:active:hover,

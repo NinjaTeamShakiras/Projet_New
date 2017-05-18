@@ -66,7 +66,7 @@ class AIPDF extends CActiveRecord
 	public static $autres_arr = array();
 
 	/* --- --- Mots clés --- --- */
-	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'temps partiel', 'temps complet', 'stage', 'alternance', 'emploi' );
+	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'temps partiel', 'temps complet', 'stage', 'alternance', 'emploi', 'employé' );
 
 	public static $blocsWordKeyFormation_arr = array(	'diplôme', 'université', 'lycée', 'baccalauréat', 'BAC', 'BAC+1', 'BAC+2', 'BAC+3', 'BAC+4',
 														'BAC+5', 'DUT', 'BTS', 'école', 'supérieure', 'licence', 'master', 'mention', 'études'	);
@@ -113,10 +113,7 @@ class AIPDF extends CActiveRecord
 	 */
 	public static function start_algorithm( $informations_pdf )
 	{
-		/* -- Nouveau utilisateur et employé pour sauvegarder les informations -- */
-		$utilisateur = new Utilisateur();
-		$employe = new Employe();
-		/* -- Initialisation du tableau pour enrefistrer et sauvegarder les informations lors du parcours du CV -- */
+		/* -- Initialisation du tableau pour enregistrer et sauvegarder les informations lors du parcours du CV -- */
 		self::init_array_found_informations( self::$utilisateurInformation_arr );
 		/* -- Initalisation du tableau -- */
 		self::$CVContents_arr = self::explode_into_lines( $informations_pdf->getText() );
