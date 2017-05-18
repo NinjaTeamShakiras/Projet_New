@@ -452,15 +452,7 @@ class EmployeController extends Controller
         	if( !file_exists( './upload/' . $id_int ) )
         		mkdir( './upload/' . $id_int );
         	/* -- Sauvegarde du CV -- */
-		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );
-			
-
-			//$myurl = 'filename.pdf['.$pagenumber.']';
-			/*$imagick = new Imagick('file.pdf[0]');
-			$imagick->setImageFormat('png');
-			file_put_contents( './upload/' . $id_int . '/cv_' . $id_int . '.png', $imagick );*/
-		    
-		    
+		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );		    
 
 		    /* -- Redirection vers le profil -- */
 		    $url =  $this->createUrl( 'employe/view', array( 'id' => $id_int ) );
@@ -473,7 +465,6 @@ class EmployeController extends Controller
 	 */
 	public function actionUploadTmpCV()
 	{
-		/* -- On fait attendre avec sleep() faut penser à faire un chargement en javascript -- */
 		$employe = new Employe();
 		/* -- Récupération du CV -- */
 		$employe->cv_pdf = CUploadedFile::getInstance( $employe, 'cv_pdf');
@@ -496,19 +487,30 @@ class EmployeController extends Controller
 		$this->redirect( $url_str );
 	}
 
+	/*
+	 *	Action pour générer un CV
+	 */
+	public function actionGenerateCV()
+	{
+		$id_int = intval( $_GET[ 'id_employe' ] );
+		$employe = $this->loadModel( $id_int );
+		$path_str = './upload/' . $id_int;
+		$pathCVGenerated = $path_str . '/cv_generated_' . $id_int . '.pdf';
+
+		if( !file_exists( $path_str ) )
+			mkdir( $path_str );
+		
+		PDF::generate_cv_pdf( $pathCVGenerated, $employe );
+		/* -- Redirection vers le profil -- */
+	    $url =  $this->createUrl( 'employe/view', array( 'id' => $id_int, 'generation' => 'TRUE' ) );
+		$this->redirect( $url );
+	}
+
 
 	/*Fonction apellée dans ls paramètres du compte
 	--> Soit on se déconnecte, soit on supprime le compte*/
 	public function actionParametres()
 	{
-		//S'il cliques sur déconnexion, on apelle la fonction logout de SiteController
-		if(isset($_POST['btndeco']))
-		{
-			Yii::app()->user->logout(false);
-			Yii::app()->user->setFlash('logout_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
-			$this->redirect(array('employe/index'));
-		}
-
 		//S'il cliques sur supression du compte, on apelle actionDelete de ce controller
 		if(isset($_POST['btnsupcompte']))
 		{
@@ -516,9 +518,17 @@ class EmployeController extends Controller
 			$this->redirect(array('employe/delete', 'id'=>$utilisateur->id_employe));
 		}
 
+		//Si il cliques sur modifications des paramètres de connexion
 		if(isset($_POST['btnmodifco']))
 		{
 			$this->redirect(array('site/modifParamCo'));
+		}
+
+		//Si il cliques sur retour
+		if(isset($_POST['btnretour']))
+		{
+			$utilisateur = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+			$this->redirect(array('view', 'id'=>$utilisateur->id_employe));
 		}
 
 		$this->render('parametres');
@@ -544,6 +554,15 @@ class EmployeController extends Controller
 		}
 
 		return $res;
+	}
+
+
+	/*Fonction de déconnexion */
+	public function actionDeconnexion()
+	{
+		Yii::app()->user->logout(false);
+		Yii::app()->user->setFlash('logout_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
+		$this->redirect(array('employe/index'));
 	}
 
 
