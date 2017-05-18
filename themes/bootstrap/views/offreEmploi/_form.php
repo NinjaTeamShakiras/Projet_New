@@ -93,7 +93,7 @@
 				array(
 					'size' => 30,
 					'maxlength' => 30,
-					'placeholder' => '1500',
+					'placeholder' => '0',
 				)
 			);
 		?>€

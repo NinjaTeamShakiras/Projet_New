@@ -23,18 +23,20 @@
 .titre-connexion
 {
 	color:black;
+	font-weight: bold;
 	font-size:100px;
 	text-align:center;
 	font-family:"Bodoni FLF"; 
 	margin-top:2cm;
+	margin-bottom: 2cm;
 }
 
 #div-adresse-mail 
 {
-
-	font-family:"Montserrat-Light";
-	font-size:25px;
-	margin-top:2cm;
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
 }
 
 #label-mail
@@ -51,9 +53,10 @@ color: black;
 
 #div-password
 {
-	font-family:"Montserrat-Light";
-	font-size:25px;
-	margin-top:0.5cm;
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
 }
 
 #label-pass
@@ -78,7 +81,7 @@ text-align: center;
 .row.rememberMe
 {
 	font-family:"Montserrat-Light";
-	font-size:25px;
+	font-size:35px;
 	margin-top:1cm;
 	text-align: center;
 }
@@ -91,16 +94,18 @@ text-align: center;
 
 .btnConnexion
 {
-	font-family:"Montserrat Light";
-	font-size: 25px;
+	border:3px solid;
+	border-color: #90ffb9;
 	font-weight: bold;
-	box-shadow:2px 2px 15px black;
-	background-color:#90ffb9;
-	color:Black;
-	font-size:18px;
+	padding:1%;
+	background-color:black;
+	color:#90ffb9;
 	border-radius: 50px;
+	box-shadow:2px 2px 15px black;		
+	font-family:"Montserrat Light";
+	font-size:18px;
 	width:300px;
-	height:60px;	
+	height:60px;	font-size:18px;	
 }
 
 .btnConnexion:hover
