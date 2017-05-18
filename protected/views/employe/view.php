@@ -57,9 +57,20 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 
 	<div class='filtre-blanc'> 
-
 		<!-- Affichage des infos persos -->	
 		<div id='div-infos-perso'>
+			<?php 
+			if( isset( $_GET['generation'] ) && $_GET['generation'] === "TRUE" )
+			{
+				$id_int = intval( $employe->id_employe );
+				$pathCVGenerated = './upload/' . $id_int . '/cv_generated_' . $id_int . '.pdf';
+				echo 	'<div class="cv-preview-div" style="width: 100%; text-align: center;">',
+							'<p>Votre CV a bien été géneré : </p>',
+							'<iframe src="' . $pathCVGenerated . '" width="60%" height="800px" ></iframe>',
+						'</div>';
+			}
+
+			?>
 			<?php
 			//Si l'adresse est nulle on dit qu'elle n'est pas renseignée
 			if($adresse == null){
@@ -135,6 +146,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						?>
 							<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos','class'=>'col-md-offset-6 col-xs-offset-4')); ?>
 						<?php
+						echo CHtml::link('Générer mon CV PDF', array('employe/generateCV', 'id_employe' => $user->id_employe ), array('class'=>'col-md-offset-6 col-xs-offset-4'));
 						echo "<p>ADRESSE : <label>".$adresse."</label></p>";
 						echo "<p>TELEPHONE : <label>".$user->telephone."</label></p>";
 						echo "<p>AUTRE TELEPHONE : <label>".$user->telephone2."</label></p>";
@@ -274,6 +286,8 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 					<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'btn-maj-infos','class'=>'col-md-offset-6 col-xs-offset-4')); ?>
 				</div>
 				<!-- Fin bouton -->
+
+
 				
 				<!-- COMPETENCES -->
 				<?php
