@@ -47,6 +47,12 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 				Rechercher une offre
 				</a>
 			</li>
+			<li role="separator" class="divider"></li>
+			<li>
+				<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+				Déconnexion
+				</a>
+			</li>
 			<li>
 				<a href="index.php?r=Employe/parametres" title="Parametres">
 				Paramètres de mon compte
@@ -147,7 +153,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						echo "<p>NOM : <label>".$model->nom_employe." ".$model->prenom_employe."</label></p>";
 						echo "<p>DATE DE NAISSANCE : <label>".$this->changeDateNaissance($model->date_naissance_employe)."</label></p>";
 						?>
-							<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('id'=>'btn-maj-infos','class'=>'col-md-offset-6 col-xs-offset-4')); ?>
+							<?php echo Chtml::submitButton('Mettre à jour mes informations personelles',array('class'=>'btn-maj-infos btn col-md-offset-6 col-xs-offset-4')); ?>
 						<?php
 						echo CHtml::link('Générer mon CV en format PDF', array('employe/generateCV', 'id_employe' => $user->id_employe ), array( 'id' => 'btn-generate-cv', 'class'=>'col-md-offset-6 col-xs-offset-4'));
 						echo "<p>ADRESSE : <label>".$adresse."</label></p>";
@@ -217,10 +223,10 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 				<div class="row form-infos-comp">
 					<?php
+					echo Yii::app()->user->getFlash('success_maj_formation');
+					echo Yii::app()->user->getFlash('success_sup_formation');
 					foreach($formations as $formation)
 					{
-						echo Yii::app()->user->getFlash('success_maj_formation');
-						echo Yii::app()->user->getFlash('success_sup_formation');
 						echo "<p>Date de début de la formation : <label>".$this->changeDateNaissance($formation->date_debut_formation)."</label></p>";
 						echo "<p>Date de fin de la formation : <label>".$this->changeDateNaissance($formation->date_fin_formation)."</label></p>";
 						echo "<p>Intitulé de la formation : <label>".$formation->intitule_formation."</label></p>";
@@ -259,10 +265,10 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 				<div class="row form-infos-comp">
 					<?php
+						echo Yii::app()->user->getFlash('success_maj_exp');
+						echo Yii::app()->user->getFlash('success_sup_exp');
 						foreach($exp_pros as $exp_pro)
 						{
-							echo Yii::app()->user->getFlash('success_maj_exp');
-							echo Yii::app()->user->getFlash('success_sup_exp');
 							echo "<p>Date de début de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_debut_experience)."</label></p>";
 							echo "<p>Date de fin de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_fin_experience)."</label></p>";
 							echo "<p>Intitulé de l'expérience pro : <label>".$exp_pro->intitule_experience."</label></p>";
@@ -286,7 +292,7 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 				<!-- Bouton ajout de nouvelles infos complémentaires -->
 				<div class="row">
-					<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','id'=>'btn-maj-infos','class'=>'col-md-offset-6 col-xs-offset-4')); ?>
+					<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','class'=>'btn-maj-infos btn col-md-offset-6 col-xs-offset-4')); ?>
 				</div>
 				<!-- Fin bouton -->
 
@@ -309,10 +315,10 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 				<div class="row form-infos-comp	">
 					<ul>
 						<?php
+						echo Yii::app()->user->getFlash('success_maj_competence');
+						echo Yii::app()->user->getFlash('success_sup_competence');
 						foreach($competences as $competence)
 						{
-							echo Yii::app()->user->getFlash('success_maj_competence');
-							echo Yii::app()->user->getFlash('success_sup_competence');
 							?>
 
 							<li>

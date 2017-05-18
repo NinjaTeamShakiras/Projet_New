@@ -71,6 +71,14 @@
 	color:#90ffb9;
 	border:2px solid ;
 }
+
+#btn-ajoutformation:hover,
+#btn-ajoutformation:active,
+#btn-ajoutformation:focus,
+{
+	color: #90ffb9;
+}
+
 .div-exp-pro
 {
 	font-family:"Montserrat Light";

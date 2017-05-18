@@ -26,7 +26,7 @@
 	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
 	      'Image accueil');
 	 
-	      echo CHtml::link($image,array('employe/index')); ?>
+	      echo CHtml::link($image,array('site/index')); ?>
 
 
 	<!--  MENU 	-->
@@ -59,6 +59,12 @@
 				<li>
 					<a href="index.php?r=OffreEmploi/mesOffres" title="Mes candidatures">
 					Mes candidatures
+					</a>
+				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+					Déconnexion
 					</a>
 				</li>
 			</ul>
@@ -98,7 +104,7 @@
 			
 		<!-- Formulaire de recherche d'une offre d'emploi -->
 		<div class='row'>
-			<?php echo "<h3 id='phrase-nb-offres'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
+			<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
 		</div>	
 
 		<div class="form">
@@ -162,13 +168,15 @@
 			<div id='div-btn-rechercher'>
 				<?php
 					// Button d'envoi
-					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
+					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn'));
 
 				$this->endWidget();
 		 		?>
 		 	</div>
 
 		</div>
+	</div>
+	<!-- Fermeture de la div du filtre -->	
 
 		<?php
 		/*
@@ -206,8 +214,6 @@
 		</div>*/
 		?>
 		
-	<!-- Fermeture de la div du filtre -->	
-	</div>
 <!--Fermture de la div de l'arrière plan -->	
 </div>
 
