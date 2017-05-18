@@ -66,7 +66,7 @@ class AIPDF extends CActiveRecord
 	public static $autres_arr = array();
 
 	/* --- --- Mots clés --- --- */
-	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'temps partiel', 'temps complet', 'stage', 'alternance', 'emploi' );
+	public static $blocsWordKeyExperiencesPro_arr = array(	'CDI', 'CDD', 'intérim', 'temps partiel', 'temps complet', 'stage', 'alternance', 'emploi', 'employé' );
 
 	public static $blocsWordKeyFormation_arr = array(	'diplôme', 'université', 'lycée', 'baccalauréat', 'BAC', 'BAC+1', 'BAC+2', 'BAC+3', 'BAC+4',
 														'BAC+5', 'DUT', 'BTS', 'école', 'supérieure', 'licence', 'master', 'mention', 'études'	);
