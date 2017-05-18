@@ -47,6 +47,12 @@ if($utilisateur != null)
 					Mes candidats
 					</a>
 				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
 			</ul>
 			</div>
 

@@ -8,7 +8,7 @@
 
 	echo CHtml::submitbutton('Déconnexion', array('name'=>'btndeco'));
 	echo CHtml::submitbutton('Supprimer mon compte', array('name'=>'btnsupcompte'));
-	echo Chtml::submitbutton('Modifier mes paramètres de connexion', array('name'=>'btnmodifco'));
+	echo CHtml::submitbutton('Retour', array('name'=>'btnretour'));
 
 	$this->endWidget();	
 

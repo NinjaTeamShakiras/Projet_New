@@ -47,6 +47,12 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 				Rechercher une offre
 				</a>
 			</li>
+			<li role="separator" class="divider"></li>
+			<li>
+				<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+				Déconnexion
+				</a>
+			</li>
 			<li>
 				<a href="index.php?r=Employe/parametres" title="Parametres">
 				Paramètres de mon compte

@@ -464,14 +464,6 @@ class EntrepriseController extends Controller
 	--> Soit on se déconnecte, soit on supprime le compte*/
 	public function actionParametres()
 	{
-		//S'il cliques sur déconnexion, on apelle la fonction logout de SiteController
-		if(isset($_POST['btndeco']))
-		{
-			Yii::app()->user->logout(false);
-			Yii::app()->user->setFlash('logout_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
-			$this->redirect(array('entreprise/index'));
-		}
-
 		//S'il cliques sur supression du compte, on apelle actionDelete de ce controller
 		if(isset($_POST['btnsupcompte']))
 		{
@@ -479,12 +471,29 @@ class EntrepriseController extends Controller
 			$this->redirect(array('entreprise/delete', 'id'=>$utilisateur->id_entreprise));
 		}
 
+		//Si il cliques sur modifier les paramètres de connexion
 		if(isset($_POST['btnmodifco']))
 		{
 			$this->redirect(array('site/modifParamCo'));
 		}
 
+		//Si il cliques sur retour
+		if(isset($_POST['btnretour']))
+		{
+			$utilisateur = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+			$this->redirect(array('view', 'id'=>$utilisateur->id_entreprise));
+		}
+
 		$this->render('parametres');
+	}
+
+	
+	/*Fonction de déconnexion */
+	public function actionDeconnexion()
+	{
+		Yii::app()->user->logout(false);
+		Yii::app()->user->setFlash('logout_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
+		$this->redirect(array('entreprise/index'));
 	}
 
 

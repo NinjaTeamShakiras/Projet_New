@@ -46,6 +46,12 @@ if($utilisateur != null)
 					Rechercher un CV
 					</a>
 				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
 			</ul>
 		</div>
 
@@ -86,6 +92,12 @@ if($utilisateur != null)
 				<li>
 					<a href="index.php?r=employe/index" title="Rechercher une offre">
 					Rechercher une offre
+					</a>
+				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+					Déconnexion
 					</a>
 				</li>
 			</ul>
