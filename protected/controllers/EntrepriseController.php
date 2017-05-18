@@ -381,7 +381,6 @@ class EntrepriseController extends Controller
 		}
 		else
 		{
-			echo "Vous n'avez rien rempli";
 			$this->render('index_search');
 		}
 

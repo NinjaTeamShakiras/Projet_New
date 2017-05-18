@@ -7,7 +7,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 $employeConnecte = false;
 
 ?>
-<div id='div-accueil-employe'>
+<div id='div-accueil-entreprise'>
 
 	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
 	      'Image accueil');
@@ -93,7 +93,7 @@ $employeConnecte = false;
 
 
 
-		<h3 id='phrase-nb-offres'>Rechercher un CV : </h3>
+		<h3 id='titre'>Rechercher un CV : </h3>
 
 		<?php 
 			$tabEmploye = employe::model()->FindAll();

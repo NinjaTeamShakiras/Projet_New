@@ -119,8 +119,9 @@
 }
 
 
-#phrase-nb-offres
+#titre
 {
+	padding-top: 20px;
 	font-size:70px;
 	font-family:"Bodoni FLF";
 	text-align: center;

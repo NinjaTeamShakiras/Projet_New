@@ -98,7 +98,7 @@
 			
 		<!-- Formulaire de recherche d'une offre d'emploi -->
 		<div class='row'>
-			<?php echo "<h3 id='phrase-nb-offres'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
+			<?php echo "<h3 id='titre'>Trouver les offres qui vous correspondent parmis ".$nombreOffre." offres</h3>"; ?>
 		</div>	
 
 		<div class="form">

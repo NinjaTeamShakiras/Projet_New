@@ -186,7 +186,7 @@ if($utilisateur != null)
 
 					//Afficher candidats par anonce
 					//-->On ajoute l'option "Sélectionner pour la liste"
-					$static = array('' => Yii::t('', 'Sélectionner une annonce ...'));
+					$static = array('' => Yii::t('', 'Sélectionner un poste ...'));
 					$posteOffre = CHtml::listData($tabOffre,'poste_offre_emploi','poste_offre_emploi'); // On récupère tout les type d'offre existant
 					echo $form->dropDownList($modelOffre,'poste_offre_emploi',$static + $posteOffre); // On affiche une liste déroulante de toutes les offres
 

@@ -120,7 +120,11 @@
 	margin-bottom: 200px;
 }
 
-#div-accueil-employe
+#div-accueil-entreprise-search
+{
+	margin-bottom: 30px;
+}
+#div-accueil-entreprise
 {
 	margin-bottom: 200px;
 }
@@ -134,8 +138,9 @@
 }
 
 
-#phrase-nb-offres
+#titre
 {
+	padding-top: 20px;
 	font-size:70px;
 	font-family:"Bodoni FLF";
 	text-align: center;
