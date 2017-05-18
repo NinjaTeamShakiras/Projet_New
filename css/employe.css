@@ -10,6 +10,11 @@
 	src: url('Montserrat-Light.otf');
 }
 
+
+
+/*********************/
+/* 		CLASS		*/
+
 .arriere-plan-employe
 {
 	background-image:url(../images/image9_1);
@@ -53,13 +58,10 @@
 }
 
 
-
-#div-champs-selection
+.filtre-vert
 {
-	text-align: center;
-	margin-top: 2%;
+	background-color: rgba(145, 255,185, 1);
 }
-
 
 
 .menu_roulant-selection
@@ -90,6 +92,8 @@
 	box-shadow:2px 2px 15px black;		
 	font-family:"Montserrat Light";
 	font-size:18px;
+	margin-top: 10px;
+	margin-bottom: 20px; 
 }
 
 .btn_rechercher:hover,
@@ -98,6 +102,88 @@
 {
 	color:#90ffb9;
 }
+
+
+
+/****************/
+/* 		ID 		*/
+#div-infos h4
+{
+	text-align: center;
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 30px;
+	font-weight: bolder;
+	margin-right: 60px;
+	margin-left: 60px;
+}
+
+
+#div-info-padding
+{
+	padding-top: 60px;
+	padding-bottom: 60px;
+	margin-bottom: 20px;
+}
+
+#div-info-margin-leger
+{
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+#div-info-margin-fort
+{
+	margin-top: 40px;
+	margin-bottom: 200px;
+}
+
+#div-accueil-employe
+{
+	margin-bottom: 200px;
+}
+
+
+
+
+#contenu
+{
+ background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#phrase-nb-offres
+{
+	font-size:70px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+
+}
+
+
+#div-champs-recherche
+{
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+
+#div-champs-selection
+{
+	text-align: center;
+	margin-top: 2%;
+}
+
+
+
+#div-btn-rechercher
+{
+	text-align:center;
+	margin-top: 2px;	
+
+}
+
 
 
 

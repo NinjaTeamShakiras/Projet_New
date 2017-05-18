@@ -60,12 +60,6 @@
 	</div>
 
 	<div class="row div-field">
-		<?php echo $form->labelEx($utilisateur,'mail'); ?>
-		<?php echo $form->textField($utilisateur,'mail',array('size'=>45,'maxlength'=>45,'class'=>'champ-input')); ?>
-		<?php echo $form->error($utilisateur,'mail'); ?>
-	</div>
-
-	<div class="row div-field">
 		<?php echo $form->labelEx($utilisateur,'site_web'); ?>
 		<?php echo $form->textField($utilisateur,'site_web',array('size'=>45,'maxlength'=>45, 'placeholder'=>'www.monsite.fr','class'=>'champ-input')); ?>
 		<?php echo $form->error($utilisateur,'site_web'); ?>

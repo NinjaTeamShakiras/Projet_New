@@ -21,7 +21,7 @@
 
 ?>
 
-<div>
+<div id='div-accueil-employe'>
 
 	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
 	      'Image accueil');
@@ -89,9 +89,12 @@
 		<?php
 	}
 	?>
-	<div class='filtre-blanc'>
+	<div class='filtre-vert'>
 
-		<?php echo Yii::app()->user->getFlash('logout_ok'); ?>
+		<?php 
+			echo Yii::app()->user->getFlash('logout_ok');
+			echo Yii::app()->user->getFlash('succes_modif_paramco'); 
+		?>
 			
 		<!-- Formulaire de recherche d'une offre d'emploi -->
 		<div class='row'>
@@ -206,6 +209,52 @@
 		?>
 		
 <!--Fermture de la div de l'arrière plan -->	
+</div>
+
+
+
+
+
+
+<div id='div-infos'>
+
+	<h4>Créez votre profil pour postuler à des annonces !</h4>
+
+	<div id='div-info-margin-leger'>
+		<h4>Entrez en 1 clic votre CV au format PDF grace au bouton 'ajoutez votre CV' dans le menu</h4>
+	</div>
+
+
+	<div class='filtre-vert' id='div-info-padding'>
+		<h4>Postulez en 1 clic à l’entreprise qui vous correspond </h4>
+	</div>
+
+
+	<div id='div-info-margin-leger'>
+		<h4>Un poste vous intéresse ?  </h4>
+	</div>
+
+	<div id='div-info-margin-fort'>
+		<h4>Postulez en 1 clic à leur annonce ! </h4>
+		<h4>Votre profil sera envoyé directement au recruteur </h4>
+	</div>
+
+
+	<h4>PROZZL lutte contre les inégalités ! </h4>
+
+
+
+	<div class='filtre-vert' id='div-info-padding'>
+
+		<h4>Nous avons à cœur d’offrir à chacun la même chance  </h4>
+
+		<div>
+			<h4>Pour éviter toute discrimination de genre, nationalité, religion, âge…Les profils des candidats sont envoyés sans leurs nom, coordonnées, âge  </h4>
+		</div>
+
+	</div>
+
+
 </div>
 
 	

@@ -76,8 +76,8 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 			//Afficher candidats par anonce
 			//-->On ajoute l'option "Sélectionner pour la liste"
 			$static = array('' => Yii::t('', 'Sélectionner une annonce ...'));
-			$posteOffre = CHtml::listData($tabOffresPersonnalise,'id_offre_emploi','poste_offre_emploi'); // On récupère tout les type d'offre existant
-			echo $form->dropDownList($modelOffre,'id_offre_emploi',$static + $posteOffre); // On affiche une liste déroulante de toutes les offres
+			//$posteOffre = CHtml::listData($tabOffresPersonnalise,'id_offre_emploi','poste_offre_emploi'); // On récupère tout les type d'offre existant
+			echo $form->dropDownList($modelOffre,'id_offre_emploi',$static + $tabOffresPersonnalise); // On affiche une liste déroulante de toutes les offres
 
 		?>
 	</div>
