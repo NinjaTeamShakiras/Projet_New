@@ -77,33 +77,24 @@
 
 }
 
-#btn_rechercher
+.btn_rechercher
 {
-	border-color: black;
+	border-color: #90ffb9;
 	font-weight: bold;
 	padding:1%;
-	background-color:#90ffb9;
-	color:Black;
+	background-color:black;
+	color:#90ffb9;
 	border-radius: 50px;
 	box-shadow:2px 2px 15px black;		
 	font-family:"Montserrat Light";
 	font-size:18px;
 }
 
-
-#div_infos
+.btn_rechercher:hover
 {
-	text-align: center;
+	background :#90ffb9;
+	color: black;
 }
 
-
-.btn_infos 
-{
-
-	background-color:#90ffb9;
-	font-family:"Montserrat Light";
-	color:Black;
-	border:2px solid ;
-}
 
 

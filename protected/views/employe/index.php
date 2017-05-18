@@ -21,7 +21,7 @@
 
 ?>
 
-<div class='arriere-plan-employe'>
+<div>
 
 	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
 	      'Image accueil');
@@ -159,7 +159,7 @@
 			<div id='div-btn-rechercher'>
 				<?php
 					// Button d'envoi
-					echo CHtml::submitButton('Rechercher',array('class'=>'btn btn-success','id'=>'btn_rechercher'));
+					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
 
 				$this->endWidget();
 		 		?>

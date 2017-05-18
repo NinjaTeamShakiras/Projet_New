@@ -5,14 +5,14 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 ?>
 
-<div class='arriere-plan-login'>
-<div class='filtre-blanc'>
 
 <?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
 
+<div class='arriere-plan-login'>
+<div class='filtre-vert-clair'>
 
 <h1 id=titre-inscription>Inscription</h1>
 
@@ -94,7 +94,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 		?>
 		<div class="row">
 			<!-- Bouton d'ajout du CV -->
-			<?php echo CHtml::submitButton('Créer mon compte à partir de mon CV',array('id'=>'cv-button','class'=>'btn btn-success')); ?>
+			<?php echo CHtml::submitButton('Créer mon compte à partir de mon CV',array('class'=>'cv-button btn')); ?>
 		</div>
 		<?php $this->endWidget(); ?>		
 	</div>

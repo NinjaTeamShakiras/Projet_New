@@ -3,13 +3,13 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 ?>
-<div class='arriere-plan-login'>
-<div class='filtre-blanc'>
 <?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
       'Image accueil');
  
       echo CHtml::link($image,array('site/index','id'=> 'accueil')); ?>
 
+<div class='arriere-plan-login'>
+<div class='filtre-vert-clair'>
 
 <h1 class="titre-connexion">Connexion</h1>
 
