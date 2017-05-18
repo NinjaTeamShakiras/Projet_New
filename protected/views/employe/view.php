@@ -227,12 +227,47 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 					echo Yii::app()->user->getFlash('success_sup_formation');
 					foreach($formations as $formation)
 					{
+						
+						//On traite les infos pour l'affichage
+						//D'abord la date
+						$date_fin;
+						if($formation->date_fin_formation == null)
+						{
+							$date_fin = "Non renseignée";
+						}
+						else
+						{
+							$date_fin = $formation->date_fin_formation;
+						}
+
+						//Ensuite pour le diplome
+						$diplome;
+						if($formation->diplome_formation == null)
+						{
+							$diplome = "Non reseigné";
+						}
+						else
+						{
+							$diplome = $formation->diplome_formation;
+						}	
+
+						//Et finalement pour les descriptions
+						$description;
+						if($formation->description_formation == null)
+						{
+							$description = "Non rensignée";
+						}
+						else
+						{
+							$description = $formation->description_formation;
+						}
+
 						echo "<p>Date de début de la formation : <label>".$this->changeDateNaissance($formation->date_debut_formation)."</label></p>";
-						echo "<p>Date de fin de la formation : <label>".$this->changeDateNaissance($formation->date_fin_formation)."</label></p>";
+						echo "<p>Date de fin de la formation : <label>".$date_fin."</label></p>";
 						echo "<p>Intitulé de la formation : <label>".$formation->intitule_formation."</label></p>";
 						echo "<p>Etablissement de la formation : <label>".$formation->etablissement_formation."</label></p>";
-						echo "<p>Diplome obtenu : <label>".$formation->diplome_formation."</label></p>";
-						echo "<p>Description de la formation : <label>".$formation->description_formation."</label></p>";
+						echo "<p>Diplome obtenu : <label>".$diplome."</label></p>";
+						echo "<p>Description de la formation : <label>".$description."</label></p>";
 						?>
 						
 						<div class='div-modifier-supprimer'>
@@ -269,11 +304,45 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						echo Yii::app()->user->getFlash('success_sup_exp');
 						foreach($exp_pros as $exp_pro)
 						{
+							//On traite les infos pour l'affichage 
+							//D'abord la date de fin
+							$date_fin;
+							if($exp_pro->date_fin_experience == null)
+							{
+								$date_fin = "Non renseignée";
+							}
+							else
+							{
+								$date_fin = $exp_pro->date_fin_experience;
+							}
+
+							//Ensuite pour l'entreprise
+							$entreprise;
+							if($exp_pro->entreprise_experience == null)
+							{
+								$entreprise = "Non reseignée";
+							}
+							else
+							{
+								$entreprise = $exp_pro->entreprise_experience;
+							}	
+
+							//Et finalement pour les descriptions
+							$description;
+							if($exp_pro->description_experience == null)
+							{
+								$description = "Non renseignée";
+							}
+							else
+							{
+								$description = $exp_pro->description_experience;
+							}
+
 							echo "<p>Date de début de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_debut_experience)."</label></p>";
-							echo "<p>Date de fin de l'expérience pro : <label>".$this->changeDateNaissance($exp_pro->date_fin_experience)."</label></p>";
+							echo "<p>Date de fin de l'expérience pro : <label>".$date_fin."</label></p>";
 							echo "<p>Intitulé de l'expérience pro : <label>".$exp_pro->intitule_experience."</label></p>";
-							echo "<p>Entreprise dans laquelle vous êtiez salarié : <label>".$exp_pro->entreprise_experience."</label></p>";
-							echo "<p>Description de l'expérience pro : <label>".$exp_pro->description_experience."</label>	</p>";
+							echo "<p>Entreprise dans laquelle vous êtiez salarié : <label>".$entreprise."</label></p>";
+							echo "<p>Description de l'expérience pro : <label>".$description."</label>	</p>";
 							?>
 
 							<div class='div-modifier-supprimer'>

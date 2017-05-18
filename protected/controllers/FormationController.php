@@ -93,8 +93,18 @@ class FormationController extends Controller
 		if(isset($_POST['Formation']))
 		{
 			$model->attributes=$_POST['Formation'];
+
 			$model->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
-			$model->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
+			
+			if($_POST['Formation']['date_fin_formation'] != "")
+			{
+				$model->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
+			}
+			else
+			{
+				$model->date_fin_formation = null;
+			}
+			
 			if($model->save())
 				Yii::app()->user->setFlash('success_maj_formation', "<p style = color:blue;>La formation ".$model->intitule_formation." à bien été mise à jour !</p>");
 				$this->redirect(array('employe/view', 'id'=>$model->id_employe));

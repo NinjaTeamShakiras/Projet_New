@@ -380,7 +380,16 @@ class EmployeController extends Controller
 			//On attributs les valeurs entrés par l'utilisateur dans le model Formation
 			$formation->attributes = $_POST['Formation'];
 			$formation->date_debut_formation = $this->changeDateBDD($_POST['Formation']['date_debut_formation']);
-			$formation->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
+
+			if($_POST['Formation']['date_fin_formation'] != "")
+			{
+				$formation->date_fin_formation = $this->changeDateBDD($_POST['Formation']['date_fin_formation']);
+			}
+			else
+			{
+				$formation->date_fin_formation = null;
+			}
+			
 			$formation->id_employe = $user->id_employe;
 
 			//On save le model formation
@@ -407,7 +416,16 @@ class EmployeController extends Controller
 			//On attributs les valeurs entrés par l'utilisateur dans le model experience
 			$experiencePro->attributes = $_POST['ExperiencePro'];
 			$experiencePro->date_debut_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_debut_experience']);
-			$experiencePro->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
+
+			if($_POST['ExperiencePro']['date_fin_experience'] != "")
+			{
+				$experiencePro->date_fin_experience = $this->changeDateBDD($_POST['ExperiencePro']['date_fin_experience']);
+			}
+			else
+			{
+				$experiencePro->date_fin_experience = null;
+			}
+			
 			$experiencePro->id_employe = $user->id_employe;
 				
 			//On save le model experience

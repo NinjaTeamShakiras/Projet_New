@@ -17,6 +17,18 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
+	<?php
+	//On change la date si besoin
+	if ($model->date_fin_experience == null)
+	{
+		$date = "";
+	}
+	else
+	{
+		$date = $model->date_fin_experience;
+	}
+	?>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_debut_experience'); ?>
 		<?php echo $form->textField($model,'date_debut_experience', array(
@@ -32,7 +44,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_fin_experience'); ?>
 		<?php echo $form->textField($model,'date_fin_experience', array(
-																	'value' => $this->changeDateNaissance($model->date_fin_experience),
+																	'value' => $date,
 																	'size' => 20,
 																	'maxlength' => 10,
 																	'placeholder' => 'JJ/MM/AAAA',
