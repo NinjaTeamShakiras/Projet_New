@@ -64,10 +64,13 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 			{
 				$id_int = intval( $employe->id_employe );
 				$pathCVGenerated = './upload/' . $id_int . '/cv_generated_' . $id_int . '.pdf';
-				echo 	'<div class="cv-preview-div" style="width: 100%; text-align: center;">',
-							'<p>Votre CV a bien été géneré : </p>',
-							'<iframe src="' . $pathCVGenerated . '" width="60%" height="800px" ></iframe>',
-						'</div>';
+				if( file_exists( $pathCVGenerated ) )
+				{
+					echo 	'<div class="cv-preview-div" style="width: 100%; text-align: center;">',
+								'<p>Votre CV a bien été géneré : </p>',
+								'<iframe src="' . $pathCVGenerated . '" width="60%" height="800px" ></iframe>',
+							'</div>';
+				}
 			}
 
 			?>

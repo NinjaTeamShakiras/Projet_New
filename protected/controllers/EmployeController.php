@@ -452,15 +452,7 @@ class EmployeController extends Controller
         	if( !file_exists( './upload/' . $id_int ) )
         		mkdir( './upload/' . $id_int );
         	/* -- Sauvegarde du CV -- */
-		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );
-			
-
-			//$myurl = 'filename.pdf['.$pagenumber.']';
-			/*$imagick = new Imagick('file.pdf[0]');
-			$imagick->setImageFormat('png');
-			file_put_contents( './upload/' . $id_int . '/cv_' . $id_int . '.png', $imagick );*/
-		    
-		    
+		    $employe->cv_pdf->saveAs( './upload/' . $id_int . '/cv_' . $id_int . '.pdf' );		    
 
 		    /* -- Redirection vers le profil -- */
 		    $url =  $this->createUrl( 'employe/view', array( 'id' => $id_int ) );
@@ -534,6 +526,11 @@ class EmployeController extends Controller
 			$this->redirect(array('employe/delete', 'id'=>$utilisateur->id_employe));
 		}
 
+		if(isset($_POST['btnmodifco']))
+		{
+			$this->redirect(array('site/modifParamCo'));
+		}
+
 		$this->render('parametres');
 	}
 
@@ -558,6 +555,7 @@ class EmployeController extends Controller
 
 		return $res;
 	}
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -586,9 +584,6 @@ class EmployeController extends Controller
 			Yii::app()->end();
 		}
 	}
-
-
-
 
 	
 }// END CONTROLLER	
