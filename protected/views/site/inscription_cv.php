@@ -11,12 +11,12 @@ if($utilisateur != null)
 	{ // Si employe
 		?>
 
-		<div class="dropdown">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-				Menu 
-				<span class="caret"></span>
-			</button>
-			<ul id="menu-upload" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+			<div class="btn-group" style="float: right;">
+				<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Menu
+			   	<span class="caret"></span>
+			   	</button>
+				<ul class="dropdown-menu dropdown-menu-right">
 				<li>
 					<a href="index.php?r=employe/view&id=<?php echo $utilisateur->id_employe;?>" title="Mon profil">
 							Mon profil
@@ -51,12 +51,12 @@ if($utilisateur != null)
 else
 {
 	?>
-	<div class="dropdown">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-			Menu 
-			<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<div class="btn-group" style="float: right;">
+				<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Menu
+			   	<span class="caret"></span>
+			   	</button>
+				<ul class="dropdown-menu dropdown-menu-right">
 			<li>
 				<a href="index.php?r=OffreEmploi/index" title="Liste des offres d'emplois">
 				Liste des offres d'emplois

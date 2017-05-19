@@ -19,7 +19,7 @@
 	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
 	      'Image accueil');
 	 
-	      echo CHtml::link($image,array('entreprise/index')); ?>
+	      echo CHtml::link($image,array('employe/index')); ?>
 <?php
 if($utilisateur != null)
 { // Si connecter

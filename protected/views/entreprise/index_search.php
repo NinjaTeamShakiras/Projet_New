@@ -110,14 +110,12 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 
 
-<<<<<<< HEAD
 			print("<p id='div-infos-comp'> Trouver le CV que vous recherchez parmis ".$nombreEmploye." CV.</p>"); 
 		?>
-=======
 			<?php
 				// On récupère tous les employé
 				$tabEmploye = employe::model()->FindAll();
->>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
+
 
 				// On récupère le nombre total d'employe
 				$nombreEmploye = sizeof($tabEmploye);

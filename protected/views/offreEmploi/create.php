@@ -1,11 +1,10 @@
 <?php
 	/* @var $this EmployeController */
 	/* @var $model Employe */
-	$login = Yii::app()->user->getId();
-	// Récupération de l'utilisateur
-	$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
-	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-	echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe));
+	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
+	      'Image accueil');
+	 
+	      echo CHtml::link($image,array('entreprise/index'));
 ?>
 
 <div class='filtre-vert'>

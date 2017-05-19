@@ -70,7 +70,17 @@
 	color: black;
 }
 
+div.form-comp label
+{
+	margin-right: 20px;
+	font-size: 30px;
+}
 
+
+div.form-comp #row
+{
+	width: 1200px;
+}
 
 
 /****************/
@@ -207,6 +217,12 @@ p#lien
 	margin-top: 30px;
 }
 
+
+#Competence_niveau_competence
+{
+	display: inline-flex;
+	float: right;
+}
 
 
 
