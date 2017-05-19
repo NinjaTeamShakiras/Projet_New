@@ -17,7 +17,12 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 //On récupère les infos de l'employé qu'on consulte
 $employe = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
 //On récupère l'utilisateur qui visite la page
-$user  = Utilisateur::model()->FindByAttributes(array('id_employe'=>$employe->id_employe));	
+$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+
+if($user == null)
+{
+	$user = new Utilisateur;
+}	
 ?>
 
 
@@ -83,7 +88,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('id_employe'=>$employe->id
 
 			//Si l'utilisateur consulte sa page on affiche les infos persos
 			//Sinon, si l'utilisateur consulte les infos de quelqu'un d'autre, on affiche pas les infos persos
-			if($user->id_employe == $_GET['id'])
+			if($user->id_employe === $_GET['id'])
 			{
 				//On récupère l'adresse correspondant à l'employé
 				$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adresse));
@@ -214,7 +219,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('id_employe'=>$employe->id
 				<!-- FORMATIONS -->
 				<?php
 				//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
-				if($user->id_employe == $_GET['id'])
+				if($user->id_employe === $_GET['id'])
 				{
 					echo "<h3>MES FORMATIONS / PARCOURS SCOLAIRE</h3>";
 				}
@@ -295,7 +300,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('id_employe'=>$employe->id
 				<!-- EXPERIENCES PROFESSIONNELLES -->
 				<?php
 				//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
-				if($user->id_employe == $_GET['id'])
+				if($user->id_employe === $_GET['id'])
 				{
 					echo "<h3>MES EXPERIENCES PROFESSIONELLES</h3>";
 				}
@@ -353,7 +358,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('id_employe'=>$employe->id
 							
 
 							//Seul le "proprietaire" du profil peut mettre à jour et supprimer des infos
-							if($user->id_employe == $_GET['id'])
+							if($user->id_employe === $_GET['id'])
 							{
 								?>
 								<div class='div-modifier-supprimer'>
