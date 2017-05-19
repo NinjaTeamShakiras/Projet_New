@@ -27489,3 +27489,47 @@ in C:\wamp\www\prozzl\index.php (13)
 =======
 >>>>>>> 33a608bf9bc99779ca3c189699c8df87e12f8a6b
 >>>>>>> 3b1f2ddd073e470c5a514a4999c879e3c4893bd4
+2017/05/19 13:44:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index.php".' in C:\wamp\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(270): CController->missingAction('index.php')
+#1 C:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('index.php')
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/index.p...')
+#3 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/index.php
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=1
+---
+2017/05/19 13:45:18 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\controllers\SiteController.php:257)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/Accueil
+in C:\wamp\www\prozzl\protected\controllers\SiteController.php (257)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/19 13:45:24 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\controllers\SiteController.php:257)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/Accueil
+in C:\wamp\www\prozzl\protected\controllers\SiteController.php (257)
+in C:\wamp\www\prozzl\index.php (13)
+2017/05/19 13:45:29 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\controllers\SiteController.php:257)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/Accueil
+in C:\wamp\www\prozzl\protected\controllers\SiteController.php (257)
+in C:\wamp\www\prozzl\index.php (13)
