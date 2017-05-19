@@ -37,7 +37,7 @@
 				array(
 					'size' => 30,
 					'maxlength' => 30,
-					'placeholder' => 'Accueil hotelière',
+					'placeholder' => 'Ressources Humaines',
 				)
 			); 
 		?>
