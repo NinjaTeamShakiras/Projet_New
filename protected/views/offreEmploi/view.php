@@ -13,15 +13,18 @@
 $titre ="";
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-//$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-//echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); 
+
 
 
 	if($utilisateur != null)
 	{ // Si connecter
 		if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			{ // Si entreprise on affiche la possibilité de maj/suppr l'offre en question
+				$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+				echo CHtml::link($image,array('entreprise/index','id'=> $utilisateur->id_entreprise)); 
 				?>
+
+
 
 				<!--  MENU 	-->
 				<div class="btn-group" style="float: right;">
@@ -74,6 +77,9 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 	} /* 	EMPLOYE 	*/
 	else if( Utilisateur::est_employe(Yii::app()->user->role))
 	{  // Si employé on affiche la possibilité de postuler à l'offre en question
+		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+		echo CHtml::link($image,array('index')); 
+
 		$tablePostuler = Postuler::model()->FindAll();
 		$aPostuler = false;
 		foreach($tablePostuler as $postuler)
@@ -132,6 +138,9 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 }
 else
 { // Si non connecté
+
+	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+	echo CHtml::link($image,array('index')); 
 	?>
 
 			<!--  MENU 	-->
