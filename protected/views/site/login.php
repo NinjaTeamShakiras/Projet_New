@@ -24,13 +24,13 @@
 
 	<div id="div-adresse-mail">
 		<p id=label-mail><?php echo $form->labelEx($model,'username'); ?></p>
-		<p id=champ-mail><?php echo $form->textField($model,'username',array("placeholder"=>"Entrez votre adresse Mail")); ?></p>
+		<p id=champ-mail><?php echo $form->textField($model,'username',array("placeholder"=>"E-mail")); ?></p>
 		<p><?php echo $form->error($model,'username'); ?></p>
 	</div>
 
 	<div id="div-password" class="row-login">
 		<p id=label-pass><?php echo $form->labelEx($model,'password'); ?></p>
-		<p id=champ-pass><?php echo $form->passwordField($model,'password',array("placeholder"=>"XXX")); ?></p>
+		<p id=champ-pass><?php echo $form->passwordField($model,'password',array("placeholder"=>"Password")); ?></p>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 

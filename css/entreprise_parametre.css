@@ -1,0 +1,46 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+
+.btnmodifier_id
+{
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color:black;
+	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
+	padding:1%;
+	color:#90ffb9;
+	border:2px solid ;
+	padding: 2%
+}
+
+.div-retour
+{
+	text-align: center;
+}
+
+.btnretour
+{
+	width: 4cm;
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color:black;
+	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
+	padding:1%;
+	color:#90ffb9;
+	border:2px solid ;
+}
+

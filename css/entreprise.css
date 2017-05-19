@@ -75,6 +75,12 @@ div.form-comp label
 	margin-right: 20px;
 	font-size: 30px;
 }
+div.form-infos-perso label
+{
+	font-weight: normal;
+	font-size: 20px;
+}
+
 
 
 div.form-comp #row
@@ -98,7 +104,7 @@ div.form-comp #row
 
 p#lien
 {
-	font-family:"Montserrat Light";
+	text-shadow: 1px 1px 5px;
 	font-size: 30px;
 	font-weight: bolder;
 	margin-top: 20px;
@@ -174,6 +180,7 @@ p#lien
 	font-family:"Bodoni FLF";
 	text-align: center;
 	color: black;
+	margin-bottom: 60px;
 
 }
 
@@ -201,20 +208,18 @@ p#lien
 
 }
 
-#div-infos-perso-entreprise
+
+#div-infos-perso-detaille
+{
+	margin-top: 30px;
+}
+
+#div-infos-perso
 {
 	font-family:"Montserrat Light";
 	color:black;
 	font-size: 30px;
 	font-weight: bolder;
-	margin-top: 100px;
-	margin-left: 80px;
-	margin-bottom: 100px;
-}
-
-#div-infos-perso-detaille
-{
-	margin-top: 30px;
 }
 
 

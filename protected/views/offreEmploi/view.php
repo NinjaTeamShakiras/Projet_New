@@ -13,8 +13,8 @@
 $titre ="";
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); 
+//$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+//echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); 
 
 
 	if($utilisateur != null)

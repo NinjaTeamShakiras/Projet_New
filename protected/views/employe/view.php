@@ -13,22 +13,89 @@ $cs->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_view.js');
 
 
-
 //On récupère les infos de l'employé qu'on consulte
 $employe = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
 //On récupère l'utilisateur qui visite la page
 $user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));	
-?>
 
 
 
-	<?php 
+if($user != null)
+{
+	if(!Utilisateur::est_employe(Yii::app()->user->role))
+	{// ENTREPRISE
 		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-	 	echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); 
+	 	echo CHtml::link($image,array('entreprise/index','id'=> $user->id_employe));
+
+	 	?>
+	 		<!--  MENU 	-->
+		<div class="btn-group" style="float: right;">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Menu
+		   	<span class="caret"></span>
+		   	</button>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li>
+					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=Entreprise/parametres" title="Parametres">
+					Paramètres de mon compte
+					</a>
+				</li>
+			</ul>
+		</div>
+	 	<?php
+	 	$user = new Utilisateur;
+	}
+	else if(Utilisateur::est_employe(Yii::app()->user->role))
+	{ // EMPLOYE
+		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+	 	echo CHtml::link($image,array('employe/index','id'=> $user->id_employe));
+
+	 	?>
+	 		<!--  MENU 	-->
+		<div class="btn-group" style="float: right;">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Menu
+		   	<span class="caret"></span>
+		   	</button>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li>
+					<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil"> 
+					Mes candidatures
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=employe/index" title="Recherche">
+					Rechercher une offre
+					</a>
+				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=Employe/parametres" title="Parametres">
+					Paramètres de mon compte
+					</a>
+				</li>
+			</ul>
+		</div>
+	 	<?php 
+	}	
+}
+else
+{
+	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+	 echo CHtml::link($image,array('index.php'));
+
 	 ?>
-
-
-	<!--  MENU 	-->
+	 		<!--  MENU 	-->
 	<div class="btn-group" style="float: right;">
 		<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Menu
@@ -36,28 +103,21 @@ $user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->
 	   	</button>
 		<ul class="dropdown-menu dropdown-menu-right">
 			<li>
-				<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil"> 
-				Mes candidatures
-				</a>
-			</li>
-			<li>
 				<a href="index.php?r=employe/index" title="Recherche">
 				Rechercher une offre
 				</a>
 			</li>
-			<li role="separator" class="divider"></li>
-			<li>
-				<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
-				Déconnexion
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=Employe/parametres" title="Parametres">
-				Paramètres de mon compte
-				</a>
-			</li>
 		</ul>
 	</div>
+	<?php
+}
+
+?>
+
+
+
+
+
 
 
 	<div class='filtre-blanc'> 
@@ -83,7 +143,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->
 
 			//Si l'utilisateur consulte sa page on affiche les infos persos
 			//Sinon, si l'utilisateur consulte les infos de quelqu'un d'autre, on affiche pas les infos persos
-			if($user->id_employe == $_GET['id'])
+			if($user->id_employe === $_GET['id'])
 			{
 				//On récupère l'adresse correspondant à l'employé
 				$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adresse));
@@ -214,7 +274,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->
 				<!-- FORMATIONS -->
 				<?php
 				//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
-				if($user->id_employe == $_GET['id'])
+				if($user->id_employe === $_GET['id'])
 				{
 					echo "<h3>MES FORMATIONS / PARCOURS SCOLAIRE</h3>";
 				}
@@ -295,7 +355,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->
 				<!-- EXPERIENCES PROFESSIONNELLES -->
 				<?php
 				//Le titre change en fonction de si on consulte sa propre page ou celle de quelqu'un d'autre
-				if($user->id_employe == $_GET['id'])
+				if($user->id_employe === $_GET['id'])
 				{
 					echo "<h3>MES EXPERIENCES PROFESSIONELLES</h3>";
 				}
@@ -353,7 +413,7 @@ $user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->
 							
 
 							//Seul le "proprietaire" du profil peut mettre à jour et supprimer des infos
-							if($user->id_employe == $_GET['id'])
+							if($user->id_employe === $_GET['id'])
 							{
 								?>
 								<div class='div-modifier-supprimer'>
