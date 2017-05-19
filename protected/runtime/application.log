@@ -27679,3 +27679,73 @@ in C:\wamp64\www\prozzl\index.php (13)
 =======
 >>>>>>> 3b1f2ddd073e470c5a514a4999c879e3c4893bd4
 >>>>>>> a162dd6e8a105f2c5683dc18eb0ba6d266ecb0f6
+2017/05/19 11:49:20 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\protected\views\employe\view.php:146)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(84): EmployeController->render()
+#3 unknown(0): EmployeController->actionView()
+#4 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#5 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#8 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#11 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#15 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#17 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=1
+in C:\wamp64\www\prozzl\protected\views\employe\view.php (146)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (84)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/19 11:49:43 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\protected\views\employe\view.php:146)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp64\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp64\www\prozzl\protected\controllers\EmployeController.php(84): EmployeController->render()
+#3 unknown(0): EmployeController->actionView()
+#4 C:\wamp64\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#5 C:\wamp64\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\wamp64\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#8 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\wamp64\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#11 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\wamp64\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#14 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#15 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#17 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=1
+in C:\wamp64\www\prozzl\protected\views\employe\view.php (146)
+in C:\wamp64\www\prozzl\protected\controllers\EmployeController.php (84)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/19 11:51:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index.php".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('index.php')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('index.php')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/index.p...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/index.php
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=1
+---
+2017/05/19 11:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index.php".' in C:\wamp64\www\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(270): CController->missingAction('index.php')
+#1 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('index.php')
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('employe/index.p...')
+#3 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#4 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/prozzl/index.php?r=employe/index.php
+HTTP_REFERER=http://localhost/prozzl/index.php?r=employe/view&id=1
+---
