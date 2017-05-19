@@ -50,7 +50,7 @@ $employeConnecte = false;
 						<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
 						Déconnexion
 						</a>
-				</li>
+					</li>
 				</ul>
 				</div>
 
@@ -64,11 +64,11 @@ $employeConnecte = false;
 		?>
 			<!--	MENU 	-->
 			<div class="btn-group" style="float: right;">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-haspopup="true" aria-expanded="true">
-				Menu 
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Menu
+		   		<span class="caret"></span>
+		   	</button>
+			<ul class="dropdown-menu dropdown-menu-right">
 				<li>
 					<a href="index.php?r=offreEmploi/create" title="Déposer une annonce">
 					Déposer une annonce
