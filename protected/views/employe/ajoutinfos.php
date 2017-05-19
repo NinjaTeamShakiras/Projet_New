@@ -180,7 +180,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=>$login));
 		<!-- Fin de la div form -->
 
 		<div class="row" id="champ-back">
-		<?php echo CHtml::button("Retour",array('name' => 'retour', 'submit'=>array('employe/view', 'id'=>$user->id_employe),'class'=>'btn-maj')); ?>
+		<?php echo CHtml::button("Retour",array('name' => 'retour', 'submit'=>array('employe/view', 'id'=>$user->id_employe),'class'=>'btn-maj btn')); ?>
 		</div>
 
 

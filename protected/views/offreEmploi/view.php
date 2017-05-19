@@ -13,15 +13,18 @@
 $titre ="";
 $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-//$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-//echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe)); 
+
 
 
 	if($utilisateur != null)
 	{ // Si connecter
 		if (!Utilisateur::est_employe(Yii::app()->user->role) )
 			{ // Si entreprise on affiche la possibilité de maj/suppr l'offre en question
+				$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+				echo CHtml::link($image,array('entreprise/index','id'=> $utilisateur->id_entreprise)); 
 				?>
+
+
 
 				<!--  MENU 	-->
 				<div class="btn-group" style="float: right;">
@@ -74,6 +77,9 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 	} /* 	EMPLOYE 	*/
 	else if( Utilisateur::est_employe(Yii::app()->user->role))
 	{  // Si employé on affiche la possibilité de postuler à l'offre en question
+		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+		echo CHtml::link($image,array('index')); 
+
 		$tablePostuler = Postuler::model()->FindAll();
 		$aPostuler = false;
 		foreach($tablePostuler as $postuler)
@@ -132,6 +138,9 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 }
 else
 { // Si non connecté
+
+	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+	echo CHtml::link($image,array('index')); 
 	?>
 
 			<!--  MENU 	-->
@@ -257,7 +266,7 @@ else
 				// Affichage des candidats ou non
 				if($nombreCandidature > 0) // Si il y a des candidats
 				{ // On affiche le nombre de candidat, puis un lien vers les candidats
-					print("<p> Vous avez ".$nombreCandidature." candidature(s) pour cette offre : </p>");
+					print("<p id='div-infos-comp'> Vous avez ".$nombreCandidature." candidature(s) pour cette offre : </p>");
 
 					$tablePostuler = Postuler::model()->FindAll();
 					for($i=0; $i<$nombreCandidature; $i++)// parcours de chaques candidatures (correspond à un employé)
@@ -269,14 +278,19 @@ else
 						{ 
 						 	if( ($postuler->id_offre_emploi == $model->id_offre_emploi)  && ($tabIdEmploye[$i] == $postuler->id_employe) )
 						 	{ // Si l'offre de la table postuler concerne l'offre en question ET  :
-						 		print("<p>Candidat numéro ".$i." (id = ".$tabIdEmploye[$i].") a candidaté le ".$this->changeDateNaissance($postuler->date_postule).". </p>");
+						 		$nomLien = "<p id='lien'> Le candidat ".$tabIdEmploye[$i]." a postulé le :".$this->changeDateNaissance($postuler->date_postule)." </p>";
+								echo CHtml::link($nomLien ,array('employe/view', 'id'=>$tabIdEmploye[$i]));
+								if($nombreCandidature-$i > 1)
+								{
+									echo "<div class=separation-blanche></div>";
+								}
 						 	}
 						}
 					}
 				}
 				else
 				{
-					print("<p> Vous n'avez aucune candidature pour cette offre </p>");
+					print("<p id='div-infos-comp'> Vous n'avez aucune candidature pour cette offre </p>");
 				}
 
 				?>
@@ -316,7 +330,7 @@ else
 					?>
 
 					<div class="row">
-						<?php echo CHtml::submitButton('Supprimer mon annonce',array('class'=>'btn-canditure')); ?>
+						<?php echo CHtml::submitButton('Supprimer mon annonce',array('class'=>'btn-candidature btn')); ?>
 					</div>
 
 					<?php $this->endWidget(); ?>

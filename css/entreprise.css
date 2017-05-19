@@ -70,6 +70,11 @@
 	color: black;
 }
 
+div.form-comp label
+{
+	margin-right: 20px;
+	font-size: 30px;
+}
 div.form-infos-perso label
 {
 	font-weight: normal;
@@ -77,6 +82,11 @@ div.form-infos-perso label
 }
 
 
+
+div.form-comp #row
+{
+	width: 1200px;
+}
 
 
 /****************/
@@ -212,6 +222,12 @@ p#lien
 	font-weight: bolder;
 }
 
+
+#Competence_niveau_competence
+{
+	display: inline-flex;
+	float: right;
+}
 
 
 

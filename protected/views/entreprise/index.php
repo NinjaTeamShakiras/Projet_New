@@ -110,7 +110,7 @@ $employeConnecte = false;
 
 
 		<!-- FORMAULAIRE DE RECHERCHE DE CV-->
-		<div class="form">
+		<div class="form form-comp">
 
 			<?php
 				//Début du form
@@ -122,7 +122,7 @@ $employeConnecte = false;
 			?>
 
 			<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
-			<div id="div-champs-recherche">
+			<div id="row">
 				<?php
 					//Recherche par COMPETENCE
 					$competence = competence::model();
@@ -136,9 +136,7 @@ $employeConnecte = false;
 						)
 					);
 				?>
-			</div>
 
-			<div class="row" id='div-infos-comp'>
 				<?php
 					//Recherche par NIVEAU de COMPETENCE
 					echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5','Sans importance'),array('separator' => ' '));

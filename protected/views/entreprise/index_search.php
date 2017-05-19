@@ -108,6 +108,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 			<h3 id='titre'>Nouvelle recherche : </h3>
 
+
 			<?php
 				// On récupère tous les employé
 				$tabEmploye = employe::model()->FindAll();
@@ -121,54 +122,51 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 
 
-			<!-- FORMAULAIRE DE RECHERCHE DE CV-->
-			<div class="wide form">
+<!-- FORMAULAIRE DE RECHERCHE DE CV-->
+		<div class="form form-comp">
 
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('entreprise/Search'),
+					)
+				);
+			?>
+
+			<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
+			<div id="row">
 				<?php
-					//Début du form
-					$form=$this->beginWidget('CActiveForm',
-						array(
-							'action'=>Yii::app()->createUrl('entreprise/Search'),
+					//Recherche par COMPETENCE
+					$competence = competence::model();
+					echo $form->textField(
+						$competence,'intitule_competence', array(	
+							'class' => 'champs-recherche autocomplete-find-entreprise',
+							'url_data_auto' => Yii::app()->createUrl('entreprise/GetAllCompetenceJSON'),
+							'size' => 45,
+							'maxlength' => 45,
+							'placeholder' => 'Rechercher par compétence',
 						)
 					);
 				?>
 
-
-				<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
-				<div id="div-champs-recherche">
-					<?php
-						//Recherche par COMPETENCE
-						$competence = competence::model();
-						echo $form->textField(
-							$competence,'intitule_competence', array(	
-								'class' => 'champs-recherche autocomplete-find-offreEmploi',
-								'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllCompetenceJSON'),
-								'size' => 45,
-								'maxlength' => 45,
-								'placeholder' => 'Rechercher par compétence',
-							)
-						);
-					?>
-				</div>
-
-				<div class="row" id='div-infos-comp'>
-					<?php
-						//Recherche par NIVEAU de COMPETENCE
-						echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5'),array('separator' => ' '));
-					?>
-				</div>
-
-				<div class="row buttons">	
-					<?php
-						// Button d'envoi
-						echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
-					?>
-				</div>
-
-				
-				<?php $this->endWidget(); ?>
-
+				<?php
+					//Recherche par NIVEAU de COMPETENCE
+					echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5','Sans importance'),array('separator' => ' '));
+				?>
 			</div>
+
+			<div id='div-btn-rechercher'>	
+				<?php
+					// Button d'envoi
+					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
+				?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+
+		</div>
+
 
 
 
@@ -222,8 +220,19 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 						foreach($data as $employe)
 						{
+							$url_redirect = './upload/' . $employe->id_employe . '/cv_generated_' . $employe->id_employe . '.pdf';
 							$nomLien = "<p id='lien'> Candidat ".$employe->id_employe."</p>";
-							echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$employe->id_employe));
+							if( file_exists( $url_redirect ) )
+							{
+								echo CHtml::link($nomLien , array('employe/view', 'id' => $employe->id_employe ) );
+								echo '<iframe src="' . $url_redirect . '" width="55%" height="600px" ></iframe>';
+							}
+							/* 
+							Pour afficher le profil d'un employé qui n'a pas généré son cv enlever le commentaire.
+							else
+							{
+								echo CHtml::link($nomLien , array('employe/view', 'id' => $employe->id_employe ) );
+							}*/
 						}
 					}
 					
