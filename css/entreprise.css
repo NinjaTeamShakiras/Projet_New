@@ -86,6 +86,14 @@
 	margin-left: 60px;
 }
 
+p#lien
+{
+	font-family:"Montserrat Light";
+	font-size: 30px;
+	font-weight: bolder;
+	margin-top: 20px;
+}
+
 
 #div-infos-comp
 {
@@ -120,10 +128,14 @@
 	margin-bottom: 200px;
 }
 
+#div-accueil-entreprise-candidature
+{
+	padding-bottom: 20px;
+}
 
 #div-accueil-entreprise-search
 {
-	margin-bottom: 30px;
+	padding-bottom: 20px;
 }
 
 #div-accueil-entreprise
@@ -179,7 +191,7 @@
 
 }
 
-#div-infos-perso
+#div-infos-perso-entreprise
 {
 	font-family:"Montserrat Light";
 	color:black;

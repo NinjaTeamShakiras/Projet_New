@@ -151,11 +151,27 @@
 	<div class="wide form">
 		<?php
 		//Début du form
-		$form=$this->beginWidget('CActiveForm',
-			array(
-				'action'=>Yii::app()->request->geturlReferrer()
-			)
-		);
+		$previousURLlong = Yii::app()->request->geturlReferrer();
+		$previousURL = substr($previousURLlong,strpos($previousURLlong,'?r='));
+
+
+		if($previousURL == '?r=site/login')
+		{
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>Yii::app()->createUrl('entreprise/index')
+				)
+			);
+		}
+		else
+		{
+			$form=$this->beginWidget('CActiveForm',
+				array(
+					'action'=>$previousURLlong
+				)
+			);	
+		}
+
 		?>
 
 		<div class="row buttons">

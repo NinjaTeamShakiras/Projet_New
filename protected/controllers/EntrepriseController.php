@@ -304,6 +304,8 @@ class EntrepriseController extends Controller
 
 			// Tableau de résultat d'employe rechercher
 			$tabEmploye = employe::model()->findAll();
+			$tabCompetence = array();
+
 
 			$intituleCompetenceIsSet = false;
 			$niveauCompetenceIsSet = false;
@@ -319,7 +321,6 @@ class EntrepriseController extends Controller
 
 			// Initialisation des varaiable temp
 			$tabTemp = array();
-			$i = 0;
 			
 
 
@@ -345,20 +346,18 @@ class EntrepriseController extends Controller
 				// On recherche toute les compétences ayant un intituler ressemblant à la recherche / et 
 				// éventuellement avec un certain niveau
 				$tabIntituleTrouver = competence::model()->findAll($requete);
-
+				
 				foreach($tabEmploye as $employe)
 				{
 					foreach($tabIntituleTrouver as $competence)
 					{ // On parcours le tableau des intitulé de compétence trouvé
 						if( ($competence->id_employe == $employe->id_employe) )
 						{ // Si l'employe à déjà été mis de coté, on conserve
-							$tabTemp[$i] = $employe;
-							$i++;
-
-							// Si on ajoute une fois l'employe, il sera dans le tableau ..
-							// pas la peine de continuer le match pour cette employe
-							// on passe au suivant
-							break;
+							if(!in_array($employe, $tabTemp)) // Si l'employé n'est pas encore retenue alors qu'il correspond, on le retien
+							{
+								$tabTemp[] = $employe;
+							}
+							$tabCompetence[] = $competence; // on ajoute chaque compétence de l'employé
 						}
 					}
 				}
@@ -367,7 +366,6 @@ class EntrepriseController extends Controller
 
 				// Réinitialisation des variable temporaire
 				$tabTemp = array(); 
-				$i=0;
 
 				$aRechercher = true;
 			}
@@ -376,7 +374,7 @@ class EntrepriseController extends Controller
 			/**** 		FIN RECHERCHE 		****/
 			
 			// On redirige avec le resultat.
-			$this->render('index_search', array('data'=>$tabEmploye,'aRechercher'=>$aRechercher)); 
+			$this->render('index_search', array('data'=>$tabEmploye,'aRechercher'=>$aRechercher, 'competences'=>$tabCompetence)); 
 
 		}
 		else

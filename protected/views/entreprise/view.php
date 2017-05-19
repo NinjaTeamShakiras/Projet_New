@@ -84,7 +84,7 @@
 
 			echo Yii::app()->user->getFlash('success_update_entreprise');
 
-		?><div id='div-infos-perso'><?php
+		?><div id='div-infos-perso-entreprise'><?php
 
 			print("<p id='div-infos-perso-detaille'> Nom de mon entreprise : ".$model->nom_entreprise."</p>");
 			print("<p id='div-infos-perso-detaille'> Nombres d'employés : ".$nombreEmployes."</p>");
