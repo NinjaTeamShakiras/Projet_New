@@ -90,7 +90,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 					<a href="index.php?r=site/inscriptionEntreprise" title="Inscription">
 					Inscription
 					</a>
-				</li>
+				</li>	
 			</ul>
 			</div>
 
@@ -110,9 +110,14 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 
 
+<<<<<<< HEAD
+			print("<p id='div-infos-comp'> Trouver le CV que vous recherchez parmis ".$nombreEmploye." CV.</p>"); 
+		?>
+=======
 			<?php
 				// On récupère tous les employé
 				$tabEmploye = employe::model()->FindAll();
+>>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 
 				// On récupère le nombre total d'employe
 				$nombreEmploye = sizeof($tabEmploye);
@@ -179,6 +184,20 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 			<h3 id='titre'>Résultat de votre recherche : </h3>
 
+<<<<<<< HEAD
+			// AFFICHAGE DES EMPLOYES
+			if($nombreEmploye>0)
+			{// Si le nombre d'employé matché est positif
+				if($aRechercher)
+				{// Si unerecherche à été faite
+					if($nombreEmploye == 1)
+					{
+						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidat correspondant à votre recherche.</p>");
+					}
+					else
+					{
+						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidats correspondant à votre recherche.</p>");
+=======
 			<?php
 				// On récupère le nombre d'employé matché
 				$nombreEmploye = sizeof($data);
@@ -226,17 +245,38 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 							$nomLien = "<p id='lien'> Candidat ".$employe->id_employe."</p>";
 							echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$employe->id_employe));
 						}
+>>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 					}
 					
 
 				}
 				else
+<<<<<<< HEAD
+				{// Si aucune recherche n'a été faite on affiche tout les employés
+					print("<p id='div-infos-comp'> Votre recherche étant vide, à défaut, voici les ".$nombreEmploye." candidats présents sur prozzl.</p>");
+
+					foreach($data as $employe)
+					{
+						print("<p id='div-infos-comp'> L'employe : ".$employe->id_employe." (id)</p>");
+					}
+=======
 				{// Sinon, on dit simplement qu'il n'y en a pas
 					print("<p id='div-infos-comp'> Aucun candidat ne correspondent à votre recherche.</p>");
+>>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 				}
 
+<<<<<<< HEAD
+			}
+			else
+			{// Sinon, on dit simplement qu'il n'y en a pas
+				print("<p id='div-infos-comp'> Aucun candidat ne corresponds à votre recherche.</p>");
+			}
+
+		?>
+=======
 			?>
 		</div>
+>>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 	</div><!-- Fermeture de la div du filtre -->
 </div><!--Fermture de la div de l'arrière plan -->
 

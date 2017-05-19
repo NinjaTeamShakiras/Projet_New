@@ -6,7 +6,7 @@
 		)
 	);
 
-	echo CHtml::submitbutton('Déconnexion', array('name'=>'btndeco'));
+	echo CHtml::submitbutton('Modifier mes identifiants de connexion', array('name'=>'btnmodifco'));
 	echo CHtml::submitbutton('Supprimer mon compte', array('name'=>'btnsupcompte'));
 	echo CHtml::submitbutton('Retour', array('name'=>'btnretour'));
 
