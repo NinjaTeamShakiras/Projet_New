@@ -9,6 +9,6 @@
 ?>
 
 <div class='filtre-vert'>
-	<h1 class=intule>Créer une offre d'emploi</h1>
+	<h1 class=intitule>Créer une offre d'emploi</h1>
 
 	<?php $this->renderPartial('_form', array('model'=>$model)); ?>
