@@ -110,3 +110,19 @@
   font-size: 1.5em;
   margin: 4% auto;
 }
+
+#button-reinseginer-infos
+{
+  border-color: #90ffb9;
+  font-weight: bold;
+  padding: 1%;
+  background-color: black;
+  color: #90ffb9;
+  border-radius: 50px;
+  box-shadow: 2px 2px 15px black;
+  font-family: "Montserrat Light";
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  transition: all .2s linear;
+}

@@ -70,7 +70,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 		<?php echo $form->error($model,'mot_de_passe'); ?>
 	</div>
 
-	<div class="row buttons">
+	<div class="row">
 		<?php echo CHtml::submitButton('Inscription',array("class"=>"btnInscription btn")); ?>
 	</div>
 

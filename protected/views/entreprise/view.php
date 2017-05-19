@@ -61,49 +61,55 @@
 
 		<h3 id='titre'>Mon profil</h3>
 
-		<?php
+		<div id='div-infos-perso'>
 
-			$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
+			<?php
 
-			$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$utilisateur->id_adresse));
-			$nombreEmployes = $model->nombre_employes == null ? 'Non renseigné' : $model->nombre_employes;
-			$rechercheEmployes = $model->recherche_employes == 0 ? 'Non' : 'Oui';
-			$secteurActivite = $model->secteur_activite_entreprise == null ? 'Non renseigné' : $model->secteur_activite_entreprise;
-			$anneeCreation = $model->annee_creation_entreprise == null ? 'Non renseignée' : $model->annee_creation_entreprise;
-			$ageMoyen = $model->age_moyen_entreprise == null ? 'Non renseigné' : $model->age_moyen_entreprise;
+				$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-			$code_postal = $adresse->code_postal == null ? 'Non renseigné' : $adresse->code_postal;
-			$ville = $adresse->ville == null ? 'Non renseignée' : $adresse->ville;
-			$rue = $adresse->rue == null ? 'Non renseignée' : $adresse->rue;
+				$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$utilisateur->id_adresse));
+				$nombreEmployes = $model->nombre_employes == null ? 'Non renseigné' : $model->nombre_employes;
+				$rechercheEmployes = $model->recherche_employes == 0 ? 'Non' : 'Oui';
+				$secteurActivite = $model->secteur_activite_entreprise == null ? 'Non renseigné' : $model->secteur_activite_entreprise;
+				$anneeCreation = $model->annee_creation_entreprise == null ? 'Non renseignée' : $model->annee_creation_entreprise;
+				$ageMoyen = $model->age_moyen_entreprise == null ? 'Non renseigné' : $model->age_moyen_entreprise;
 
-			$telephone = $utilisateur->telephone == null ? 'Non renseigné' : $this->afficheTelephone($utilisateur->telephone);
-			$telephone2 = $utilisateur->telephone2 == null ? 'Non renseigné' : $this->afficheTelephone($utilisateur->telephone2);
-			$siteWeb = $utilisateur->site_web == null ? 'Non renseigné' : $utilisateur->site_web;
-			$mail = $utilisateur->mail == null ? 'Non renseignée' : $utilisateur->mail;
+				$code_postal = $adresse->code_postal == null ? 'Non renseigné' : $adresse->code_postal;
+				$ville = $adresse->ville == null ? 'Non renseignée' : $adresse->ville;
+				$rue = $adresse->rue == null ? 'Non renseignée' : $adresse->rue;
+
+				$telephone = $utilisateur->telephone == null ? 'Non renseigné' : $this->afficheTelephone($utilisateur->telephone);
+				$telephone2 = $utilisateur->telephone2 == null ? 'Non renseigné' : $this->afficheTelephone($utilisateur->telephone2);
+				$siteWeb = $utilisateur->site_web == null ? 'Non renseigné' : $utilisateur->site_web;
+				$mail = $utilisateur->mail == null ? 'Non renseignée' : $utilisateur->mail;
 
 
 
-			echo Yii::app()->user->getFlash('success_update_entreprise');
+				echo Yii::app()->user->getFlash('success_update_entreprise');
 
-		?><div id='div-infos-perso-entreprise'><?php
+			?><div class='form-infos-perso form'>
+				<div class='row'>
+					<?php
 
-			print("<p id='div-infos-perso-detaille'> Nom de mon entreprise : ".$model->nom_entreprise."</p>");
-			print("<p id='div-infos-perso-detaille'> Nombres d'employés : ".$nombreEmployes."</p>");
-			print("<p id='div-infos-perso-detaille'> Je recherche des employés : ".$rechercheEmployes."</p>");
-			print("<p id='div-infos-perso-detaille'> Secteur d'activité : ".$secteurActivite."</p>");
-			print("<p id='div-infos-perso-detaille'> Année de création de mon entreprise : ".$anneeCreation."</p>");
-			print("<p id='div-infos-perso-detaille'> Age moyen des salariés : ".$ageMoyen."</p>");
+					print("<p> NOM DE MON ENTREPRISE : <label>".$model->nom_entreprise."</label></p>");
+					print("<p> NOMBRE D'EMPLOYES : <label>".$nombreEmployes."</label></p>");
+					print("<p> JE RECHERCHE DES EMPLOYES : <label>".$rechercheEmployes."</label></p>");
+					print("<p> SECTEUR D'ACTIVITE : <label>".$secteurActivite."</label></p>");
+					print("<p> ANNEE DE CREATION DE MON ENTREPRISE : <label>".$anneeCreation."</label></p>");
+					print("<p> AGE MOYEN DES SALARIES : <label>".$ageMoyen."</label></p>");
 
-			print("<p id='div-infos-perso-detaille'> Code postal : ".$code_postal."</p>");
-			print("<p id='div-infos-perso-detaille'> Ville : ".$ville."</p>");
-			print("<p id='div-infos-perso-detaille'> Rue : ".$rue."</p>");
+					print("<p> CODE POSTAL : <label>".$code_postal."</label></p>");
+					print("<p> VILLE : <label>".$ville."</label></p>");
+					print("<p> RUE : <label>".$rue."</label></p>");
 
-			print("<p id='div-infos-perso-detaille'> Téléphone principal : ".$telephone."</p>");
-			print("<p id='div-infos-perso-detaille'> Téléphone secondaire : ".$telephone2."</p>");
-			print("<p id='div-infos-perso-detaille'> Site web : ".$siteWeb."</p>");
-			print("<p id='div-infos-perso-detaille'> Adresse mail : ".$mail."</p>");
-			
-		?>
+					print("<p> TELEPHONE : <label>".$telephone."</label></p>");
+					print("<p> AUTRE TELEPHONE : <label>".$telephone2."</label></p>");
+					print("<p> SITE WEB : <label>".$siteWeb."</label></p>");
+					print("<p> ADRESSE MAIL : <label>".$mail."</label></p>");
+					
+					?>
+				</div>
+			</div>
 		</div>
 
 

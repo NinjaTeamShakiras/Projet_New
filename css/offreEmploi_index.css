@@ -1,0 +1,46 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+.titre-listes-offres h1
+{
+	font-size:70px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+	margin-bottom:2cm;
+	text-shadow: 1px 1px 2px;
+
+}
+
+.separation-blanche
+{
+	margin-top: 2cm;
+	margin-bottom: 2cm;
+	margin-left: 5cm;
+	margin-right: 15cm;
+	height: 7px;
+	background-color: white;
+}
+
+#div-lien-offre
+{
+	font-size: 30px;
+	text-shadow: 1px 1px 5px ;
+}
+
+#div-annonce
+{
+	font-size: 30px;
+	text-shadow: 1px 1px 5px ;
+}
+
+

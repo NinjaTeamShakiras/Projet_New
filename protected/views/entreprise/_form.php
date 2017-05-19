@@ -8,7 +8,7 @@
 
 ?>
 
-<div class="form">
+<div class="form div-infos-persos-entreprise">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'entreprise-form',
@@ -103,9 +103,9 @@
 		<?php echo $form->error($utilisateur,'site_web'); ?>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour'); ?>
-		<?php echo CHtml::submitButton('Retour', array('name'=>'btnretour'));?>
+	<div class="row two-buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour',array('class'=>'btn-maj btn')); ?>
+		<?php echo CHtml::submitButton('Retour', array('name'=>'btnretour','class'=>'btn-maj btn'));?>
 	</div>
 
 <?php $this->endWidget(); ?>

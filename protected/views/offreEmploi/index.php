@@ -151,7 +151,7 @@ else
 
 	<div class='titre-listes-offres'>
 
-	<h1><?php echo $titre?></h1> <!-- Titre page -->
+	<h3 id='titre'><?php echo $titre?></h3> <!-- Titre page -->
 
 	</div>
 
@@ -183,7 +183,7 @@ else
 					}
 				}
 
-				print("<p>Vous avez posté ".$nombreOffreEntreprise." offres.</p>");
+				print("<p id='div-infos-comp'>Vous avez posté ".$nombreOffreEntreprise." offres.</p>");
 
 				?>
 				<div class="wide form">
@@ -212,7 +212,7 @@ else
 						?>
 					</div>
 
-					<div class="row buttons">	
+					<div class="row" id='div-btn-rechercher'>	
 						<?php
 							// Button d'envoi
 							echo CHtml::submitButton('Actualiser',array('class'=>'btn_rechercher btn btn-success'));
@@ -237,24 +237,24 @@ else
 				else if($data == -1)
 				{
 					// Pas de paramètre selectionné
-					print("<p> Vous n'avez pas séléctionné de paramètre </p>");
+					print("<p id='div-infos-comp'> Vous n'avez pas séléctionné de paramètre </p>");
 				}
 				else
 				{
 					// Candidats chercher et rendu
 					if($data == null)
 					{
-						print("<p> Vous n'avez aucune annonce </p>");
+						print("<p id='div-infos-comp'> Vous n'avez aucune annonce </p>");
 					}
 					else
 					{
 						if(sizeof($data) == 1)
 						{
-							print("<p> Vous avez posté 1 offre au poste de '".$data[0]->poste_offre_emploi."'</p>");
+							print("<p id='div-infos-comp'> Vous avez posté 1 offre au poste de '".$data[0]->poste_offre_emploi."'</p>");
 						}
 						else
 						{
-							print("<p> Vous avez posté ".(sizeof($data))." offre au poste de '".$data[0]->poste_offre_emploi."'' </p>");
+							print("<p id='div-infos-comp'> Vous avez posté ".(sizeof($data))." offre au poste de '".$data[0]->poste_offre_emploi."'' </p>");
 						}
 						
 
@@ -263,7 +263,7 @@ else
 						foreach($data as $offre)
 						{
 							$annonceN++;
-							$nomLien = "Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - créée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi);
+							$nomLien = "<p id='lien'>Annonce ".$annonceN." - ".$offre->type_offre_emploi." - ".$offre->poste_offre_emploi." - créée le ".$this->changeDateNaissance($offre->date_creation_offre_emploi."</p>");
 							echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$offre->id_offre_emploi));
 							$candidats = Postuler::model()->FindAll("id_offre_emploi =".$offre->id_offre_emploi);
 
@@ -278,16 +278,19 @@ else
 							// Affichage des candidats ou non
 							if($nombreCandidature > 0) // Si il y a des candidats
 							{ // On affiche le nombre de candidat, puis un lien vers les candidats
-								print("<p> Vous avez ".$nombreCandidature." candidature pour cette offre</p>");
+								print("<p id='div-infos-comp'> Vous avez ".$nombreCandidature." candidature pour cette offre</p>");
 							}
 							else
 							{
-								print("<p> Aucune candidature à cette offre </p>");
+								print("<p id='div-infos-comp'> Aucune candidature à cette offre </p>");
 							}
 
 							$nombreCandidature = 0;
 							$tabIdEmploye=array();
-							echo "<hr/>";
+							if(sizeof($data)-$annonceN > 0)
+							{
+								echo "<div class=separation-blanche></div>";
+							}
 						}
 
 

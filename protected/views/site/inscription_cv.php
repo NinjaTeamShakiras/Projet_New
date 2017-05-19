@@ -142,7 +142,7 @@ else
 				?>
 
 				<div class="row">
-					<?php echo CHtml::submitButton('Renseigner mes informations personnelles et générer mon CV'); ?>
+					<?php echo CHtml::submitButton('Renseigner mes informations personnelles et générer mon CV', array('id' => 'button-reinseginer-infos')); ?>
 				</div>
 
 				<?php $this->endWidget(); ?>

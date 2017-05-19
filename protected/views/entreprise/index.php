@@ -9,10 +9,10 @@ $employeConnecte = false;
 ?>
 <div id='div-accueil-entreprise'>
 
-	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
+	<?php $image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png',
 	      'Image accueil');
 	 
-	      echo CHtml::link($image,array('entreprise/index')); ?>
+	      echo CHtml::link($image,array('site/index')); ?>
 
 	<?php
 	if($utilisateur != null)

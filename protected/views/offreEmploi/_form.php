@@ -5,7 +5,7 @@
 
 ?>
 
-<div class="form">
+<div class="form div-infos-persos">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'offre-emploi-form',
@@ -37,7 +37,7 @@
 				array(
 					'size' => 30,
 					'maxlength' => 30,
-					'placeholder' => 'Accueil hotelière',
+					'placeholder' => 'Ressources Humaines',
 				)
 			); 
 		?>
@@ -139,16 +139,13 @@
 	*/
 	?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour l\'offre'); ?>
-	</div>
-	<?php $this->endWidget(); ?>
+	<div class="row two-buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour l\'offre',array('class'=>'btn-creer-annuler')); ?>
+		<?php $this->endWidget(); ?>
 
 
 
 
-
-	<div class="wide form">
 		<?php
 		//Début du form
 		$previousURLlong = Yii::app()->request->geturlReferrer();
@@ -174,8 +171,8 @@
 
 		?>
 
-		<div class="row buttons">
-			<?php echo CHtml::submitButton('Annuler'); ?>
+		<div class="row ">
+			<?php echo CHtml::submitButton('Annuler',array('class'=>'btn-creer-annuler')); ?>
 		</div>
 
 		<?php $this->endWidget(); ?>
