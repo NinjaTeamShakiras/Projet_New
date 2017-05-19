@@ -17,12 +17,12 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 //On récupère les infos de l'employé qu'on consulte
 $employe = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
 //On récupère l'utilisateur qui visite la page
-$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));	
+$user  = Utilisateur::model()->FindByAttributes(array('id_employe'=>$employe->id_employe));	
 ?>
 
 
 
-	<?php 
+	<?php
 		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
 	 	echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); 
 	 ?>
