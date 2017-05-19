@@ -1,0 +1,58 @@
+		@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+.div-type-offre h1
+{
+	font-size: 50px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 50px;
+	font-family: "Bodoni FLF";
+	color: black;
+
+}
+
+
+.div-description-offre
+{
+	font-weight: normal;
+	font-size: 20px;
+	color: black;	
+}
+
+
+.div-postule-ou-non
+{
+	margin-top: 2cm;
+	font-weight: normal;
+	font-size: 20px;
+	color: black;	
+} 
+
+.div-btn-candidature
+{
+	text-align: center;
+	padding-left: 0;
+}
+
+.btn-candidature
+{
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color:black;
+	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
+	padding:1%;
+	color:#90ffb9;
+	border:2px solid ;
+}

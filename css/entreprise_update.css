@@ -1,0 +1,61 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+.div-infos-persos-entreprise
+{
+	font-family:"Montserrat Light";
+	color:black;
+	font-size: 25px;
+}
+
+.div-infos-persos-entreprise input
+{
+	font-size: 15px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 1%;
+}
+
+.div-infos-persos-entreprise select
+{
+	font-size: 15px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 1%;
+}
+
+.btn-maj
+{
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color:black;
+	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
+	padding:1%;
+	color:#90ffb9;
+	border:2px solid ;
+}
+
+.btn-maj:hover,
+.btn-maj:active,
+.btn-maj:focus
+{
+	color: #90ffb9;
+}
+
+.note
+{
+	font-size: 15px;
+	margin-bottom: 1cm;
+	margin-top: 1cm;
+}

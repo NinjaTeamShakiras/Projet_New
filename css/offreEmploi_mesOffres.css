@@ -1,0 +1,54 @@
+offreEmploi_mesOffres.css{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+.titre-mesoffres h1
+{
+	font-size:70px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+	margin-bottom:2cm;
+	text-shadow: 1px 1px 2px;
+
+}
+
+#phrase-postule-offres
+{
+	font-size:30px;
+	font-family:"Bodoni FLF";
+	text-align: left;
+	color: black;
+	margin-bottom: 2cm;
+}
+
+.div-actualiser
+{
+	text-align: center;
+}
+
+.btn-actualiser
+{
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color:black;
+	font-family:"Montserrat Light";
+	box-shadow:2px 2px 15px black;
+	padding:1%;
+	color:#90ffb9;
+	border:2px solid ;
+}
+
+.div-annonce a
+{
+	margin-bottom: 2cm;
+	font-size: 20px;
+}
