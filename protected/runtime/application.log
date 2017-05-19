@@ -27269,3 +27269,27 @@ in C:\wamp\www\prozzl\index.php (13)
 =======
 >>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 >>>>>>> 46c8202615cf9e69345deb7c109098b12bad4a5f
+2017/05/19 11:23:40 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\employe\view.php:27)
+Stack trace:
+#0 C:\wamp\www\yii\framework\web\CController.php(869): EmployeController->renderFile()
+#1 C:\wamp\www\yii\framework\web\CController.php(782): EmployeController->renderPartial()
+#2 C:\wamp\www\prozzl\protected\controllers\EmployeController.php(84): EmployeController->render()
+#3 unknown(0): EmployeController->actionView()
+#4 C:\wamp\www\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs()
+#5 C:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): EmployeController->runAction()
+#8 C:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): EmployeController->filterAccessControl()
+#11 C:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\wamp\www\yii\framework\web\CController.php(265): EmployeController->runActionWithFilters()
+#14 C:\wamp\www\yii\framework\web\CWebApplication.php(282): EmployeController->run()
+#15 C:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\wamp\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#17 C:\wamp\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=employe/view&id=1
+in C:\wamp\www\prozzl\protected\views\employe\view.php (27)
+in C:\wamp\www\prozzl\protected\controllers\EmployeController.php (84)
+in C:\wamp\www\prozzl\index.php (13)

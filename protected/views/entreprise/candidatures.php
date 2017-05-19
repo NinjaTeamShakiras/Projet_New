@@ -142,11 +142,14 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 							print("<p id='div-infos-comp'> Vous avez ".(sizeof($data))." candidats qui ont postulé à cette annonce :</p>");
 						}
 						
-						foreach($data as $employe)
+						foreach($data as $key=>$employe)
 						{
 							$nomLien = "<p id='lien'> Le candidat ".$employe->id_employe." a postulé à votre offre </p>";
 							echo CHtml::link($nomLien ,array('employe/view', 'id'=>$employe->id_employe));
-							echo "<div class=separation-blanche></div>";
+							if(sizeof($data)-$key > 1)
+							{
+								echo "<div class=separation-blanche></div>";
+							}
 						}
 					}
 				

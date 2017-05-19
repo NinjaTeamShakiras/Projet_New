@@ -287,7 +287,10 @@ else
 
 							$nombreCandidature = 0;
 							$tabIdEmploye=array();
-							echo "<div class=separation-blanche></div>";
+							if(sizeof($data)-$annonceN > 0)
+							{
+								echo "<div class=separation-blanche></div>";
+							}
 						}
 
 
