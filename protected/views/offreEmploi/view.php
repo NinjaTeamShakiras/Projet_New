@@ -325,7 +325,7 @@ else
 					?>
 
 					<div class="row">
-						<?php echo CHtml::submitButton('Supprimer mon annonce',array('class'=>'btn-canditure')); ?>
+						<?php echo CHtml::submitButton('Supprimer mon annonce',array('class'=>'btn-candidature btn')); ?>
 					</div>
 
 					<?php $this->endWidget(); ?>

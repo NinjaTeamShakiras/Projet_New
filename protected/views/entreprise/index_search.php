@@ -108,7 +108,6 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 			<h3 id='titre'>Nouvelle recherche : </h3>
 
-		?>
 
 			<?php
 				// On récupère tous les employé
@@ -123,54 +122,51 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 
 
-			<!-- FORMAULAIRE DE RECHERCHE DE CV-->
-			<div class="wide form">
+<!-- FORMAULAIRE DE RECHERCHE DE CV-->
+		<div class="form form-comp">
 
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('entreprise/Search'),
+					)
+				);
+			?>
+
+			<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
+			<div id="row">
 				<?php
-					//Début du form
-					$form=$this->beginWidget('CActiveForm',
-						array(
-							'action'=>Yii::app()->createUrl('entreprise/Search'),
+					//Recherche par COMPETENCE
+					$competence = competence::model();
+					echo $form->textField(
+						$competence,'intitule_competence', array(	
+							'class' => 'champs-recherche autocomplete-find-entreprise',
+							'url_data_auto' => Yii::app()->createUrl('entreprise/GetAllCompetenceJSON'),
+							'size' => 45,
+							'maxlength' => 45,
+							'placeholder' => 'Rechercher par compétence',
 						)
 					);
 				?>
 
-
-				<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
-				<div id="div-champs-recherche">
-					<?php
-						//Recherche par COMPETENCE
-						$competence = competence::model();
-						echo $form->textField(
-							$competence,'intitule_competence', array(	
-								'class' => 'champs-recherche autocomplete-find-offreEmploi',
-								'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllCompetenceJSON'),
-								'size' => 45,
-								'maxlength' => 45,
-								'placeholder' => 'Rechercher par compétence',
-							)
-						);
-					?>
-				</div>
-
-				<div class="row" id='div-infos-comp'>
-					<?php
-						//Recherche par NIVEAU de COMPETENCE
-						echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5'),array('separator' => ' '));
-					?>
-				</div>
-
-				<div class="row buttons">	
-					<?php
-						// Button d'envoi
-						echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
-					?>
-				</div>
-
-				
-				<?php $this->endWidget(); ?>
-
+				<?php
+					//Recherche par NIVEAU de COMPETENCE
+					echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5','Sans importance'),array('separator' => ' '));
+				?>
 			</div>
+
+			<div id='div-btn-rechercher'>	
+				<?php
+					// Button d'envoi
+					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
+				?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+
+		</div>
+
 
 
 
