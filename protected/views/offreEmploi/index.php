@@ -250,11 +250,11 @@ else
 					{
 						if(sizeof($data) == 1)
 						{
-							print("<p id='div-infos-comp'> Vous avez posté 1 offre au poste de '".$data[0]->poste_offre_emploi."'</p>");
+							print("<p id='div-infos-comp'> Vous avez posté 1 offre au poste de '".$data[0]->poste_offre_emploi."' : </p>");
 						}
 						else
 						{
-							print("<p id='div-infos-comp'> Vous avez posté ".(sizeof($data))." offre au poste de '".$data[0]->poste_offre_emploi."'' </p>");
+							print("<p id='div-infos-comp'> Vous avez posté ".(sizeof($data))." offre au poste de '".$data[0]->poste_offre_emploi."' : </p>");
 						}
 						
 
