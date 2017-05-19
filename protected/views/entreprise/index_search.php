@@ -108,9 +108,6 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 			<h3 id='titre'>Nouvelle recherche : </h3>
 
-
-
-			print("<p id='div-infos-comp'> Trouver le CV que vous recherchez parmis ".$nombreEmploye." CV.</p>"); 
 		?>
 
 			<?php
