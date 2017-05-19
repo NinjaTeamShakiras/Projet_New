@@ -14,9 +14,27 @@
 {
 	font-family:"Montserrat Light";
 	color:black;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bolder;
 }
+
+.div-infos-persos input
+{
+	font-size: 15px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 1%;
+}
+
+
+.div-infos-persos select
+{
+	font-size: 15px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 1%;
+}
+
 
 .btn-maj
 {
