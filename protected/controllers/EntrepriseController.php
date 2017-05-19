@@ -151,7 +151,6 @@ class EntrepriseController extends Controller
 			$utilisateur->telephone = $_POST['Utilisateur']['telephone'];
 			$utilisateur->telephone2 = $_POST['Utilisateur']['telephone2'];
 			$utilisateur->site_web = $_POST['Utilisateur']['site_web'];
-			$utilisateur->mail = $_POST['Utilisateur']['mail'];
 
 			//On enregistre le modèle et on redirige
 			if($model->save() && $utilisateur->save())

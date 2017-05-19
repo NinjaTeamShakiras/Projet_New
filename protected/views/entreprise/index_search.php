@@ -109,15 +109,9 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 			<h3 id='titre'>Nouvelle recherche : </h3>
 
 
-
-<<<<<<< HEAD
-			print("<p id='div-infos-comp'> Trouver le CV que vous recherchez parmis ".$nombreEmploye." CV.</p>"); 
-		?>
-=======
 			<?php
 				// On récupère tous les employé
 				$tabEmploye = employe::model()->FindAll();
->>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 
 				// On récupère le nombre total d'employe
 				$nombreEmploye = sizeof($tabEmploye);
@@ -128,54 +122,51 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 
 
-			<!-- FORMAULAIRE DE RECHERCHE DE CV-->
-			<div class="wide form">
+<!-- FORMAULAIRE DE RECHERCHE DE CV-->
+		<div class="form form-comp">
 
+			<?php
+				//Début du form
+				$form=$this->beginWidget('CActiveForm',
+					array(
+						'action'=>Yii::app()->createUrl('entreprise/Search'),
+					)
+				);
+			?>
+
+			<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
+			<div id="row">
 				<?php
-					//Début du form
-					$form=$this->beginWidget('CActiveForm',
-						array(
-							'action'=>Yii::app()->createUrl('entreprise/Search'),
+					//Recherche par COMPETENCE
+					$competence = competence::model();
+					echo $form->textField(
+						$competence,'intitule_competence', array(	
+							'class' => 'champs-recherche autocomplete-find-entreprise',
+							'url_data_auto' => Yii::app()->createUrl('entreprise/GetAllCompetenceJSON'),
+							'size' => 45,
+							'maxlength' => 45,
+							'placeholder' => 'Rechercher par compétence',
 						)
 					);
 				?>
 
-
-				<!-- Recherche par niveau de compétence (textfield + bouton submit) -->
-				<div id="div-champs-recherche">
-					<?php
-						//Recherche par COMPETENCE
-						$competence = competence::model();
-						echo $form->textField(
-							$competence,'intitule_competence', array(	
-								'class' => 'champs-recherche autocomplete-find-offreEmploi',
-								'url_data_auto' => Yii::app()->createUrl('offreEmploi/GetAllCompetenceJSON'),
-								'size' => 45,
-								'maxlength' => 45,
-								'placeholder' => 'Rechercher par compétence',
-							)
-						);
-					?>
-				</div>
-
-				<div class="row" id='div-infos-comp'>
-					<?php
-						//Recherche par NIVEAU de COMPETENCE
-						echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5'),array('separator' => ' '));
-					?>
-				</div>
-
-				<div class="row buttons">	
-					<?php
-						// Button d'envoi
-						echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
-					?>
-				</div>
-
-				
-				<?php $this->endWidget(); ?>
-
+				<?php
+					//Recherche par NIVEAU de COMPETENCE
+					echo $form->radioButtonList($competence,'niveau_competence',array('1','2','3','4','5','Sans importance'),array('separator' => ' '));
+				?>
 			</div>
+
+			<div id='div-btn-rechercher'>	
+				<?php
+					// Button d'envoi
+					echo CHtml::submitButton('Rechercher',array('class'=>'btn_rechercher btn btn-success'));
+				?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+
+		</div>
+
 
 
 
@@ -184,20 +175,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 			<h3 id='titre'>Résultat de votre recherche : </h3>
 
-<<<<<<< HEAD
-			// AFFICHAGE DES EMPLOYES
-			if($nombreEmploye>0)
-			{// Si le nombre d'employé matché est positif
-				if($aRechercher)
-				{// Si unerecherche à été faite
-					if($nombreEmploye == 1)
-					{
-						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidat correspondant à votre recherche.</p>");
-					}
-					else
-					{
-						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidats correspondant à votre recherche.</p>");
-=======
+
 			<?php
 				// On récupère le nombre d'employé matché
 				$nombreEmploye = sizeof($data);
@@ -207,7 +185,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 				if($nombreEmploye>0)
 				{// Si le nombre d'employé matché est positif
 					if($aRechercher)
-					{// Si unerecherche à été faite
+					{// Si une recherche à été faite
 						if($nombreEmploye == 1)
 						{
 							print("<p id='div-infos-comp'> Vous avez 1 candidat correspondant à votre recherche :</p>");
@@ -245,38 +223,18 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 							$nomLien = "<p id='lien'> Candidat ".$employe->id_employe."</p>";
 							echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$employe->id_employe));
 						}
->>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 					}
 					
 
 				}
 				else
-<<<<<<< HEAD
-				{// Si aucune recherche n'a été faite on affiche tout les employés
-					print("<p id='div-infos-comp'> Votre recherche étant vide, à défaut, voici les ".$nombreEmploye." candidats présents sur prozzl.</p>");
+				{// Si aucun résultat ne ressort de la recherche
+					print("<p id='div-infos-comp'> Aucun candidat ne corresponds à votre recherche.</p>");
 
-					foreach($data as $employe)
-					{
-						print("<p id='div-infos-comp'> L'employe : ".$employe->id_employe." (id)</p>");
-					}
-=======
-				{// Sinon, on dit simplement qu'il n'y en a pas
-					print("<p id='div-infos-comp'> Aucun candidat ne correspondent à votre recherche.</p>");
->>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 				}
 
-<<<<<<< HEAD
-			}
-			else
-			{// Sinon, on dit simplement qu'il n'y en a pas
-				print("<p id='div-infos-comp'> Aucun candidat ne corresponds à votre recherche.</p>");
-			}
-
-		?>
-=======
 			?>
 		</div>
->>>>>>> 40aefec1b3664a713d83edb27b350165ad5d7e67
 	</div><!-- Fermeture de la div du filtre -->
 </div><!--Fermture de la div de l'arrière plan -->
 

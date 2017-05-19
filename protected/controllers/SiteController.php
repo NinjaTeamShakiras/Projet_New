@@ -254,7 +254,6 @@ class SiteController extends Controller
 		unset(Yii::app()->session['login']);
 		$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
-
 		if (isset($_POST['btnemploye']))
 		{ // Si employe pressé
 			if($utilisateur != null)
