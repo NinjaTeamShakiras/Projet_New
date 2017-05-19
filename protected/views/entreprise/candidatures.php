@@ -63,7 +63,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 	<div class='filtre-vert'>
 		<div id='div-accueil-entreprise-search'>
-			<h1>Mes candidats : </h1>
+			<h3 id='titre'>Mes candidats : </h3>
 
 
 
@@ -99,7 +99,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 					?>
 				</div>
 
-				<div class="row buttons">	
+				<div class="row" id='div-btn-rechercher'>	
 					<?php
 						// Button d'envoi
 						echo CHtml::submitButton('Actualiser',array('class'=>'btn_rechercher btn btn-success'));
@@ -146,6 +146,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 						{
 							$nomLien = "<p id='lien'> Le candidat ".$employe->id_employe." a postulé à votre offre </p>";
 							echo CHtml::link($nomLien ,array('employe/view', 'id'=>$employe->id_employe));
+							echo "<div class=separation-blanche></div>";
 						}
 					}
 				
