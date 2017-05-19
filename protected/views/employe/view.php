@@ -13,27 +13,89 @@ $cs->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_view.js');
 
 
-
 //On récupère les infos de l'employé qu'on consulte
 $employe = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
 //On récupère l'utilisateur qui visite la page
-$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
+$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));	
 
-if($user == null)
+
+
+if($user != null)
 {
-	$user = new Utilisateur;
-}	
-?>
-
-
-
-	<?php
+	if(!Utilisateur::est_employe(Yii::app()->user->role))
+	{// ENTREPRISE
 		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-	 	echo CHtml::link($image,array('employe/index','id'=> $user->id_employe)); 
+	 	echo CHtml::link($image,array('entreprise/index','id'=> $user->id_employe));
+
+	 	?>
+	 		<!--  MENU 	-->
+		<div class="btn-group" style="float: right;">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Menu
+		   	<span class="caret"></span>
+		   	</button>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li>
+					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=Entreprise/parametres" title="Parametres">
+					Paramètres de mon compte
+					</a>
+				</li>
+			</ul>
+		</div>
+	 	<?php
+	 	$user = new Utilisateur;
+	}
+	else if(Utilisateur::est_employe(Yii::app()->user->role))
+	{ // EMPLOYE
+		$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+	 	echo CHtml::link($image,array('employe/index','id'=> $user->id_employe));
+
+	 	?>
+	 		<!--  MENU 	-->
+		<div class="btn-group" style="float: right;">
+			<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Menu
+		   	<span class="caret"></span>
+		   	</button>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li>
+					<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil"> 
+					Mes candidatures
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=employe/index" title="Recherche">
+					Rechercher une offre
+					</a>
+				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
+					Déconnexion
+					</a>
+				</li>
+				<li>
+					<a href="index.php?r=Employe/parametres" title="Parametres">
+					Paramètres de mon compte
+					</a>
+				</li>
+			</ul>
+		</div>
+	 	<?php 
+	}	
+}
+else
+{
+	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
+	 echo CHtml::link($image,array('index.php'));
+
 	 ?>
-
-
-	<!--  MENU 	-->
+	 		<!--  MENU 	-->
 	<div class="btn-group" style="float: right;">
 		<button type="button" class="btn-menu btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Menu
@@ -41,28 +103,21 @@ if($user == null)
 	   	</button>
 		<ul class="dropdown-menu dropdown-menu-right">
 			<li>
-				<a href="index.php?r=offreEmploi/mesOffres&id=<?php echo $user->id_employe;?>" title="Mon profil"> 
-				Mes candidatures
-				</a>
-			</li>
-			<li>
 				<a href="index.php?r=employe/index" title="Recherche">
 				Rechercher une offre
 				</a>
 			</li>
-			<li role="separator" class="divider"></li>
-			<li>
-				<a href="index.php?r=employe/Deconnexion" title="Déconnexion">
-				Déconnexion
-				</a>
-			</li>
-			<li>
-				<a href="index.php?r=Employe/parametres" title="Parametres">
-				Paramètres de mon compte
-				</a>
-			</li>
 		</ul>
 	</div>
+	<?php
+}
+
+?>
+
+
+
+
+
 
 
 	<div class='filtre-blanc'> 
