@@ -27913,6 +27913,7 @@ REQUEST_URI=/prozzl/index.php?r=entreprise/update&id=2
 in C:\wamp\www\prozzl\protected\controllers\EntrepriseController.php (154)
 in C:\wamp\www\prozzl\index.php (13)
 >>>>>>> 35d73e4a17d2f61204fb042c306af46d8f3955fe
+<<<<<<< HEAD
 2017/05/19 14:25:12 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:281)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
@@ -27937,3 +27938,22 @@ REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=5
 in C:\wamp\www\prozzl\protected\views\offreEmploi\view.php (281)
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (76)
 in C:\wamp\www\prozzl\index.php (13)
+=======
+2017/05/19 12:29:11 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\wamp64\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 C:\wamp64\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\wamp64\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\wamp64\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\wamp64\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\wamp64\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\wamp64\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#9 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('offreEmploi/vie...')
+#10 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\wamp64\www\prozzl\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/prozzl/index.php?r=offreEmploi/view
+---
+>>>>>>> 46c5ac46918466b69b23037ef1a07cbe6c39b896
