@@ -27244,6 +27244,30 @@ in C:\wamp\www\prozzl\protected\views\offreEmploi\_form.php (155)
 in C:\wamp\www\prozzl\protected\views\offreEmploi\create.php (8)
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (120)
 <<<<<<< HEAD
+2017/05/19 11:23:09 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\protected\controllers\SiteController.php:257)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/Accueil
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (257)
+in C:\wamp64\www\prozzl\index.php (13)
+2017/05/19 11:23:17 [error] [php] Trying to get property of non-object (C:\wamp64\www\prozzl\protected\controllers\SiteController.php:257)
+Stack trace:
+#0 C:\wamp64\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp64\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp64\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp64\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp64\www\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 C:\wamp64\www\prozzl\index.php(13): CWebApplication->run()
+REQUEST_URI=/prozzl/index.php?r=site/Accueil
+in C:\wamp64\www\prozzl\protected\controllers\SiteController.php (257)
+in C:\wamp64\www\prozzl\index.php (13)
+=======
+<<<<<<< HEAD
 2017/05/19 10:59:12 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\entreprise\candidatures.php:37)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): EntrepriseController->renderFile()
@@ -27437,6 +27461,7 @@ REQUEST_URI=/prozzl/index.php?r=employe/view&id=1
 in C:\wamp\www\prozzl\protected\views\employe\view.php (27)
 in C:\wamp\www\prozzl\protected\controllers\EmployeController.php (84)
 in C:\wamp\www\prozzl\index.php (13)
+<<<<<<< HEAD
 2017/05/19 13:29:46 [error] [php] Trying to get property of non-object (C:\wamp\www\prozzl\protected\views\offreEmploi\view.php:17)
 Stack trace:
 #0 C:\wamp\www\yii\framework\web\CController.php(869): OffreEmploiController->renderFile()
@@ -27461,3 +27486,6 @@ REQUEST_URI=/prozzl/index.php?r=offreEmploi/view&id=1
 in C:\wamp\www\prozzl\protected\views\offreEmploi\view.php (17)
 in C:\wamp\www\prozzl\protected\controllers\OffreEmploiController.php (76)
 in C:\wamp\www\prozzl\index.php (13)
+=======
+>>>>>>> 33a608bf9bc99779ca3c189699c8df87e12f8a6b
+>>>>>>> 3b1f2ddd073e470c5a514a4999c879e3c4893bd4
