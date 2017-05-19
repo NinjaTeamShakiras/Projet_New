@@ -45,6 +45,12 @@ $employeConnecte = false;
 						Mes candidats
 						</a>
 					</li>
+					<li role="separator" class="divider"></li>
+					<li>
+						<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+						Déconnexion
+						</a>
+				</li>
 				</ul>
 				</div>
 
@@ -73,12 +79,6 @@ $employeConnecte = false;
 					Inscription
 					</a>
 				</li>
-				<li role="separator" class="divider"></li>
-				<li>
-					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
-					Déconnexion
-					</a>
-				</li>
 			</ul>
 			</div>
 
@@ -92,7 +92,6 @@ $employeConnecte = false;
 
 
 		<?php 
-		echo Yii::app()->user->getFlash('logout_ok');
 		echo Yii::app()->user->getFlash('succes_modif_paramco'); 
 		?>
 

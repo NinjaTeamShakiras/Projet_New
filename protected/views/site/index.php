@@ -17,6 +17,8 @@ unset(Yii::app()->session['login']);
 		));
 
 		// Message d'acces refusé
+		echo Yii::app()->user->getFlash('logout_ent_ok');
+		echo Yii::app()->user->getFlash('logout_emp_ok');
 		echo Yii::app()->user->getFlash('access_denied'); 
 		?>
 
@@ -26,17 +28,11 @@ unset(Yii::app()->session['login']);
 			echo CHtml::submitButton('Un salarié', array('name' => 'btnentreprise','class' => 'btn btn-employe col-md-offset-2 col-xs-offset-2 '));  
 			?>
 		</div>
-
-		<!-- A SUPPRIMER !!! -->
-		<div class='connexion'>Déjà un compte? <?php echo CHtml::link('Connexion',array('site/login'),array('class'=>'btnredirect'));?></div>
-		<!-- A SUPPRIMER !!! -->
-
-
 		
 		<?php
 		if(Yii::app()->user->isGuest)
 		{
-     		echo "<div class='connexion'>Déjà un compte?".CHtml::link('Connexion',array('site/login'),array('class'=>'btnredirect'))."</div>";
+     		echo "<div class='connexion'>Déjà un compte? ".CHtml::link('Connexion',array('site/login'),array('class'=>'btnredirect'))."</div>";
     	}
     	else
     	{

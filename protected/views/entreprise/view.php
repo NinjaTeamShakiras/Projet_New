@@ -54,6 +54,7 @@
 			</li>
 		</ul>
 	</div>
+	<!-- Fin MENU -->
 
 	<div class='filtre-vert'>
 
@@ -65,19 +66,19 @@
 			$utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()->user->getId()));
 
 			$adresse = adresse::model()->FindByAttributes(array("id_adresse"=>$utilisateur->id_adresse));
-			$nombreEmployes = $model->nombre_employes == null ? 'Non renseignée' : $model->nombre_employes;
+			$nombreEmployes = $model->nombre_employes == null ? 'Non renseigné' : $model->nombre_employes;
 			$rechercheEmployes = $model->recherche_employes == 0 ? 'Non' : 'Oui';
-			$secteurActivite = $model->secteur_activite_entreprise == null ? 'Non renseignée' : $model->secteur_activite_entreprise;
+			$secteurActivite = $model->secteur_activite_entreprise == null ? 'Non renseigné' : $model->secteur_activite_entreprise;
 			$anneeCreation = $model->annee_creation_entreprise == null ? 'Non renseignée' : $model->annee_creation_entreprise;
-			$ageMoyen = $model->age_moyen_entreprise == null ? 'Non renseignée' : $model->age_moyen_entreprise;
+			$ageMoyen = $model->age_moyen_entreprise == null ? 'Non renseigné' : $model->age_moyen_entreprise;
 
-			$code_postal = $adresse->code_postal == null ? 'Non renseignée' : $adresse->code_postal;
+			$code_postal = $adresse->code_postal == null ? 'Non renseigné' : $adresse->code_postal;
 			$ville = $adresse->ville == null ? 'Non renseignée' : $adresse->ville;
 			$rue = $adresse->rue == null ? 'Non renseignée' : $adresse->rue;
 
-			$telephone = $utilisateur->telephone == null ? 'Non renseignée' : $this->afficheTelephone($utilisateur->telephone);
-			$telephone2 = $utilisateur->telephone2 == null ? 'Non renseignée' : $this->afficheTelephone($utilisateur->telephone2);
-			$siteWeb = $utilisateur->site_web == null ? 'Non renseignée' : $utilisateur->site_web;
+			$telephone = $utilisateur->telephone == null ? 'Non renseigné' : $this->afficheTelephone($utilisateur->telephone);
+			$telephone2 = $utilisateur->telephone2 == null ? 'Non renseigné' : $this->afficheTelephone($utilisateur->telephone2);
+			$siteWeb = $utilisateur->site_web == null ? 'Non renseigné' : $utilisateur->site_web;
 			$mail = $utilisateur->mail == null ? 'Non renseignée' : $utilisateur->mail;
 
 
@@ -106,7 +107,7 @@
 		</div>
 
 
-		<!-- Formulaire avec le bouton pour Mes candidats -->
+		<!-- Formulaire avec le bouton pour Modifier le profil -->
 		<div class="wide form">
 			<?php
 			//Début du form
@@ -124,23 +125,9 @@
 			<?php $this->endWidget(); ?>
 
 		</div>
+		<!-- Fin du formulaire de maj -->
 
-		<div class="wide form">
-			<?php
-			//Début du form
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('/entreprise/delete', array('id'=>$model->id_entreprise)),
-				)
-			);
-			?>
-
-			<div class="row buttons">
-				<?php echo CHtml::submitButton('Supprimer mon profil',array('class'=>'btn_rechercher btn')); ?>
-			</div>
-
-			<?php $this->endWidget(); ?>
-
-		</div>
-	</div><!-- Fermeture de la div du filtre -->	
-</div><!--Fermture de la div de l'arrière plan -->
+	</div>
+	<!-- Fermeture de la div du filtre -->	
+</div>
+<!--Fermture de la div de l'arrière plan -->

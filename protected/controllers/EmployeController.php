@@ -579,8 +579,8 @@ class EmployeController extends Controller
 	public function actionDeconnexion()
 	{
 		Yii::app()->user->logout(false);
-		Yii::app()->user->setFlash('logout_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
-		$this->redirect(array('employe/index'));
+		Yii::app()->user->setFlash('logout_emp_ok', "<p style = color:blue;>Vous avez bien été déconnecté(e) !</p>");
+		$this->redirect(array('site/index'));
 	}
 
 

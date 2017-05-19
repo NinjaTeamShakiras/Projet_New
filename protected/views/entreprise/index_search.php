@@ -56,6 +56,12 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 						Mes candidats
 						</a>
 					</li>
+					<li role="separator" class="divider"></li>
+					<li>
+						<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+						Déconnexion
+						</a>
+					</li>
 				</ul>
 				</div>
 
@@ -84,13 +90,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 					<a href="index.php?r=site/inscriptionEntreprise" title="Inscription">
 					Inscription
 					</a>
-				</li>
-				<li role="separator" class="divider"></li>
-				<li>
-					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
-					Déconnexion
-					</a>
-				</li>
+				</li>	
 			</ul>
 			</div>
 
@@ -115,7 +115,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 			// On récupère le nombre total d'employe
 			$nombreEmploye = sizeof($tabEmploye);
 
-			print("<p id='div-infos-comp'> Trouver le CV que vous rechercher parmis ".$nombreEmploye." CV.</p>"); 
+			print("<p id='div-infos-comp'> Trouver le CV que vous recherchez parmis ".$nombreEmploye." CV.</p>"); 
 		?>
 
 
@@ -189,11 +189,11 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 				{// Si unerecherche à été faite
 					if($nombreEmploye == 1)
 					{
-						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidat correspondent à votre recherche.</p>");
+						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidat correspondant à votre recherche.</p>");
 					}
 					else
 					{
-						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidats correspondent à votre recherche.</p>");
+						print("<p id='div-infos-comp'> Vous avez ".$nombreEmploye." candidats correspondant à votre recherche.</p>");
 					}
 
 					foreach($data as $employe)
@@ -203,7 +203,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 				}
 				else
 				{// Si aucune recherche n'a été faite on affiche tout les employés
-					print("<p id='div-infos-comp'> Votre recherche était vide, à défaut, voici les ".$nombreEmploye." candidats présent sur prozzl.</p>");
+					print("<p id='div-infos-comp'> Votre recherche étant vide, à défaut, voici les ".$nombreEmploye." candidats présents sur prozzl.</p>");
 
 					foreach($data as $employe)
 					{
@@ -215,7 +215,7 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 			}
 			else
 			{// Sinon, on dit simplement qu'il n'y en a pas
-				print("<p id='div-infos-comp'> Aucun candidat ne correspondent à votre recherche.</p>");
+				print("<p id='div-infos-comp'> Aucun candidat ne corresponds à votre recherche.</p>");
 			}
 
 		?>
