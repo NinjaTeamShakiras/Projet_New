@@ -139,42 +139,10 @@
 	*/
 	?>
 
-	<div class="row two-buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour l\'offre',array('class'=>'btn-creer-annuler')); ?>
-		<?php $this->endWidget(); ?>
 
 
-
-
-		<?php
-		//Début du form
-		$previousURLlong = Yii::app()->request->geturlReferrer();
-		$previousURL = substr($previousURLlong,strpos($previousURLlong,'?r='));
-
-
-		if($previousURL == '?r=site/login')
-		{
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>Yii::app()->createUrl('entreprise/index')
-				)
-			);
-		}
-		else
-		{
-			$form=$this->beginWidget('CActiveForm',
-				array(
-					'action'=>$previousURLlong
-				)
-			);	
-		}
-
-		?>
-
-		<div class="row ">
-			<?php echo CHtml::submitButton('Annuler',array('class'=>'btn-creer-annuler')); ?>
-		</div>
-
+	<div class="row">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Créer' : 'Mettre à jour l\'offre',array('class'=>'btn-creer')); ?>
 		<?php $this->endWidget(); ?>
 		
 	</div>

@@ -16,8 +16,16 @@ $this->menu=array(
 	array('label'=>'Manage OffreEmploi', 'url'=>array('admin')),
 );
 */
-?>
 
-<h1>Modifier votre offre </h1>
+	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/prozzl_logo.png',
+	      'Image accueil');
+	 
+	      echo CHtml::link($image,array('entreprise/index'));
+	?>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class='filtre-vert'>
+
+	<h1 class=intitule>Modifier votre offre </h1>
+
+	<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+</div>
