@@ -17,9 +17,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/employe_vi
 //On récupère les infos de l'employé qu'on consulte
 $employe = Utilisateur::model()->FindByAttributes(array('id_employe'=>$model->id_employe));
 //On récupère l'utilisateur qui visite la page
-$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));
-//On récupère l'adresse correspondant à l'employé
-$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adresse));	
+$user  = Utilisateur::model()->FindByAttributes(array('mail'=>Yii::app()->user->getID()));	
 ?>
 
 
@@ -81,60 +79,65 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 
 			?>
 			<?php
-			//Si l'adresse est nulle on dit qu'elle n'est pas renseignée
-			if($adresse == null){
-				$adresse = "Non renseignée";
-			}
-			//Sinon, on définit une variable adresse récupérée depuis model Adresse
-			else
-			{
-				$adresse = $adresse->rue.", ".$adresse->code_postal." ".$adresse->ville;
-			}
-
-			//On fait pareil pour le site Web
-			if($user->site_web == null)
-			{
-				$user->site_web = "Non renseigné";
-			}
-				
-			//On fait pareil pour les téléphones
-			if($employe->telephone == null)
-			{
-				$employe->telephone = "Non renseigné";
-			}
-			else
-			{
-				$employe->telephone = $this->afficheTelephone($employe->telephone);
-			}
-
-			if($employe->telephone2 == null)
-			{
-				$employe->telephone2 = "Non renseigné";
-			}
-			else
-			{
-				$employe->telephone2 = $this->afficheTelephone($employe->telephone2);
-			}
-
-			//On définit si l'employé cherche un travail ou non
-			if($model->employe_travaille == null)
-			{
-				$model->employe_travaille = "Non renseigné";
-			}
-			else if($model->employe_travaille == 1)
-			{
-				$model->employe_travaille = "Non";
-			}
-			else if($model->employe_travaille == 0)
-			{
-				$model->employe_travaille = "Oui";
-			}
+			
 
 			//Si l'utilisateur consulte sa page on affiche les infos persos
 			//Sinon, si l'utilisateur consulte les infos de quelqu'un d'autre, on affiche pas les infos persos
 			if($user->id_employe == $_GET['id'])
 			{
+				//On récupère l'adresse correspondant à l'employé
+				$adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adresse));
+
+				//Si l'adresse est nulle on dit qu'elle n'est pas renseignée
+				if($adresse == null){
+					$adresse = "Non renseignée";
+				}
+				//Sinon, on définit une variable adresse récupérée depuis model Adresse
+				else
+				{
+					$adresse = $adresse->rue.", ".$adresse->code_postal." ".$adresse->ville;
+				}
+
+				//On fait pareil pour le site Web
+				if($user->site_web == null)
+				{
+					$user->site_web = "Non renseigné";
+				}
+					
+				//On fait pareil pour les téléphones
+				if($employe->telephone == null)
+				{
+					$employe->telephone = "Non renseigné";
+				}
+				else
+				{
+					$employe->telephone = $this->afficheTelephone($employe->telephone);
+				}
+
+				if($employe->telephone2 == null)
+				{
+					$employe->telephone2 = "Non renseigné";
+				}
+				else
+				{
+					$employe->telephone2 = $this->afficheTelephone($employe->telephone2);
+				}
+
+				//On définit si l'employé cherche un travail ou non
+				if($model->employe_travaille == null)
+				{
+					$model->employe_travaille = "Non renseigné";
+				}
+				else if($model->employe_travaille == 1)
+				{
+					$model->employe_travaille = "Non";
+				}
+				else if($model->employe_travaille == 0)
+				{
+					$model->employe_travaille = "Oui";
+				}
 				?>	
+
 				<h3 id='titre-infos-perso'>MES INFORMATIONS PERSONELLES</h3>
 			 	<div class='form-infos-perso form'>	
 
@@ -268,17 +271,21 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 						echo "<p>Etablissement de la formation : <label>".$formation->etablissement_formation."</label></p>";
 						echo "<p>Diplome obtenu : <label>".$diplome."</label></p>";
 						echo "<p>Description de la formation : <label>".$description."</label></p>";
-						?>
 						
-						<div class='div-modifier-supprimer'>
-							<?php
-							echo CHtml::link('Mettre à jour cette formation',array('Formation/update', 'id'=>$formation->id_formation,'class'=>'Modifier-supprimer'));
-							echo " / ";
-							echo CHtml::link('Supprimer cette formation',array('Formation/delete', 'id'=>$formation->id_formation,'class'=>'Modifier-supprimer')); 
+
+						//Seul le "proprietaire" du profil peut mettre à jour et supprimer des infos
+						if($user->id_employe == $_GET['id'])
+						{
 							?>
-						</div>
-						
-						<?php	
+							<div class='div-modifier-supprimer'>
+								<?php
+								echo CHtml::link('Mettre à jour cette formation',array('Formation/update', 'id'=>$formation->id_formation,'class'=>'Modifier-supprimer'));
+								echo " / ";
+								echo CHtml::link('Supprimer cette formation',array('Formation/delete', 'id'=>$formation->id_formation,'class'=>'Modifier-supprimer')); 
+								?>
+							</div>
+							<?php
+						}	
 					}
 					?>
 				</div>
@@ -343,17 +350,21 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 							echo "<p>Intitulé de l'expérience pro : <label>".$exp_pro->intitule_experience."</label></p>";
 							echo "<p>Entreprise dans laquelle vous êtiez salarié : <label>".$entreprise."</label></p>";
 							echo "<p>Description de l'expérience pro : <label>".$description."</label>	</p>";
-							?>
+							
 
-							<div class='div-modifier-supprimer'>
-								<?php
-								echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer'));
-								echo " / ";
-								echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete', 'id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer')); 
+							//Seul le "proprietaire" du profil peut mettre à jour et supprimer des infos
+							if($user->id_employe == $_GET['id'])
+							{
 								?>
-							</div>
-
-							<?php
+								<div class='div-modifier-supprimer'>
+									<?php
+									echo CHtml::link('Mettre à jour cette expérience',array('ExperiencePro/update', 'id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer'));
+									echo " / ";
+									echo CHtml::link('Supprimer cette expérience',array('ExperiencePro/delete', 'id'=>$exp_pro->id_experience,'class'=>'Modifier-supprimer')); 
+									?>
+								</div>
+								<?php
+							}
 						}
 					?>	
 				</div>
@@ -394,10 +405,14 @@ $adresse = Adresse::model()->FindByAttributes(array('id_adresse'=>$user->id_adre
 								<?php echo $competence->intitule_competence."<label> Niveau ".$competence->niveau_competence."/5</label>"; ?>
 							</li>
 
-							<?php 
-							echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence,'class'=>'modifier-supprimer'));
-							echo " / ";
-							echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence,'class'=>'Modifier-supprimer')); 
+							<?php
+							//Seul le "proprietaire" du profil peut mettre à jour et supprimer des infos
+							if($user->id_employe == $_GET['id'])
+							{
+								echo CHtml::link('Mettre à jour cette compétence',array('Competence/update', 'id'=>$competence->id_competence,'class'=>'modifier-supprimer'));
+								echo " / ";
+								echo CHtml::link('Supprimer cette compétence',array('Competence/delete', 'id'=>$competence->id_competence,'class'=>'Modifier-supprimer')); 
+							} 	
 						}
 						?>
 					</ul>
