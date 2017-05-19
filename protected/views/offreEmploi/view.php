@@ -55,6 +55,12 @@ echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe));
 						Rechercher un CV
 						</a>
 					</li>
+					<li role="separator" class="divider"></li>
+					<li>
+						<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+						Déconnexion
+					</a>
+				</li>
 				</ul>
 			</div>
 		<?php
@@ -106,6 +112,12 @@ echo CHtml::link($image,array('employe/index','id'=> $utilisateur->id_employe));
 				<li>
 					<a href="index.php?r=employe/index" title="Rechercher une offre">
 					Rechercher une offre
+					</a>
+				</li>
+				<li role="separator" class="divider"></li>
+				<li>
+					<a href="index.php?r=entreprise/Deconnexion" title="Déconnexion">
+					Déconnexion
 					</a>
 				</li>
 			</ul>
@@ -170,7 +182,7 @@ else
 				// on récupère l'entreprise concerné
 				$entreprise = Entreprise::model()->FindByAttributes(array("id_entreprise"=>$model->id_entreprise));
 				// On adapte le titre
-				$titre = "Offre proposé par ".$entreprise->nom_entreprise.".";
+				$titre = "Offre proposée par ".$entreprise->nom_entreprise.".";
 			}
 		}
 		else
@@ -206,7 +218,7 @@ else
 				print("<p><strong> Secteur d'activité : </strong>".$entreprise->secteur_activite_entreprise." </p>");
 				print("<p><strong>Poste : </strong>".$model->poste_offre_emploi."</p>");
 				print("<p><strong>Type de contrat : </strong>".$model->type_offre_emploi."</p>");
-				print("<p><strong> Date prévisionnel d'embauche :</strong> ".$this->changeDateNaissance($model->date_debut_offre_emploi)."</p>");
+				print("<p><strong> Date prévisionnelle d'embauche :</strong> ".$this->changeDateNaissance($model->date_debut_offre_emploi)."</p>");
 				print("<p><strong>Salaire proposé :</strong> ".$model->salaire_offre_emploi." €</p>");
 				print("<p><strong>Lieu : </strong>".$adresse->ville." </p>");
 				print("<p><strong>Expérience nécéssaire :</strong> ".$model->experience_offre_emploi."</p>");
@@ -245,7 +257,7 @@ else
 				// Affichage des candidats ou non
 				if($nombreCandidature > 0) // Si il y a des candidats
 				{ // On affiche le nombre de candidat, puis un lien vers les candidats
-					print("<p> Vous avez ".$nombreCandidature." candidature pour cette offre : </p>");
+					print("<p> Vous avez ".$nombreCandidature." candidature(s) pour cette offre : </p>");
 
 					$tablePostuler = Postuler::model()->FindAll();
 					for($i=0; $i<$nombreCandidature; $i++)// parcours de chaques candidatures (correspond à un employé)
@@ -264,7 +276,7 @@ else
 				}
 				else
 				{
-					print("<p> Vous n'avez aucune candidature à cette offre </p>");
+					print("<p> Vous n'avez aucune candidature pour cette offre </p>");
 				}
 
 				?>
@@ -281,7 +293,7 @@ else
 					);
 					?>
 
-					<div class="row buttons">
+					<div class="row">
 						<?php echo CHtml::submitButton('Modifier mon annonce',array('class'=>'btn-candidature')); ?>
 					</div>
 
@@ -303,7 +315,7 @@ else
 					);
 					?>
 
-					<div class="row buttons">
+					<div class="row">
 						<?php echo CHtml::submitButton('Supprimer mon annonce',array('class'=>'btn-canditure')); ?>
 					</div>
 

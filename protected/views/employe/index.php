@@ -98,7 +98,6 @@
 	<div class='filtre-vert'>
 
 		<?php 
-			echo Yii::app()->user->getFlash('logout_ok');
 			echo Yii::app()->user->getFlash('succes_modif_paramco'); 
 		?>
 			

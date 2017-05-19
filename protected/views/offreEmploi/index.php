@@ -287,7 +287,7 @@ else
 
 							$nombreCandidature = 0;
 							$tabIdEmploye=array();
-							echo "<hr/>";
+							echo "<div class=separation-blanche></div>";
 						}
 
 

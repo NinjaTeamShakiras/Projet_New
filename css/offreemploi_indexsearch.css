@@ -1,0 +1,122 @@
+@font-face 
+{
+	font-family: "Bodoni FLF";
+	src: url('BodoniFLF-Roman.ttf');
+}
+
+@font-face
+{
+	font-family:"Montserrat Light";
+	src: url('Montserrat-Light.otf');
+}
+
+.arriere-plan-employe
+{
+	background-image:url(../images/image9_1);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+#contenu
+{
+ background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#phrase-nb-offres
+{
+	font-size:70px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+
+}
+
+
+#div-champs-recherche
+{
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+.champs-recherche
+{
+	text-align: center;
+	padding:1.0%;
+	border:2px solid;		
+	font-family:"Montserrat Light";
+}
+
+
+
+#div-champs-selection
+{
+	text-align: center;
+	margin-top: 2%;
+}
+
+
+
+.menu_roulant-selection
+{
+	border:2px solid;
+	padding:1.0%;
+	font-family:"Montserrat Light";
+}
+
+
+
+#div-btn-rechercher
+{
+	text-align:center;
+	margin-top:1cm;
+	margin-bottom:1cm;
+
+}
+
+.btn_rechercher
+{
+	border-color: #90ffb9;
+	font-weight: bold;
+	padding:1%;
+	background-color:black;
+	color:#90ffb9;
+	border-radius: 50px;
+	box-shadow:2px 2px 15px black;		
+	font-family:"Montserrat Light";
+	font-size:18px;
+}
+
+.btn_rechercher:hover,
+.btn_recherche:active,
+.btn_rechercher:focus
+{
+	color:#90ffb9;
+}
+
+#titre-nvlle-recherche
+{
+	font-size:70px;
+	font-family:"Bodoni FLF";
+	text-align: center;
+	color: black;
+	margin-bottom:1cm;
+	text-shadow: 1px 1px 2px;
+
+}
+
+.separation-blanche
+{
+	margin-top: 2cm;
+	margin-bottom: 2cm;
+	margin-left: 5cm;
+	margin-right: 15cm;
+	height: 7px;
+	background-color: white;
+}
+
+
