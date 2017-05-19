@@ -220,8 +220,19 @@ $utilisateur = Utilisateur::model()->FindByAttributes(array("mail"=> Yii::app()-
 
 						foreach($data as $employe)
 						{
+							$url_redirect = './upload/' . $employe->id_employe . '/cv_generated_' . $employe->id_employe . '.pdf';
 							$nomLien = "<p id='lien'> Candidat ".$employe->id_employe."</p>";
-							echo CHtml::link($nomLien ,array('offreEmploi/view', 'id'=>$employe->id_employe));
+							if( file_exists( $url_redirect ) )
+							{
+								echo CHtml::link($nomLien , array('employe/view', 'id' => $employe->id_employe ) );
+								echo '<iframe src="' . $url_redirect . '" width="55%" height="600px" ></iframe>';
+							}
+							/* 
+							Pour afficher le profil d'un employé qui n'a pas généré son cv enlever le commentaire.
+							else
+							{
+								echo CHtml::link($nomLien , array('employe/view', 'id' => $employe->id_employe ) );
+							}*/
 						}
 					}
 					
