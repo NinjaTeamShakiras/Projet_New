@@ -40,15 +40,9 @@ if($user != null)
 					Déconnexion
 					</a>
 				</li>
-				<li>
-					<a href="index.php?r=Entreprise/parametres" title="Parametres">
-					Paramètres de mon compte
-					</a>
-				</li>
 			</ul>
 		</div>
 	 	<?php
-	 	$user = new Utilisateur;
 	}
 	else if(Utilisateur::est_employe(Yii::app()->user->role))
 	{ // EMPLOYE
@@ -92,7 +86,7 @@ if($user != null)
 else
 {
 	$image = CHtml::image(Yii::app()->request->baseUrl.'/images/Prozzl_logo.png','Image accueil');
-	 echo CHtml::link($image,array('index.php'));
+	 echo CHtml::link($image,'index.php');
 
 	 ?>
 	 		<!--  MENU 	-->
@@ -110,6 +104,7 @@ else
 		</ul>
 	</div>
 	<?php
+	$user = new Utilisateur;
 }
 
 ?>
@@ -430,12 +425,18 @@ else
 				</div>
 				<!-- FIN EXPERIENCES PROFESSIONNELLES -->
 
-				<!-- Bouton ajout de nouvelles infos complémentaires -->
-				<div class="row">
-					<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','class'=>'btn-maj-infos btn col-md-offset-6 col-xs-offset-4')); ?>
-				</div>
-				<!-- Fin bouton -->
-
+				<?php
+				if($user->id_employe === $_GET['id'])
+				{
+					?>
+					<!-- Bouton ajout de nouvelles infos complémentaires -->
+					<div class="row">
+						<?php echo CHtml::submitButton('Ajouter de nouvelles informations complémentaires', array('name'=>'btnajout','class'=>'btn-maj-infos btn col-md-offset-6 col-xs-offset-4')); ?>
+					</div>
+					<!-- Fin bouton -->
+					<?php
+				}
+				?>
 
 				
 				<!-- COMPETENCES -->
@@ -483,7 +484,7 @@ else
 				<?php $this->endWidget();?>
 			
 			</div>	
-			<!-- Fin du form info complmentaires -->
+			<!-- Fin du form info complémentaires -->
 		</div>
 		<!-- Fin de la div infos-comp -->
 
